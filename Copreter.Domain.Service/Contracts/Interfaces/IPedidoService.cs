@@ -8,6 +8,8 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TPedido> ObtenerAsync(string id);
 
+        Task<bool> AgregarAsync(TPedido entidad);
+
         Task<bool> ActualizarAsync(string id, TPedido entidad);
 
         Task<bool> ActualizarEstadoAsync(string id, int estado);

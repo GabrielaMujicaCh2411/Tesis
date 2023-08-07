@@ -18,6 +18,14 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TPartida> Partida { get; }
 
+        IRepository<TPedido> Pedido { get; }
+
         IRepository<TTipoPartida> TipoPartida { get; }
+
+        IRepository<TTipoUnidad> TipoUnidad { get; }
+
+        IRepository<TTrabajador> Trabajador { get; }
+
+        IRepository<TUnidad> Unidad { get; }
     }
 }

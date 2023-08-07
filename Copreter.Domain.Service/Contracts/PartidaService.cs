@@ -30,11 +30,6 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Partida.GetAll();
         }
 
-        public async Task<IEnumerable<TTipoPartida>> ListarTipoPartidaAsync()
-        {
-            return await this._data.TipoPartida.GetAll();
-        }
-
         public async Task<TPartida> ObtenerAsync(string id)
         {
             return await this._data.Partida.GetById(id);

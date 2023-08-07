@@ -6,8 +6,6 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
     {
         Task<IEnumerable<TPartida>> ListarAsync();
 
-        Task<IEnumerable<TTipoPartida>> ListarTipoPartidaAsync();
-
         Task<TPartida> ObtenerAsync(string id);
 
         Task<bool> AgregarAsync(TPartida entidad);

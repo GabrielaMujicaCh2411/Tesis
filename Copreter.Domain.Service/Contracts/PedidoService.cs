@@ -15,29 +15,49 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public Task<bool> ActualizarAsync(string id, TPedido entidad)
+        public async Task<bool> ActualizarAsync(string id, TPedido entidad)
         {
-            throw new NotImplementedException();
+            var entidadActual = await this._data.Pedido.GetById(id);
+            if (entidadActual == null) return false;
+
+            var result = await this._data.Pedido.Update(entidad);
+            return result > 0;
         }
 
-        public Task<bool> ActualizarEstadoAsync(string id, int estado)
+        public async Task<bool> ActualizarEstadoAsync(string id, int estado)
         {
-            throw new NotImplementedException();
+            var entidadActual = await this._data.Pedido.GetById(id);
+            if (entidadActual == null) return false;
+
+            entidadActual.IdEstadoPedido = estado;
+
+            var result = await this._data.Pedido.Update(entidadActual);
+            return result > 0;
         }
 
-        public Task<bool> EliminarAsync(string id)
+        public async Task<bool> AgregarAsync(TPedido entidad)
         {
-            throw new NotImplementedException();
+            var result = await this._data.Pedido.Add(entidad);
+            return result > 0;
         }
 
-        public Task<IEnumerable<TPedido>> ListarAsync()
+        public async Task<bool> EliminarAsync(string id)
         {
-            throw new NotImplementedException();
+            var entidadActual = await this._data.Pedido.GetById(id);
+            if (entidadActual == null) return false;
+
+            var result = await this._data.Pedido.DeleteAndReturn(entidadActual);
+            return result > 0;
         }
 
-        public Task<TPedido> ObtenerAsync(string id)
+        public async Task<IEnumerable<TPedido>> ListarAsync()
         {
-            throw new NotImplementedException();
+            return await this._data.Pedido.GetAll();
+        }
+
+        public async Task<TPedido> ObtenerAsync(string id)
+        {
+            return await this._data.Pedido.GetById(id);
         }
     }
 }
