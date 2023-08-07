@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Copreter.Db</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b70587f8-1c3d-4ec5-91a7-a7d1a84c3bc9}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Copreter.Db</RootNamespace>
+    <AssemblyName>Copreter.Db</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\T_Usuario.sql" />
+    <Build Include="dbo\Tables\T_Unidad.sql" />
+    <Build Include="dbo\Tables\T_TrabajadorxCotizacion.sql" />
+    <Build Include="dbo\Tables\T_Trabajador.sql" />
+    <Build Include="dbo\Tables\T_TipoUnidad.sql" />
+    <Build Include="dbo\Tables\T_TipoTrabajador.sql" />
+    <Build Include="dbo\Tables\T_TipoPartida.sql" />
+    <Build Include="dbo\Tables\T_Rol.sql" />
+    <Build Include="dbo\Tables\T_Pedido.sql" />
+    <Build Include="dbo\Tables\T_Partida.sql" />
+    <Build Include="dbo\Tables\T_Pago.sql" />
+    <Build Include="dbo\Tables\T_OrdenServicio.sql" />
+    <Build Include="dbo\Tables\T_ObraxPartida.sql" />
+    <Build Include="dbo\Tables\T_Obra.sql" />
+    <Build Include="dbo\Tables\T_Incidencia.sql" />
+    <Build Include="dbo\Tables\T_Factura.sql" />
+    <Build Include="dbo\Tables\T_EstadoUnidad.sql" />
+    <Build Include="dbo\Tables\T_EstadoTrabajador.sql" />
+    <Build Include="dbo\Tables\T_EstadoPedido.sql" />
+    <Build Include="dbo\Tables\T_EstadoObra.sql" />
+    <Build Include="dbo\Tables\T_EstadoCotizacion.sql" />
+    <Build Include="dbo\Tables\T_CotizacionxUnidad.sql" />
+    <Build Include="dbo\Tables\T_Cotizacion.sql" />
+    <Build Include="dbo\Tables\T_Cliente.sql" />
+    <Build Include="dbo\Tables\T_Cita.sql" />
+  </ItemGroup>
+</Project>

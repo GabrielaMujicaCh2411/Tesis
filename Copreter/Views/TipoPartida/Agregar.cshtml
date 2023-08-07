@@ -1,0 +1,64 @@
+@model TTipoPartidum
+<body >
+<section class="content">
+      <div class="col-sm-12">
+            <h1>Agregar tipo partida </h1>
+          </div>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Agregar </h3>
+              </div>
+              <form asp-action="Registrar" asp-controller="TipoPartida" method="post">
+                 <div class="card-body">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de tipo partida: </label>
+                    <input type="text" class="form-control"  placeholder="Nombre de tipo partida" asp-for="NombreTipoPartida">
+                    <span asp-validation-for="NombreTipoPartida" class="text-danger"> </span>
+                     </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Descripcion de tipo partida: </label>
+                  <textarea type="password" class="form-control"  placeholder="Descripcion" asp-for="DescripcionTipoPartida"> </textarea>
+                  <span asp-validation-for="DescripcionTipoPartida" class="text-danger"> </span>
+                </div>
+                
+              <button type="submit" class="btn btn-primary">Agregar</button>
+                      <a asp-controller="TipoPartida" asp-action="Listar" class="btn btn-primary" role="button"> Cancelar</a>
+         
+                <!-- /.card-body -->
+              
+              </form>
+             </div>
+             <!-- /.card -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+  <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+     $('.duallistbox').bootstrapDualListbox()
+</script>
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>

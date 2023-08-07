@@ -1,0 +1,71 @@
+@model TPartidum;
+
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Detalles</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Detalle</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+        <section class="content">
+      <div class="container-fluid">
+        <!-- START ALERTS AND CALLOUTS -->
+        <h5 class="mt-4 mb-2">Detalles de las Partidas</h5>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Partidas
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <div class="callout callout-danger">
+                  <h5>Item Partida :</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdPartida)</p>
+                </div>
+
+                <div class="callout callout-danger">
+                  <h5>Nombre Partida :</h5>
+
+                  <p>@Html.DisplayFor(model =>model.NombrePartida)</p>
+                </div>
+                   <div class="callout callout-danger">
+                  <h5>Precio :</h5>
+
+                  <p>@Html.DisplayFor(model =>model.PrecioUnidad)</p>
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Tipo de Partida:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdTipoPartidaNavigation.NombreTipoPartida)</p>
+                  
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+    </section>
+    <!-- /.content -->

@@ -1,0 +1,74 @@
+@model TPartidum
+<body >
+<section class="content">
+      <div class="col-sm-12">
+            <h1>Registro </h1>
+          </div>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Registro </h3>
+              </div>
+              <form asp-action="Guardar" asp-controller="Partidas" method="post">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Item Partida </label>
+                    <input type="text" class="form-control"  placeholder="Partida" asp-for="IdPartida">
+                     <span asp-validation-for="IdPartida" class="text-danger"> </span>
+                  </div>
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre Partida </label>
+                    <input type="text" class="form-control"  placeholder="Nombre Partida" asp-for="NombrePartida">
+                     <span asp-validation-for="NombrePartida" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Precio unidad </label>
+                    <input type="text" class="form-control"  placeholder="Precio unidad" asp-for="PrecioUnidad">
+                     <span asp-validation-for="PrecioUnidad" class="text-danger"> </span>
+                  </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Tipo partida</label>
+                    <select class="form-control select2" style="width: 100%;"asp-for="IdTipoPartida" asp-items="@(new SelectList(ViewBag.ListarTipoPartida,"IdTipoPartida","NombreTipoPartida"))">
+                  </select>
+                  </div>
+              
+              <button type="submit" class="btn btn-primary">Registrar</button>
+               <a asp-controller="Partidas" asp-action="Listar" class="btn btn-primary" role="button"> Cancelar</a>
+                </div>
+                <!-- /.card-body -->
+              
+              </form>
+           </div>
+             <!-- /.card -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+  <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+     $('.duallistbox').bootstrapDualListbox()
+</script>
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>

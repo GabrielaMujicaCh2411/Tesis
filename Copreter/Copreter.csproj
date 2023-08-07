@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>20a6261a-f6ef-4ca7-8060-787fe51598a0</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AHerramientasController.cs" />
+    <Compile Remove="Controllers\ATrabajadorController.cs" />
+    <Compile Remove="Controllers\CitaController.cs" />
+    <Compile Remove="Controllers\Clientecontroller.cs" />
+    <Compile Remove="Controllers\Cotizarcontroller.cs" />
+    <Compile Remove="Controllers\Facturacontroller.cs" />
+    <Compile Remove="Controllers\Obracontroller.cs" />
+    <Compile Remove="Controllers\PagoController.cs" />
+    <Compile Remove="Controllers\Partidascontroller.cs" />
+    <Compile Remove="Controllers\PedidoController.cs" />
+    <Compile Remove="Controllers\TipoPartidacontroller.cs" />
+    <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
+    <Compile Remove="Controllers\Trabajadorcontroller.cs" />
+    <Compile Remove="Controllers\Unidadcontroller.cs" />
+    <Compile Remove="Controllers\Usuariocontroller.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SweetAlert" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

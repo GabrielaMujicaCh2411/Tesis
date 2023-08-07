@@ -1,0 +1,110 @@
+@model TObra
+<head>
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+</head>
+<body>
+<section class="content">
+      <div class="col-sm-12">
+            <h1>Solicitar Cotización</h1>
+          </div>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Solicitud de Cotización</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form asp-action="Guardar" asp-controller="Obra" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                   <div class="form-group" style="display: none">
+                    <label for="exampleInputEmail1"> Item:</label>
+                    <input type="text" class="form-control" placeholder="Item" asp-for="IdObra">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre de la obra:</label>
+                    <input type="text" class="form-control" placeholder="Nombre de la obra" asp-for="NombreObra">
+                     <span asp-validation-for="NombreObra" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Dirección</label>
+                    <input type="text" class="form-control"  placeholder="Dirección" asp-for="Direccion">
+                     <span asp-validation-for="Direccion" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Empresa</label>
+                    <input type="text" class="form-control"  placeholder="Nombre de la Empresa" asp-for="Empresa">
+                     <span asp-validation-for="Empresa" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Fecha Inicio: </label>
+                    <input type="date" class="form-control"  placeholder="Fecha" asp-for="FechaInicio">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Duración de la obra: </label>
+                    <input type="text" class="form-control"  placeholder="Duración de la obra en dias" asp-for="DuracionObra">
+                     <span asp-validation-for="DuracionObra" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group" style="display: none">
+                    <label for="exampleInputPassword1">Estado: </label>
+                    <input type="text" class="form-control"  placeholder="estado" asp-for="IdObraEstado">
+                  </div>
+                  @{
+                        var sessionName = new Byte[20];
+                        bool nameOK = Context.Session.TryGetValue("usuarioID", out sessionName);
+                        if (nameOK)
+                        {
+                          string name = System.Text.Encoding.UTF8.GetString(sessionName);
+                          <div class="form-group" style="display: none">
+                          <label for="exampleInputPassword1">Usuario: </label>
+                          <input type="text" class="form-control"  placeholder="Usuario" value="@name" asp-for="IdUsuarioObra">
+                  </div>
+                        }
+                    }
+                <!-- /.card-body -->
+                <div class="form-group">
+                    <label for="exampleInputFile">Plano</label>
+                      <div class="custom-file">
+                        <input  class="form class custom-file-input" id="imagen" asp-for="Foto">
+                        <label class="custom-file-label" >Elegir Archivo</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Solicitar</button>
+                   <button type="submit" class="btn btn-primary">Cancelar</button>
+                </div>
+
+            @section Scripts
+            {
+              <script>
+              $(document).ready(function (){
+                $('.custom-file-input').on("change",function(){
+                  var fileName = $(this).val().split("\\").pop();
+                  $(this).next('.custom-file-label').html(fileName);
+                })
+              })
+              </script>
+            }
+              </form>
+            </div>
+             <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+   <script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+</body>

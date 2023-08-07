@@ -1,0 +1,98 @@
+@model TPedido
+<head>
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+</head>
+<body>
+<section class="content">
+      <div class="col-sm-12">
+            <h1>Asignar</h1>
+          </div>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Asignar Alquiler Pedido : @Model.IdPedido</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form asp-action="GuardarOp" asp-controller="Pedido" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                   <div class="form-group"  style="display: none"> 
+                    <label for="exampleInputEmail1"> IdPedido:</label>
+                    <input type="text" class="form-control" placeholder="IdPedido" asp-for="IdPedido">
+                  </div>
+                   <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Nombre Obra: </label>
+                    <input type="text" class="form-control"  placeholder="Obra" asp-for="Obra">
+                     <span asp-validation-for="Obra" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Empresa: </label>
+                    <input type="text" class="form-control"  placeholder="Empresa" asp-for="Empresa">
+                    <span asp-validation-for="Empresa" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Ubicacion : </label>
+                    <input type="text" class="form-control"  placeholder="Ubicacion" asp-for="Ubicacion">
+                     <span asp-validation-for="Ubicacion" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputEmail1">Fecha de Inicio:</label>
+                    <input type="date" class="form-control" placeholder="FechaInicio" asp-for="FechaInicio">
+                    <span asp-validation-for="FechaInicio" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Cantidad de Dias: </label>
+                    <input type="text" class="form-control"  placeholder="CantidadDias" asp-for="CantidadDias" >
+                    <span asp-validation-for="CantidadDias" class="text-danger"> </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Fecha de Entrega : </label>
+                    <input type="date" class="form-control"  placeholder="Fecha entrega" asp-for="FechaEntrega">
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Estado Pedido : </label>
+                    <input type="text" class="form-control"  placeholder="Estado" asp-for="IdEstadoPedido">
+                  </div>
+                  <div class="form-group" >
+                    <label for="exampleInputPassword1">Trabajador Pedido : </label>
+                      <select class="form-control select2" style="width: 100%;"asp-for="IdTrabajadorPedido" asp-items="@(new SelectList(ViewBag.ListarTrabajadorPedido,"Dni","Nombre"))"></select>
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Unidad Pedido : </label>
+                    <input type="text" class="form-control"  placeholder="Unidad" asp-for="IdUnidadPedido">
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Usuario: </label>
+                    <input type="text" class="form-control"  placeholder="Usuario"  asp-for="IdUsuarioPedido">
+                  </div>
+                  <div class="form-group"  style="display: none">
+                    <label for="exampleInputPassword1">Precio Pedido : </label>
+                    <input type="text" class="form-control"  placeholder="Precio" asp-for="PrecioPedido">
+                  </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Asignar</button>
+                   <button type="submit" class="btn btn-primary">Cancelar</button>
+                </div>
+              </form>
+            </div>
+             <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+   <script src="~/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/dist/js/adminlte.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>

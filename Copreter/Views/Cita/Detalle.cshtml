@@ -1,0 +1,132 @@
+@model TCitum
+@{
+  var id = @Html.DisplayFor(model =>model.IdObraCita);   
+}
+
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Detalles</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Detalle</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+<section class="content">
+      <div class="container-fluid">
+        <!-- START ALERTS AND CALLOUTS -->
+        <h5 class="mt-4 mb-2">Detalles de la Cita</h5>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Obra
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <div class="callout callout-danger">
+                  <h5>Nombre de Obra:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdObraCitaNavigation.NombreObra)</p>
+                </div>
+
+                <div class="callout callout-danger">
+                  <h5>Empresa:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdObraCitaNavigation.Empresa)</p>
+                </div>
+                   <div class="callout callout-danger">
+                  <h5>Dirección:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdObraCitaNavigation.Direccion)</p>
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Fecha Inicio:</h5>
+
+                  <p>@Convert.ToDateTime(Model.IdObraCitaNavigation.FechaInicio).ToString("dd/MM/yyyy")</p>
+                  
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Duración de Obra:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdObraCitaNavigation.DuracionObra) días</p>
+                  
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Usuario:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdObraCitaNavigation.IdUsuarioObra)</p>
+                  
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Estado de Obra:</h5>
+
+                  <p>Citado</p>
+                  
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+           <div class="col-md-4">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Cita
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <div class="callout callout-danger">
+                  <h5>Nr° de Cita:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.IdCita)</p>
+                </div>
+                  <div class="callout callout-info">
+                  <h5>Lugar:</h5>
+
+                  <p>@Html.DisplayFor(model =>model.lugarCita)</p>
+                  
+                </div>
+
+                <div class="callout callout-danger">
+                  <h5>Fecha :</h5>
+
+                  <p>@Convert.ToDateTime(Model.IdObraCitaNavigation.FechaInicio).ToString("dd/MM/yyyy")</p>
+                </div>
+                   <div class="callout callout-danger">
+                  <h5>Hora :</h5>
+
+                  <p>@Html.DisplayFor(model =>model.HoraCita)</p>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            
+             <a class= "btn btn-success" asp-action="ObraCitada"  asp-route-id="@Model.IdObraCita" >Terminado</a>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+    </section>
+    <!-- /.content -->

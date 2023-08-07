@@ -1,0 +1,1 @@
+Scaffold-DbContext name=ConnectionStrings:DatabaseConnection Microsoft.EntityFrameworkCore.SqlServer -OutputDir DbModel -force -NoPluralize -project Copreter.Domain.Model

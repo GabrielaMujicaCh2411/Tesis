@@ -1,0 +1,99 @@
+@model TFactura
+@{
+ var imagePath = @Html.DisplayFor(model =>model.Imagen);   
+ decimal? pago1 = Model.IdCotizacionFacturaNavigation.Total / 2;
+ decimal? pago2 = Model.IdCotizacionFacturaNavigation.Total - pago1;
+
+}
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Detalles de Factura</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Detalle</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+<section class="content">
+      <div class="container-fluid">
+        <!-- START ALERTS AND CALLOUTS -->
+        <h5 class="mt-4 mb-2">Detalles de la Factura</h5>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Factura
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <div class="callout callout-danger">
+                  <h5>N° Cotizacion:</h5>
+
+                 @Html.DisplayFor(model => model.IdCotizacionFactura)
+                </div>
+
+                <div class="callout callout-danger">
+                  <h5>Factura N°:</h5>
+
+                 @Html.DisplayFor(model => model.IdFactura)
+                </div>
+                <div class="callout callout-danger">
+                  <h5>Total:</h5>
+
+                  @Html.DisplayFor(model => model.IdCotizacionFacturaNavigation.Total)
+                </div>
+                 <div class="callout callout-danger">
+                  <h5>1° Pago:</h5>
+                   <p>  @pago1</p>
+                </div>
+                 <div class="callout callout-danger">
+                  <h5>2° Pago:</h5>
+                   <p>  @pago2</p>
+                </div>
+                <div class="callout callout-info">
+                  <h5>Fecha:</h5>
+
+                  <p>@Convert.ToDateTime(Model.IdCotizacionFacturaNavigation.Fecha).ToString("dd/MM/yyyy")</p>
+                  
+                </div>
+
+                <div class="callout callout-info">
+                  <h5>Descargar Factura:</h5>
+
+                 <a href="~/images/@imagePath" class= "btn btn-warning" download="Factura @Html.DisplayFor(model =>model.IdFactura) ">Descargar</a>
+                  
+                </div>
+              </div>
+                 @if (Model.IdCotizacionFacturaNavigation.IdCotizacionEstado==4)
+                    {
+                        <a class= "btn btn-primary" asp-controller="Pago" asp-action="Pagar"  asp-route-id="@Model.IdCotizacionFactura" >Pagar</a>
+                    } 
+                      @if (Model.IdCotizacionFacturaNavigation.IdCotizacionEstado==6)
+                    {
+                        <a class= "btn btn-primary" asp-controller="Pago" asp-action="Pagar2"  asp-route-id="@Model.IdCotizacionFactura" >Pagar</a>
+                    } 
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+       
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+
+

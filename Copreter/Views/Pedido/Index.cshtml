@@ -1,0 +1,9 @@
+@{
+    
+    var sessionName = new Byte[20];
+     bool nameOK = Context.Session.TryGetValue("usuarioID", out sessionName);
+      string id = System.Text.Encoding.UTF8.GetString(sessionName);
+}
+
+
+<h4>@id</h4>
