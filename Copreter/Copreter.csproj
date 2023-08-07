@@ -9,6 +9,69 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\AHerramientas\**" />
+    <Compile Remove="Views\ATrabajador\**" />
+    <Compile Remove="Views\Cita\**" />
+    <Compile Remove="Views\Cliente\**" />
+    <Compile Remove="Views\Cotizar\**" />
+    <Compile Remove="Views\Factura\**" />
+    <Compile Remove="Views\Obra\**" />
+    <Compile Remove="Views\Pago\**" />
+    <Compile Remove="Views\Partidas\**" />
+    <Compile Remove="Views\Pedido\**" />
+    <Compile Remove="Views\TipoPartida\**" />
+    <Compile Remove="Views\TipoUnidad\**" />
+    <Compile Remove="Views\Trabajador\**" />
+    <Compile Remove="Views\Unidad\**" />
+    <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\AHerramientas\**" />
+    <Content Remove="Views\ATrabajador\**" />
+    <Content Remove="Views\Cita\**" />
+    <Content Remove="Views\Cliente\**" />
+    <Content Remove="Views\Cotizar\**" />
+    <Content Remove="Views\Factura\**" />
+    <Content Remove="Views\Obra\**" />
+    <Content Remove="Views\Pago\**" />
+    <Content Remove="Views\Partidas\**" />
+    <Content Remove="Views\Pedido\**" />
+    <Content Remove="Views\TipoPartida\**" />
+    <Content Remove="Views\TipoUnidad\**" />
+    <Content Remove="Views\Trabajador\**" />
+    <Content Remove="Views\Unidad\**" />
+    <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\AHerramientas\**" />
+    <EmbeddedResource Remove="Views\ATrabajador\**" />
+    <EmbeddedResource Remove="Views\Cita\**" />
+    <EmbeddedResource Remove="Views\Cliente\**" />
+    <EmbeddedResource Remove="Views\Cotizar\**" />
+    <EmbeddedResource Remove="Views\Factura\**" />
+    <EmbeddedResource Remove="Views\Obra\**" />
+    <EmbeddedResource Remove="Views\Pago\**" />
+    <EmbeddedResource Remove="Views\Partidas\**" />
+    <EmbeddedResource Remove="Views\Pedido\**" />
+    <EmbeddedResource Remove="Views\TipoPartida\**" />
+    <EmbeddedResource Remove="Views\TipoUnidad\**" />
+    <EmbeddedResource Remove="Views\Trabajador\**" />
+    <EmbeddedResource Remove="Views\Unidad\**" />
+    <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\AHerramientas\**" />
+    <None Remove="Views\ATrabajador\**" />
+    <None Remove="Views\Cita\**" />
+    <None Remove="Views\Cliente\**" />
+    <None Remove="Views\Cotizar\**" />
+    <None Remove="Views\Factura\**" />
+    <None Remove="Views\Obra\**" />
+    <None Remove="Views\Pago\**" />
+    <None Remove="Views\Partidas\**" />
+    <None Remove="Views\Pedido\**" />
+    <None Remove="Views\TipoPartida\**" />
+    <None Remove="Views\TipoUnidad\**" />
+    <None Remove="Views\Trabajador\**" />
+    <None Remove="Views\Unidad\**" />
+    <None Remove="Views\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\AHerramientasController.cs" />
     <Compile Remove="Controllers\ATrabajadorController.cs" />
     <Compile Remove="Controllers\CitaController.cs" />
@@ -27,12 +90,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SweetAlert" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Copreter.Domain.Model\Copreter.Domain.Model.csproj" />
+    <ProjectReference Include="..\Copreter.Domain.Service\Copreter.Domain.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,4 +19,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Shared.Business.Core">
+      <HintPath>..\External\Shared.Business.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Shared.Core">
+      <HintPath>..\External\Shared.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
