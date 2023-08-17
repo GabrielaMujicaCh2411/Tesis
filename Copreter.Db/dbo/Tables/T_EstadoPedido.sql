@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[T_EstadoPedido] (
-    [id_Estado_Pedido]          INT            IDENTITY (1, 1) NOT NULL,
-    [nombre_Estado_Pedido]      NVARCHAR (100) NULL,
-    [descripcion_Estado_Pedido] NVARCHAR (MAX) NULL,
-    CONSTRAINT [PK_T_EstadoPedido] PRIMARY KEY CLUSTERED ([id_Estado_Pedido] ASC)
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
+    [Nombre]      NVARCHAR (100) NULL,
+    [Descripcion] NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
 );
 

@@ -1,16 +1,16 @@
 ﻿CREATE TABLE [dbo].[T_Obra] (
-    [id_Obra]         NVARCHAR (50)  NOT NULL,
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [empresa]         NVARCHAR (500) NULL,
     [direccion]       NVARCHAR (500) NULL,
     [nombre_Obra]     NVARCHAR (500) NULL,
     [imagen]          VARCHAR (MAX)  NULL,
     [fecha_Inicio]    DATETIME       NULL,
     [duracion_Obra]   INT            NULL,
-    [id_Usuario_Obra] NVARCHAR (100) NULL,
-    [id_Obra_Estado]  INT            NULL,
-    CONSTRAINT [PK_T_Obra] PRIMARY KEY CLUSTERED ([id_Obra] ASC),
-    CONSTRAINT [FK_T_Obra_T_EstadoObra] FOREIGN KEY ([id_Obra_Estado]) REFERENCES [dbo].[T_EstadoObra] ([id_EstadoObra]),
-    CONSTRAINT [FK_T_Obra_T_Usuario] FOREIGN KEY ([id_Usuario_Obra]) REFERENCES [dbo].[T_Usuario] ([id_Usuario])
+    [Id_Usuario]      INT NULL,
+    [Id_Estado_Obra]  INT            NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_T_Obra_T_EstadoObra] FOREIGN KEY ([Id_Estado_Obra]) REFERENCES [dbo].[T_EstadoObra] ([ID]),
+    CONSTRAINT [FK_T_Obra_T_Usuario] FOREIGN KEY ([id_Usuario]) REFERENCES [dbo].[T_Usuario] ([ID])
 );
 
 

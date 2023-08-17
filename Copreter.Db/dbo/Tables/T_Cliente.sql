@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[T_Cliente] (
-    [ID] INT NOT NULL, 
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [dni]       INT            NOT NULL,
     [nombre]    NVARCHAR (100) NULL,
     [apellido]  NVARCHAR (100) NULL,
     [celular]   INT            NULL,
     [correo]    NVARCHAR (100) NULL,
     [direccion] NVARCHAR (500) NULL,
-    CONSTRAINT [PK_T_Cliente] PRIMARY KEY CLUSTERED ([ID])
+    PRIMARY KEY CLUSTERED ([ID] ASC),
 );
 
 

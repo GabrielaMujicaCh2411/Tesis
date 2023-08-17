@@ -2,14 +2,16 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IUsuarioService
+    public interface IUsuarioService
     {
         Task<IEnumerable<TUsuario>> ListarAsync();
 
-        Task<TUsuario> ObtenerAsync(int id);
+        Task<TUsuario> ObtenerAsync(string id);
 
-        Task<bool> ActualizarAsync(int id, TUsuario entidad);
+        Task<bool> CrearAsync(TUsuario entidad);
 
-        Task<bool> EliminarAsync(int id);
+        Task<bool> ActualizarAsync(string id, TUsuario entidad);
+
+        Task<bool> EliminarAsync(string id);
     }
 }

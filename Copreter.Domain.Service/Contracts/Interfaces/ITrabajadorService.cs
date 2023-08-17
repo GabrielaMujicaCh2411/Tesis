@@ -2,9 +2,11 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface ITrabajadorService
+    public interface ITrabajadorService
     {
         Task<IEnumerable<TTrabajador>> ListarAsync();
+
+        Task<bool> AgregarAsync(TTrabajador entidad);
 
         Task<TTrabajador> ObtenerAsync(int id);
 

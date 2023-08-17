@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[T_Rol] (
-    [id_Rol]          INT            IDENTITY (1, 1) NOT NULL,
-    [nombre_Rol]      NVARCHAR (200) NULL,
-    [descripcion_Rol] NVARCHAR (500) NULL,
-    CONSTRAINT [PK_T_Rol] PRIMARY KEY CLUSTERED ([id_Rol] ASC)
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
+    [Nombre]      NVARCHAR (200) NULL,
+    [Descripcion] NVARCHAR (500) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
 );
 

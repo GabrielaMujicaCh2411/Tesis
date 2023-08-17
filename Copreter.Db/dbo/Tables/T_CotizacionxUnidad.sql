@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[T_CotizacionxUnidad] (
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [id_Serie]      NVARCHAR (100) NOT NULL,
     [id_Cotizacion] NVARCHAR (200) NOT NULL,
     [cantidad]      INT            NULL,
-    CONSTRAINT [PK_T_CotizacionxUnidad] PRIMARY KEY CLUSTERED ([id_Serie] ASC, [id_Cotizacion] ASC),
+    PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_T_CotizacionxUnidad_T_Cotizacion] FOREIGN KEY ([id_Cotizacion]) REFERENCES [dbo].[T_Cotizacion] ([id_Cotizacion]),
     CONSTRAINT [FK_T_CotizacionxUnidad_T_Unidad] FOREIGN KEY ([id_Serie]) REFERENCES [dbo].[T_Unidad] ([serie])
 );

@@ -1,96 +1,104 @@
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using System.Xml.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Program.Data;
-using Program.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Model.DbModel;
 
 namespace Copreter.Controllers
 {
-
-     public class Partidascontroller : Controller
+    public class Partidascontroller : BaseController
     {
-        ApplicationDbContext _context ;
-        public Partidascontroller(ApplicationDbContext context)
+        #region Fields
+
+        private readonly IPartidaService _service;
+
+        #endregion
+
+        public Partidascontroller(IPartidaService service)
         {
-            _context = context;
+            this._service = service;
         }
 
 
-        public async Task<IActionResult> Listar()
+        public async Task<IActionResult> Index()
         {
-          
-            List<TPartidum> Partidas = await _context.TPartida.Include(x=>x.IdTipoPartidaNavigation).ToListAsync();
-            TPartidum partidas = new TPartidum();
-            ViewBag.Partidas=Partidas;
-            return View(partidas);
-        
+            var result = await this._service.ListarAsync();
+            return View(result);
         }
-        public async Task<IActionResult> Agregar()
-        {
-            ViewBag.ListarTipoPartida= await _context.TTipoPartida.OrderBy(x => x.IdTipoPartida).ToListAsync();
 
+        // GET: Partida/Create
+        public async Task<IActionResult> Crear()
+        {
             return View();
         }
-        [BindProperty]
-        public TPartidum partida{get;set;}
-        public async Task<IActionResult> Guardar()
-        {
-            if(!ModelState.IsValid)
-            {
-               return View(partida);
-            }
-            _context.TPartida.Add(partida);
-           await _context.SaveChangesAsync();
-            return RedirectToAction("Listar");
-        }
-        public async Task<IActionResult> Actualizar(string id)
-        {
-            var Partida = _context.TPartida.Find(id);
-            
-            if(Partida == null)
-            {
 
-                return Redirect("/Partida");
-            }
-            ViewBag.ListarTipoPartida= await _context.TTipoPartida.OrderBy(x => x.IdTipoPartida).ToListAsync();
-            return View(Partida);
-        }
-         public async Task<IActionResult> GuardarActualizacion()      
+        // POST: Partida/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear([Bind()] TPartida dto)
         {
-            if(!ModelState.IsValid)
+            try
             {
-                 return View(partida);
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+
+                var result = await this._service.AgregarAsync(dto);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(dto);
             }
-            var _Partida = _context.TPartida.Where(x=>x.IdPartida==partida.IdPartida).SingleOrDefault(); 
-            if(_Partida ==null)
+            catch
             {
-              _context.TPartida.Add(partida);
+                return View();
             }
-            else
-            {
-                _Partida.NombrePartida= partida.NombrePartida;
-                _Partida.PrecioUnidad= partida.PrecioUnidad;
-                _Partida.IdTipoPartida= partida.IdTipoPartida;
-            }
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Listar");
         }
-        
-          public async Task<IActionResult> Detalle(string id)
+
+        // GET: Partida/Edit/5
+        public async Task<IActionResult> Editar(int? id)
         {
-            var Partida = _context.TPartida.Find(id);
-            ViewBag.TipoPartida= await _context.TTipoPartida.OrderBy(x => x.IdTipoPartida).ToListAsync();
-            return View(Partida);
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+            return View(result);
+        }
+
+        // POST: Partida/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind()] TPartida dto)
+        {
+            try
+            {
+                if (id != dto.IdTipoPartida)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var result = await this._service.ActualizarAsync(id, dto);
+                    if (result)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+                return View(dto);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Partida/Delete/5
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+            return View(result);
         }
     }
 }

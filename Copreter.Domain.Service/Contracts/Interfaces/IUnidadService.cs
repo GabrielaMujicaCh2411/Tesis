@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IUnidadService
+    public interface IUnidadService
     {
         Task<IEnumerable<TUnidad>> ListarAsync();
 

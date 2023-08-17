@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IPartidaService
+    public interface IPartidaService
     {
         Task<IEnumerable<TPartida>> ListarAsync();
 

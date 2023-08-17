@@ -1,35 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Program.Data;
-using Program.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Copreter.Domain.Service.Contracts.Interfaces;
 
 namespace Copreter.Controllers
 {
-    public class TipoUnidadcontroller : Controller
+    public class TipoUnidadcontroller : BaseController
     {
-        ApplicationDbContext _context ;
-        public TipoUnidadcontroller(ApplicationDbContext context )
+        #region Fields
+
+        private readonly ITipoUnidadService _service;
+
+        #endregion
+
+        public TipoUnidadcontroller(ITipoUnidadService service)
         {
-            _context = context;
+            this._service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.ListaTipoUnidad = _context.TTipoUnidads.ToList();
+            var result = await this._service.ListarAsync();
             return View();
         }
-       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error() 
+        public IActionResult Error()
         {
             return View();
         }
-
     }
 }

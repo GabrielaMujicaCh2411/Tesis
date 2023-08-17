@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IClienteService
+    public interface IClienteService
     {
         Task<bool> AgregarAsync(TCliente entidad);
 

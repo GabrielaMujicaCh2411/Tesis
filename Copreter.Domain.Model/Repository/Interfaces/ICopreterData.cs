@@ -20,6 +20,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TPedido> Pedido { get; }
 
+        IRepository<TRol> Rol { get; }
+
         IRepository<TTipoPartida> TipoPartida { get; }
 
         IRepository<TTipoUnidad> TipoUnidad { get; }
@@ -27,5 +29,7 @@ namespace Copreter.Domain.Model.Repository.Interfaces
         IRepository<TTrabajador> Trabajador { get; }
 
         IRepository<TUnidad> Unidad { get; }
+
+        IRepository<TUsuario> Usuario { get; }
     }
 }

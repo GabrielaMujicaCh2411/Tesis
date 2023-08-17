@@ -3,7 +3,7 @@ using Copreter.Domain.Model.Enums;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IObraService
+    public interface IObraService
     {
         Task<IEnumerable<TObra>> ListarAsync();
 

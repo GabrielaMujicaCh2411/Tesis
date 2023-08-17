@@ -2,8 +2,8 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    public interface IPagoService
+    public interface ITipoTrabajadorService
     {
-        Task<bool> AgregarAsync(TPago entidad);
+        Task<IEnumerable<TTipoTrabajador>> ListarAsync();
     }
 }

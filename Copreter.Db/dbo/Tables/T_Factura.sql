@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[T_Factura] (
-    [id_Factura]            NVARCHAR (50)  NOT NULL,
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [imagen]                VARCHAR (MAX)  NULL,
-    [id_Cotizacion_Factura] NVARCHAR (200) NULL,
-    CONSTRAINT [PK_T_Factura] PRIMARY KEY CLUSTERED ([id_Factura] ASC),
-    CONSTRAINT [FK_T_Factura_T_Cotizacion] FOREIGN KEY ([id_Cotizacion_Factura]) REFERENCES [dbo].[T_Cotizacion] ([id_Cotizacion])
+    [Id_Cotizacion] NVARCHAR (200) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_T_Factura_T_Cotizacion] FOREIGN KEY ([id_Cotizacion]) REFERENCES [dbo].[T_Cotizacion] ([ID])
 );
 
 

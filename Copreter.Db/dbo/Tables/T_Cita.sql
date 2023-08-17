@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[T_Cita] (
-    [id_Cita]      NVARCHAR (100) NOT NULL,
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [fecha_Cita]   DATETIME       NULL,
     [hora_Cita]    NVARCHAR (50)  NULL,
     [id_Obra_Cita] NVARCHAR (50)  NULL,
     [lugar_Cita]   VARCHAR (500)  NULL,
-    CONSTRAINT [PK_T_Cita] PRIMARY KEY CLUSTERED ([id_Cita] ASC),
+    PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_T_Cita_T_Obra] FOREIGN KEY ([id_Obra_Cita]) REFERENCES [dbo].[T_Obra] ([id_Obra])
 );
 

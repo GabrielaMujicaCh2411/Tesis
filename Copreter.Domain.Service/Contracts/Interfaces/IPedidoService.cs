@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface IPedidoService
+    public interface IPedidoService
     {
         Task<IEnumerable<TPedido>> ListarAsync();
 

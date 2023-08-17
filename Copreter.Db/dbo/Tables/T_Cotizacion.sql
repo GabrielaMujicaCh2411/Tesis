@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[T_Cotizacion] (
-    [id_Cotizacion]        NVARCHAR (200) NOT NULL,
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [fecha]                DATETIME       NULL,
     [total]                DECIMAL (18)   NULL,
     [id_Obra_Cotizacion]   NVARCHAR (50)  NULL,
     [id_Cotizacion_Estado] INT            NULL,
-    CONSTRAINT [PK_T_Cotizacion] PRIMARY KEY CLUSTERED ([id_Cotizacion] ASC),
+    PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_T_Cotizacion_T_EstadoCotizacion] FOREIGN KEY ([id_Cotizacion_Estado]) REFERENCES [dbo].[T_EstadoCotizacion] ([id_Estado_Cotizacion]),
     CONSTRAINT [FK_T_Cotizacion_T_Obra] FOREIGN KEY ([id_Obra_Cotizacion]) REFERENCES [dbo].[T_Obra] ([id_Obra])
 );

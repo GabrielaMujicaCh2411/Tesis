@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[T_Pago] (
-    [id_Pago]            NVARCHAR (200) NOT NULL,
-    [fecha]              DATETIME       NULL,
-    [pago1]              DECIMAL (18)   NULL,
-    [pago2]              DECIMAL (18)   NULL,
-    [id_Cotizacion_Pago] NVARCHAR (200) NULL,
-    CONSTRAINT [PK_T_Pago] PRIMARY KEY CLUSTERED ([id_Pago] ASC),
-    CONSTRAINT [FK_T_Pago_T_Cotizacion] FOREIGN KEY ([id_Cotizacion_Pago]) REFERENCES [dbo].[T_Cotizacion] ([id_Cotizacion])
+    [ID]                        INT            IDENTITY (1, 1) NOT NULL,
+    [Fecha]              DATETIME       NULL,
+    [Fago1]              DECIMAL (18)   NULL,
+    [Pago2]              DECIMAL (18)   NULL,
+    [Id_Cotizacion]      INT,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_T_Pago_T_Cotizacion] FOREIGN KEY ([id_Cotizacion]) REFERENCES [dbo].[T_Cotizacion] ([ID])
 );
 
 

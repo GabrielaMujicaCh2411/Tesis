@@ -4,9 +4,9 @@ using Copreter.Domain.Service.Contracts.Interfaces;
 
 namespace Copreter.Domain.Service.Contracts
 {
-    internal class ClientService : BaseService, IClienteService
+    internal class ClienteService : BaseService, IClienteService
     {
-        public ClientService(ICopreterData data) : base(data)
+        public ClienteService(ICopreterData data) : base(data)
         {
         }
 

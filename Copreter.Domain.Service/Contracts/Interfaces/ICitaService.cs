@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface ICitaService
+    public interface ICitaService
     {
         Task<IEnumerable<TCita>> ListarAsync();
 

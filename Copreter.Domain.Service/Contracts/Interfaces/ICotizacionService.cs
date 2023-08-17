@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface ICotizacionService
+    public interface ICotizacionService
     {
         Task<IEnumerable<TCotizacion>> ListarAsync();
 

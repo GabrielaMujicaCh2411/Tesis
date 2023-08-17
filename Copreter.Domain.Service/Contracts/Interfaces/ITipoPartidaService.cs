@@ -2,14 +2,16 @@
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
-    internal interface ITipoPartidaService
+    public interface ITipoPartidaService
     {
         Task<IEnumerable<TTipoPartida>> ListarAsync();
 
-        Task<TTipoPartida> ObtenerAsync(string id);
+        Task<TTipoPartida> ObtenerAsync(int id);
 
-        Task<bool> ActualizarAsync(string id, TTipoPartida entidad);
+        Task<bool> AgregarAsync(TTipoPartida entidad);
 
-        Task<bool> EliminarAsync(string id);
+        Task<bool> ActualizarAsync(int id, TTipoPartida entidad);
+
+        Task<bool> EliminarAsync(int id);
     }
 }

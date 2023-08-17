@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Copreter.Domain.Model;
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Contracts;
 
 namespace Copreter.Domain.Service
 {
@@ -9,8 +11,20 @@ namespace Copreter.Domain.Service
     {
         public static void AddCustomServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddScoped<IAuthService, AuthService>();
-
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICitaService, CitaService>();
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<ICotizacionService, CotizacionService>();
+            services.AddScoped<IFacturaService, FacturaService>();
+            services.AddScoped<IObraService, ObraService>();
+            services.AddScoped<IPagoService, PagoService>();
+            services.AddScoped<IPartidaService, PartidaService>();
+            services.AddScoped<IPedidoService, PedidoService>();
+            services.AddScoped<ITipoPartidaService, TipoPartidaService>();
+            services.AddScoped<ITipoUnidadService, TipoUnidadService>();
+            services.AddScoped<ITrabajadorService, TrabajadorService>();
+            services.AddScoped<IUnidadService, UnidadService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddCustomRepositories(configuration.GetConnectionString(ConfigKeys.DatabaseConnection));
         }
     }

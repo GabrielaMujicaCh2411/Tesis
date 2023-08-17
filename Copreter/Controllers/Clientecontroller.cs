@@ -1,86 +1,85 @@
-using System.Security.Cryptography.X509Certificates;
-using System.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Program.Data;
-using Program.Models;
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Model.DbModel;
 
 namespace Copreter.Controllers
 {
-    public class Clientecontroller : Controller
+    public class Clientecontroller : BaseController
     {
-         ApplicationDbContext _context ;
-         
-        public Clientecontroller(ApplicationDbContext context)
+        #region Fields
+
+        private readonly IClienteService _service;
+
+        #endregion
+
+        public Clientecontroller(IClienteService service)
         {
-            _context = context;
-           
+            this._service = service;
         }
 
-       
-        public IActionResult Registrar()
+        public async Task<IActionResult> Crear()
         {
-            
             return View();
         }
 
-
-        [BindProperty]
-        public TCliente cliente{get;set;}
-        public IActionResult Guardar()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear([Bind()] TCliente dto)
         {
-            if(!ModelState.IsValid)
+            try
             {
-               return View(cliente);         
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+
+                var result = await this._service.AgregarAsync(dto);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(dto);
             }
-            _context.TClientes.Add(cliente);
-            _context.SaveChanges();
-            return Redirect("/Usuario/Login");
+            catch
+            {
+                return View();
+            }
         }
-         public IActionResult Actualizar(int id)
+
+        public async Task<IActionResult> Editar(int? id)
         {
-            var Cliente = _context.TClientes.Find(id);
-            //var Cliente = _context.TClientes.Where(x=>x.Dni==id).SingleOrDefault();
-            if(Cliente == null)
-            {
-                return Redirect("/Cliente");
-            }
-            
-            return View(Cliente);
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+            return View(result);
         }
 
-       
-        [HttpPost]  
-        public ActionResult GuardarActualizacion()
-    {
-            if(!ModelState.IsValid)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id,  [Bind()] TCliente dto)
+        {
+            try
             {
-                return View(cliente);
-            }
+                //if (id != dto)
+                //{
+                //    return NotFound();
+                //}
 
-            var _Cliente = _context.TClientes.Where(x=>x.Dni==cliente.Dni).SingleOrDefault(); 
-            if(_Cliente ==null)
-            {
-              _context.TClientes.Add(cliente);
+                if (ModelState.IsValid)
+                {
+                    var result = await this._service.ActualizarAsync(id, dto);
+                    if (result)
+                    {
+                        return Redirect("/Home/VistaAdministrador");
+                    }
+                }
+                return View(dto);
             }
-            else
+            catch
             {
-                _Cliente.Dni=cliente.Dni;
-                _Cliente.Nombre= cliente.Nombre;
-                _Cliente.Apellido= cliente.Apellido;
-                _Cliente.Celular= cliente.Celular;
-                 _Cliente.Correo=cliente.Correo;
-                _Cliente.Direccion= cliente.Direccion;
+                return View(dto);
             }
-            _context.SaveChanges();
-            return Redirect("/Home/VistaAdministrador");
         }
-        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
