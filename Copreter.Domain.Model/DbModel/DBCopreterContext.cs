@@ -763,7 +763,7 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Nonbre).HasMaxLength(200);
+                entity.Property(e => e.Nombre).HasMaxLength(200);
             });
 
             modelBuilder.Entity<TTipoUnidad>(entity =>

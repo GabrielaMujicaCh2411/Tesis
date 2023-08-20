@@ -1,6 +1,9 @@
 ﻿using Copreter.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static Copreter.Utils.Keys;
 
 namespace Copreter.Controllers
 {
@@ -18,12 +21,28 @@ namespace Copreter.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+		public IActionResult Nosotros()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult IndexAdmin()
+		{
+            return View();
+        }
+
+		public async Task<IActionResult> LogOut()
+		{
+			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+			return RedirectToAction(ActionKeys.Login, ControllerKeys.Auth);
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

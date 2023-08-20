@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[T_TipoTrabajador] (
     [ID]                        INT            IDENTITY (1, 1) NOT NULL,
-    [Nonbre]      NVARCHAR (200) NULL,
+    [Nombre]      NVARCHAR (200) NULL,
     [Descripcion] NVARCHAR (MAX) NULL,
         [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,
     [ID_USUARIO_REGISTRO]     INT            NOT NULL DEFAULT 1,

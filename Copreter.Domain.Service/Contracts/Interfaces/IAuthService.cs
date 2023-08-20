@@ -1,9 +1,10 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Service.Dto.Auth;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IAuthService
     {
-        Task<TUsuario> GetBy(string username, string password);
+        Task<TUsuario> GetBy(LoginDto model);
     }
 }

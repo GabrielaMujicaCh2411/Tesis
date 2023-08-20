@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Model.DbModel;
+using AutoMapper;
 
 namespace Copreter.Controllers
 {
@@ -14,7 +15,7 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Usuariocontroller(IUsuarioService service, IRolService rolService)
+        public Usuariocontroller(IMapper mapper, IUsuarioService service, IRolService rolService) : base(mapper)
         {
             this._service = service;
             this._rolService = rolService;
@@ -58,7 +59,7 @@ namespace Copreter.Controllers
             var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
             if (usuarioExiste == null)
             {
-                var result = await this._service.CrearAsync(dto);
+                var result = await this._service.AgregarAsync(dto);
                 if (result)
                 {
                     return RedirectToAction(nameof(Index));

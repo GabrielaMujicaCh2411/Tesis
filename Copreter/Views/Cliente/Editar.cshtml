@@ -1,0 +1,89 @@
+﻿@using Copreter.Resources;
+@model Copreter.Domain.Service.Dto.Cliente.ClienteDto;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.CLIENTE_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.CLIENTE_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <form asp-action="GuardarActualizacion" asp-controller="Cliente" method="post">
+                                    <div class="card-body">
+                                        <div class="form-group" style="display: none">
+                                            <label for="exampleInputPassword1">DNI: </label>
+                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Dni" readonly="@(true)">
+                                            <span asp-validation-for="Dni" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group" style="display: none">
+                                            <label for="exampleInputPassword1">Correo: </label>
+                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Correo">
+                                            <span asp-validation-for="Correo" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Nombres: </label>
+                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Nombre">
+                                            <span asp-validation-for="Nombre" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Apellidos: </label>
+                                            <input type="text" class="form-control" placeholder="Apellidos" asp-for="Apellido">
+                                            <span asp-validation-for="Apellido" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Celular: </label>
+                                            <input type="text" class="form-control" placeholder="Celular" maxlength="9" asp-for="Celular">
+                                            <span asp-validation-for="Celular" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Dirección: </label>
+                                            <input type="text" class="form-control" placeholder="Dirección" asp-for="Direccion">
+                                            <span asp-validation-for="Direccion" class="text-danger"> </span>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                                        <button type="submit" class="btn btn-primary">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="divPopupAsignarRol"></div>
+
+    </section>
+</div>

@@ -8,7 +8,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TUsuario> ObtenerAsync(int id);
 
-        Task<bool> CrearAsync(TUsuario entidad);
+        Task<bool> AgregarAsync(TUsuario entidad);
 
         Task<bool> ActualizarAsync(int id, TUsuario entidad);
 

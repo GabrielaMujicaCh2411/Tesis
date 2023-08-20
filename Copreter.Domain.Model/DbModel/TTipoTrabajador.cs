@@ -11,7 +11,7 @@ namespace Copreter.Domain.Model.DbModel
         }
 
         public int Id { get; set; }
-        public string? Nonbre { get; set; }
+        public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
         public bool Borrado { get; set; }
         public int IdUsuarioRegistro { get; set; }

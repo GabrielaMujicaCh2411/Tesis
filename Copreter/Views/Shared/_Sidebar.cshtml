@@ -1,0 +1,297 @@
+﻿@using Microsoft.AspNetCore.Http
+@using System.Security.Claims;
+@using static Copreter.Utils.Keys;
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Copreter S.A.C.</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/dist/img/picture.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                @{
+                    if (User != null && User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <a href="#" class="d-block">@User.FindFirstValue(ClaimTypes.Name)</a>
+                    }
+                }
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="IndexAdmin">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Home
+                        </p>
+                    </a>
+                </li>
+                @{
+                    if (User != null && User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+                        int id = 1;
+
+                        switch (rolId)
+                        {
+                            case 1:
+                                {
+                                    <li class="nav-header">CONSTRUCCION</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Trabajador" asp-action="ListaTrabajador" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Gestionar Trabajadores
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Cotizar" asp-action="ListarAdmin" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Cotizaciones
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-header">ALQUILER</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Pedido" asp-action="ListarA" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Gestionar Alquiler
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Pedido" asp-action="ListarOp" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Por Asignar</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-header">PERFIL</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Usuario" asp-action="ListarUsuarios" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Gestionar Usuarios
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                                break;
+                            case 2:
+                                {
+                                    <li class="nav-header">CONSTRUCCION</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Obra" asp-action="Solicitar" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Solicitar Cotizacion
+                                            </p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a asp-controller="Obra" asp-action="Index" asp-route-id="@id" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Mis Cotizaciones
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-header">ALQUILER</li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Catalogo
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Unidad" asp-action="Catalogo" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Todos</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Unidad" asp-action="CatalogoM" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Maquinarias</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Unidad" asp-action="CatalogoH" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Herramientas</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Pedido" asp-action="ListarC" asp-route-id="@id" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Pedidos
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-header">PERFIL</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Usuario" asp-action="Detalle" asp-route-id="@id" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Mi Perfil
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Cliente" asp-action="Actualizar" asp-route-id="@id" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Actualizar Datos
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                                break;
+                            case 3:
+                                {
+                                    <li class="nav-header">CONSTRUCCION</li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Gestionar Solicitud
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Obra" asp-action="Listar" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Todos</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Obra" asp-action="ListarP" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Pendiente</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Cita" asp-action="ListarC" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Citas</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="Obra" asp-action="ListarA" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Aceptado</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Cotizaciones
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Cotizar" asp-action="Listar" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>En espera</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Partidas
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Partidas" asp-action="Listar" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Gestionar Partida</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a asp-controller="TipoPartida" asp-action="Listar" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Tipo Partida</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-header">ALQUILER</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Unidad" asp-action="Listar" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Gestionar Unidad
+
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                                break;
+                            case 4:
+                                {
+                                    <li class="nav-header">CONSTRUCCION</li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Unidad" asp-action="Listar" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>
+                                                Registrar Incidencias
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                <li class="nav-header">Log Out</li>
+                <li class="nav-item">
+                    <a href="https://localhost:5001" class="nav-link">
+                        <i class="nav-icon fas fa-times"></i>
+                        <p>
+                            Cerrar Sesion
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

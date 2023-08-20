@@ -19,7 +19,7 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<bool> CrearAsync(TUsuario entidad)
+        public async Task<bool> AgregarAsync(TUsuario entidad)
         {
             var result = await this._data.Usuario.Add(entidad);
             return result == 1;

@@ -1,0 +1,56 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Cliente.ClienteIndexVM;
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("DNI")
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.CLIENTE_Nombre)
+            </th>
+            <th>
+                @Html.DisplayName("Apellido")
+            </th>
+            <th>
+                @Html.DisplayName("Celular")
+            </th>
+            <th>
+                @Html.DisplayName("Correo")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DtoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success" data-toggle="modal" onclick="editar(@item.Id);">
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                        <span class="fa-light fa-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

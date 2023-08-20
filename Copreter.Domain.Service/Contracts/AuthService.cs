@@ -1,6 +1,7 @@
 ﻿using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto.Auth;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -10,9 +11,9 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<TUsuario> GetBy(string username, string password)
+        public async Task<TUsuario> GetBy(LoginDto model)
         {
-            return await this._data.Usuario.FirstOrDefault(x => x.Dni.Equals(username) && x.Contrasenya.ToUpper().Equals(password));
+            return await this._data.Usuario.FirstOrDefault(x => x.Email.ToUpper().Equals(model.Email.ToUpper()) && x.Contrasenya.ToUpper().Equals(model.Password));
         }
     }
 }
