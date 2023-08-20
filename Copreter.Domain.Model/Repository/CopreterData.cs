@@ -5,32 +5,92 @@ namespace Copreter.Domain.Model.Repository
 {
     internal class CopreterData : ICopreterData
     {
-        public IRepository<TCita> Cita => throw new NotImplementedException();
+        private readonly IRepository<TCita> _cita;
 
-        public IRepository<TCliente> Cliente => throw new NotImplementedException();
+        private readonly IRepository<TCliente> _cliente;
 
-        public IRepository<TCotizacion> Cotizacion => throw new NotImplementedException();
+        private readonly IRepository<TCotizacion> _cotizacion;
 
-        public IRepository<TFactura> Factura => throw new NotImplementedException();
+        private readonly IRepository<TFactura> _factura;
 
-        public IRepository<TObra> Obra => throw new NotImplementedException();
+        private readonly IRepository<TObra> _obra;
 
-        public IRepository<TPago> Pago => throw new NotImplementedException();
+        private readonly IRepository<TPago> _pago;
 
-        public IRepository<TPartida> Partida => throw new NotImplementedException();
+        private readonly IRepository<TPartida> _partida;
 
-        public IRepository<TPedido> Pedido => throw new NotImplementedException();
+        private readonly IRepository<TPedido> _pedido;
 
-        public IRepository<TRol> Rol => throw new NotImplementedException();
+        private readonly IRepository<TRol> _rol;
 
-        public IRepository<TTipoPartida> TipoPartida => throw new NotImplementedException();
+        private readonly IRepository<TTipoPartida> _tipoPartida;
 
-        public IRepository<TTipoUnidad> TipoUnidad => throw new NotImplementedException();
+        private readonly IRepository<TTipoUnidad> _tipoUnidad;
 
-        public IRepository<TTrabajador> Trabajador => throw new NotImplementedException();
+        private readonly IRepository<TTrabajador> _trabajador;
 
-        public IRepository<TUnidad> Unidad => throw new NotImplementedException();
+        private readonly IRepository<TUnidad> _unidad;
 
-        public IRepository<TUsuario> Usuario => throw new NotImplementedException();
+        private readonly IRepository<TUsuario> _usuario;
+
+        public CopreterData(
+            IRepository<TCita> cita,
+            IRepository<TCliente> cliente,
+            IRepository<TCotizacion> cotizacion,
+            IRepository<TFactura> factura,
+            IRepository<TObra> obra,
+            IRepository<TPago> pago,
+            IRepository<TPartida> partida,
+            IRepository<TPedido> pedido,
+            IRepository<TRol> rol,
+            IRepository<TTipoPartida> tipoPartida,
+            IRepository<TTipoUnidad> tipoUnidad,
+            IRepository<TTrabajador> trabajador,
+            IRepository<TUnidad> unidad,
+            IRepository<TUsuario> usuario)
+        {
+            this._cita = cita;
+            this._cliente = cliente;
+            this._cotizacion = cotizacion;
+            this._factura = factura;
+            this._obra = obra;
+            this._pago = pago;
+            this._partida = partida;
+            this._pedido = pedido;
+            this._rol = rol;
+            this._tipoPartida = tipoPartida;
+            this._tipoUnidad = tipoUnidad;
+            this._trabajador = trabajador;
+            this._unidad = unidad;
+            this._usuario = usuario;
+        }
+
+        public IRepository<TCita> Cita => this._cita;
+
+        public IRepository<TCliente> Cliente => this._cliente;
+
+        public IRepository<TCotizacion> Cotizacion => this._cotizacion;
+
+        public IRepository<TFactura> Factura => this._factura;
+
+        public IRepository<TObra> Obra => this._obra;
+
+        public IRepository<TPago> Pago => this._pago;
+
+        public IRepository<TPartida> Partida => this._partida;
+
+        public IRepository<TPedido> Pedido => this._pedido;
+
+        public IRepository<TRol> Rol => this._rol;
+
+        public IRepository<TTipoPartida> TipoPartida => this._tipoPartida;
+
+        public IRepository<TTipoUnidad> TipoUnidad => this._tipoUnidad;
+
+        public IRepository<TTrabajador> Trabajador => this._trabajador;
+
+        public IRepository<TUnidad> Unidad => this._unidad;
+
+        public IRepository<TUsuario> Usuario => this._usuario;
     }
 }

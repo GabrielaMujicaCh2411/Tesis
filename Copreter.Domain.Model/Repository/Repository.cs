@@ -5,9 +5,9 @@ using Shared.Business.Core.Infraestructure.Repositories;
 
 namespace Copreter.Domain.Model.Repository
 {
-    public class Repository<TEntity> : AsyncRespository<CopreterContext, TEntity>, IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : AsyncRespository<DBCopreterContext, TEntity>, IRepository<TEntity> where TEntity : class
     {
-        public Repository(CopreterContext context) : base(context)
+        public Repository(DBCopreterContext context) : base(context)
         {
         }
 

@@ -26,9 +26,9 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> Asignar(string id)
+        public async Task<IActionResult> Asignar(int id)
         {
-            if (!string.IsNullOrEmpty(id)) return RedirectToAction(nameof(Index)); 
+            if (id == 0) return RedirectToAction(nameof(Index));
 
             var result = await this._service.ObtenerAsync(id);
             if (result == null)
@@ -55,7 +55,7 @@ namespace Copreter.Controllers
                 return View(dto);
             }
 
-            var usuarioExiste = await this._service.ObtenerAsync(dto.IdUsuario);
+            var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
             if (usuarioExiste == null)
             {
                 var result = await this._service.CrearAsync(dto);
@@ -67,9 +67,9 @@ namespace Copreter.Controllers
             return View(dto);
         }
 
-        public async Task<IActionResult> Editar(string id)
+        public async Task<IActionResult> Editar(int id)
         {
-            if(string.IsNullOrEmpty(id)) return RedirectToAction(nameof(Index));
+            if (id == 0) return RedirectToAction(nameof(Index));
 
             var result = await this._service.ObtenerAsync(id);
             return View(result);
@@ -77,9 +77,9 @@ namespace Copreter.Controllers
 
         [HttpPost, ActionName("EditPopupConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(string id, [Bind()] TUsuario dto)
+        public async Task<IActionResult> Editar(int id, [Bind()] TUsuario dto)
         {
-            if (id != dto.IdUsuario)
+            if (id != dto.Id)
             {
                 return NotFound();
             }

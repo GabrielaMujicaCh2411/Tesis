@@ -12,7 +12,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TTipoUnidad>> ListarAsync()
         {
-            return await this._data.TipoUnidad.GetAll();
+            return await this._data.TipoUnidad.SelectIncludes(x => x.Borrado == false);
         }
     }
 }

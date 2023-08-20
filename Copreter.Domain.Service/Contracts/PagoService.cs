@@ -15,5 +15,10 @@ namespace Copreter.Domain.Service.Contracts
             var result = await this._data.Pago.Add(entidad);
             return result == 1;
         }
+
+        public async Task<TPago> ObtenerAsync(int id)
+        {
+            return await this._data.Pago.GetById(id);
+        }
     }
 }

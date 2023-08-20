@@ -5,11 +5,16 @@ namespace Copreter.Domain.Model.DbModel
 {
     public partial class TOrdenServicio
     {
-        public string IdOrden { get; set; } = null!;
-        public DateTime? FechaOrden { get; set; }
-        public decimal? Liquidacion { get; set; }
-        public string? IdPedidoOrden { get; set; }
+        public int Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Liquidacion { get; set; }
+        public int IdPedido { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
-        public virtual TPedido? IdPedidoOrdenNavigation { get; set; }
+        public virtual TPedido IdPedidoNavigation { get; set; } = null!;
     }
 }

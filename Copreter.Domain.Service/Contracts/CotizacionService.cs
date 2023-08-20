@@ -18,7 +18,12 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TCotizacion>> ListarAsync()
         {
-            return await this._data.Cotizacion.GetAll();
+            return await this._data.Cotizacion.SelectIncludes(x => x.Borrado == false);
+        }
+
+        public async Task<TCotizacion> ObtenerAsync(int id)
+        {
+            return await this._data.Cotizacion.GetById(id);
         }
     }
 }

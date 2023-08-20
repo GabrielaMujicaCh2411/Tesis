@@ -12,7 +12,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TRol>> ListarAsync()
         {
-            return await this._data.Rol.GetAll();
+            return await this._data.Rol.SelectIncludes(x => x.Borrado == false);
         }
     }
 }

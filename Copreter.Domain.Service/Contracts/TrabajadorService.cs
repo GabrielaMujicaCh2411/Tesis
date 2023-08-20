@@ -19,18 +19,26 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
+        public async Task<bool> AgregarAsync(TTrabajador entidad)
+        {
+            var result = await this._data.Trabajador.Add(entidad);
+            return result == 1;
+        }
+
         public async Task<bool> EliminarAsync(int id)
         {
             var entidadActual = await this._data.Trabajador.GetById(id);
             if (entidadActual == null) return false;
 
-            var result = await this._data.Trabajador.DeleteAndReturn(entidadActual);
+            entidadActual.Borrado = true;
+
+            var result = await this._data.Trabajador.Update(entidadActual);
             return result > 0;
         }
 
         public async Task<IEnumerable<TTrabajador>> ListarAsync()
         {
-           return await this._data.Trabajador.GetAll();
+            return await this._data.Trabajador.SelectIncludes(x => x.Borrado == false);
         }
 
         public async Task<TTrabajador> ObtenerAsync(int id)

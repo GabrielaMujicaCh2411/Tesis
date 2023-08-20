@@ -10,9 +10,14 @@ namespace Copreter.Domain.Model.DbModel
             TObra = new HashSet<TObra>();
         }
 
-        public int IdEstadoObra { get; set; }
-        public string? NombreEstadoObra { get; set; }
-        public string? DescripcionEstadoObra { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; } = null!;
+        public string? Descripcion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
         public virtual ICollection<TObra> TObra { get; set; }
     }

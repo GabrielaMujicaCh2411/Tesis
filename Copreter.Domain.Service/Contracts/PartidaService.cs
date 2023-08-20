@@ -10,7 +10,7 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<bool> ActualizarAsync(string id, TPartida entidad)
+        public async Task<bool> ActualizarAsync(int id, TPartida entidad)
         {
             var entidadActual = await this._data.Partida.GetById(id);
             if (entidadActual == null) return false;
@@ -27,10 +27,10 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TPartida>> ListarAsync()
         {
-            return await this._data.Partida.GetAll();
+            return await this._data.Partida.SelectIncludes(x => x.Borrado == false);
         }
 
-        public async Task<TPartida> ObtenerAsync(string id)
+        public async Task<TPartida> ObtenerAsync(int id)
         {
             return await this._data.Partida.GetById(id);
         }

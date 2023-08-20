@@ -10,9 +10,14 @@ namespace Copreter.Domain.Model.DbModel
             TCotizacion = new HashSet<TCotizacion>();
         }
 
-        public int IdEstadoCotizacion { get; set; }
-        public string? NombreEstadoCotizacion { get; set; }
-        public string? DescripcionEstadoCotizacion { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; } = null!;
+        public string? Descripcion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
         public virtual ICollection<TCotizacion> TCotizacion { get; set; }
     }

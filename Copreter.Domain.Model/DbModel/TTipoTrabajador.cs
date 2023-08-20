@@ -10,9 +10,14 @@ namespace Copreter.Domain.Model.DbModel
             TTrabajador = new HashSet<TTrabajador>();
         }
 
-        public int IdTipoTrabajdor { get; set; }
-        public string? NombreTipoTrabajador { get; set; }
-        public string? DescripcionTipoTrabajador { get; set; }
+        public int Id { get; set; }
+        public string? Nonbre { get; set; }
+        public string? Descripcion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
         public virtual ICollection<TTrabajador> TTrabajador { get; set; }
     }

@@ -10,9 +10,14 @@ namespace Copreter.Domain.Model.DbModel
             TUsuario = new HashSet<TUsuario>();
         }
 
-        public int IdRol { get; set; }
-        public string? NombreRol { get; set; }
-        public string? DescripcionRol { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; } = null!;
+        public string? Descripcion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
         public virtual ICollection<TUsuario> TUsuario { get; set; }
     }

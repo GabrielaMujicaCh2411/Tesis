@@ -10,18 +10,21 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
+        public async Task<IEnumerable<TCita>> ListarAsync()
+        {
+            return await this._data.Cita.SelectIncludes
+                (x => x.Borrado == false &&
+                x.IdObraNavigation != null && x.IdObraNavigation.Id == 1,
+                x => x.IdObraNavigation);
+        }
+
         public async Task<bool> AgregarAsync(TCita entidad)
         {
             var result = await this._data.Cita.Add(entidad);
             return result == 1;
         }
 
-        public async Task<IEnumerable<TCita>> ListarAsync()
-        {
-            return await this._data.Cita.SelectIncludes(x => x.IdObraCitaNavigation != null && x.IdObraCitaNavigation.IdObraEstado == 1, x => x.IdObraCitaNavigation);
-        }
-
-        public async Task<TCita> ObtenerPorIdAsync(string id)
+        public async Task<TCita> ObtenerPorIdAsync(int id)
         {
             return await this._data.Cita.GetById(id);
         }

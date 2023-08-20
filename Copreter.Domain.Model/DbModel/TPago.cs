@@ -5,12 +5,17 @@ namespace Copreter.Domain.Model.DbModel
 {
     public partial class TPago
     {
-        public string IdPago { get; set; } = null!;
-        public DateTime? Fecha { get; set; }
-        public decimal? Pago1 { get; set; }
+        public int Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Fago1 { get; set; }
         public decimal? Pago2 { get; set; }
-        public string? IdCotizacionPago { get; set; }
+        public int IdCotizacion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
-        public virtual TCotizacion? IdCotizacionPagoNavigation { get; set; }
+        public virtual TCotizacion IdCotizacionNavigation { get; set; } = null!;
     }
 }

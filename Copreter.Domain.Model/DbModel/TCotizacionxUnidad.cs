@@ -5,11 +5,17 @@ namespace Copreter.Domain.Model.DbModel
 {
     public partial class TCotizacionxUnidad
     {
-        public string IdSerie { get; set; } = null!;
-        public string IdCotizacion { get; set; } = null!;
-        public int? Cantidad { get; set; }
+        public int Id { get; set; }
+        public int IdUnidad { get; set; }
+        public int IdCotizacion { get; set; }
+        public int Cantidad { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
         public virtual TCotizacion IdCotizacionNavigation { get; set; } = null!;
-        public virtual TUnidad IdSerieNavigation { get; set; } = null!;
+        public virtual TUnidad IdUnidadNavigation { get; set; } = null!;
     }
 }

@@ -16,7 +16,7 @@ namespace Copreter.Domain.Model
     {
         public static void AddCustomRepositories(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<CopreterContext>(options =>
+            services.AddDbContext<DBCopreterContext>(options =>
             {
                 options.UseSqlServer(connectionString);
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);

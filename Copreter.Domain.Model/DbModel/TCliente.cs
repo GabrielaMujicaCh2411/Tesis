@@ -5,18 +5,17 @@ namespace Copreter.Domain.Model.DbModel
 {
     public partial class TCliente
     {
-        public TCliente()
-        {
-            TUsuario = new HashSet<TUsuario>();
-        }
-
+        public int Id { get; set; }
         public int Dni { get; set; }
-        public string? Nombre { get; set; }
-        public string? Apellido { get; set; }
-        public int? Celular { get; set; }
-        public string? Correo { get; set; }
-        public string? Direccion { get; set; }
-
-        public virtual ICollection<TUsuario> TUsuario { get; set; }
+        public string Nombre { get; set; } = null!;
+        public string Apellido { get; set; } = null!;
+        public int Celular { get; set; }
+        public string Correo { get; set; } = null!;
+        public string Direccion { get; set; } = null!;
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
     }
 }

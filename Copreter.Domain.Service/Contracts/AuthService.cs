@@ -1,10 +1,6 @@
-﻿using Copreter.Domain.Model.Repository.Interfaces;
+﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -12,6 +8,11 @@ namespace Copreter.Domain.Service.Contracts
     {
         public AuthService(ICopreterData data) : base(data)
         {
+        }
+
+        public async Task<TUsuario> GetBy(string username, string password)
+        {
+            return await this._data.Usuario.FirstOrDefault(x => x.Dni.Equals(username) && x.Contrasenya.ToUpper().Equals(password));
         }
     }
 }

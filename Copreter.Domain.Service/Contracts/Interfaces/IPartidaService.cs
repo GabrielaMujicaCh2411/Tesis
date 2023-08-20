@@ -6,10 +6,10 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
     {
         Task<IEnumerable<TPartida>> ListarAsync();
 
-        Task<TPartida> ObtenerAsync(string id);
+        Task<TPartida> ObtenerAsync(int id);
 
         Task<bool> AgregarAsync(TPartida entidad);
 
-        Task<bool> ActualizarAsync(string id, TPartida entidad);
+        Task<bool> ActualizarAsync(int id, TPartida entidad);
     }
 }

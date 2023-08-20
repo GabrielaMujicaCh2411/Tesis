@@ -24,7 +24,9 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Unidad.GetById(id);
             if (entidadActual == null) return false;
 
-            var result = await this._data.Unidad.DeleteAndReturn(entidadActual);
+            entidadActual.Borrado = true;
+
+            var result = await this._data.Unidad.Update(entidadActual);
             return result > 0;
         }
 
@@ -35,7 +37,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TUnidad>> ListarCatalagoAsync(int tipoUnidad)
         {
-            return await this._data.Unidad.SelectIncludes(x=> x.IdTipoUnidad == tipoUnidad && x.IdEstadoUnidad == 1);
+            return await this._data.Unidad.SelectIncludes(x => x.IdTipoUnidad == tipoUnidad && x.IdEstadoUnidad == 1);
         }
 
         public async Task<TUnidad> ObtenerAsync(int id)

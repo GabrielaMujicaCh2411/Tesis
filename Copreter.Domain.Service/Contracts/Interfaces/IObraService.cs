@@ -9,10 +9,10 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados);
 
-        Task<bool> ObraPorCitadaAsync(string id);
+        Task<bool> ObraPorCitaAsync(int id);
 
-        Task<TObra> ObtenerAsync(string id);
+        Task<TObra> ObtenerAsync(int id);
 
-        Task<bool> ActualizarEstado(string id, EObraEstado estado);
+        Task<bool> ActualizarEstado(int id, EObraEstado estado);
     }
 }

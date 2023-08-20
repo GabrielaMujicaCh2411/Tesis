@@ -10,21 +10,25 @@ namespace Copreter.Domain.Model.DbModel
             TCotizacionxUnidad = new HashSet<TCotizacionxUnidad>();
             TFactura = new HashSet<TFactura>();
             TPago = new HashSet<TPago>();
-            DniTrabajador = new HashSet<TTrabajador>();
+            TTrabajadorxCotizacion = new HashSet<TTrabajadorxCotizacion>();
         }
 
-        public string IdCotizacion { get; set; } = null!;
-        public DateTime? Fecha { get; set; }
-        public decimal? Total { get; set; }
-        public string? IdObraCotizacion { get; set; }
-        public int? IdCotizacionEstado { get; set; }
+        public int Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Total { get; set; }
+        public int IdObra { get; set; }
+        public int IdEstadoCotizacion { get; set; }
+        public bool Borrado { get; set; }
+        public int IdUsuarioRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+        public int? IdUsuarioModificacion { get; set; }
 
-        public virtual TEstadoCotizacion? IdCotizacionEstadoNavigation { get; set; }
-        public virtual TObra? IdObraCotizacionNavigation { get; set; }
+        public virtual TEstadoCotizacion IdEstadoCotizacionNavigation { get; set; } = null!;
+        public virtual TObra IdObraNavigation { get; set; } = null!;
         public virtual ICollection<TCotizacionxUnidad> TCotizacionxUnidad { get; set; }
         public virtual ICollection<TFactura> TFactura { get; set; }
         public virtual ICollection<TPago> TPago { get; set; }
-
-        public virtual ICollection<TTrabajador> DniTrabajador { get; set; }
+        public virtual ICollection<TTrabajadorxCotizacion> TTrabajadorxCotizacion { get; set; }
     }
 }

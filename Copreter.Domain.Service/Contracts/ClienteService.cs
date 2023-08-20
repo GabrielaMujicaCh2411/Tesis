@@ -10,6 +10,11 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
+        public async Task<IEnumerable<TCliente>> ListarAsync()
+        {
+            return await this._data.Cliente.SelectIncludes(x => x.Borrado == false);
+        }
+
         public async Task<bool> ActualizarAsync(int id, TCliente entidad)
         {
             var entidadActual = await this._data.Cliente.GetById(id);
@@ -32,7 +37,10 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Cliente.GetById(id);
             if (entidadActual == null) return false;
 
-            return await this._data.Cliente.DeleteAndReturn(entidadActual) > 0;
+            entidadActual.Borrado = true;
+
+            var result = await this._data.Cliente.Update(entidadActual);
+            return result == 1;
         }
 
         public async Task<TCliente> ObtenerAsync(int id)

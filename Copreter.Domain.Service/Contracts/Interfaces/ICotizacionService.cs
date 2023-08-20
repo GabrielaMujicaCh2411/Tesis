@@ -7,5 +7,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<IEnumerable<TCotizacion>> ListarAsync();
 
         Task<bool> AgregarAsync(TCotizacion entidad);
+
+        Task<TCotizacion> ObtenerAsync(int id);
     }
 }

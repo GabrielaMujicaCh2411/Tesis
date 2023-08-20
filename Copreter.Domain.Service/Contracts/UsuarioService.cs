@@ -10,7 +10,7 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<bool> ActualizarAsync(string id, TUsuario entidad)
+        public async Task<bool> ActualizarAsync(int id, TUsuario entidad)
         {
             var entidadActual = await this._data.Usuario.GetById(id);
             if (entidadActual == null) return false;
@@ -25,21 +25,23 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<bool> EliminarAsync(string id)
+        public async Task<bool> EliminarAsync(int id)
         {
             var entidadActual = await this._data.Usuario.GetById(id);
             if (entidadActual == null) return false;
 
-            var result = await this._data.Usuario.DeleteAndReturn(entidadActual);
+            entidadActual.Borrado = true;
+
+            var result = await this._data.Usuario.Update(entidadActual);
             return result > 0;
         }
 
         public async Task<IEnumerable<TUsuario>> ListarAsync()
         {
-            return await this._data.Usuario.GetAll();
+            return await this._data.Usuario.SelectIncludes(x => x.Borrado == false);
         }
 
-        public async Task<TUsuario> ObtenerAsync(string id)
+        public async Task<TUsuario> ObtenerAsync(int id)
         {
             return await this._data.Usuario.GetById(id);
         }
