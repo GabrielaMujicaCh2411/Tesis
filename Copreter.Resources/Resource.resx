@@ -120,6 +120,12 @@
   <data name="BTN_Aceptar" xml:space="preserve">
     <value>Aceptar</value>
   </data>
+  <data name="BTN_Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="BTN_Crear" xml:space="preserve">
+    <value>Crear</value>
+  </data>
   <data name="BTN_Filtrar" xml:space="preserve">
     <value>Filtrar</value>
   </data>
@@ -144,6 +150,9 @@
   <data name="MENSAJE_CONFIRMAR_ELIMINAR" xml:space="preserve">
     <value>Esta seguro de eliminar el registro</value>
   </data>
+  <data name="MENU_SALIR" xml:space="preserve">
+    <value>Salir</value>
+  </data>
   <data name="RESULT_ERROR" xml:space="preserve">
     <value>Error al realizar la operación</value>
   </data>
@@ -152,5 +161,47 @@
   </data>
   <data name="TITLE_Eliminar" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="UNIDAD_Cantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="UNIDAD_Caracteristica1" xml:space="preserve">
+    <value>Caracteristica 1</value>
+  </data>
+  <data name="UNIDAD_Caracteristica2" xml:space="preserve">
+    <value>Caracteristica 2</value>
+  </data>
+  <data name="UNIDAD_Caracteristica3" xml:space="preserve">
+    <value>Caracteristica 3</value>
+  </data>
+  <data name="UNIDAD_Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="UNIDAD_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="UNIDAD_Imagen" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="UNIDAD_Marca" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+  <data name="UNIDAD_Modelo" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+  <data name="UNIDAD_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="UNIDAD_Precio" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="UNIDAD_Serie" xml:space="preserve">
+    <value>Serie</value>
+  </data>
+  <data name="UNIDAD_Tipo_Unidad" xml:space="preserve">
+    <value>Tipo Unidad</value>
+  </data>
+  <data name="UNIDAD_Titulo" xml:space="preserve">
+    <value>Unidad</value>
   </data>
 </root>

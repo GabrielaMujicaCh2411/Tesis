@@ -19,6 +19,12 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
+        public async Task<bool> AgregarAsync(TUnidad entidad)
+        {
+            var result = await this._data.Unidad.Add(entidad);
+            return result == 1;
+        }
+
         public async Task<bool> EliminarAsync(int id)
         {
             var entidadActual = await this._data.Unidad.GetById(id);

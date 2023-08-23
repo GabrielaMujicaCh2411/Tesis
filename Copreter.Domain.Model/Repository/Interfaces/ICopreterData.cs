@@ -8,6 +8,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TCliente> Cliente { get; }
 
+        IRepository<TEstadoUnidad> EstadoUnidad { get; }
+
         IRepository<TCotizacion> Cotizacion { get; }
 
         IRepository<TFactura> Factura { get; }

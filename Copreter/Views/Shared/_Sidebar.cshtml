@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@using Copreter.Resources;
+@using Microsoft.AspNetCore.Http
 @using System.Security.Claims;
 @using static Copreter.Utils.Keys;
 
@@ -252,7 +253,7 @@
                                     </li>
                                     <li class="nav-header">ALQUILER</li>
                                     <li class="nav-item">
-                                        <a asp-controller="Unidad" asp-action="Listar" class="nav-link">
+                                        <a asp-controller="Unidad" asp-action="Index" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
                                             <p>
                                                 Gestionar Unidad
@@ -266,7 +267,7 @@
                                 {
                                     <li class="nav-header">CONSTRUCCION</li>
                                     <li class="nav-item">
-                                        <a asp-controller="Unidad" asp-action="Listar" class="nav-link">
+                                        <a asp-controller="Obra" asp-action="Index" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
                                             <p>
                                                 Registrar Incidencias
@@ -282,11 +283,9 @@
                 }
                 <li class="nav-header">Log Out</li>
                 <li class="nav-item">
-                    <a href="https://localhost:5001" class="nav-link">
-                        <i class="nav-icon fas fa-times"></i>
-                        <p>
-                            Cerrar Sesion
-                        </p>
+                    <a asp-controller="Home" asp-action="LogOut" class="nav-link">
+                        <i class="nav-icon fas fa-columns"></i>
+                        <p>@Resource.MENU_SALIR</p>
                     </a>
                 </li>
             </ul>

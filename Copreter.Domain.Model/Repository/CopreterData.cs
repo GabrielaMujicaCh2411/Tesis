@@ -11,6 +11,8 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TCotizacion> _cotizacion;
 
+        private readonly IRepository<TEstadoUnidad> _estadoUnidad;
+
         private readonly IRepository<TFactura> _factura;
 
         private readonly IRepository<TObra> _obra;
@@ -37,6 +39,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TCita> cita,
             IRepository<TCliente> cliente,
             IRepository<TCotizacion> cotizacion,
+            IRepository<TEstadoUnidad> estadoUnidad,
             IRepository<TFactura> factura,
             IRepository<TObra> obra,
             IRepository<TPago> pago,
@@ -52,6 +55,7 @@ namespace Copreter.Domain.Model.Repository
             this._cita = cita;
             this._cliente = cliente;
             this._cotizacion = cotizacion;
+            this._estadoUnidad = estadoUnidad;
             this._factura = factura;
             this._obra = obra;
             this._pago = pago;
@@ -70,6 +74,8 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TCliente> Cliente => this._cliente;
 
         public IRepository<TCotizacion> Cotizacion => this._cotizacion;
+
+        public IRepository<TEstadoUnidad> EstadoUnidad => this._estadoUnidad;
 
         public IRepository<TFactura> Factura => this._factura;
 

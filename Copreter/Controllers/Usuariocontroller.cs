@@ -42,7 +42,7 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public ActionResult Create()
+        public ActionResult Crear()
         {
             return View();
         }

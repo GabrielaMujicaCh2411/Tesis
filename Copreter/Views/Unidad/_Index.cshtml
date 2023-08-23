@@ -1,0 +1,68 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Unidad.UnidadIndexVM;
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Serie)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Nombre)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Marca)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Modelo)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Cantidad)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Estado)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Tipo_Unidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DtoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoUnidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoUnidad)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </a>
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                        <span class="fa-light fa-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

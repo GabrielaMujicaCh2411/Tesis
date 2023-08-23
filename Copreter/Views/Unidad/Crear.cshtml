@@ -1,0 +1,158 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Unidad.UnidadEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var imagePath = @Html.DisplayFor(model => model.Imagen);
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.UNIDAD_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.UNIDAD_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <form asp-action="GuardarActualizacion" asp-controller="Cliente" method="post">
+                                            <div class="card-body">
+                                                <div class="form-group" style="display: none">
+                                                    <label>@Resource.UNIDAD_Serie</label>
+                                                    <input type="text" class="form-control" placeholder="Serie" asp-for="Serie" readonly="@(true)">
+                                                    <span asp-validation-for="Serie" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group" style="display: none">
+                                                    <label>@Resource.UNIDAD_Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">
+                                                    <span asp-validation-for="Nombre" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Modelo</label>
+                                                    <input type="text" class="form-control" placeholder="Modelo" asp-for="Modelo">
+                                                    <span asp-validation-for="Modelo" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Marca</label>
+                                                    <input type="text" class="form-control" placeholder="Marca" asp-for="Marca">
+                                                    <span asp-validation-for="Marca" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Precio</label>
+                                                    <input type="text" class="form-control" placeholder="Precio" asp-for="Precio">
+                                                    <span asp-validation-for="Precio" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Cantidad</label>
+                                                    <input type="text" class="form-control" placeholder="Cantidad" asp-for="Cantidad">
+                                                    <span asp-validation-for="Cantidad" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Descripcion</label>
+                                                    <input type="text" class="form-control" placeholder="Descripción" asp-for="Descripcion">
+                                                    <span asp-validation-for="Descripcion" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Caracteristica1</label>
+                                                    <input type="text" class="form-control" placeholder="Caracteristica 1" asp-for="Caracteristica1">
+                                                    <span asp-validation-for="Caracteristica1" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Caracteristica2</label>
+                                                    <input type="text" class="form-control" placeholder="Caracteristica 2" asp-for="Caracteristica2">
+                                                    <span asp-validation-for="Caracteristica2" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Caracteristica3</label>
+                                                    <input type="text" class="form-control" placeholder="Caracteristica 2" asp-for="Caracteristica3">
+                                                    <span asp-validation-for="Caracteristica3" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Tipo_Unidad</label>
+                                                    <select asp-for="IdTipoUnidad" class="form-control" asp-items="Model.TipoUnidadLista"></select>
+                                                    <span asp-validation-for="IdTipoUnidad" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Estado</label>
+                                                    <select asp-for="IdEstadoUnidad" class="form-control" asp-items="Model.EstadoUnidadLista"></select>
+                                                    <span asp-validation-for="IdEstadoUnidad" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.UNIDAD_Imagen</label>
+                                                    <input class="form class custom-file-input" id="imagen" asp-for="Foto">
+                                                    <span asp-validation-for="IdEstadoUnidad" class="text-danger"> </span>
+                                                </div>
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary">@Resource.BTN_Guardar</button>
+                                                <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card-body" id="imagePreview" style="text-align:center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        })
+
+        function filePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').html("<img src='" + e.target.result + "' />");
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#imagen').change(function () {
+            filePreview(this);
+        });
+
+    </script>
+}

@@ -21,7 +21,6 @@
     <Compile Remove="Views\TipoPartida\**" />
     <Compile Remove="Views\TipoUnidad\**" />
     <Compile Remove="Views\Trabajador\**" />
-    <Compile Remove="Views\Unidad\**" />
     <Compile Remove="Views\Usuario\**" />
     <Content Remove="Views\AHerramientas\**" />
     <Content Remove="Views\ATrabajador\**" />
@@ -35,7 +34,6 @@
     <Content Remove="Views\TipoPartida\**" />
     <Content Remove="Views\TipoUnidad\**" />
     <Content Remove="Views\Trabajador\**" />
-    <Content Remove="Views\Unidad\**" />
     <Content Remove="Views\Usuario\**" />
     <EmbeddedResource Remove="Views\AHerramientas\**" />
     <EmbeddedResource Remove="Views\ATrabajador\**" />
@@ -49,7 +47,6 @@
     <EmbeddedResource Remove="Views\TipoPartida\**" />
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
     <EmbeddedResource Remove="Views\Trabajador\**" />
-    <EmbeddedResource Remove="Views\Unidad\**" />
     <EmbeddedResource Remove="Views\Usuario\**" />
     <None Remove="Views\AHerramientas\**" />
     <None Remove="Views\ATrabajador\**" />
@@ -63,7 +60,6 @@
     <None Remove="Views\TipoPartida\**" />
     <None Remove="Views\TipoUnidad\**" />
     <None Remove="Views\Trabajador\**" />
-    <None Remove="Views\Unidad\**" />
     <None Remove="Views\Usuario\**" />
   </ItemGroup>
 
@@ -80,7 +76,6 @@
     <Compile Remove="Controllers\TipoPartidacontroller.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
     <Compile Remove="Controllers\Trabajadorcontroller.cs" />
-    <Compile Remove="Controllers\Unidadcontroller.cs" />
   </ItemGroup>
 
   <ItemGroup>

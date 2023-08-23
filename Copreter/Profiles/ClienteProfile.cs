@@ -13,7 +13,6 @@ namespace Copreter.Profiles
             CreateMap<ClienteDto, TUsuario>()
                 .ForMember(s => s.Contrasenya, src => src.MapFrom(x => x.Dni)).ReverseMap();
 
-
         }
     }
 }

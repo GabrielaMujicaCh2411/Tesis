@@ -15,6 +15,7 @@ namespace Copreter.Domain.Service
             services.AddScoped<ICitaService, CitaService>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<ICotizacionService, CotizacionService>();
+            services.AddScoped<IEstadoUnidadService, EstadoUnidadService>();
             services.AddScoped<IFacturaService, FacturaService>();
             services.AddScoped<IObraService, ObraService>();
             services.AddScoped<IPagoService, PagoService>();

@@ -10,6 +10,8 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TUnidad> ObtenerAsync(int id);
 
+        Task<bool> AgregarAsync(TUnidad entidad);
+
         Task<bool> ActualizarAsync(int id, TUnidad entidad);
 
         Task<bool> EliminarAsync(int id);

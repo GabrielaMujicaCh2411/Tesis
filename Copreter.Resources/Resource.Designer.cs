@@ -70,6 +70,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string BTN_Cancelar {
+            get {
+                return ResourceManager.GetString("BTN_Cancelar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear.
+        /// </summary>
+        public static string BTN_Crear {
+            get {
+                return ResourceManager.GetString("BTN_Crear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filtrar.
         /// </summary>
         public static string BTN_Filtrar {
@@ -142,6 +160,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salir.
+        /// </summary>
+        public static string MENU_SALIR {
+            get {
+                return ResourceManager.GetString("MENU_SALIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error al realizar la operación.
         /// </summary>
         public static string RESULT_ERROR {
@@ -165,6 +192,132 @@ namespace Copreter.Resources {
         public static string TITLE_Eliminar {
             get {
                 return ResourceManager.GetString("TITLE_Eliminar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cantidad.
+        /// </summary>
+        public static string UNIDAD_Cantidad {
+            get {
+                return ResourceManager.GetString("UNIDAD_Cantidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caracteristica 1.
+        /// </summary>
+        public static string UNIDAD_Caracteristica1 {
+            get {
+                return ResourceManager.GetString("UNIDAD_Caracteristica1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caracteristica 2.
+        /// </summary>
+        public static string UNIDAD_Caracteristica2 {
+            get {
+                return ResourceManager.GetString("UNIDAD_Caracteristica2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caracteristica 3.
+        /// </summary>
+        public static string UNIDAD_Caracteristica3 {
+            get {
+                return ResourceManager.GetString("UNIDAD_Caracteristica3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string UNIDAD_Descripcion {
+            get {
+                return ResourceManager.GetString("UNIDAD_Descripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string UNIDAD_Estado {
+            get {
+                return ResourceManager.GetString("UNIDAD_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagen.
+        /// </summary>
+        public static string UNIDAD_Imagen {
+            get {
+                return ResourceManager.GetString("UNIDAD_Imagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marca.
+        /// </summary>
+        public static string UNIDAD_Marca {
+            get {
+                return ResourceManager.GetString("UNIDAD_Marca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modelo.
+        /// </summary>
+        public static string UNIDAD_Modelo {
+            get {
+                return ResourceManager.GetString("UNIDAD_Modelo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string UNIDAD_Nombre {
+            get {
+                return ResourceManager.GetString("UNIDAD_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precio.
+        /// </summary>
+        public static string UNIDAD_Precio {
+            get {
+                return ResourceManager.GetString("UNIDAD_Precio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serie.
+        /// </summary>
+        public static string UNIDAD_Serie {
+            get {
+                return ResourceManager.GetString("UNIDAD_Serie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo Unidad.
+        /// </summary>
+        public static string UNIDAD_Tipo_Unidad {
+            get {
+                return ResourceManager.GetString("UNIDAD_Tipo_Unidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unidad.
+        /// </summary>
+        public static string UNIDAD_Titulo {
+            get {
+                return ResourceManager.GetString("UNIDAD_Titulo", resourceCulture);
             }
         }
     }

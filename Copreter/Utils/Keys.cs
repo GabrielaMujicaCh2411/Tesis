@@ -13,6 +13,7 @@
 			public const string Auth = "Auth";
             public const string Cliente = "Cliente";
             public const string Usuario = "Usuario";
+            public const string Unidad = "Unidad";
         }
 
         public class ActionKeys
