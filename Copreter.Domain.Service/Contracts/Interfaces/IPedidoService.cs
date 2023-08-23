@@ -4,7 +4,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IPedidoService
     {
-        Task<IEnumerable<TPedido>> ListarAsync();
+        Task<IEnumerable<TPedido>> ListarAsync(int idEstado);
 
         Task<TPedido> ObtenerAsync(int id);
 

@@ -150,8 +150,44 @@
   <data name="MENSAJE_CONFIRMAR_ELIMINAR" xml:space="preserve">
     <value>Esta seguro de eliminar el registro</value>
   </data>
+  <data name="MENU_GESTIONAR_ALQUILER" xml:space="preserve">
+    <value>Gestionar Alquiler</value>
+  </data>
+  <data name="MENU_PEDIDO_POR_ASIGNAR" xml:space="preserve">
+    <value>Por asignar</value>
+  </data>
+  <data name="MENU_PEDIDO_TODOS" xml:space="preserve">
+    <value>Todos</value>
+  </data>
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
+  </data>
+  <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
+    <value>Asignar Pedido</value>
+  </data>
+  <data name="PEDIDO_Empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="PEDIDO_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="PEDIDO_Fecha_Entrega" xml:space="preserve">
+    <value>Fecha Entrea</value>
+  </data>
+  <data name="PEDIDO_Fecha_Inicio" xml:space="preserve">
+    <value>Fecha Inicio</value>
+  </data>
+  <data name="PEDIDO_Obra" xml:space="preserve">
+    <value>Obra</value>
+  </data>
+  <data name="PEDIDO_Titulo" xml:space="preserve">
+    <value>Pedido</value>
+  </data>
+  <data name="PEDIDO_Trabajador" xml:space="preserve">
+    <value>Trabajador</value>
+  </data>
+  <data name="PEDIDO_Ubicacion" xml:space="preserve">
+    <value>Ubicación</value>
   </data>
   <data name="RESULT_ERROR" xml:space="preserve">
     <value>Error al realizar la operación</value>

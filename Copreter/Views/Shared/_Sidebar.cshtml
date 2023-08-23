@@ -69,18 +69,28 @@
                                     </li>
                                     <li class="nav-header">ALQUILER</li>
                                     <li class="nav-item">
-                                        <a asp-controller="Pedido" asp-action="ListarA" class="nav-link">
-                                            <i class="nav-icon far fa-plus-square"></i>
-                                            <p>
-                                                Gestionar Alquiler
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-table"></i>
+                                            <p style="color:greenyellow">
+                                                @Resource.MENU_GESTIONAR_ALQUILER
                                                 <i class="right fas fa-angle-left"></i>
                                             </p>
                                         </a>
+
+                                          <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Pedido" asp-action="Index" asp-route-idestado="-1" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>@Resource.MENU_PEDIDO_TODOS</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a asp-controller="Pedido" asp-action="ListarOp" class="nav-link">
+                                                <a asp-controller="Pedido" asp-action="Index" asp-route-idestado="1" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Por Asignar</p>
+                                                    <p>@Resource.MENU_PEDIDO_POR_ASIGNAR</p>
                                                 </a>
                                             </li>
                                         </ul>

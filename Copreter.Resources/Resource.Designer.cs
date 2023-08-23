@@ -160,11 +160,119 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestionar Alquiler.
+        /// </summary>
+        public static string MENU_GESTIONAR_ALQUILER {
+            get {
+                return ResourceManager.GetString("MENU_GESTIONAR_ALQUILER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Por asignar.
+        /// </summary>
+        public static string MENU_PEDIDO_POR_ASIGNAR {
+            get {
+                return ResourceManager.GetString("MENU_PEDIDO_POR_ASIGNAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Todos.
+        /// </summary>
+        public static string MENU_PEDIDO_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_PEDIDO_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salir.
         /// </summary>
         public static string MENU_SALIR {
             get {
                 return ResourceManager.GetString("MENU_SALIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asignar Pedido.
+        /// </summary>
+        public static string PEDIDO_Asignar_Titulo {
+            get {
+                return ResourceManager.GetString("PEDIDO_Asignar_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empresa.
+        /// </summary>
+        public static string PEDIDO_Empresa {
+            get {
+                return ResourceManager.GetString("PEDIDO_Empresa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string PEDIDO_Estado {
+            get {
+                return ResourceManager.GetString("PEDIDO_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Entrea.
+        /// </summary>
+        public static string PEDIDO_Fecha_Entrega {
+            get {
+                return ResourceManager.GetString("PEDIDO_Fecha_Entrega", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Inicio.
+        /// </summary>
+        public static string PEDIDO_Fecha_Inicio {
+            get {
+                return ResourceManager.GetString("PEDIDO_Fecha_Inicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obra.
+        /// </summary>
+        public static string PEDIDO_Obra {
+            get {
+                return ResourceManager.GetString("PEDIDO_Obra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pedido.
+        /// </summary>
+        public static string PEDIDO_Titulo {
+            get {
+                return ResourceManager.GetString("PEDIDO_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trabajador.
+        /// </summary>
+        public static string PEDIDO_Trabajador {
+            get {
+                return ResourceManager.GetString("PEDIDO_Trabajador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ubicación.
+        /// </summary>
+        public static string PEDIDO_Ubicacion {
+            get {
+                return ResourceManager.GetString("PEDIDO_Ubicacion", resourceCulture);
             }
         }
         

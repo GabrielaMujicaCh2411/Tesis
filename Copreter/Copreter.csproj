@@ -17,7 +17,6 @@
     <Compile Remove="Views\Obra\**" />
     <Compile Remove="Views\Pago\**" />
     <Compile Remove="Views\Partidas\**" />
-    <Compile Remove="Views\Pedido\**" />
     <Compile Remove="Views\TipoPartida\**" />
     <Compile Remove="Views\TipoUnidad\**" />
     <Compile Remove="Views\Trabajador\**" />
@@ -30,7 +29,6 @@
     <Content Remove="Views\Obra\**" />
     <Content Remove="Views\Pago\**" />
     <Content Remove="Views\Partidas\**" />
-    <Content Remove="Views\Pedido\**" />
     <Content Remove="Views\TipoPartida\**" />
     <Content Remove="Views\TipoUnidad\**" />
     <Content Remove="Views\Trabajador\**" />
@@ -43,7 +41,6 @@
     <EmbeddedResource Remove="Views\Obra\**" />
     <EmbeddedResource Remove="Views\Pago\**" />
     <EmbeddedResource Remove="Views\Partidas\**" />
-    <EmbeddedResource Remove="Views\Pedido\**" />
     <EmbeddedResource Remove="Views\TipoPartida\**" />
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
     <EmbeddedResource Remove="Views\Trabajador\**" />
@@ -56,7 +53,6 @@
     <None Remove="Views\Obra\**" />
     <None Remove="Views\Pago\**" />
     <None Remove="Views\Partidas\**" />
-    <None Remove="Views\Pedido\**" />
     <None Remove="Views\TipoPartida\**" />
     <None Remove="Views\TipoUnidad\**" />
     <None Remove="Views\Trabajador\**" />
@@ -72,7 +68,6 @@
     <Compile Remove="Controllers\Obracontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />
     <Compile Remove="Controllers\Partidascontroller.cs" />
-    <Compile Remove="Controllers\PedidoController.cs" />
     <Compile Remove="Controllers\TipoPartidacontroller.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
     <Compile Remove="Controllers\Trabajadorcontroller.cs" />
@@ -1627,6 +1622,10 @@
     <ProjectReference Include="..\Copreter.Domain.Model\Copreter.Domain.Model.csproj" />
     <ProjectReference Include="..\Copreter.Domain.Service\Copreter.Domain.Service.csproj" />
     <ProjectReference Include="..\Copreter.Resources\Copreter.Resources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Trabajador\" />
   </ItemGroup>
 
 </Project>

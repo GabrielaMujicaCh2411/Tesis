@@ -14,6 +14,7 @@
             public const string Cliente = "Cliente";
             public const string Usuario = "Usuario";
             public const string Unidad = "Unidad";
+            public const string Pedido = "Pedido";
         }
 
         public class ActionKeys
