@@ -63,7 +63,6 @@
     <Compile Remove="Controllers\AHerramientasController.cs" />
     <Compile Remove="Controllers\ATrabajadorController.cs" />
     <Compile Remove="Controllers\CitaController.cs" />
-    <Compile Remove="Controllers\Cotizarcontroller.cs" />
     <Compile Remove="Controllers\Facturacontroller.cs" />
     <Compile Remove="Controllers\Obracontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />

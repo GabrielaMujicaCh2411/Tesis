@@ -151,11 +151,83 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string COTIZACION_Estado {
+            get {
+                return ResourceManager.GetString("COTIZACION_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        public static string COTIZACION_Fecha {
+            get {
+                return ResourceManager.GetString("COTIZACION_Fecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Cotización.
+        /// </summary>
+        public static string COTIZACION_Nro {
+            get {
+                return ResourceManager.GetString("COTIZACION_Nro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Obra.
+        /// </summary>
+        public static string COTIZACION_Obra {
+            get {
+                return ResourceManager.GetString("COTIZACION_Obra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cotización.
+        /// </summary>
+        public static string COTIZACION_Titulo {
+            get {
+                return ResourceManager.GetString("COTIZACION_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string COTIZACION_Total {
+            get {
+                return ResourceManager.GetString("COTIZACION_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esta seguro de eliminar el registro.
         /// </summary>
         public static string MENSAJE_CONFIRMAR_ELIMINAR {
             get {
                 return ResourceManager.GetString("MENSAJE_CONFIRMAR_ELIMINAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alquiler.
+        /// </summary>
+        public static string MENU_ALQUILER {
+            get {
+                return ResourceManager.GetString("MENU_ALQUILER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cotizaciones.
+        /// </summary>
+        public static string MENU_COTIZACION_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_COTIZACION_TODOS", resourceCulture);
             }
         }
         

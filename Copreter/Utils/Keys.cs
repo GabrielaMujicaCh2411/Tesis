@@ -12,6 +12,7 @@
 			public const string Home = "Home";
 			public const string Auth = "Auth";
             public const string Cliente = "Cliente";
+            public const string Cotizacion = "Cotizacion";
             public const string Usuario = "Usuario";
             public const string Unidad = "Unidad";
             public const string Pedido = "Pedido";

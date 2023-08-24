@@ -111,7 +111,6 @@ INSERT [dbo].[T_TipoUnidad] ([Id], [Nombre]) VALUES (2, N'Herramienta')
 SET IDENTITY_INSERT [dbo].[T_TipoUnidad] OFF
 GO
 
-
 INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (71458541, N'Elcar', N'Litos', 921745873, 2, 2)
 INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (74847574, N'Eljua', N'Nito', 924785987, 3, 2)
 INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (75878474, N'Mario', N'Bros', 952958787, 3, 1)
@@ -121,4 +120,28 @@ GO
 INSERT [dbo].[T_Unidad] ([serie], [nombre], [modelo], [marca], [precio], [cantidad], [descripcion], [caracteristica1], [caracteristica2], [caracteristica3], [id_Tipo_Unidad], [id_Estado_Unidad], [imagen]) VALUES (N'COMB-01', N'Comba', N'160Z', N'Irimo', CAST(35 AS Decimal(18, 0)), 2, N'Comba nueva', N'Peso(Kg): 0.1', N'Dimensiones: 25 x 10 cm', N'Material: Acero forjado', 2, 1, N'77277a60-5650-48c3-87b1-2e23ed7a22c41128900.jpg')
 INSERT [dbo].[T_Unidad] ([serie], [nombre], [modelo], [marca], [precio], [cantidad], [descripcion], [caracteristica1], [caracteristica2], [caracteristica3], [id_Tipo_Unidad], [id_Estado_Unidad], [imagen]) VALUES (N'MAR-01', N'Martillo', N'MA-20', N'Truper', CAST(28 AS Decimal(18, 0)), 3, N'Martillo Uña Curva', N'Cabeza: 20 Oz', N'Mango: 14" (36 cm)', N'Boca: 1-1/4"', 2, 1, N'ee9e232e-68c0-438c-9226-f888a88c9b9bD_NQ_NP_669430-MLU29470204421_022019-O.jpg')
 INSERT [dbo].[T_Unidad] ([serie], [nombre], [modelo], [marca], [precio], [cantidad], [descripcion], [caracteristica1], [caracteristica2], [caracteristica3], [id_Tipo_Unidad], [id_Estado_Unidad], [imagen]) VALUES (N'Mini-01', N'Minicargador', N'216B3', N'Cat', CAST(1230 AS Decimal(18, 0)), 1, N'Minicargador nuevo', N'Peso en orden de trabajo: 2581 kg', N'Velocidad de desplazamiento (avance o retroceso): 12.7 km/h', N'Modelo de motor: Cat C2.2', 1, 1, N'efa444a0-c469-4d54-8d75-8278c6e470fcCM20190926-d30ea-dd374.jpg')
+GO
+
+INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad]) VALUES (CAST(N'2021-12-20T00:00:00.000' AS DateTime), 15, N'EdiObra03', N'Edificar', N'Surco', NULL, CAST(18450 AS Decimal(18, 0)), 3,1, 1, 1)
+INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad]) VALUES (CAST(N'2021-12-27T00:00:00.000' AS DateTime), 5, N'EdiObra04', N'PSY', N'Surco', NULL, CAST(175 AS Decimal(18, 0)), 2, 2, NULL, 2)
+INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad]) VALUES (CAST(N'2023-08-07T00:00:00.000' AS DateTime), 10, N'Ts', N'teet', N'tete', NULL, CAST(12300 AS Decimal(18, 0)), 1, 1, NULL, 1)
+GO
+
+INSERT [dbo].[T_Obra] ([empresa], [direccion], [nombre_Obra], [imagen], [fecha_Inicio], [duracion_Obra], [id_Usuario], [id_Estado_Obra]) VALUES (N'PSY', N'San juan de Miraflores 123', N'Obra de EDificio 1', N'd67a1b93-2dfd-4131-9e8d-056c3a16c194plano.jpeg', CAST(N'2021-12-20T00:00:00.000' AS DateTime), 5, 1, 11)
+GO
+
+INSERT [dbo].[T_Partida] ([nombre], [precio_Unidad], [id_Tipo_Partida]) VALUES (N'Suministros e instalaciones de techos prefabricados', CAST(90 AS Decimal(18, 0)), 1)
+INSERT [dbo].[T_Partida] ([nombre], [precio_Unidad], [id_Tipo_Partida]) VALUES (N'Acarreo de herramientas y materiales', CAST(121 AS Decimal(18, 0)), 1)
+INSERT [dbo].[T_Partida] ([nombre], [precio_Unidad], [id_Tipo_Partida]) VALUES (N'Fabricacion e instalacion de molduras en ventanas ', CAST(45 AS Decimal(18, 0)), 1)
+INSERT [dbo].[T_Partida] ([nombre], [precio_Unidad], [id_Tipo_Partida]) VALUES (N'Encofrados y desencofrados para sobrecrecimiento', CAST(54 AS Decimal(18, 0)), 2)
+GO
+
+INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (1, 1, CAST(2 AS Decimal(18, 0)), N'gbl', CAST(180 AS Decimal(18, 0)))
+INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (2, 1, CAST(1 AS Decimal(18, 0)), N'gbl', CAST(54 AS Decimal(18, 0)))
+GO
+
+INSERT [dbo].[T_Cotizacion] ([fecha], [total], [id_Obra], [id_EstadoCotizacion]) VALUES (CAST(N'2021-12-13T05:12:30.863' AS DateTime), CAST(234 AS Decimal(18, 0)), 1, 7)
+GO
+
+INSERT [dbo].[T_CotizacionxUnidad] ([Id_Unidad], [id_Cotizacion], [cantidad]) VALUES (1, 2, 1)
 GO

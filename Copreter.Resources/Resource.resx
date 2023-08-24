@@ -147,8 +147,32 @@
   <data name="CLIENTE_Titulo" xml:space="preserve">
     <value>Cliente</value>
   </data>
+  <data name="COTIZACION_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="COTIZACION_Fecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="COTIZACION_Nro" xml:space="preserve">
+    <value>Nº Cotización</value>
+  </data>
+  <data name="COTIZACION_Obra" xml:space="preserve">
+    <value>Nº Obra</value>
+  </data>
+  <data name="COTIZACION_Titulo" xml:space="preserve">
+    <value>Cotización</value>
+  </data>
+  <data name="COTIZACION_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="MENSAJE_CONFIRMAR_ELIMINAR" xml:space="preserve">
     <value>Esta seguro de eliminar el registro</value>
+  </data>
+  <data name="MENU_ALQUILER" xml:space="preserve">
+    <value>Alquiler</value>
+  </data>
+  <data name="MENU_COTIZACION_TODOS" xml:space="preserve">
+    <value>Cotizaciones</value>
   </data>
   <data name="MENU_GESTIONAR_ALQUILER" xml:space="preserve">
     <value>Gestionar Alquiler</value>
