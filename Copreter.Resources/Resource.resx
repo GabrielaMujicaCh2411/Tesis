@@ -177,6 +177,12 @@
   <data name="MENU_GESTIONAR_ALQUILER" xml:space="preserve">
     <value>Gestionar Alquiler</value>
   </data>
+  <data name="MENU_OBRA_NUEVO" xml:space="preserve">
+    <value>Solicitar Cotizacón</value>
+  </data>
+  <data name="MENU_OBRA_TODOS" xml:space="preserve">
+    <value>Mis Cotizaciones</value>
+  </data>
   <data name="MENU_PEDIDO_POR_ASIGNAR" xml:space="preserve">
     <value>Por asignar</value>
   </data>
@@ -191,6 +197,9 @@
   </data>
   <data name="MENU_USUARIO" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="OBRA_Estado" xml:space="preserve">
+    <value>Estado</value>
   </data>
   <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
     <value>Asignar Pedido</value>

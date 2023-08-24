@@ -58,8 +58,8 @@ namespace Copreter.Controllers
 
             var result = new TrabajadorEditableVM
             {
-                EstadoTrabajadorLista = estadoLista.GetItems(),
-                TipoTrabajadorLista = tipoLista.GetItems()
+                EstadoLista = estadoLista.GetItems(),
+                TipoLista = tipoLista.GetItems()
             };
             return View(result);
         }
@@ -98,8 +98,8 @@ namespace Copreter.Controllers
             var resultService = await this._service.ObtenerAsync(id);
 
             var result = this.Mapper.Map<TrabajadorEditableVM>(resultService);
-            result.EstadoTrabajadorLista = estadoLista.GetItems();
-            result.TipoTrabajadorLista = tipoLista.GetItems();
+            result.EstadoLista = estadoLista.GetItems();
+            result.TipoLista = tipoLista.GetItems();
 
             return View(result);
         }

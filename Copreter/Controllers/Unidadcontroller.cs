@@ -57,8 +57,8 @@ namespace Copreter.Controllers
 
             var result = new UnidadEditableVM
             {
-                EstadoUnidadLista = estadoUnidadLista.GetItems(),
-                TipoUnidadLista = tipoUnidadLista.GetItems()
+                EstadoLista = estadoUnidadLista.GetItems(),
+                TipoLista = tipoUnidadLista.GetItems()
             };
             return View(result);
         }
@@ -94,8 +94,8 @@ namespace Copreter.Controllers
             var resultService = await this._service.ObtenerAsync(id);
 
             var result = this.Mapper.Map<UnidadEditableVM>(resultService);
-            result.EstadoUnidadLista = estadoUnidadLista.GetItems();
-            result.TipoUnidadLista = tipoUnidadLista.GetItems();
+            result.EstadoLista = estadoUnidadLista.GetItems();
+            result.TipoLista = tipoUnidadLista.GetItems();
 
             return View(result);
         }

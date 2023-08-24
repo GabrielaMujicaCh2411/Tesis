@@ -17,6 +17,7 @@ namespace Copreter.Domain.Service
             services.AddScoped<ICotizacionService, CotizacionService>();
 
             //services.AddScoped<IEstadoCotizacionService, EstadoCotizacionService>();
+            services.AddScoped<IEstadoObraService, EstadoObraService>();
             //services.AddScoped<IEstadoPedidoService, EstadoPedidoService>();
             services.AddScoped<IEstadoTrabajadorService, EstadoTrabajadorService>();
             services.AddScoped<IEstadoUnidadService, EstadoUnidadService>();
@@ -39,3 +40,4 @@ namespace Copreter.Domain.Service
         }
     }
 }
+

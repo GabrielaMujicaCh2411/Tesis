@@ -14,7 +14,6 @@
     <Compile Remove="Views\Cita\**" />
     <Compile Remove="Views\Cotizar\**" />
     <Compile Remove="Views\Factura\**" />
-    <Compile Remove="Views\Obra\**" />
     <Compile Remove="Views\Pago\**" />
     <Compile Remove="Views\Partidas\**" />
     <Compile Remove="Views\TipoPartida\**" />
@@ -25,7 +24,6 @@
     <Content Remove="Views\Cita\**" />
     <Content Remove="Views\Cotizar\**" />
     <Content Remove="Views\Factura\**" />
-    <Content Remove="Views\Obra\**" />
     <Content Remove="Views\Pago\**" />
     <Content Remove="Views\Partidas\**" />
     <Content Remove="Views\TipoPartida\**" />
@@ -36,7 +34,6 @@
     <EmbeddedResource Remove="Views\Cita\**" />
     <EmbeddedResource Remove="Views\Cotizar\**" />
     <EmbeddedResource Remove="Views\Factura\**" />
-    <EmbeddedResource Remove="Views\Obra\**" />
     <EmbeddedResource Remove="Views\Pago\**" />
     <EmbeddedResource Remove="Views\Partidas\**" />
     <EmbeddedResource Remove="Views\TipoPartida\**" />
@@ -47,7 +44,6 @@
     <None Remove="Views\Cita\**" />
     <None Remove="Views\Cotizar\**" />
     <None Remove="Views\Factura\**" />
-    <None Remove="Views\Obra\**" />
     <None Remove="Views\Pago\**" />
     <None Remove="Views\Partidas\**" />
     <None Remove="Views\TipoPartida\**" />
@@ -60,7 +56,6 @@
     <Compile Remove="Controllers\ATrabajadorController.cs" />
     <Compile Remove="Controllers\CitaController.cs" />
     <Compile Remove="Controllers\Facturacontroller.cs" />
-    <Compile Remove="Controllers\Obracontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />
     <Compile Remove="Controllers\Partidascontroller.cs" />
     <Compile Remove="Controllers\TipoPartidacontroller.cs" />

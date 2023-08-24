@@ -21,6 +21,12 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Obra.SelectIncludes(x => estados.Contains(x.IdEstadoObra));
         }
 
+        public async Task<bool> AgregarAsync(TObra entidad)
+        {
+            var result = await this._data.Obra.Add(entidad);
+            return result == 1;
+        }
+
         public async Task<bool> ActualizarEstado(int id, EObraEstado estado)
         {
             var result = await this._data.Obra.GetById(id);
@@ -45,5 +51,7 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Obra.GetById(id);
         }
+
+ 
     }
 }

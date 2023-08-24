@@ -241,6 +241,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Solicitar Cotizacón.
+        /// </summary>
+        public static string MENU_OBRA_NUEVO {
+            get {
+                return ResourceManager.GetString("MENU_OBRA_NUEVO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mis Cotizaciones.
+        /// </summary>
+        public static string MENU_OBRA_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_OBRA_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por asignar.
         /// </summary>
         public static string MENU_PEDIDO_POR_ASIGNAR {
@@ -282,6 +300,15 @@ namespace Copreter.Resources {
         public static string MENU_USUARIO {
             get {
                 return ResourceManager.GetString("MENU_USUARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string OBRA_Estado {
+            get {
+                return ResourceManager.GetString("OBRA_Estado", resourceCulture);
             }
         }
         

@@ -1,153 +1,85 @@
-using System.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Program.Data;
-using Program.Models;
-using System.Diagnostics;
+using AutoMapper;
+using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using Copreter.Utils;
+using Copreter.Models.Obra;
+using Copreter.Domain.Service.Dto.Obra;
 
 namespace Copreter.Controllers
 {
-   public class Obracontroller : Controller
+    public class Obracontroller : BaseController
     {
-        ApplicationDbContext _context ;
-        [Obsolete]
-        IHostingEnvironment  hosting;
+        #region Fields
 
-        [Obsolete]
-        public Obracontroller(ApplicationDbContext context, IHostingEnvironment  _hosting)
-        {
-            _context = context;
-            hosting  = _hosting;
-        }
-        public async Task<IActionResult> Index(string id)
-        {
-            List<TObra> Obra = await _context.TObras.Where(x=>x.IdUsuarioObra == id).Include(x=>x.IdObraEstadoNavigation).ToListAsync();
-            TObra obra = new TObra();
-            ViewBag.Obra=Obra;
-            return View(obra);
-        }
-        
-        public async Task<IActionResult> Listar()
-        {
-            var model = new ModelObra();
-            model.obras = await _context.TObras.OrderBy(x=>x.IdObra).ToListAsync();
-            model.clientes = await _context.TClientes.ToListAsync();
-            model.estadosObra = await _context.TEstadoObras.ToListAsync();
-            return View(model);
-        }
-        public async Task<IActionResult> Solicitar()
-        {
-            List<TObra> Obras = await _context.TObras.Include(x=>x.IdObraEstadoNavigation).ToListAsync();
-            TObra obra = new TObra();
-            var obj =   (from prod in Obras select prod)
-                        .Count();
-            int cantRegistro= obj+1;
+        private readonly IObraService _service;
 
-            obra.IdObra = "Obra-00"+cantRegistro;
-            obra.IdObraEstado = 1;
-            ViewBag.ListaUsuario = await _context.TUsuarios.OrderBy(x => x.IdUsuario).ToListAsync();
-            ViewBag.ListaObra = await _context.TEstadoObras.OrderBy(x => x.IdEstadoObra).ToListAsync();
-            
-              return View(obra);
+        private readonly IEstadoObraService _estadoObraService;
 
-        }
-        [BindProperty]
-        public TObra obra{get;set;}
-        public async Task<IActionResult> Guardar()
+        #endregion
+
+        public Obracontroller(IMapper mapper, IObraService service, IEstadoObraService estadoObraService) : base(mapper)
         {
-            string guidImage = null;
-            if(obra.Foto !=null)
+            this._service = service;
+            this._estadoObraService = estadoObraService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var resultService = await this._service.ListarAsync();
+
+            var result = new ObraIndexVM
             {
-                string ficherosImagenes =Path.Combine(hosting.WebRootPath,"images");
-                guidImage = Guid.NewGuid().ToString() + obra.Foto.FileName;
-                string rutaDefinitiva = Path.Combine(ficherosImagenes,guidImage);
-                obra.Foto.CopyTo(new FileStream(rutaDefinitiva,FileMode.Create));
-            } else {
-                guidImage = "ArchivoVacio.txt";
-            }
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+            };
+            return View(result);
+        }
 
-              if(!ModelState.IsValid)
+        public async Task<IActionResult> _Index()
+        {
+            var resultService = await this._service.ListarAsync();
+
+            var result = new ObraIndexVM
             {
-               return View(obra);
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+            };
+            return PartialView(result);
+        }
+
+        public async Task<IActionResult> Crear()
+        {
+            var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoObraService.ListarAsync());
+
+            var result = new ObraEditableVM
+            {
+                EstadoLista = estadoLista.GetItems()
+            };
+            return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear([Bind()] ObraDto dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TObra>(dto));
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(dto);
             }
-            
-             obra.Imagen= guidImage;            
-            _context.TObras.Add(obra);
-             await  _context.SaveChangesAsync();
-           return Redirect("/Home/VistaAdministrador");
-        }
-
-        public async Task<IActionResult> ListarP()
-        {
-            var model = new ModelObra();
-            model.obras = await _context.TObras.Where(o => o.IdObraEstado==1 || o.IdObraEstado==3).OrderBy(x=>x.IdObra).ToListAsync();
-            model.clientes = await _context.TClientes.ToListAsync();
-            model.estadosObra = await _context.TEstadoObras.ToListAsync();
-            return View(model);
-        }
-        public async Task<IActionResult> ListarA()
-        {
-            var model = new ModelObra();
-            model.obras = await _context.TObras.Where(o => o.IdObraEstado==2).OrderBy(x=>x.IdObra).ToListAsync();
-            model.clientes = await _context.TClientes.ToListAsync();
-            model.estadosObra = await _context.TEstadoObras.ToListAsync();
-            return View(model);
-        }
-        public async Task<IActionResult> Detalle(string id)
-        {
-            var Obra = _context.TObras.Find(id);
-            ViewBag.EstadoObra = await _context.TEstadoObras.ToListAsync();
-            return View(Obra);
-        }
-        public async Task<IActionResult> DetalleAdmin(string id)
-        {
-            var Obra = _context.TObras.Find(id);
-            ViewBag.EstadoObra = await _context.TEstadoObras.ToListAsync();
-            return View(Obra);
-        }
-        public async Task<IActionResult> ObraObservada(string id)
-        {
-            var _Obra = _context.TObras.Where(x => x.IdObra ==id).SingleOrDefault();
-            _Obra.IdObraEstado = 3;
-            await _context.SaveChangesAsync();
-            return RedirectToAction("ListarP");
-        }
-
-        public async Task<IActionResult> ObraRechazada(string id)
-        {
-            var _Obra = _context.TObras.Where(x => x.IdObra ==id).SingleOrDefault();
-            _Obra.IdObraEstado = 6;
-            await _context.SaveChangesAsync();
-            return Redirect("/Home/VistaAdministrador");
-        }
-        public async Task<IActionResult> ObraAceptada(string id)
-        {
-            var _Obra = _context.TObras.Where(x => x.IdObra ==id).SingleOrDefault();
-            _Obra.IdObraEstado = 2;
-            await _context.SaveChangesAsync();
-            return Redirect("/Home/VistaAdministrador");
-        }
-        public async Task<IActionResult> ObraTerminada(string id)
-        {
-            var _Obra = _context.TObras.Where(x => x.IdObra ==id).SingleOrDefault();
-            _Obra.IdObraEstado = 10;
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Listar");
-        }
-
-
-        public class ModelObra
-        {
-            public IEnumerable<TObra> obras { get; set; }
-            public IEnumerable<TCliente> clientes { get; set; }
-            public IEnumerable<TEstadoObra> estadosObra { get; set; }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

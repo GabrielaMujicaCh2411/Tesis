@@ -9,6 +9,8 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados);
 
+        Task<bool> AgregarAsync(TObra entidad);
+
         Task<bool> ObraPorCitaAsync(int id);
 
         Task<TObra> ObtenerAsync(int id);

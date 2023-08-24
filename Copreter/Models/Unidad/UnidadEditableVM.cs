@@ -7,12 +7,12 @@ namespace Copreter.Models.Unidad
     {
         public UnidadEditableVM()
         {
-            this.TipoUnidadLista = new List<SelectListItem>();
-            this.EstadoUnidadLista = new List<SelectListItem>();
+            this.TipoLista = new List<SelectListItem>();
+            this.EstadoLista = new List<SelectListItem>();
         }
 
-        public List<SelectListItem> TipoUnidadLista { get; set; }
+        public List<SelectListItem> TipoLista { get; set; }
 
-        public List<SelectListItem> EstadoUnidadLista { get; set; }
+        public List<SelectListItem> EstadoLista { get; set; }
     }
 }
