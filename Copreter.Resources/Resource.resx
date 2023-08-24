@@ -162,6 +162,9 @@
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="MENU_USUARIO" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
   <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
     <value>Asignar Pedido</value>
   </data>

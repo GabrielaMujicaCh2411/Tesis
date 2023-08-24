@@ -26,7 +26,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int idestado)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(idestado);
 
             var result = new PedidoIndexVM
             {
@@ -37,7 +37,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> _Index(int idestado)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(idestado);
 
             var result = new PedidoIndexVM
             {

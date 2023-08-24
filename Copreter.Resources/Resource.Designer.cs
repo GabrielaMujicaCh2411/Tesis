@@ -196,6 +196,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuario.
+        /// </summary>
+        public static string MENU_USUARIO {
+            get {
+                return ResourceManager.GetString("MENU_USUARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asignar Pedido.
         /// </summary>
         public static string PEDIDO_Asignar_Titulo {
