@@ -2,7 +2,7 @@
 
 namespace Copreter.Domain.Service.Dto.Cliente
 {
-    public class ClienteDto
+    public class ClienteDto: BaseDto
     {
         public int Id { get; set; }
 

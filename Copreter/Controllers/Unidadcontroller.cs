@@ -65,7 +65,7 @@ namespace Copreter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind()] TUnidad dto)
+        public async Task<IActionResult> Crear([Bind()] UnidadDto dto)
         {
             if (!ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace Copreter.Controllers
             var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
             if (usuarioExiste == null)
             {
-                var result = await this._service.AgregarAsync(dto);
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TUnidad>(dto));
                 if (result)
                 {
                     return RedirectToAction(nameof(Index));

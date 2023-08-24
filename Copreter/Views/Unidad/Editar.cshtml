@@ -42,12 +42,17 @@
                                     <div class="col-md-8">
                                         <form asp-action="Editar" asp-controller="Cliente" method="post">
                                             <div class="card-body">
-                                                <div class="form-group" style="display: none">
+
+                                                <input type="hidden" asp-for="Id" />
+                                                <input type="hidden" asp-for="IdUsuarioRegistro" />
+                                                <input type="hidden" asp-for="FechaRegistro" />
+
+                                                <div class="form-group">
                                                     <label>@Resource.UNIDAD_Serie</label>
                                                     <input type="text" class="form-control" placeholder="Serie" asp-for="Serie" readonly="@(true)">
                                                     <span asp-validation-for="Serie" class="text-danger"> </span>
                                                 </div>
-                                                <div class="form-group" style="display: none">
+                                                <div class="form-group">
                                                     <label>@Resource.UNIDAD_Nombre</label>
                                                     <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">
                                                     <span asp-validation-for="Nombre" class="text-danger"> </span>

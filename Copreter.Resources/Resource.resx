@@ -186,6 +186,9 @@
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="MENU_TRABAJADOR_TODOS" xml:space="preserve">
+    <value>Gestionar Trabajadores</value>
+  </data>
   <data name="MENU_USUARIO" xml:space="preserve">
     <value>Usuario</value>
   </data>
@@ -224,6 +227,27 @@
   </data>
   <data name="TITLE_Eliminar" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="TRABAJADOR_Apellido" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="TRABAJADOR_Celular" xml:space="preserve">
+    <value>Celular</value>
+  </data>
+  <data name="TRABAJADOR_Dni" xml:space="preserve">
+    <value>Dni</value>
+  </data>
+  <data name="TRABAJADOR_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="TRABAJADOR_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="TRABAJADOR_Tipo" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="TRABAJADOR_Titulo" xml:space="preserve">
+    <value>Trabajador</value>
   </data>
   <data name="UNIDAD_Cantidad" xml:space="preserve">
     <value>Cantidad</value>

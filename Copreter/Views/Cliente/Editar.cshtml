@@ -39,6 +39,11 @@
                             <div id="contentPartial">
                                 <form asp-action="GuardarActualizacion" asp-controller="Cliente" method="post">
                                     <div class="card-body">
+
+                                        <input type="hidden" asp-for="Id" />
+                                        <input type="hidden" asp-for="IdUsuarioRegistro" />
+                                        <input type="hidden" asp-for="FechaRegistro" />
+
                                         <div class="form-group" style="display: none">
                                             <label for="exampleInputPassword1">DNI: </label>
                                             <input type="text" class="form-control" placeholder="Nombres" asp-for="Dni" readonly="@(true)">

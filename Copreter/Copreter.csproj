@@ -19,7 +19,6 @@
     <Compile Remove="Views\Partidas\**" />
     <Compile Remove="Views\TipoPartida\**" />
     <Compile Remove="Views\TipoUnidad\**" />
-    <Compile Remove="Views\Trabajador\**" />
     <Compile Remove="Views\Usuario\**" />
     <Content Remove="Views\AHerramientas\**" />
     <Content Remove="Views\ATrabajador\**" />
@@ -31,7 +30,6 @@
     <Content Remove="Views\Partidas\**" />
     <Content Remove="Views\TipoPartida\**" />
     <Content Remove="Views\TipoUnidad\**" />
-    <Content Remove="Views\Trabajador\**" />
     <Content Remove="Views\Usuario\**" />
     <EmbeddedResource Remove="Views\AHerramientas\**" />
     <EmbeddedResource Remove="Views\ATrabajador\**" />
@@ -43,7 +41,6 @@
     <EmbeddedResource Remove="Views\Partidas\**" />
     <EmbeddedResource Remove="Views\TipoPartida\**" />
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
-    <EmbeddedResource Remove="Views\Trabajador\**" />
     <EmbeddedResource Remove="Views\Usuario\**" />
     <None Remove="Views\AHerramientas\**" />
     <None Remove="Views\ATrabajador\**" />
@@ -55,7 +52,6 @@
     <None Remove="Views\Partidas\**" />
     <None Remove="Views\TipoPartida\**" />
     <None Remove="Views\TipoUnidad\**" />
-    <None Remove="Views\Trabajador\**" />
     <None Remove="Views\Usuario\**" />
   </ItemGroup>
 
@@ -69,7 +65,6 @@
     <Compile Remove="Controllers\Partidascontroller.cs" />
     <Compile Remove="Controllers\TipoPartidacontroller.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
-    <Compile Remove="Controllers\Trabajadorcontroller.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1621,10 +1616,6 @@
     <ProjectReference Include="..\Copreter.Domain.Model\Copreter.Domain.Model.csproj" />
     <ProjectReference Include="..\Copreter.Domain.Service\Copreter.Domain.Service.csproj" />
     <ProjectReference Include="..\Copreter.Resources\Copreter.Resources.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Trabajador\" />
   </ItemGroup>
 
 </Project>

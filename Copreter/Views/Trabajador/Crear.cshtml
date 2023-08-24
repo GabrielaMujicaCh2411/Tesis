@@ -1,0 +1,123 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Trabajador.TrabajadorEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.TRABAJADOR_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.TRABAJADOR_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <form asp-action="Crear" asp-controller="Trabajador" method="post">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Dni</label>
+                                                    <input type="text" class="form-control" placeholder="Dni" asp-for="Dni" readonly="@(true)">
+                                                    <span asp-validation-for="Dni" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">
+                                                    <span asp-validation-for="Nombre" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Apellido</label>
+                                                    <input type="text" class="form-control" placeholder="Modelo" asp-for="Apellido">
+                                                    <span asp-validation-for="Apellido" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Celular</label>
+                                                    <input type="text" class="form-control" placeholder="Marca" asp-for="Celular">
+                                                    <span asp-validation-for="Celular" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Tipo</label>
+                                                    <select asp-for="IdTipoTrabajador" class="form-control" asp-items="Model.TipoTrabajadorLista"></select>
+                                                    <span asp-validation-for="IdTipoTrabajador" class="text-danger"> </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>@Resource.TRABAJADOR_Estado</label>
+                                                    <select asp-for="IdEstadoTrabajador" class="form-control" asp-items="Model.EstadoTrabajadorLista"></select>
+                                                    <span asp-validation-for="IdEstadoTrabajador" class="text-danger"> </span>
+                                                </div>
+                                               
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary">@Resource.BTN_Guardar</button>
+                                                <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card-body" id="imagePreview" style="text-align:center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        })
+
+        function filePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').html("<img src='" + e.target.result + "' />");
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#imagen').change(function () {
+            filePreview(this);
+        });
+
+    </script>
+}

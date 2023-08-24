@@ -42,6 +42,8 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Pedido.GetById(id);
             if (entidadActual == null) return false;
 
+            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.FechaModificacion = DateTime.Now;
             entidadActual.Borrado = true;
 
             var result = await this._data.Pedido.Update(entidadActual);

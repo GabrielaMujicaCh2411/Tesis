@@ -11,6 +11,8 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TCotizacion> _cotizacion;
 
+        private readonly IRepository<TEstadoTrabajador> _estadoTrabajador;
+
         private readonly IRepository<TEstadoUnidad> _estadoUnidad;
 
         private readonly IRepository<TFactura> _factura;
@@ -27,6 +29,8 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TTipoPartida> _tipoPartida;
 
+        private readonly IRepository<TTipoTrabajador> _tipoTrabajador;
+
         private readonly IRepository<TTipoUnidad> _tipoUnidad;
 
         private readonly IRepository<TTrabajador> _trabajador;
@@ -39,6 +43,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TCita> cita,
             IRepository<TCliente> cliente,
             IRepository<TCotizacion> cotizacion,
+            IRepository<TEstadoTrabajador> estadoTrabajador,
             IRepository<TEstadoUnidad> estadoUnidad,
             IRepository<TFactura> factura,
             IRepository<TObra> obra,
@@ -47,6 +52,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TPedido> pedido,
             IRepository<TRol> rol,
             IRepository<TTipoPartida> tipoPartida,
+            IRepository<TTipoTrabajador> tipoTrabajador,
             IRepository<TTipoUnidad> tipoUnidad,
             IRepository<TTrabajador> trabajador,
             IRepository<TUnidad> unidad,
@@ -55,6 +61,7 @@ namespace Copreter.Domain.Model.Repository
             this._cita = cita;
             this._cliente = cliente;
             this._cotizacion = cotizacion;
+            this._estadoTrabajador = estadoTrabajador;
             this._estadoUnidad = estadoUnidad;
             this._factura = factura;
             this._obra = obra;
@@ -63,6 +70,7 @@ namespace Copreter.Domain.Model.Repository
             this._pedido = pedido;
             this._rol = rol;
             this._tipoPartida = tipoPartida;
+            this._tipoTrabajador = tipoTrabajador;
             this._tipoUnidad = tipoUnidad;
             this._trabajador = trabajador;
             this._unidad = unidad;
@@ -74,6 +82,8 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TCliente> Cliente => this._cliente;
 
         public IRepository<TCotizacion> Cotizacion => this._cotizacion;
+
+        public IRepository<TEstadoTrabajador> EstadoTrabajador => this._estadoTrabajador;
 
         public IRepository<TEstadoUnidad> EstadoUnidad => this._estadoUnidad;
 
@@ -90,6 +100,8 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TRol> Rol => this._rol;
 
         public IRepository<TTipoPartida> TipoPartida => this._tipoPartida;
+
+        public IRepository<TTipoTrabajador> TipoTrabajador => this._tipoTrabajador;
 
         public IRepository<TTipoUnidad> TipoUnidad => this._tipoUnidad;
 

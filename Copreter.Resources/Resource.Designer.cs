@@ -268,6 +268,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestionar Trabajadores.
+        /// </summary>
+        public static string MENU_TRABAJADOR_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_TRABAJADOR_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario.
         /// </summary>
         public static string MENU_USUARIO {
@@ -381,6 +390,69 @@ namespace Copreter.Resources {
         public static string TITLE_Eliminar {
             get {
                 return ResourceManager.GetString("TITLE_Eliminar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apellido.
+        /// </summary>
+        public static string TRABAJADOR_Apellido {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Apellido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Celular.
+        /// </summary>
+        public static string TRABAJADOR_Celular {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Celular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dni.
+        /// </summary>
+        public static string TRABAJADOR_Dni {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Dni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string TRABAJADOR_Estado {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string TRABAJADOR_Nombre {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo.
+        /// </summary>
+        public static string TRABAJADOR_Tipo {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Tipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trabajador.
+        /// </summary>
+        public static string TRABAJADOR_Titulo {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Titulo", resourceCulture);
             }
         }
         

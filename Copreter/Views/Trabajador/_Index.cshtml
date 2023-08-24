@@ -1,0 +1,62 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Trabajador.TrabajadorIndexVM;
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Dni)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Nombre)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Apellido)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Celular)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Tipo)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.TRABAJADOR_Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DtoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoTrabajador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoTrabajador)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </a>
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                        <span class="fa-light fa-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

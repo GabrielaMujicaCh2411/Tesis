@@ -15,6 +15,13 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Unidad.GetById(id);
             if (entidadActual == null) return false;
 
+            entidad.Id = entidadActual.Id;
+            entidad.IdUsuarioRegistro = entidadActual.IdUsuarioRegistro;
+            entidad.FechaRegistro = entidadActual.FechaRegistro;
+
+            entidad.IdUsuarioModificacion = 2;
+            entidad.FechaModificacion = DateTime.Now;
+
             var result = await this._data.Unidad.Update(entidad);
             return result > 0;
         }
@@ -30,6 +37,8 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Unidad.GetById(id);
             if (entidadActual == null) return false;
 
+            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.FechaModificacion = DateTime.Now;
             entidadActual.Borrado = true;
 
             var result = await this._data.Unidad.Update(entidadActual);
