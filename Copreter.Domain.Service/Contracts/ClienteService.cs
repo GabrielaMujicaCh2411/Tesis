@@ -12,40 +12,40 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TCliente>> ListarAsync()
         {
-            return await this._data.Cliente.SelectIncludes(x => x.Borrado == false);
+            return await this._data.Acceso.SelectIncludes(x => x.Borrado == false);
         }
 
         public async Task<bool> ActualizarAsync(int id, TCliente entidad)
         {
-            var entidadActual = await this._data.Cliente.GetById(id);
+            var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
             entidad.Dni = entidadActual.Dni;
 
-            var result = await this._data.Cliente.Update(entidad);
+            var result = await this._data.Acceso.Update(entidad);
             return result == 1;
         }
 
         public async Task<bool> AgregarAsync(TCliente entidad)
         {
-            var result = await this._data.Cliente.Add(entidad);
+            var result = await this._data.Acceso.Add(entidad);
             return result == 1;
         }
 
         public async Task<bool> EliminarAsync(int id)
         {
-            var entidadActual = await this._data.Cliente.GetById(id);
+            var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
             entidadActual.Borrado = true;
 
-            var result = await this._data.Cliente.Update(entidadActual);
+            var result = await this._data.Acceso.Update(entidadActual);
             return result == 1;
         }
 
         public async Task<TCliente> ObtenerAsync(int id)
         {
-            return await this._data.Cliente.GetById(id);
+            return await this._data.Acceso.GetById(id);
         }
     }
 }

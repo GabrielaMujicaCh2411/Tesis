@@ -16,8 +16,8 @@ namespace Copreter.Domain.Model.DbModel
         {
         }
 
+        public virtual DbSet<TAcceso> TAcceso { get; set; } = null!;
         public virtual DbSet<TCita> TCita { get; set; } = null!;
-        public virtual DbSet<TCliente> TCliente { get; set; } = null!;
         public virtual DbSet<TCotizacion> TCotizacion { get; set; } = null!;
         public virtual DbSet<TCotizacionxUnidad> TCotizacionxUnidad { get; set; } = null!;
         public virtual DbSet<TEstadoCotizacion> TEstadoCotizacion { get; set; } = null!;
@@ -52,6 +52,46 @@ namespace Copreter.Domain.Model.DbModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<TAcceso>(entity =>
+            {
+                entity.ToTable("T_Acceso");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.Contrasenya).HasMaxLength(100);
+
+                entity.Property(e => e.Email).HasMaxLength(100);
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdRol).HasColumnName("Id_Rol");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.IdRolNavigation)
+                    .WithMany(p => p.TAcceso)
+                    .HasForeignKey(d => d.IdRol)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Acceso_T_Rol");
+            });
+
             modelBuilder.Entity<TCita>(entity =>
             {
                 entity.ToTable("T_Cita");
@@ -90,36 +130,6 @@ namespace Copreter.Domain.Model.DbModel
                     .HasForeignKey(d => d.IdObra)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Cita_T_Obra");
-            });
-
-            modelBuilder.Entity<TCliente>(entity =>
-            {
-                entity.ToTable("T_Cliente");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Apellido).HasMaxLength(100);
-
-                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
-
-                entity.Property(e => e.Correo).HasMaxLength(100);
-
-                entity.Property(e => e.FechaModificacion)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA_MODIFICACION");
-
-                entity.Property(e => e.FechaRegistro)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA_REGISTRO")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
-
-                entity.Property(e => e.IdUsuarioRegistro)
-                    .HasColumnName("ID_USUARIO_REGISTRO")
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Nombre).HasMaxLength(100);
             });
 
             modelBuilder.Entity<TCotizacion>(entity =>
@@ -942,9 +952,9 @@ namespace Copreter.Domain.Model.DbModel
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+                entity.Property(e => e.Apellido).HasMaxLength(100);
 
-                entity.Property(e => e.Contrasenya).HasMaxLength(100);
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
 
                 entity.Property(e => e.Email).HasMaxLength(100);
 
@@ -957,19 +967,13 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("FECHA_REGISTRO")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.IdRol).HasColumnName("Id_Rol");
-
                 entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
 
                 entity.Property(e => e.IdUsuarioRegistro)
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.HasOne(d => d.IdRolNavigation)
-                    .WithMany(p => p.TUsuario)
-                    .HasForeignKey(d => d.IdRol)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_T_Usuario_T_Rol");
+                entity.Property(e => e.Nombre).HasMaxLength(100);
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -205,6 +205,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrar Clientes.
+        /// </summary>
+        public static string MANU_CLIENTE_TODOS {
+            get {
+                return ResourceManager.GetString("MANU_CLIENTE_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esta seguro de eliminar el registro.
         /// </summary>
         public static string MENSAJE_CONFIRMAR_ELIMINAR {
@@ -300,6 +309,15 @@ namespace Copreter.Resources {
         public static string MENU_USUARIO {
             get {
                 return ResourceManager.GetString("MENU_USUARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Usuarios.
+        /// </summary>
+        public static string MENU_USUARIO_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_USUARIO_TODOS", resourceCulture);
             }
         }
         
@@ -606,6 +624,60 @@ namespace Copreter.Resources {
         public static string UNIDAD_Titulo {
             get {
                 return ResourceManager.GetString("UNIDAD_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apellido.
+        /// </summary>
+        public static string USUARIO_Apellido {
+            get {
+                return ResourceManager.GetString("USUARIO_Apellido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dni.
+        /// </summary>
+        public static string USUARIO_Dni {
+            get {
+                return ResourceManager.GetString("USUARIO_Dni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo.
+        /// </summary>
+        public static string USUARIO_Email {
+            get {
+                return ResourceManager.GetString("USUARIO_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string USUARIO_Nombre {
+            get {
+                return ResourceManager.GetString("USUARIO_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rol.
+        /// </summary>
+        public static string USUARIO_Rol {
+            get {
+                return ResourceManager.GetString("USUARIO_Rol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario.
+        /// </summary>
+        public static string USUARIO_Titulo {
+            get {
+                return ResourceManager.GetString("USUARIO_Titulo", resourceCulture);
             }
         }
     }

@@ -6,7 +6,7 @@ namespace Copreter.Domain.Model.Repository.Interfaces
     {
         IRepository<TCita> Cita { get; }
 
-        IRepository<TCliente> Cliente { get; }
+        IRepository<TAcceso> Acceso { get; }
 
         IRepository<TEstadoObra> EstadoObra { get; }
 

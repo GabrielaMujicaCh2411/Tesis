@@ -7,7 +7,7 @@ namespace Copreter.Domain.Model.Repository
     {
         private readonly IRepository<TCita> _cita;
 
-        private readonly IRepository<TCliente> _cliente;
+        private readonly IRepository<TAcceso> _acceso;
 
         private readonly IRepository<TCotizacion> _cotizacion;
 
@@ -43,7 +43,7 @@ namespace Copreter.Domain.Model.Repository
 
         public CopreterData(
             IRepository<TCita> cita,
-            IRepository<TCliente> cliente,
+             IRepository<TAcceso> acceso,
             IRepository<TCotizacion> cotizacion,
             IRepository<TEstadoObra> estadoObra,
             IRepository<TEstadoTrabajador> estadoTrabajador,
@@ -62,7 +62,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TUsuario> usuario)
         {
             this._cita = cita;
-            this._cliente = cliente;
+            this._acceso = acceso;
             this._cotizacion = cotizacion;
             this._estadoObra = estadoObra;
             this._estadoTrabajador = estadoTrabajador;
@@ -83,7 +83,7 @@ namespace Copreter.Domain.Model.Repository
 
         public IRepository<TCita> Cita => this._cita;
 
-        public IRepository<TCliente> Cliente => this._cliente;
+        public IRepository<TAcceso> Acceso => this._acceso;
 
         public IRepository<TCotizacion> Cotizacion => this._cotizacion;
 

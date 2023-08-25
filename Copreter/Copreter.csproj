@@ -18,7 +18,6 @@
     <Compile Remove="Views\Partidas\**" />
     <Compile Remove="Views\TipoPartida\**" />
     <Compile Remove="Views\TipoUnidad\**" />
-    <Compile Remove="Views\Usuario\**" />
     <Content Remove="Views\AHerramientas\**" />
     <Content Remove="Views\ATrabajador\**" />
     <Content Remove="Views\Cita\**" />
@@ -28,7 +27,6 @@
     <Content Remove="Views\Partidas\**" />
     <Content Remove="Views\TipoPartida\**" />
     <Content Remove="Views\TipoUnidad\**" />
-    <Content Remove="Views\Usuario\**" />
     <EmbeddedResource Remove="Views\AHerramientas\**" />
     <EmbeddedResource Remove="Views\ATrabajador\**" />
     <EmbeddedResource Remove="Views\Cita\**" />
@@ -38,7 +36,6 @@
     <EmbeddedResource Remove="Views\Partidas\**" />
     <EmbeddedResource Remove="Views\TipoPartida\**" />
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
-    <EmbeddedResource Remove="Views\Usuario\**" />
     <None Remove="Views\AHerramientas\**" />
     <None Remove="Views\ATrabajador\**" />
     <None Remove="Views\Cita\**" />
@@ -48,7 +45,6 @@
     <None Remove="Views\Partidas\**" />
     <None Remove="Views\TipoPartida\**" />
     <None Remove="Views\TipoUnidad\**" />
-    <None Remove="Views\Usuario\**" />
   </ItemGroup>
 
   <ItemGroup>

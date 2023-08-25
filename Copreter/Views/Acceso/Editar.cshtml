@@ -1,5 +1,5 @@
 ﻿@using Copreter.Resources;
-@model Copreter.Domain.Service.Dto.Cliente.ClienteDto;
+@model Copreter.Models.Acceso.AccesoEditableVM;
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Resource.CLIENTE_Titulo</h1>
+                    <h1>@Resource.USUARIO_Titulo</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">@Resource.CLIENTE_Titulo</li>
+                        <li class="breadcrumb-item active">@Resource.USUARIO_Titulo</li>
                     </ol>
                 </div>
             </div>
@@ -37,48 +37,38 @@
                         </div>
                         <div class="card-body">
                             <div id="contentPartial">
-                                <form asp-action="GuardarActualizacion" asp-controller="Cliente" method="post">
+                                <form asp-action="Editar" asp-controller="Acceso" method="post">
                                     <div class="card-body">
 
                                         <input type="hidden" asp-for="Id" />
                                         <input type="hidden" asp-for="IdUsuarioRegistro" />
                                         <input type="hidden" asp-for="FechaRegistro" />
 
-                                        <div class="form-group" style="display: none">
-                                            <label for="exampleInputPassword1">DNI: </label>
-                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Dni" readonly="@(true)">
+                                        <div class="form-group">
+                                            <label>@Resource.USUARIO_Dni</label>
+                                            <input type="text" class="form-control" placeholder="Serie" asp-for="Dni" readonly="@(true)">
                                             <span asp-validation-for="Dni" class="text-danger"> </span>
                                         </div>
-                                        <div class="form-group" style="display: none">
-                                            <label for="exampleInputPassword1">Correo: </label>
-                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Email">
-                                            <span asp-validation-for="Email" class="text-danger"> </span>
-                                        </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Nombres: </label>
-                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Nombre">
+                                            <label>@Resource.USUARIO_Nombre</label>
+                                            <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">
                                             <span asp-validation-for="Nombre" class="text-danger"> </span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Apellidos: </label>
-                                            <input type="text" class="form-control" placeholder="Apellidos" asp-for="Apellido">
+                                            <label>@Resource.USUARIO_Apellido</label>
+                                            <input type="text" class="form-control" placeholder="Modelo" asp-for="Apellido">
                                             <span asp-validation-for="Apellido" class="text-danger"> </span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Celular: </label>
-                                            <input type="text" class="form-control" placeholder="Celular" maxlength="9" asp-for="Celular">
-                                            <span asp-validation-for="Celular" class="text-danger"> </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Dirección: </label>
-                                            <input type="text" class="form-control" placeholder="Dirección" asp-for="Direccion">
-                                            <span asp-validation-for="Direccion" class="text-danger"> </span>
+                                            <label>@Resource.USUARIO_Rol</label>
+                                            <select asp-for="IdRol" class="form-control" asp-items="Model.RolLista"></select>
+                                            <span asp-validation-for="IdRol" class="text-danger"> </span>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
-                                        <button type="submit" class="btn btn-primary">Cancelar</button>
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
                                     </div>
                                 </form>
                             </div>
@@ -87,8 +77,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="divPopupAsignarRol"></div>
 
     </section>
 </div>

@@ -17,12 +17,12 @@ namespace Copreter.Controllers
 
         private readonly IClienteService _service;
 
-        private readonly IUsuarioService _usuarioService;
+        private readonly IAccesoService _usuarioService;
 
         #endregion
 
         public ClienteController(IMapper mapper, ILogger<ClienteController> logger,
-            IClienteService service, IUsuarioService usuarioService) : base(mapper)
+            IClienteService service, IAccesoService usuarioService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
@@ -33,7 +33,7 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync();
 
-            var result = new ClienteIndexVM
+            var result = new UsuarioIndexVM
             {
                 DtoList = this.Mapper.Map<IEnumerable<ClienteDto>>(resultService)
             };
@@ -44,7 +44,7 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync();
 
-            var result = new ClienteIndexVM
+            var result = new UsuarioIndexVM
             {
                 DtoList = this.Mapper.Map<IEnumerable<ClienteDto>>(resultService)
             };

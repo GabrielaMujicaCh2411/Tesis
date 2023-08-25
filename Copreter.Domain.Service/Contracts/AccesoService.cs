@@ -4,15 +4,15 @@ using Copreter.Domain.Service.Contracts.Interfaces;
 
 namespace Copreter.Domain.Service.Contracts
 {
-    internal class UsuarioService : BaseService, IUsuarioService
+    internal class AccesoService : BaseService, IAccesoService
     {
-        public UsuarioService(ICopreterData data) : base(data)
+        public AccesoService(ICopreterData data) : base(data)
         {
         }
 
-        public async Task<bool> ActualizarAsync(int id, TUsuario entidad)
+        public async Task<bool> ActualizarAsync(int id, TAcceso entidad)
         {
-            var entidadActual = await this._data.Usuario.GetById(id);
+            var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
             entidad.Id = entidadActual.Id;
@@ -22,37 +22,37 @@ namespace Copreter.Domain.Service.Contracts
             entidad.IdUsuarioModificacion = 2;
             entidad.FechaModificacion = DateTime.Now;
 
-            var result = await this._data.Usuario.Update(entidad);
+            var result = await this._data.Acceso.Update(entidad);
             return result > 0;
         }
 
-        public async Task<bool> AgregarAsync(TUsuario entidad)
+        public async Task<bool> AgregarAsync(TAcceso entidad)
         {
-            var result = await this._data.Usuario.Add(entidad);
+            var result = await this._data.Acceso.Add(entidad);
             return result == 1;
         }
 
         public async Task<bool> EliminarAsync(int id)
         {
-            var entidadActual = await this._data.Usuario.GetById(id);
+            var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
             entidadActual.IdUsuarioModificacion = 2;
             entidadActual.FechaModificacion = DateTime.Now;
             entidadActual.Borrado = true;
 
-            var result = await this._data.Usuario.Update(entidadActual);
+            var result = await this._data.Acceso.Update(entidadActual);
             return result > 0;
         }
 
-        public async Task<IEnumerable<TUsuario>> ListarAsync()
+        public async Task<IEnumerable<TAcceso>> ListarAsync()
         {
-            return await this._data.Usuario.SelectIncludes(x => x.Borrado == false);
+            return await this._data.Acceso.SelectIncludes(x => x.Borrado == false, x => x.IdRolNavigation);
         }
 
-        public async Task<TUsuario> ObtenerAsync(int id)
+        public async Task<TAcceso> ObtenerAsync(int id)
         {
-            return await this._data.Usuario.GetById(id);
+            return await this._data.Acceso.GetById(id);
         }
     }
 }

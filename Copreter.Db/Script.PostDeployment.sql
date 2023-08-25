@@ -22,18 +22,17 @@ INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Operario','Operario 
 
 GO
 
-INSERT INTO [dbo].[T_Cliente]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Correo], [Direccion])  VALUES(41435887,'Claudia',	'Chuquipiondo',	994010421, 'claudiachuquipiondo@gmail.com',	'SJL')
-INSERT INTO [dbo].[T_Cliente]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Correo], [Direccion])  VALUES(71296436,'Gabriela', 'Mujica',		947623697, 'gabrielachuquipiondom@gmail.com',	'Jr. Educacion 172 Mz C5 Lt 02 -urb Mariscal Caceres')
-INSERT INTO [dbo].[T_Cliente]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Correo], [Direccion])  VALUES(71296437,'Karen',	'Quispe',		947563287, 'karenquispe@gmail.com',	'Surco 123')
-INSERT INTO [dbo].[T_Cliente]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Correo], [Direccion])  VALUES(72972740,'Kevin', 	'Tumay',		921907738, 'kevintumay97@gmail.com',	'SJM')
+INSERT INTO [dbo].[T_Usuario]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Email], [Direccion])  VALUES(41435887,'Claudia',	'Chuquipiondo',	994010421, 'claudiachuquipiondo@gmail.com',	'SJL')
+INSERT INTO [dbo].[T_Usuario]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Email], [Direccion])  VALUES(71296436,'Gabriela', 'Mujica',		947623697, 'gabrielachuquipiondom@gmail.com',	'Jr. Educacion 172 Mz C5 Lt 02 -urb Mariscal Caceres')
+INSERT INTO [dbo].[T_Usuario]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Email], [Direccion])  VALUES(71296437,'Karen',	'Quispe',		947563287, 'karenquispe@gmail.com',	'Surco 123')
+INSERT INTO [dbo].[T_Usuario]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Email], [Direccion])  VALUES(72972740,'Kevin', 	'Tumay',		921907738, 'kevintumay97@gmail.com',	'SJM')
 
 GO
 
-INSERT INTO [dbo].[T_Usuario] ([Email]  ,[Contrasenya]  ,[Dni] ,[Id_Rol]) VALUES ('claudiachuquipiondo@gmail.com'	,41435887,	41435887,	1)
-INSERT INTO [dbo].[T_Usuario] ([Email]  ,[Contrasenya]  ,[Dni] ,[Id_Rol]) VALUES ('dadasdad@hotmail.com'				,12345678,	12345678,	2)
-INSERT INTO [dbo].[T_Usuario] ([Email]  ,[Contrasenya]  ,[Dni] ,[Id_Rol]) VALUES ('gabrielachuquipiondom@gmail.com'	,71296436,	71296436,	1)
-INSERT INTO [dbo].[T_Usuario] ([Email]  ,[Contrasenya]  ,[Dni] ,[Id_Rol]) VALUES ('karenquispe@gmail.com'			,71296437,	71296437,	2)
-INSERT INTO [dbo].[T_Usuario] ([Email]  ,[Contrasenya]  ,[Dni] ,[Id_Rol]) VALUES ('kevintumay97@gmail.com'			,72972740,	72972740,	4)
+INSERT INTO [dbo].[T_Acceso] ([Email]  ,[Contrasenya]  ,[Id_Usuario] ,[Id_Rol]) VALUES ('claudiachuquipiondo@gmail.com'	,41435887,	1,	1)
+INSERT INTO [dbo].[T_Acceso] ([Email]  ,[Contrasenya]  ,[Id_Usuario] ,[Id_Rol]) VALUES ('gabrielachuquipiondom@gmail.com'	,71296436,	2,	2)
+INSERT INTO [dbo].[T_Acceso] ([Email]  ,[Contrasenya]  ,[Id_Usuario] ,[Id_Rol]) VALUES ('karenquispe@gmail.com'			,71296437,	3,	3)
+INSERT INTO [dbo].[T_Acceso] ([Email]  ,[Contrasenya]  ,[Id_Usuario] ,[Id_Rol]) VALUES ('kevintumay97@gmail.com'			,72972740,	4,	4)
 
 
 GO
@@ -143,5 +142,5 @@ GO
 INSERT [dbo].[T_Cotizacion] ([fecha], [total], [id_Obra], [id_EstadoCotizacion]) VALUES (CAST(N'2021-12-13T05:12:30.863' AS DateTime), CAST(234 AS Decimal(18, 0)), 1, 7)
 GO
 
-INSERT [dbo].[T_CotizacionxUnidad] ([Id_Unidad], [id_Cotizacion], [cantidad]) VALUES (1, 2, 1)
+INSERT [dbo].[T_CotizacionxUnidad] ([Id_Unidad], [id_Cotizacion], [cantidad]) VALUES (1, 1, 1)
 GO

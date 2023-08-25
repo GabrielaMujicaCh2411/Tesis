@@ -60,7 +60,7 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\T_Usuario.sql" />
+    <Build Include="dbo\Tables\T_Acceso.sql" />
     <Build Include="dbo\Tables\T_Unidad.sql" />
     <Build Include="dbo\Tables\T_TrabajadorxCotizacion.sql" />
     <Build Include="dbo\Tables\T_Trabajador.sql" />
@@ -83,13 +83,10 @@
     <Build Include="dbo\Tables\T_EstadoCotizacion.sql" />
     <Build Include="dbo\Tables\T_CotizacionxUnidad.sql" />
     <Build Include="dbo\Tables\T_Cotizacion.sql" />
-    <Build Include="dbo\Tables\T_Cliente.sql" />
+    <Build Include="dbo\Tables\T_Usuario.sql" />
     <Build Include="dbo\Tables\T_Cita.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="Copreter.Db.refactorlog" />
   </ItemGroup>
 </Project>
