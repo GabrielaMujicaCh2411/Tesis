@@ -1,6 +1,6 @@
 ﻿@using Copreter.Resources;
 @using Copreter.Utils;
-@model Copreter.Models.Cliente.UsuarioIndexVM;
+@model Copreter.Models.Usuario.UsuarioIndexVM;
 
 @{
     ViewData["Title"] = "Index";
@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Resource.CLIENTE_Titulo</h1>
+                    <h1>@Resource.USUARIO_Titulo</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">@Resource.CLIENTE_Titulo</li>
+                        <li class="breadcrumb-item active">@Resource.USUARIO_Titulo</li>
                     </ol>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">@Resource.CLIENTE_DNI</label>
+                                                <label class="control-label">@Resource.USUARIO_Dni</label>
                                            @*     <input asp-for="Filtro.Registro" class="form-control" />
                                                 <span asp-validation-for="Filtro.Registro" class="text-danger"></span>*@
                                             </div>
@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="divPopupEliminarCliente"></div>
+        <div class="modal fade" id="divPopupEliminarUsuario"></div>
 
     </section>
 </div>
@@ -115,8 +115,8 @@
             var param = {
                 id: parseInt(id)
             };
-            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Cliente)', JSON.stringify(param), function (data) {
-                $.procesaRespuestaVistaParcial(data, $("#divPopupEliminarCliente"));
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Usuario)', JSON.stringify(param), function (data) {
+                $.procesaRespuestaVistaParcial(data, $("#divPopupEliminarUsuario"));
             }, function (XMLHttpRequest, textStatus, errorThrown) {
                 notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');
             });

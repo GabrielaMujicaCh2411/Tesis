@@ -17,5 +17,6 @@ namespace Copreter.Domain.Model.DbModel
         public int? IdUsuarioModificacion { get; set; }
 
         public virtual TRol IdRolNavigation { get; set; } = null!;
+        public virtual TUsuario IdUsuarioNavigation { get; set; } = null!;
     }
 }

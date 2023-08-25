@@ -7,6 +7,7 @@ namespace Copreter.Domain.Model.DbModel
     {
         public TUsuario()
         {
+            TAcceso = new HashSet<TAcceso>();
             TObra = new HashSet<TObra>();
             TPedido = new HashSet<TPedido>();
         }
@@ -24,6 +25,7 @@ namespace Copreter.Domain.Model.DbModel
         public DateTime? FechaModificacion { get; set; }
         public int? IdUsuarioModificacion { get; set; }
 
+        public virtual ICollection<TAcceso> TAcceso { get; set; }
         public virtual ICollection<TObra> TObra { get; set; }
         public virtual ICollection<TPedido> TPedido { get; set; }
     }

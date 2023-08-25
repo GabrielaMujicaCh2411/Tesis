@@ -1,8 +1,8 @@
-﻿using Copreter.Domain.Service.Dto.Cliente;
+﻿using Copreter.Domain.Service.Dto.Usuario;
 
 namespace Copreter.Domain.Service.Dto.Acceso
 {
-    public class AccesoDto : ClienteDto
+    public class AccesoDto : UsuarioDto
     {
         public int IdRol { get; set; }
 

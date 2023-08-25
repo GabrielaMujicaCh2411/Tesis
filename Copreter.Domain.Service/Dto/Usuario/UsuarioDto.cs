@@ -1,11 +1,30 @@
-﻿using Copreter.Domain.Service.Dto.Cliente;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Copreter.Domain.Service.Dto.Usuario
 {
-    public class UsuarioDto : ClienteDto
+    public class UsuarioDto: BaseDto
     {
-        public int IdRol { get; set; }
+        [Required(ErrorMessage = "Llenar DNI.")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Dni solo numeros.")]
+        public int Dni { get; set; }
 
-        public string? Rol { get; set; }    
+        [Required(ErrorMessage = "Llenar Nombre.")]
+        [RegularExpression(@"^[a-zA-Z ]*$", ErrorMessage = "Nombre solo palabras.")]
+        public string Nombre { get; set; } = null!;
+
+        [Required(ErrorMessage = "Llenar Apellido.")]
+        [RegularExpression(@"^[a-zA-Z ]*$", ErrorMessage = "Apellido solo palabras.")]
+        public string Apellido { get; set; } = null!;
+
+        [Required(ErrorMessage = "Llenar Celular.")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Dni solo numeros.")]
+        public int Celular { get; set; }
+
+        [Required(ErrorMessage = "Llenar Correo.")]
+        [RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", ErrorMessage = "Formato Email Incorrecto.")]
+        public string Email { get; set; } = null!;
+
+        [Required(ErrorMessage = "Llenar Direccion.")]
+        public string Direccion { get; set; } = null!;
     }
 }

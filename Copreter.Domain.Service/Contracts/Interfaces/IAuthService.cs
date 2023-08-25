@@ -5,6 +5,6 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IAuthService
     {
-        Task<TUsuario> GetBy(LoginDto model);
+        Task<TAcceso> GetBy(LoginDto model);
     }
 }

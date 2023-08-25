@@ -1,4 +1,4 @@
-﻿@model Copreter.Domain.Service.Dto.Cliente.ClienteDto;
+﻿@model Copreter.Domain.Service.Dto.Usuario.UsuarioDto;
 
 @{
     Layout = null;
@@ -30,7 +30,7 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Registrar Cliente</p>
 
-                <form asp-action="Crear" asp-controller="Cliente" method="post">
+                <form asp-action="Crear" asp-controller="Usuario" method="post">
                     <div asp-validation-summary="All" class="text-danger"></div><br>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">

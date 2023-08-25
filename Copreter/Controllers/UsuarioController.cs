@@ -1,32 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
 using Copreter.Domain.Service.Contracts.Interfaces;
-using Copreter.Domain.Service.Dto.Cliente;
 using AutoMapper;
 using Copreter.Domain.Model.DbModel;
 using static Copreter.Utils.Keys;
-using Copreter.Models.Cliente;
 using Copreter.Domain.Service.Dto;
+using Copreter.Domain.Service.Dto.Usuario;
+using Copreter.Models.Usuario;
 
 namespace Copreter.Controllers
 {
-    public class ClienteController : BaseController
+    public class UsuarioController : BaseController
     {
         #region Fields
 
-        private readonly ILogger<ClienteController> _logger;
+        private readonly ILogger<UsuarioController> _logger;
 
-        private readonly IClienteService _service;
+        private readonly IUsuarioService _service;
 
-        private readonly IAccesoService _usuarioService;
+        private readonly IAccesoService _accesoService;
 
         #endregion
 
-        public ClienteController(IMapper mapper, ILogger<ClienteController> logger,
-            IClienteService service, IAccesoService usuarioService) : base(mapper)
+        public UsuarioController(IMapper mapper, ILogger<UsuarioController> logger,
+            IUsuarioService service, IAccesoService accesoService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
-            this._usuarioService = usuarioService;
+            this._accesoService = accesoService;
         }
 
         public async Task<IActionResult> Index()
@@ -35,7 +35,7 @@ namespace Copreter.Controllers
 
             var result = new UsuarioIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ClienteDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService)
             };
             return View(result);
         }
@@ -46,7 +46,7 @@ namespace Copreter.Controllers
 
             var result = new UsuarioIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ClienteDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService)
             };
             return PartialView(result);
         }
@@ -58,7 +58,7 @@ namespace Copreter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind()] ClienteDto dto)
+        public async Task<IActionResult> Crear([Bind()] UsuarioDto dto)
         {
             try
             {
@@ -67,10 +67,10 @@ namespace Copreter.Controllers
                     return View(dto);
                 }
 
-                var result = await this._service.AgregarAsync(this.Mapper.Map<TCliente>(dto));
-                if (result)
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TUsuario>(dto));
+                if (result != null)
                 {
-                    await this._usuarioService.AgregarAsync(this.Mapper.Map<TUsuario>(dto));
+                    await this._accesoService.AgregarAsync(result.Id, this.Mapper.Map<TAcceso>(dto));
 
                     return RedirectToAction(ActionKeys.Index, ControllerKeys.Home);
                 }
@@ -93,7 +93,7 @@ namespace Copreter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind()] ClienteDto dto)
+        public async Task<IActionResult> Editar(int id, [Bind()] UsuarioDto dto)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TCliente>(dto));
+                    var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TUsuario>(dto));
                     if (result)
                     {
                         return Redirect("/Home/VistaAdministrador");
@@ -139,7 +139,7 @@ namespace Copreter.Controllers
         // POST: Cliente/Delete/5
         [HttpPost, ActionName("DeletePopupConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePopupConfirmed([Bind()] ClienteDto dto)
+        public async Task<IActionResult> DeletePopupConfirmed([Bind()] UsuarioDto dto)
         {
             if (dto == null)
             {

@@ -1,5 +1,4 @@
-﻿using Copreter.Domain.Service.Dto.Cliente;
-using Copreter.Domain.Service.Dto.Unidad;
+﻿using Copreter.Domain.Service.Dto.Unidad;
 
 namespace Copreter.Models.Unidad
 {

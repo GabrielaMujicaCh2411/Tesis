@@ -135,18 +135,6 @@
   <data name="CARD_TITLE" xml:space="preserve">
     <value>Información</value>
   </data>
-  <data name="CLEINTE_Rol" xml:space="preserve">
-    <value>Rol</value>
-  </data>
-  <data name="CLIENTE_DNI" xml:space="preserve">
-    <value>DNI</value>
-  </data>
-  <data name="CLIENTE_Nombre" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="CLIENTE_Titulo" xml:space="preserve">
-    <value>Cliente</value>
-  </data>
   <data name="COTIZACION_Estado" xml:space="preserve">
     <value>Estado</value>
   </data>
@@ -170,6 +158,9 @@
   </data>
   <data name="MENSAJE_CONFIRMAR_ELIMINAR" xml:space="preserve">
     <value>Esta seguro de eliminar el registro</value>
+  </data>
+  <data name="MENU_ACCESO_TODOS" xml:space="preserve">
+    <value>Gestionar Usuarios</value>
   </data>
   <data name="MENU_ALQUILER" xml:space="preserve">
     <value>Alquiler</value>
@@ -308,6 +299,9 @@
   </data>
   <data name="USUARIO_Apellido" xml:space="preserve">
     <value>Apellido</value>
+  </data>
+  <data name="USUARIO_Direccion" xml:space="preserve">
+    <value>Dirección</value>
   </data>
   <data name="USUARIO_Dni" xml:space="preserve">
     <value>Dni</value>

@@ -13,7 +13,7 @@ namespace Copreter.Domain.Service
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICitaService, CitaService>();
-            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ICotizacionService, CotizacionService>();
 
             //services.AddScoped<IEstadoCotizacionService, EstadoCotizacionService>();
@@ -28,6 +28,8 @@ namespace Copreter.Domain.Service
             services.AddScoped<IPagoService, PagoService>();
             services.AddScoped<IPartidaService, PartidaService>();
             services.AddScoped<IPedidoService, PedidoService>();
+            services.AddScoped<IRolService, RolService>();
+
 
             services.AddScoped<ITipoPartidaService, TipoPartidaService>();
             services.AddScoped<ITipoTrabajadorService, TipoTrabajadorService>();

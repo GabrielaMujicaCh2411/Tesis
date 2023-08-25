@@ -115,42 +115,6 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rol.
-        /// </summary>
-        public static string CLEINTE_Rol {
-            get {
-                return ResourceManager.GetString("CLEINTE_Rol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DNI.
-        /// </summary>
-        public static string CLIENTE_DNI {
-            get {
-                return ResourceManager.GetString("CLIENTE_DNI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre.
-        /// </summary>
-        public static string CLIENTE_Nombre {
-            get {
-                return ResourceManager.GetString("CLIENTE_Nombre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cliente.
-        /// </summary>
-        public static string CLIENTE_Titulo {
-            get {
-                return ResourceManager.GetString("CLIENTE_Titulo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string COTIZACION_Estado {
@@ -219,6 +183,15 @@ namespace Copreter.Resources {
         public static string MENSAJE_CONFIRMAR_ELIMINAR {
             get {
                 return ResourceManager.GetString("MENSAJE_CONFIRMAR_ELIMINAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestionar Usuarios.
+        /// </summary>
+        public static string MENU_ACCESO_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_ACCESO_TODOS", resourceCulture);
             }
         }
         
@@ -633,6 +606,15 @@ namespace Copreter.Resources {
         public static string USUARIO_Apellido {
             get {
                 return ResourceManager.GetString("USUARIO_Apellido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dirección.
+        /// </summary>
+        public static string USUARIO_Direccion {
+            get {
+                return ResourceManager.GetString("USUARIO_Direccion", resourceCulture);
             }
         }
         

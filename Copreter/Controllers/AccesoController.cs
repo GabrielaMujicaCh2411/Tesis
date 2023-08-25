@@ -6,6 +6,8 @@ using Copreter.Domain.Service.Dto;
 using Copreter.Utils;
 using Copreter.Models.Acceso;
 using Copreter.Domain.Service.Dto.Acceso;
+using Copreter.Domain.Service.Dto.Usuario;
+using static Copreter.Utils.Keys;
 
 namespace Copreter.Controllers
 {
@@ -13,16 +15,23 @@ namespace Copreter.Controllers
     {
         #region Fields
 
+        private readonly ILogger<AccesoController> _logger;
+
         private readonly IAccesoService _service;
 
         private readonly IRolService _rolService;
 
+        private readonly IUsuarioService _usuarioService;
+
         #endregion
 
-        public AccesoController(IMapper mapper, IAccesoService service, IRolService rolService) : base(mapper)
+        public AccesoController(IMapper mapper, ILogger<AccesoController> logger,
+            IAccesoService service, IRolService rolService, IUsuarioService usuarioService) : base(mapper)
         {
+            this._logger = logger;
             this._service = service;
             this._rolService = rolService;
+            this._usuarioService = usuarioService;
         }
 
         public async Task<IActionResult> Index()
@@ -47,30 +56,41 @@ namespace Copreter.Controllers
             return PartialView(result);
         }
 
-        public ActionResult Crear()
+        public async Task<IActionResult> Crear()
         {
-            return View();
+            var rolLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._rolService.ListarAsync());
+            var result = new AccesoEditableVM
+            {
+                RolLista = rolLista.GetItems()
+            };
+            return View(result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind()] TAcceso dto)
+        public async Task<IActionResult> Crear([Bind()] AccesoDto dto)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+
+                var result = await this._usuarioService.AgregarAsync(this.Mapper.Map<TUsuario>(dto));
+                if (result != null)
+                {
+                    await this._service.AgregarAsync(result.Id, this.Mapper.Map<TAcceso>(dto));
+
+                    return RedirectToAction(ActionKeys.Index, ControllerKeys.Home);
+                }
                 return View(dto);
             }
-
-            var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
-            if (usuarioExiste == null)
+            catch (Exception ex)
             {
-                var result = await this._service.AgregarAsync(dto);
-                if (result)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
+                this._logger.LogError(ex.Message);
+                return View();
             }
-            return View(dto);
         }
 
         public async Task<IActionResult> Editar(int id)
@@ -100,9 +120,10 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TAcceso>(dto));
-                    if (result)
+                    var resultUser = await this._usuarioService.ActualizarAsync(id, this.Mapper.Map<TUsuario>(dto));
+                    if (resultUser)
                     {
+                        var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TAcceso>(dto));
                         return RedirectToAction(nameof(Index));
                     }
                 }

@@ -1,14 +1,14 @@
-﻿using Copreter.Domain.Service.Dto.Cliente;
+﻿using Copreter.Domain.Service.Dto.Usuario;
 
-namespace Copreter.Models.Cliente
+namespace Copreter.Models.Usuario
 {
-    public class ClienteIndexVM
+    public class UsuarioIndexVM
     {
-        public ClienteIndexVM()
+        public UsuarioIndexVM()
         {
-            this.DtoList = new List<ClienteDto>();
+            this.DtoList = new List<UsuarioDto>();
         }
 
-        public IEnumerable<ClienteDto> DtoList { get; set; }
+        public IEnumerable<UsuarioDto> DtoList { get; set; }
     }
 }

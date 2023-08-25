@@ -12,7 +12,6 @@
 			public const string Home = "Home";
 			public const string Auth = "Auth";
             public const string Acceso = "Acceso";
-            public const string Cliente = "Cliente";
             public const string Cotizacion = "Cotizacion";
 
             public const string Obra = "Obra";

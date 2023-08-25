@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Copreter.Domain.Service.Dto.Usuario
 {
-    internal class AccesoFilterDto
+    internal class UsuarioFilterDto
     {
     }
 }

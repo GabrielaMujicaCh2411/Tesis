@@ -15,19 +15,19 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
-            entidad.Id = entidadActual.Id;
-            entidad.IdUsuarioRegistro = entidadActual.IdUsuarioRegistro;
-            entidad.FechaRegistro = entidadActual.FechaRegistro;
+            entidadActual.IdRol = entidad.IdRol;
 
-            entidad.IdUsuarioModificacion = 2;
-            entidad.FechaModificacion = DateTime.Now;
+            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.FechaModificacion = DateTime.Now;
 
-            var result = await this._data.Acceso.Update(entidad);
+            var result = await this._data.Acceso.Update(entidadActual);
             return result > 0;
         }
 
-        public async Task<bool> AgregarAsync(TAcceso entidad)
+        public async Task<bool> AgregarAsync(int idUsuario, TAcceso entidad)
         {
+            entidad.IdUsuario = idUsuario;
+            entidad.IdRol = 5;
             var result = await this._data.Acceso.Add(entidad);
             return result == 1;
         }
@@ -47,7 +47,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TAcceso>> ListarAsync()
         {
-            return await this._data.Acceso.SelectIncludes(x => x.Borrado == false, x => x.IdRolNavigation);
+            return await this._data.Acceso.SelectIncludes(x => x.Borrado == false, x => x.IdRolNavigation, x => x.IdUsuarioNavigation);
         }
 
         public async Task<TAcceso> ObtenerAsync(int id)

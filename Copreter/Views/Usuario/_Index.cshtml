@@ -1,5 +1,5 @@
 ﻿@using Copreter.Resources;
-@model Copreter.Models.Cliente.UsuarioIndexVM;
+@model Copreter.Models.Usuario.UsuarioIndexVM;
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success" data-toggle="modal" onclick="editar(@item.Id);">
+                    <button type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
                         <span class="fa fa-pencil" aria-hidden="true"></span>
                     </button>
 

@@ -90,6 +90,12 @@ namespace Copreter.Domain.Model.DbModel
                     .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Acceso_T_Rol");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.TAcceso)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Acceso_To_Usuario");
             });
 
             modelBuilder.Entity<TCita>(entity =>

@@ -11,9 +11,9 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<TUsuario> GetBy(LoginDto model)
+        public async Task<TAcceso> GetBy(LoginDto model)
         {
-            return await this._data.Usuario.FirstOrDefault(x => x.Email.ToUpper().Equals(model.Email.ToUpper()) && x.Contrasenya.ToUpper().Equals(model.Password));
+            return await this._data.Acceso.FirstOrDefault(x => x.Email.ToUpper().Equals(model.Email.ToUpper()) && x.Contrasenya.ToUpper().Equals(model.Password));
         }
     }
 }

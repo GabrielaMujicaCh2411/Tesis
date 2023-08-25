@@ -19,7 +19,7 @@ INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Administrador','Admi
 INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Cliente','Cliente del sistema')
 INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Gerente','Gerente del sistema')
 INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Operario','Operario del sistema')
-
+INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Sin Asignar','Pendiente de asignar Rol')
 GO
 
 INSERT INTO [dbo].[T_Usuario]  ([Dni]  ,[Nombre] ,[Apellido] ,[Celular] ,[Email], [Direccion])  VALUES(41435887,'Claudia',	'Chuquipiondo',	994010421, 'claudiachuquipiondo@gmail.com',	'SJL')
