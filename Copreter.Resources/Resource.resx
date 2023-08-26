@@ -132,6 +132,9 @@
   <data name="BTN_Guardar" xml:space="preserve">
     <value>Guardar</value>
   </data>
+  <data name="BTN_Volver" xml:space="preserve">
+    <value>Volver</value>
+  </data>
   <data name="CARD_TITLE" xml:space="preserve">
     <value>Información</value>
   </data>
@@ -195,8 +198,29 @@
   <data name="MENU_USUARIO_TODOS" xml:space="preserve">
     <value>Gestionar Usuarios</value>
   </data>
+  <data name="OBRA_Direccion" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="OBRA_Duracion" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="OBRA_Empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
   <data name="OBRA_Estado" xml:space="preserve">
     <value>Estado</value>
+  </data>
+  <data name="OBRA_Fecha_Inicio" xml:space="preserve">
+    <value>Fecha Inicio</value>
+  </data>
+  <data name="OBRA_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="OBRA_Plano" xml:space="preserve">
+    <value>Plano</value>
+  </data>
+  <data name="OBRA_Titulo" xml:space="preserve">
+    <value>Obra</value>
   </data>
   <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
     <value>Asignar Pedido</value>

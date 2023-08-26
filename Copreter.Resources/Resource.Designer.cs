@@ -106,6 +106,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        public static string BTN_Volver {
+            get {
+                return ResourceManager.GetString("BTN_Volver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Información.
         /// </summary>
         public static string CARD_TITLE {
@@ -295,11 +304,74 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dirección.
+        /// </summary>
+        public static string OBRA_Direccion {
+            get {
+                return ResourceManager.GetString("OBRA_Direccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duración.
+        /// </summary>
+        public static string OBRA_Duracion {
+            get {
+                return ResourceManager.GetString("OBRA_Duracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empresa.
+        /// </summary>
+        public static string OBRA_Empresa {
+            get {
+                return ResourceManager.GetString("OBRA_Empresa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string OBRA_Estado {
             get {
                 return ResourceManager.GetString("OBRA_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Inicio.
+        /// </summary>
+        public static string OBRA_Fecha_Inicio {
+            get {
+                return ResourceManager.GetString("OBRA_Fecha_Inicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string OBRA_Nombre {
+            get {
+                return ResourceManager.GetString("OBRA_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plano.
+        /// </summary>
+        public static string OBRA_Plano {
+            get {
+                return ResourceManager.GetString("OBRA_Plano", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obra.
+        /// </summary>
+        public static string OBRA_Titulo {
+            get {
+                return ResourceManager.GetString("OBRA_Titulo", resourceCulture);
             }
         }
         

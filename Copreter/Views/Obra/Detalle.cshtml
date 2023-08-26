@@ -1,0 +1,94 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Obra.ObraEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.OBRA_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.OBRA_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+
+                                <form asp-action="Crear" asp-controller="Obra" method="post">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Nombre</label>
+                                            <input type="text" class="form-control" placeholder="Nombre" asp-for="NombreObra" readonly="@(true)">
+                                            <span asp-validation-for="NombreObra" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Direccion</label>
+                                            <input type="text" class="form-control" placeholder="Nombre" asp-for="Direccion" readonly="@(true)">
+                                            <span asp-validation-for="Direccion" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Empresa</label>
+                                            <input type="text" class="form-control" placeholder="Empresa" asp-for="Empresa" readonly="@(true)">
+                                            <span asp-validation-for="Empresa" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Fecha_Inicio</label>
+                                            <input type="text" class="form-control" placeholder="Fecha Inicio" asp-for="FechaInicio" readonly="@(true)">
+                                            <span asp-validation-for="FechaInicio" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Duracion</label>
+                                            <input type="text" class="form-control" placeholder="Duración de la obra" asp-for="DuracionObra" readonly="@(true)">
+                                            <span asp-validation-for="DuracionObra" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Plano</label>
+                                            <input class="form class custom-file-input" id="imagen" asp-for="Foto" readonly="@(true)">
+                                            <span asp-validation-for="Foto" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.OBRA_Estado</label>
+                                            <select asp-for="IdEstadoObra" class="form-control" asp-items="Model.EstadoLista" readonly="@(true)"></select>
+                                            <span asp-validation-for="IdEstadoObra" class="text-danger"> </span>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Volver</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

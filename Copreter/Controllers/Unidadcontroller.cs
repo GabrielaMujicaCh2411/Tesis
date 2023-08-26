@@ -7,6 +7,7 @@ using static Copreter.Utils.Keys;
 using Copreter.Domain.Service.Dto.Unidad;
 using Copreter.Models.Unidad;
 using Copreter.Utils;
+using System.Security.Claims;
 
 namespace Copreter.Controllers
 {
@@ -72,6 +73,8 @@ namespace Copreter.Controllers
                 return View(dto);
             }
 
+            dto.IdUsuarioRegistro = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
             var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
             if (usuarioExiste == null)
             {
@@ -113,6 +116,8 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    dto.IdUsuarioModificacion = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
                     var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TUnidad>(dto));
                     if (result)
                     {

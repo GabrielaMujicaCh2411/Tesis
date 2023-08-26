@@ -19,7 +19,6 @@ namespace Copreter.Domain.Service.Contracts
             entidad.IdUsuarioRegistro = entidadActual.IdUsuarioRegistro;
             entidad.FechaRegistro = entidadActual.FechaRegistro;
 
-            entidad.IdUsuarioModificacion = 2;
             entidad.FechaModificacion = DateTime.Now;
 
             var result = await this._data.Unidad.Update(entidad);

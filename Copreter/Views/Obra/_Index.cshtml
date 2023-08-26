@@ -27,22 +27,22 @@
         {
             <tr>
                 <td>
-                    Cotización-@Html.DisplayFor(modelItem =>item.Id)
-                </td>
- @*               <td>
-                    Obra-@Html.DisplayFor(modelItem =>item.IdObra)
+                    @Html.DisplayFor(modelItem =>item.Empresa)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Total)
+                   @Html.DisplayFor(modelItem =>item.Direccion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Fecha)
+                    @Html.DisplayFor(modelItem => item.NombreObra)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EstadoCotizacion)
-                </td>*@
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
                 <td>
-                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.EstadoObra)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-success" asp-action="Detalle" asp-route-id="@item.Id">
                         <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 

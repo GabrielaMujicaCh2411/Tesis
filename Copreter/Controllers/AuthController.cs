@@ -61,7 +61,7 @@ namespace Copreter.Controllers
             }
 
             var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.NameIdentifier, dto.Email),
+                    new Claim(ClaimTypes.NameIdentifier, result.IdUsuario.ToString()),
                     new Claim(ClaimTypes.Role, result.IdRol.ToString()),
                     new Claim(ClaimTypes.Name, "Pepito")
                 }, CookieAuthenticationDefaults.AuthenticationScheme);

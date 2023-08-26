@@ -2,6 +2,7 @@
 using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -11,9 +12,16 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<IEnumerable<TObra>> ListarAsync()
+        public async Task<IEnumerable<TObra>> ListarAsync(int? id)
         {
-            return await this._data.Obra.SelectIncludes(x => x.Borrado == false);
+            var predicates = new List<Expression<Func<TObra, bool>>>();
+            if (id != null)
+            {
+                predicates.Add(x => x.IdUsuario == id);
+            }
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.Obra.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoObraNavigation);
         }
 
         public async Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados)
@@ -23,6 +31,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<bool> AgregarAsync(TObra entidad)
         {
+            entidad.IdEstadoObra = 1;
             var result = await this._data.Obra.Add(entidad);
             return result == 1;
         }
@@ -37,21 +46,9 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Obra.Update(result) > 0;
         }
 
-        public async Task<bool> ObraPorCitaAsync(int id)
-        {
-            var result = await this._data.Obra.GetById(id);
-            if (result == null) return false;
-
-            result.IdEstadoObra = 1;
-
-            return await this._data.Obra.Update(result) > 0;
-        }
-
         public async Task<TObra> ObtenerAsync(int id)
         {
             return await this._data.Obra.GetById(id);
         }
-
- 
     }
 }

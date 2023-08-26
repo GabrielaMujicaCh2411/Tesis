@@ -5,13 +5,11 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IObraService
     {
-        Task<IEnumerable<TObra>> ListarAsync();
+        Task<IEnumerable<TObra>> ListarAsync(int? id);
 
         Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados);
 
         Task<bool> AgregarAsync(TObra entidad);
-
-        Task<bool> ObraPorCitaAsync(int id);
 
         Task<TObra> ObtenerAsync(int id);
 

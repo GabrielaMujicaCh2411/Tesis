@@ -102,6 +102,8 @@
                                 break;
                             case 2:
                                 {
+                                    int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
                                     <li class="nav-header">CONSTRUCCION</li>
                                     <li class="nav-item">
                                         <a asp-controller="Obra" asp-action="Crear" class="nav-link">
@@ -111,9 +113,9 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a asp-controller="Obra" asp-action="Index">
+                                        <a asp-controller="Obra" asp-action="Index" asp-route-id="@userId">
                                             <i class="nav-icon far fa-plus-square"></i>
-                                            <p>@Resource.MENU_OBRA_TODOS</p>
+                                            <p>@Resource.MENU_OBRA_TODOS @userId</p>
                                         </a>
                                     </li>
                                     <li class="nav-header">ALQUILER</li>

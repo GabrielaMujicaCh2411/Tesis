@@ -11,9 +11,10 @@ namespace Copreter.Profiles
         public ObraProfile()
         {
             CreateMap<TObra, ObraDto>()
-                //.ForMember(s => s.TipoTrabajador, src => src.MapFrom(x => x.IdTipoTrabajadorNavigation != null ? x.IdTipoTrabajadorNavigation.Nombre : string.Empty))
-                //.ForMember(s => s.EstadoTrabajador, src => src.MapFrom(x => x.IdEstadoTrabajadorNavigation != null ? x.IdEstadoTrabajadorNavigation.Nombre : string.Empty))
+                .ForMember(s => s.EstadoObra, src => src.MapFrom(x => x.IdEstadoObraNavigation != null ? x.IdEstadoObraNavigation.Nombre : string.Empty))
                  .ReverseMap();
+
+            CreateMap<ObraDto, ObraEditableVM>().ReverseMap();
 
             CreateMap<TObra, ObraEditableVM>().ReverseMap();
 
