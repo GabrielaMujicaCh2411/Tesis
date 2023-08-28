@@ -132,7 +132,6 @@ namespace Copreter.Controllers
             }
         }
 
-
         // GET: Unidad/Delete/5
         [HttpPost, ActionName("DeletePopup")]
         public async Task<IActionResult> DeletePopup([FromBody] EditDto dto)
@@ -172,5 +171,30 @@ namespace Copreter.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        #region Catalago
+
+
+        public async Task<IActionResult> IndexCatalago(int type)
+        {
+            var resultService = await this._service.ListarCatalagoAsync(type);
+
+            var result = new UnidadIndexVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<UnidadDto>>(resultService)
+            };
+            return View(Keys.ActionKeys.IndexCatalago, result);
+        }
+
+        public async Task<IActionResult> DetalleCatalago(int? id)
+        {
+            if(id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+
+            return View(Keys.ActionKeys.DetalleCatalago, result);
+        }
+
+        #endregion
     }
 }

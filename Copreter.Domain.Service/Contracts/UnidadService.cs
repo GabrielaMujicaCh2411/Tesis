@@ -1,6 +1,7 @@
 ﻿using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -51,7 +52,16 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TUnidad>> ListarCatalagoAsync(int tipoUnidad)
         {
-            return await this._data.Unidad.SelectIncludes(x => x.IdTipoUnidad == tipoUnidad && x.IdEstadoUnidad == 1);
+            var predicates = new List<Expression<Func<TUnidad, bool>>>();
+
+            if (tipoUnidad != 0)
+            {
+                predicates.Add(x => x.IdTipoUnidad == tipoUnidad);
+            }
+
+            predicates.Add(x => x.Borrado == false && x.IdEstadoUnidad == 1);
+
+            return await this._data.Unidad.SelectPredicatesWithIncludes(predicates);
         }
 
         public async Task<TUnidad> ObtenerAsync(int id)

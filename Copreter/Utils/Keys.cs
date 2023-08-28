@@ -38,7 +38,10 @@
 			public const string EditPopup = "EditPopup";
 			public const string EditPopupConfirmed = "EditPopupConfirmed";
 			public const string GetEquipment = "GetEquipment";
-		}
+
+			public const string IndexCatalago = "IndexCatalago";
+            public const string DetalleCatalago = "DetalleCatalago";
+        }
 
 		public class PartialViewKeys
 		{

@@ -277,11 +277,38 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Todos.
+        /// </summary>
+        public static string MENU_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gestionar Trabajadores.
         /// </summary>
         public static string MENU_TRABAJADOR_TODOS {
             get {
                 return ResourceManager.GetString("MENU_TRABAJADOR_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herramientas.
+        /// </summary>
+        public static string MENU_UNIDAD_HERRAMIENTAS {
+            get {
+                return ResourceManager.GetString("MENU_UNIDAD_HERRAMIENTAS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maquinarias.
+        /// </summary>
+        public static string MENU_UNIDAD_MAQUINARIA {
+            get {
+                return ResourceManager.GetString("MENU_UNIDAD_MAQUINARIA", resourceCulture);
             }
         }
         
@@ -579,6 +606,15 @@ namespace Copreter.Resources {
         public static string UNIDAD_Caracteristica3 {
             get {
                 return ResourceManager.GetString("UNIDAD_Caracteristica3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catálago.
+        /// </summary>
+        public static string UNIDAD_CATALAGO_Titulo {
+            get {
+                return ResourceManager.GetString("UNIDAD_CATALAGO_Titulo", resourceCulture);
             }
         }
         

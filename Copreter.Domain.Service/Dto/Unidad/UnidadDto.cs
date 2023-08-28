@@ -32,7 +32,7 @@ namespace Copreter.Domain.Service.Dto.Unidad
         public int IdEstadoUnidad { get; set; }
         public string? EstadoUnidad { get; set; }
         public string? Imagen { get; set; }
-        public IFormFile Foto { get; set; }
+        public IFormFile? Foto { get; set; }
 
 
     }

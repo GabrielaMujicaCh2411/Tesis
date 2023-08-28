@@ -189,8 +189,17 @@
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="MENU_TODOS" xml:space="preserve">
+    <value>Todos</value>
+  </data>
   <data name="MENU_TRABAJADOR_TODOS" xml:space="preserve">
     <value>Gestionar Trabajadores</value>
+  </data>
+  <data name="MENU_UNIDAD_HERRAMIENTAS" xml:space="preserve">
+    <value>Herramientas</value>
+  </data>
+  <data name="MENU_UNIDAD_MAQUINARIA" xml:space="preserve">
+    <value>Maquinarias</value>
   </data>
   <data name="MENU_USUARIO" xml:space="preserve">
     <value>Usuario</value>
@@ -290,6 +299,9 @@
   </data>
   <data name="UNIDAD_Caracteristica3" xml:space="preserve">
     <value>Caracteristica 3</value>
+  </data>
+  <data name="UNIDAD_CATALAGO_Titulo" xml:space="preserve">
+    <value>Catálago</value>
   </data>
   <data name="UNIDAD_Descripcion" xml:space="preserve">
     <value>Descripción</value>

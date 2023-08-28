@@ -105,6 +105,14 @@
                                     int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                                     <li class="nav-header">CONSTRUCCION</li>
+
+                                    <li class="nav-item">
+                                        <a asp-controller="Obra" asp-action="Index" asp-route-id="@userId" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>@Resource.MENU_OBRA_TODOS</p>
+                                        </a>
+                                    </li>
+
                                     <li class="nav-item">
                                         <a asp-controller="Obra" asp-action="Crear" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
@@ -112,12 +120,6 @@
                                         </a>
                                     </li>
 
-                                    <li class="nav-item">
-                                        <a asp-controller="Obra" asp-action="Index" asp-route-id="@userId">
-                                            <i class="nav-icon far fa-plus-square"></i>
-                                            <p>@Resource.MENU_OBRA_TODOS @userId</p>
-                                        </a>
-                                    </li>
                                     <li class="nav-header">ALQUILER</li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
@@ -129,21 +131,21 @@
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a asp-controller="Unidad" asp-action="Catalogo" class="nav-link">
+                                                <a asp-controller="Unidad" asp-action="IndexCatalago" asp-route-type="0" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Todos</p>
+                                                    <p>@Resource.MENU_TODOS</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="Unidad" asp-action="CatalogoM" class="nav-link">
+                                                <a asp-controller="Unidad" asp-action="IndexCatalago" asp-route-type="1" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Maquinarias</p>
+                                                    <p>@Resource.MENU_UNIDAD_MAQUINARIA</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="Unidad" asp-action="CatalogoH" class="nav-link">
+                                                <a asp-controller="Unidad" asp-action="IndexCatalago" asp-route-type="2" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Herramientas</p>
+                                                    <p>@Resource.MENU_UNIDAD_HERRAMIENTAS</p>
                                                 </a>
                                             </li>
                                         </ul>
