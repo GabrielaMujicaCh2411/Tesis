@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Remove="Views\AHerramientas\**" />
     <Compile Remove="Views\ATrabajador\**" />
-    <Compile Remove="Views\Cita\**" />
     <Compile Remove="Views\Cotizar\**" />
     <Compile Remove="Views\Factura\**" />
     <Compile Remove="Views\Pago\**" />
@@ -20,7 +19,6 @@
     <Compile Remove="Views\TipoUnidad\**" />
     <Content Remove="Views\AHerramientas\**" />
     <Content Remove="Views\ATrabajador\**" />
-    <Content Remove="Views\Cita\**" />
     <Content Remove="Views\Cotizar\**" />
     <Content Remove="Views\Factura\**" />
     <Content Remove="Views\Pago\**" />
@@ -29,7 +27,6 @@
     <Content Remove="Views\TipoUnidad\**" />
     <EmbeddedResource Remove="Views\AHerramientas\**" />
     <EmbeddedResource Remove="Views\ATrabajador\**" />
-    <EmbeddedResource Remove="Views\Cita\**" />
     <EmbeddedResource Remove="Views\Cotizar\**" />
     <EmbeddedResource Remove="Views\Factura\**" />
     <EmbeddedResource Remove="Views\Pago\**" />
@@ -38,7 +35,6 @@
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
     <None Remove="Views\AHerramientas\**" />
     <None Remove="Views\ATrabajador\**" />
-    <None Remove="Views\Cita\**" />
     <None Remove="Views\Cotizar\**" />
     <None Remove="Views\Factura\**" />
     <None Remove="Views\Pago\**" />
@@ -50,7 +46,6 @@
   <ItemGroup>
     <Compile Remove="Controllers\AHerramientasController.cs" />
     <Compile Remove="Controllers\ATrabajadorController.cs" />
-    <Compile Remove="Controllers\CitaController.cs" />
     <Compile Remove="Controllers\Facturacontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />
     <Compile Remove="Controllers\Partidascontroller.cs" />

@@ -88,6 +88,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editar.
+        /// </summary>
+        public static string BTN_Editar {
+            get {
+                return ResourceManager.GetString("BTN_Editar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filtrar.
         /// </summary>
         public static string BTN_Filtrar {
@@ -120,6 +129,60 @@ namespace Copreter.Resources {
         public static string CARD_TITLE {
             get {
                 return ResourceManager.GetString("CARD_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        public static string CITA_Estado {
+            get {
+                return ResourceManager.GetString("CITA_Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre de la Empresa.
+        /// </summary>
+        public static string CITA_Nombre_Empresa {
+            get {
+                return ResourceManager.GetString("CITA_Nombre_Empresa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre de la Obra.
+        /// </summary>
+        public static string CITA_Nombre_Obra {
+            get {
+                return ResourceManager.GetString("CITA_Nombre_Obra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Cita.
+        /// </summary>
+        public static string CITA_Nro {
+            get {
+                return ResourceManager.GetString("CITA_Nro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obra.
+        /// </summary>
+        public static string CITA_Obra {
+            get {
+                return ResourceManager.GetString("CITA_Obra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cita.
+        /// </summary>
+        public static string CITA_Titulo {
+            get {
+                return ResourceManager.GetString("CITA_Titulo", resourceCulture);
             }
         }
         
@@ -205,11 +268,29 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aaceptado.
+        /// </summary>
+        public static string MENU_ACEPTADOS {
+            get {
+                return ResourceManager.GetString("MENU_ACEPTADOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alquiler.
         /// </summary>
         public static string MENU_ALQUILER {
             get {
                 return ResourceManager.GetString("MENU_ALQUILER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Citas.
+        /// </summary>
+        public static string MENU_CITA {
+            get {
+                return ResourceManager.GetString("MENU_CITA", resourceCulture);
             }
         }
         
@@ -259,11 +340,20 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Todos.
+        ///   Looks up a localized string similar to Pedidos.
         /// </summary>
         public static string MENU_PEDIDO_TODOS {
             get {
                 return ResourceManager.GetString("MENU_PEDIDO_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pendiente.
+        /// </summary>
+        public static string MENU_PENDIENTE {
+            get {
+                return ResourceManager.GetString("MENU_PENDIENTE", resourceCulture);
             }
         }
         
@@ -318,6 +408,24 @@ namespace Copreter.Resources {
         public static string MENU_USUARIO {
             get {
                 return ResourceManager.GetString("MENU_USUARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actualizar Datos.
+        /// </summary>
+        public static string MENU_USUARIO_ACTUALIZA_DATOS {
+            get {
+                return ResourceManager.GetString("MENU_USUARIO_ACTUALIZA_DATOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mi Perfil.
+        /// </summary>
+        public static string MENU_USUARIO_PERFIL {
+            get {
+                return ResourceManager.GetString("MENU_USUARIO_PERFIL", resourceCulture);
             }
         }
         

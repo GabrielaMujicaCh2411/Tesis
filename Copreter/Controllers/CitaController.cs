@@ -1,90 +1,53 @@
-using System.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Program.Data;
-using Program.Models;
-using System.Diagnostics;
+using AutoMapper;
+using Copreter.Domain.Model.Model.Cita;
+using Copreter.Domain.Model.Model.Obra;
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Models.Obra;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Copreter.Controllers
 {
-      public class CitaController : Controller
+    public class CitaController : BaseController
     {
-          ApplicationDbContext _context ;
 
-        public CitaController(ApplicationDbContext context)
+        #region Fields
+
+        private readonly ILogger<CitaController> _logger;
+
+        private readonly ICitaService _service;
+
+        #endregion
+
+
+        public CitaController(IMapper mapper, ILogger<CitaController> logger,
+            ICitaService service) : base(mapper)
         {
-             _context = context;
+            this._logger = logger;
+            this._service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? idEstado = 0)
         {
-            return View();
-        }
+            var resultService = await this._service.ListarAsync(new CitaFilter() { IdEstado = idEstado });
 
-        public async Task<IActionResult> Solicitar(string id)
-        {
-            List<TCitum> Cita = await _context.TCita.Include(x=>x.IdObraCitaNavigation).ToListAsync();
-            TCitum cita = new TCitum();
-            var obj =   (from prod in Cita select prod)
-                        .Count();
-            int cantRegistro= obj+1;
-            cita.IdCita = "Cita-00"+cantRegistro+"-"+id;
-            cita.IdObraCita =id;
-            ViewBag.ListaObra = await _context.TObras.OrderBy(x => x.IdObra).ToListAsync();
-            return View(cita);
-        }
-
-        [BindProperty]
-        public TCitum cita{get;set;}
-        public async Task<IActionResult> Guardar()
-        {
-             if(!ModelState.IsValid)
+            var result = new ObraIndexVM
             {
-               return View(cita);
-            }
-            _context.TCita.Add(cita);
-             await  _context.SaveChangesAsync();
-           return Redirect("/Home/VistaAdministrador");
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+            };
+            return View(result);
         }
 
-        public async Task<IActionResult> ListarC()
+        public async Task<IActionResult> _Index(int? idEstado = 0)
         {
-            var model = new ModelCita();
-            model.citas = await _context.TCita.Include(x=>x.IdObraCitaNavigation).Where(o => o.IdObraCitaNavigation.IdObraEstado==4).ToListAsync();
-            model.obras = await _context.TObras.Where(o => o.IdObraEstado==4).OrderBy(x=>x.IdObra).ToListAsync();
-            model.clientes = await _context.TClientes.ToListAsync();
-            model.estadosObra = await _context.TEstadoObras.ToListAsync();
-            return View(model);
+            var resultService = await this._service.ListarAsync(new CitaFilter() { IdEstado = idEstado });
+
+            var result = new ObraIndexVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+            };
+            return PartialView(result);
         }
 
-        public async Task<IActionResult> Detalle(string id)
-        {
-            var Cita = _context.TCita.Find(id);
-            ViewBag.Obra = await _context.TObras.Include(x=>x.IdObraEstadoNavigation).Include(x=>x.IdUsuarioObraNavigation).ToListAsync();
-            return View(Cita);
-        }
-        
-        public async Task<IActionResult> ObraCitada(string id)
-        {
-            var _Obra = _context.TObras.Where(x => x.IdObra ==id).SingleOrDefault();
-            _Obra.IdObraEstado = 1;
-            await _context.SaveChangesAsync();
-            return RedirectToAction("ListarC");
-        }
-
-        public class ModelCita
-        {
-            public IEnumerable<TCitum> citas { get; set; }
-            public IEnumerable<TObra> obras { get; set; }
-            public IEnumerable<TCliente> clientes { get; set; }
-            public IEnumerable<TEstadoObra> estadosObra { get; set; }
-        }
     }
 }

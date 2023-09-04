@@ -7,6 +7,7 @@ using Copreter.Utils;
 using Copreter.Models.Obra;
 using Copreter.Domain.Service.Dto.Obra;
 using System.Security.Claims;
+using Copreter.Domain.Model.Model.Obra;
 
 namespace Copreter.Controllers
 {
@@ -30,9 +31,9 @@ namespace Copreter.Controllers
             this._estadoObraService = estadoObraService;
         }
 
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
         {
-            var resultService = await this._service.ListarAsync(id);
+            var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado});
 
             var result = new ObraIndexVM
             {
@@ -41,9 +42,9 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> _Index(int? id)
+        public async Task<IActionResult> _Index(int? userId, int? idEstado = 0)
         {
-            var resultService = await this._service.ListarAsync(id);
+            var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
             var result = new ObraIndexVM
             {

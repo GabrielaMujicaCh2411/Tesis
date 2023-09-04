@@ -37,7 +37,7 @@
                         </div>
                         <div class="card-body">
                             <div id="contentPartial">
-                                <form asp-action="GuardarActualizacion" asp-controller="Usuario" method="post">
+                                <form asp-action="Editar" asp-controller="Usuario" method="post">
                                     <div class="card-body">
 
                                         <input type="hidden" asp-for="Id" />
@@ -77,8 +77,8 @@
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                                        <button type="submit" class="btn btn-primary">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">@Resource.BTN_Guardar</button>
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
                                     </div>
                                 </form>
                             </div>
@@ -87,8 +87,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="divPopupAsignarRol"></div>
 
     </section>
 </div>

@@ -1,11 +1,12 @@
 ﻿using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Enums;
+using Copreter.Domain.Model.Model.Obra;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IObraService
     {
-        Task<IEnumerable<TObra>> ListarAsync(int? id);
+        Task<IEnumerable<TObra>> ListarAsync(ObraFilter model);
 
         Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados);
 

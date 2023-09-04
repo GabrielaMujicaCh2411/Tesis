@@ -126,6 +126,9 @@
   <data name="BTN_Crear" xml:space="preserve">
     <value>Crear</value>
   </data>
+  <data name="BTN_Editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
   <data name="BTN_Filtrar" xml:space="preserve">
     <value>Filtrar</value>
   </data>
@@ -137,6 +140,24 @@
   </data>
   <data name="CARD_TITLE" xml:space="preserve">
     <value>Información</value>
+  </data>
+  <data name="CITA_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="CITA_Nombre_Empresa" xml:space="preserve">
+    <value>Nombre de la Empresa</value>
+  </data>
+  <data name="CITA_Nombre_Obra" xml:space="preserve">
+    <value>Nombre de la Obra</value>
+  </data>
+  <data name="CITA_Nro" xml:space="preserve">
+    <value>Nº Cita</value>
+  </data>
+  <data name="CITA_Obra" xml:space="preserve">
+    <value>Obra</value>
+  </data>
+  <data name="CITA_Titulo" xml:space="preserve">
+    <value>Cita</value>
   </data>
   <data name="COTIZACION_Estado" xml:space="preserve">
     <value>Estado</value>
@@ -165,8 +186,14 @@
   <data name="MENU_ACCESO_TODOS" xml:space="preserve">
     <value>Gestionar Usuarios</value>
   </data>
+  <data name="MENU_ACEPTADOS" xml:space="preserve">
+    <value>Aaceptado</value>
+  </data>
   <data name="MENU_ALQUILER" xml:space="preserve">
     <value>Alquiler</value>
+  </data>
+  <data name="MENU_CITA" xml:space="preserve">
+    <value>Citas</value>
   </data>
   <data name="MENU_COTIZACION_TODOS" xml:space="preserve">
     <value>Cotizaciones</value>
@@ -184,7 +211,10 @@
     <value>Por asignar</value>
   </data>
   <data name="MENU_PEDIDO_TODOS" xml:space="preserve">
-    <value>Todos</value>
+    <value>Pedidos</value>
+  </data>
+  <data name="MENU_PENDIENTE" xml:space="preserve">
+    <value>Pendiente</value>
   </data>
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
@@ -203,6 +233,12 @@
   </data>
   <data name="MENU_USUARIO" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="MENU_USUARIO_ACTUALIZA_DATOS" xml:space="preserve">
+    <value>Actualizar Datos</value>
+  </data>
+  <data name="MENU_USUARIO_PERFIL" xml:space="preserve">
+    <value>Mi Perfil</value>
   </data>
   <data name="MENU_USUARIO_TODOS" xml:space="preserve">
     <value>Gestionar Usuarios</value>

@@ -14,6 +14,7 @@
             public const string Acceso = "Acceso";
             public const string Cotizacion = "Cotizacion";
 
+            public const string Cita = "Cita";
             public const string Obra = "Obra";
             public const string Pedido = "Pedido";
             public const string Trabajador = "Trabajador";

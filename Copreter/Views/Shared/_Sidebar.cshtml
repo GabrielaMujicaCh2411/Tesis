@@ -107,7 +107,7 @@
                                     <li class="nav-header">CONSTRUCCION</li>
 
                                     <li class="nav-item">
-                                        <a asp-controller="Obra" asp-action="Index" asp-route-id="@userId" class="nav-link">
+                                        <a asp-controller="Obra" asp-action="Index" asp-route-userId="@userId" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
                                             <p>@Resource.MENU_OBRA_TODOS</p>
                                         </a>
@@ -151,28 +151,22 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a asp-controller="Pedido" asp-action="ListarC" asp-route-id="@id" class="nav-link">
+                                        <a asp-controller="Pedido" asp-action="Index" asp-route-userId="@userId" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
-                                            <p>
-                                                Pedidos
-                                            </p>
+                                            <p>@Resource.MENU_PEDIDO_TODOS</p>
                                         </a>
                                     </li>
                                     <li class="nav-header">PERFIL</li>
                                     <li class="nav-item">
-                                        <a asp-controller="Usuario" asp-action="Detalle" asp-route-id="@id" class="nav-link">
+                                        <a asp-controller="Usuario" asp-action="Detalle" asp-route-id="@userId" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
-                                            <p>
-                                                Mi Perfil
-                                            </p>
+                                            <p>@Resource.MENU_USUARIO_PERFIL</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a asp-controller="Cliente" asp-action="Actualizar" asp-route-id="@id" class="nav-link">
+                                        <a asp-controller="Usuario" asp-action="Editar" asp-route-id="@userId" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
-                                            <p>
-                                                Actualizar Datos
-                                            </p>
+                                            <p>@Resource.MENU_USUARIO_ACTUALIZA_DATOS</p>
                                         </a>
                                     </li>
                                 }
@@ -190,27 +184,27 @@
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a asp-controller="Obra" asp-action="Listar" class="nav-link">
+                                                <a asp-controller="Obra" asp-action="Index" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Todos</p>
+                                                    <p>@Resource.MENU_TODOS</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="Obra" asp-action="ListarP" class="nav-link">
+                                                <a asp-controller="Obra" asp-action="Index" asp-route-idEstado="1" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Pendiente</p>
+                                                    <p>@Resource.MENU_PENDIENTE</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="Cita" asp-action="ListarC" class="nav-link">
+                                                <a asp-controller="Cita" asp-action="Index" asp-route-idEstado="4" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
                                                     <p>Citas</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="Obra" asp-action="ListarA" class="nav-link">
+                                                <a asp-controller="Obra" asp-action="Index" asp-route-idEstado="2" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Aceptado</p>
+                                                    <p>@Resource.MENU_ACEPTADOS</p>
                                                 </a>
                                             </li>
                                         </ul>

@@ -83,12 +83,21 @@ namespace Copreter.Controllers
             }
         }
 
+        public async Task<IActionResult> Detalle(int? id)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+
+            return View(this.Mapper.Map<UsuarioDto>(result));
+        }
+
         public async Task<IActionResult> Editar(int? id)
         {
             if (id == null) return RedirectToAction(nameof(Index));
 
             var result = await this._service.ObtenerAsync(id.Value);
-            return View(result);
+            return View(this.Mapper.Map<UsuarioDto>(result));
         }
 
         [HttpPost]
@@ -107,7 +116,7 @@ namespace Copreter.Controllers
                     var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TUsuario>(dto));
                     if (result)
                     {
-                        return Redirect("/Home/VistaAdministrador");
+                        return Redirect("/Home/IndexAdmin");
                     }
                 }
                 return View(dto);

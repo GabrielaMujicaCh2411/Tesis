@@ -1,5 +1,6 @@
 ﻿using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Enums;
+using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using System.Linq.Expressions;
@@ -12,13 +13,25 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<IEnumerable<TObra>> ListarAsync(int? id)
+        public async Task<IEnumerable<TObra>> ListarAsync(ObraFilter model)
         {
             var predicates = new List<Expression<Func<TObra, bool>>>();
-            if (id != null)
+            if (model.IdUsuario != null && model.IdUsuario != 0)
             {
-                predicates.Add(x => x.IdUsuario == id);
+                predicates.Add(x => x.IdUsuario == model.IdUsuario);
             }
+            if (model.IdEstado != null && model.IdEstado != 0)
+            {
+                if(model.IdEstado == 1)
+                {
+                    predicates.Add(x => x.IdEstadoObra == 1 || x.IdEstadoObra == 3);
+                }
+                else
+                {
+                    predicates.Add(x => x.IdEstadoObra == model.IdEstado);
+                }
+            }
+
             predicates.Add(x => x.Borrado == false);
 
             return await this._data.Obra.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoObraNavigation);

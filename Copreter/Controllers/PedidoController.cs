@@ -24,9 +24,9 @@ namespace Copreter.Controllers
             this._trabajadorService = trabajadorService;
         }
 
-        public async Task<IActionResult> Index(int idestado)
+        public async Task<IActionResult> Index(int userId)
         {
-            var resultService = await this._service.ListarAsync(idestado);
+            var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId});
 
             var result = new PedidoIndexVM
             {
@@ -35,9 +35,9 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> _Index(int idestado)
+        public async Task<IActionResult> _Index(int userId)
         {
-            var resultService = await this._service.ListarAsync(idestado);
+            var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId });
 
             var result = new PedidoIndexVM
             {
