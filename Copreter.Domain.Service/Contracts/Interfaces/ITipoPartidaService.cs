@@ -12,6 +12,6 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<bool> ActualizarAsync(int id, TTipoPartida entidad);
 
-        Task<bool> EliminarAsync(int id);
+        Task<bool> EliminarAsync(int id, int idUsuario);
     }
 }

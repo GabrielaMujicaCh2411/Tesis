@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto.Partida;
+using Copreter.Models.Partida;
 
 namespace Copreter.Profiles
 {
@@ -8,6 +9,8 @@ namespace Copreter.Profiles
     {
         public PartidaProfile()
         {
+            CreateMap<TPartida, PartidaEditableVM>().ReverseMap();
+
             CreateMap<TPartida, PartidaDto>()
              .ForMember(s => s.TipoPartida, src => src.MapFrom(x => x.IdTipoPartidaNavigation != null ? x.IdTipoPartidaNavigation.Nombre : string.Empty))
              .ReverseMap();

@@ -25,11 +25,11 @@ namespace Copreter.Domain.Service.Contracts
             entidadActual.Celular = entidad.Celular;
             entidadActual.Direccion = entidad.Direccion;
 
-            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.IdUsuarioModificacion = entidad.IdUsuarioModificacion;
             entidadActual.FechaModificacion = DateTime.Now;
 
 
-            var result = await this._data.Usuario.Update(entidad);
+            var result = await this._data.Usuario.Update(entidadActual);
             return result == 1;
         }
 
@@ -39,11 +39,12 @@ namespace Copreter.Domain.Service.Contracts
             return result != null ? result : null;
         }
 
-        public async Task<bool> EliminarAsync(int id)
+        public async Task<bool> EliminarAsync(int id, int idUsuario)
         {
             var entidadActual = await this._data.Usuario.GetById(id);
             if (entidadActual == null) return false;
 
+            entidadActual.IdUsuarioModificacion = idUsuario;
             entidadActual.Borrado = true;
 
             var result = await this._data.Usuario.Update(entidadActual);

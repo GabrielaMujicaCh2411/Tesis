@@ -11,5 +11,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> AgregarAsync(TPartida entidad);
 
         Task<bool> ActualizarAsync(int id, TPartida entidad);
+
+        Task<bool> EliminarAsync(int id, int idUsuario);
     }
 }

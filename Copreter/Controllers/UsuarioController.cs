@@ -160,7 +160,7 @@ namespace Copreter.Controllers
             {
                 result.IdUsuarioModificacion = 1;
 
-                await this._service.EliminarAsync(dto.Id);
+                await this._service.EliminarAsync(dto.Id, this.UserId());
             }
 
             return RedirectToAction(nameof(Index));

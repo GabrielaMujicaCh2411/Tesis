@@ -15,6 +15,12 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.TipoPartida.GetById(id);
             if (entidadActual == null) return false;
 
+            entidadActual.Descripcion = entidad.Descripcion;
+            entidadActual.Nombre = entidad.Nombre;
+
+            entidadActual.IdUsuarioModificacion = entidad.IdUsuarioModificacion;
+            entidadActual.FechaModificacion = DateTime.Now;
+
             var result = await this._data.TipoPartida.Update(entidadActual);
             return result > 0;
         }
@@ -25,11 +31,12 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<bool> EliminarAsync(int id)
+        public async Task<bool> EliminarAsync(int id, int idUsuario)
         {
             var entidadActual = await this._data.TipoPartida.GetById(id);
             if (entidadActual == null) return false;
 
+            entidadActual.IdUsuarioModificacion = idUsuario;
             entidadActual.Borrado = true;
 
             var result = await this._data.TipoPartida.Update(entidadActual);

@@ -15,7 +15,6 @@
     <Compile Remove="Views\Factura\**" />
     <Compile Remove="Views\Pago\**" />
     <Compile Remove="Views\Partidas\**" />
-    <Compile Remove="Views\TipoPartida\**" />
     <Compile Remove="Views\TipoUnidad\**" />
     <Content Remove="Views\AHerramientas\**" />
     <Content Remove="Views\ATrabajador\**" />
@@ -23,7 +22,6 @@
     <Content Remove="Views\Factura\**" />
     <Content Remove="Views\Pago\**" />
     <Content Remove="Views\Partidas\**" />
-    <Content Remove="Views\TipoPartida\**" />
     <Content Remove="Views\TipoUnidad\**" />
     <EmbeddedResource Remove="Views\AHerramientas\**" />
     <EmbeddedResource Remove="Views\ATrabajador\**" />
@@ -31,7 +29,6 @@
     <EmbeddedResource Remove="Views\Factura\**" />
     <EmbeddedResource Remove="Views\Pago\**" />
     <EmbeddedResource Remove="Views\Partidas\**" />
-    <EmbeddedResource Remove="Views\TipoPartida\**" />
     <EmbeddedResource Remove="Views\TipoUnidad\**" />
     <None Remove="Views\AHerramientas\**" />
     <None Remove="Views\ATrabajador\**" />
@@ -39,7 +36,6 @@
     <None Remove="Views\Factura\**" />
     <None Remove="Views\Pago\**" />
     <None Remove="Views\Partidas\**" />
-    <None Remove="Views\TipoPartida\**" />
     <None Remove="Views\TipoUnidad\**" />
   </ItemGroup>
 
@@ -48,7 +44,6 @@
     <Compile Remove="Controllers\ATrabajadorController.cs" />
     <Compile Remove="Controllers\Facturacontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />
-    <Compile Remove="Controllers\TipoPartidacontroller.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
   </ItemGroup>
 

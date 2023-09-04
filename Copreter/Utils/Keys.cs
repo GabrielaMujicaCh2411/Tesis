@@ -18,6 +18,7 @@
             public const string Obra = "Obra";
             public const string Partida = "Partida";
             public const string Pedido = "Pedido";
+            public const string TipoPartida = "TipoPartida";
             public const string Trabajador = "Trabajador";
             public const string Unidad = "Unidad";
             public const string Usuario = "Usuario";

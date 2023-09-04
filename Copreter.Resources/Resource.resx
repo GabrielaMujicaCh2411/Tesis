@@ -327,6 +327,18 @@
   <data name="TAB_Filtro" xml:space="preserve">
     <value>Filtro</value>
   </data>
+  <data name="TIPOPARTIDA_Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="TIPOPARTIDA_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="TIPOPARTIDA_Nro" xml:space="preserve">
+    <value>Nro</value>
+  </data>
+  <data name="TIPOPARTIDA_Titulo" xml:space="preserve">
+    <value>Tipo partida</value>
+  </data>
   <data name="TITLE_Eliminar" xml:space="preserve">
     <value>Eliminar</value>
   </data>

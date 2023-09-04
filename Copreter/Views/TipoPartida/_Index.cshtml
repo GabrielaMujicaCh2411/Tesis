@@ -1,17 +1,17 @@
 ﻿@using Copreter.Resources;
-@model Copreter.Models.Partida.PartidaIndexVM;
+@model Copreter.Models.TipoPartida.TipoPartidaIndexVM;
 
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayName(@Resource.PARTIDA_Nombre)
+                @Html.DisplayName(@Resource.TIPOPARTIDA_Nro)
             </th>
             <th>
-                @Html.DisplayName(@Resource.PARTIDA_Precio)
+                @Html.DisplayName(@Resource.TIPOPARTIDA_Nombre)
             </th>
             <th>
-                @Html.DisplayName(@Resource.PARTIDA_Tipo)
+                @Html.DisplayName(@Resource.TIPOPARTIDA_Descripcion)
             </th>
             <th></th>
         </tr>
@@ -21,19 +21,19 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem =>item.Id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem =>item.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PrecioUnidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoPartida)
+                    @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
                     <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
                         <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
-
+                                        
                     <a type="button" class="btn btn-primary" asp-action="Detalle" asp-route-id="@item.Id">
                         <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>

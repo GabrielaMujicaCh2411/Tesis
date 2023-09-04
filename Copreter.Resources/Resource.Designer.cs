@@ -691,6 +691,42 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string TIPOPARTIDA_Descripcion {
+            get {
+                return ResourceManager.GetString("TIPOPARTIDA_Descripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string TIPOPARTIDA_Nombre {
+            get {
+                return ResourceManager.GetString("TIPOPARTIDA_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nro.
+        /// </summary>
+        public static string TIPOPARTIDA_Nro {
+            get {
+                return ResourceManager.GetString("TIPOPARTIDA_Nro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo partida.
+        /// </summary>
+        public static string TIPOPARTIDA_Titulo {
+            get {
+                return ResourceManager.GetString("TIPOPARTIDA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Eliminar.
         /// </summary>
         public static string TITLE_Eliminar {
