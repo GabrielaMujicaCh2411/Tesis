@@ -27,7 +27,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TPartida>> ListarAsync()
         {
-            return await this._data.Partida.SelectIncludes(x => x.Borrado == false);
+            return await this._data.Partida.SelectIncludes(x => x.Borrado == false, x => x.IdTipoPartidaNavigation);
         }
 
         public async Task<TPartida> ObtenerAsync(int id)

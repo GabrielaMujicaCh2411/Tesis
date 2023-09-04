@@ -2,7 +2,9 @@ using AutoMapper;
 using Copreter.Domain.Model.Model.Cita;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto.Cita;
 using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Models.Cita;
 using Copreter.Models.Obra;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,9 +33,9 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync(new CitaFilter() { IdEstado = idEstado });
 
-            var result = new ObraIndexVM
+            var result = new CitaIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<CitaDto>>(resultService)
             };
             return View(result);
         }
@@ -42,9 +44,9 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync(new CitaFilter() { IdEstado = idEstado });
 
-            var result = new ObraIndexVM
+            var result = new CitaIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<CitaDto>>(resultService)
             };
             return PartialView(result);
         }

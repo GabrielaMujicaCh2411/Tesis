@@ -213,15 +213,15 @@
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
                                             <p>
-                                                Cotizaciones
+                                                @Resource.MENU_COTIZACION_TODOS
                                                 <i class="right fas fa-angle-left"></i>
                                             </p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a asp-controller="Cotizar" asp-action="Listar" class="nav-link">
+                                                <a asp-controller="Cotizacion" asp-action="Index" asp-route-idEstado="1" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>En espera</p>
+                                                    <p>@Resource.MENU_COTIZACION_ESPERA</p>
                                                 </a>
                                             </li>
                                         </ul>
@@ -230,21 +230,21 @@
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon far fa-plus-square"></i>
                                             <p>
-                                                Partidas
+                                                @Resource.MENU_PARTIDA_TODOS
                                                 <i class="right fas fa-angle-left"></i>
                                             </p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a asp-controller="Partidas" asp-action="Listar" class="nav-link">
+                                                <a asp-controller="Partida" asp-action="Index" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Gestionar Partida</p>
+                                                    <p>@Resource.MENU_PARTIDA_GESTIONAR</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a asp-controller="TipoPartida" asp-action="Listar" class="nav-link">
+                                                <a asp-controller="TipoPartida" asp-action="Index" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Tipo Partida</p>
+                                                    <p>@Resource.MENU_TIPO_PARTIDA</p>
                                                 </a>
                                             </li>
                                         </ul>

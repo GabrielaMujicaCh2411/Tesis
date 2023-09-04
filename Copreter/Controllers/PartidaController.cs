@@ -1,27 +1,49 @@
 using Microsoft.AspNetCore.Mvc;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Model.DbModel;
+using AutoMapper;
+using Copreter.Domain.Service.Dto.Partida;
+using Copreter.Models.Partida;
 
 namespace Copreter.Controllers
 {
-    public class Partidascontroller : BaseController
+    public class PartidaController : BaseController
     {
         #region Fields
+
+        private readonly ILogger<PartidaController> _logger;
 
         private readonly IPartidaService _service;
 
         #endregion
 
-        public Partidascontroller(IPartidaService service)
+        public PartidaController(IMapper mapper, ILogger<PartidaController> logger, IPartidaService service) : base(mapper)
         {
+            this._logger = logger;
             this._service = service;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            var result = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync();
+
+            var result = new PartidaIndexVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<PartidaDto>>(resultService)
+            };
             return View(result);
+        }
+
+        public async Task<IActionResult> _Index()
+        {
+            var resultService = await this._service.ListarAsync();
+
+            var result = new PartidaIndexVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<PartidaDto>>(resultService)
+            };
+            return PartialView(result);
         }
 
         // GET: Partida/Create
@@ -33,7 +55,7 @@ namespace Copreter.Controllers
         // POST: Partida/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind()] TPartida dto)
+        public async Task<IActionResult> Crear([Bind()] PartidaDto dto)
         {
             try
             {
@@ -42,7 +64,7 @@ namespace Copreter.Controllers
                     return View(dto);
                 }
 
-                var result = await this._service.AgregarAsync(dto);
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TPartida>(dto));
                 if (result)
                 {
                     return RedirectToAction(nameof(Index));
@@ -67,7 +89,7 @@ namespace Copreter.Controllers
         // POST: Partida/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind()] TPartida dto)
+        public async Task<IActionResult> Editar(int id, [Bind()] PartidaDto dto)
         {
             try
             {
@@ -78,7 +100,7 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var result = await this._service.ActualizarAsync(id, dto);
+                    var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TPartida>(dto));
                     if (result)
                     {
                         return RedirectToAction(nameof(Index));

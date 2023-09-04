@@ -48,7 +48,6 @@
     <Compile Remove="Controllers\ATrabajadorController.cs" />
     <Compile Remove="Controllers\Facturacontroller.cs" />
     <Compile Remove="Controllers\PagoController.cs" />
-    <Compile Remove="Controllers\Partidascontroller.cs" />
     <Compile Remove="Controllers\TipoPartidacontroller.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
   </ItemGroup>

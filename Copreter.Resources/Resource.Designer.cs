@@ -268,7 +268,7 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aaceptado.
+        ///   Looks up a localized string similar to Aceptado.
         /// </summary>
         public static string MENU_ACEPTADOS {
             get {
@@ -291,6 +291,15 @@ namespace Copreter.Resources {
         public static string MENU_CITA {
             get {
                 return ResourceManager.GetString("MENU_CITA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to En espera.
+        /// </summary>
+        public static string MENU_COTIZACION_ESPERA {
+            get {
+                return ResourceManager.GetString("MENU_COTIZACION_ESPERA", resourceCulture);
             }
         }
         
@@ -331,6 +340,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestionar Partida.
+        /// </summary>
+        public static string MENU_PARTIDA_GESTIONAR {
+            get {
+                return ResourceManager.GetString("MENU_PARTIDA_GESTIONAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partidas.
+        /// </summary>
+        public static string MENU_PARTIDA_TODOS {
+            get {
+                return ResourceManager.GetString("MENU_PARTIDA_TODOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por asignar.
         /// </summary>
         public static string MENU_PEDIDO_POR_ASIGNAR {
@@ -363,6 +390,15 @@ namespace Copreter.Resources {
         public static string MENU_SALIR {
             get {
                 return ResourceManager.GetString("MENU_SALIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo Partida.
+        /// </summary>
+        public static string MENU_TIPO_PARTIDA {
+            get {
+                return ResourceManager.GetString("MENU_TIPO_PARTIDA", resourceCulture);
             }
         }
         
@@ -507,6 +543,51 @@ namespace Copreter.Resources {
         public static string OBRA_Titulo {
             get {
                 return ResourceManager.GetString("OBRA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string PARTIDA_Nombre {
+            get {
+                return ResourceManager.GetString("PARTIDA_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item.
+        /// </summary>
+        public static string PARTIDA_Nro {
+            get {
+                return ResourceManager.GetString("PARTIDA_Nro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precio.
+        /// </summary>
+        public static string PARTIDA_Precio {
+            get {
+                return ResourceManager.GetString("PARTIDA_Precio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo.
+        /// </summary>
+        public static string PARTIDA_Tipo {
+            get {
+                return ResourceManager.GetString("PARTIDA_Tipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partida.
+        /// </summary>
+        public static string PARTIDA_Titulo {
+            get {
+                return ResourceManager.GetString("PARTIDA_Titulo", resourceCulture);
             }
         }
         

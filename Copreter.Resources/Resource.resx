@@ -187,13 +187,16 @@
     <value>Gestionar Usuarios</value>
   </data>
   <data name="MENU_ACEPTADOS" xml:space="preserve">
-    <value>Aaceptado</value>
+    <value>Aceptado</value>
   </data>
   <data name="MENU_ALQUILER" xml:space="preserve">
     <value>Alquiler</value>
   </data>
   <data name="MENU_CITA" xml:space="preserve">
     <value>Citas</value>
+  </data>
+  <data name="MENU_COTIZACION_ESPERA" xml:space="preserve">
+    <value>En espera</value>
   </data>
   <data name="MENU_COTIZACION_TODOS" xml:space="preserve">
     <value>Cotizaciones</value>
@@ -207,6 +210,12 @@
   <data name="MENU_OBRA_TODOS" xml:space="preserve">
     <value>Mis Cotizaciones</value>
   </data>
+  <data name="MENU_PARTIDA_GESTIONAR" xml:space="preserve">
+    <value>Gestionar Partida</value>
+  </data>
+  <data name="MENU_PARTIDA_TODOS" xml:space="preserve">
+    <value>Partidas</value>
+  </data>
   <data name="MENU_PEDIDO_POR_ASIGNAR" xml:space="preserve">
     <value>Por asignar</value>
   </data>
@@ -218,6 +227,9 @@
   </data>
   <data name="MENU_SALIR" xml:space="preserve">
     <value>Salir</value>
+  </data>
+  <data name="MENU_TIPO_PARTIDA" xml:space="preserve">
+    <value>Tipo Partida</value>
   </data>
   <data name="MENU_TODOS" xml:space="preserve">
     <value>Todos</value>
@@ -266,6 +278,21 @@
   </data>
   <data name="OBRA_Titulo" xml:space="preserve">
     <value>Obra</value>
+  </data>
+  <data name="PARTIDA_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="PARTIDA_Nro" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="PARTIDA_Precio" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="PARTIDA_Tipo" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="PARTIDA_Titulo" xml:space="preserve">
+    <value>Partida</value>
   </data>
   <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
     <value>Asignar Pedido</value>

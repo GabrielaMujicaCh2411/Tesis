@@ -1,6 +1,8 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -16,9 +18,19 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<IEnumerable<TCotizacion>> ListarAsync()
+        public async Task<IEnumerable<TCotizacion>> ListarAsync(CotizacionFilter model)
         {
-            return await this._data.Cotizacion.SelectIncludes(x => x.Borrado == false, x=> x.IdEstadoCotizacionNavigation);
+            var predicates = new List<Expression<Func<TCotizacion, bool>>>();
+
+            if (model.IdEstado != null && model.IdEstado != 0)
+            {
+
+                predicates.Add(x => x.IdEstadoCotizacion == model.IdEstado);
+            }
+
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.Cotizacion.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoCotizacionNavigation);
         }
 
         public async Task<TCotizacion> ObtenerAsync(int id)

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto.Cotizacion;
 using Copreter.Models.Cotizacion;
@@ -9,18 +10,23 @@ namespace Copreter.Controllers
     public class Cotizacioncontroller : BaseController
     {
         #region Fields
+        
+        private readonly ILogger<Cotizacioncontroller> _logger;
+
 
         private readonly ICotizacionService _service;
+
         #endregion
 
-        public Cotizacioncontroller(IMapper mapper, ICotizacionService service) : base(mapper)
+        public Cotizacioncontroller(IMapper mapper, ILogger<Cotizacioncontroller> logger, ICotizacionService service) : base(mapper)
         {
+            this._logger = logger;
             this._service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? idEstado = 0)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new CotizacionFilter() { IdEstado = idEstado});
 
             var result = new CotizacionIndexVM
             {
@@ -29,9 +35,9 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> _Index()
+        public async Task<IActionResult> _Index(int? idEstado = 0)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new CotizacionFilter() { IdEstado = idEstado });
 
             var result = new CotizacionIndexVM
             {
