@@ -33,7 +33,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
         {
-            var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado});
+            var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
             var result = new ObraIndexVM
             {
@@ -86,7 +86,8 @@ namespace Copreter.Controllers
                     //dto.Imagen = guidImage;
                 }
 
-                dto.IdUsuario = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                dto.IdUsuario = this.UserId();
+                dto.IdUsuarioRegistro = this.UserId();
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TObra>(dto));
                 if (result)
                 {
@@ -94,7 +95,7 @@ namespace Copreter.Controllers
                 }
                 return View(dto);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 this._logger.LogError(ex.Message);
                 return View();

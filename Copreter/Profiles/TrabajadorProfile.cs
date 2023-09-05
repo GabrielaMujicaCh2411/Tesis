@@ -17,6 +17,8 @@ namespace Copreter.Profiles
 
             CreateMap<TTrabajador, TrabajadorEditableVM>().ReverseMap();
 
+            CreateMap<TrabajadorDto, TrabajadorEditableVM>().ReverseMap();
+
             CreateMap<TTrabajador, ItemDto>()
                 .ForMember(s => s.Id, src => src.MapFrom(x => x.Id))
                 .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))

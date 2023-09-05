@@ -26,7 +26,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int userId)
         {
-            var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId});
+            var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId });
 
             var result = new PedidoIndexVM
             {
@@ -51,7 +51,7 @@ namespace Copreter.Controllers
             var resultService = await this._service.ObtenerAsync(id);
             if (resultService == null) return RedirectToAction(nameof(Index));
 
-            var trabajadorLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._trabajadorService.ListarAsync());
+            var trabajadorLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._trabajadorService.ListarAsync(new Domain.Model.Model.Trabajador.TrabajadorFilter()));
 
             var result = this.Mapper.Map<PedidoEditableVM>(resultService);
             result.TrabajadorLista = trabajadorLista.GetItems();
@@ -73,6 +73,8 @@ namespace Copreter.Controllers
                 if (ModelState.IsValid)
                 {
                     dto.IdEstadoPedido = 3;
+                    dto.IdUsuarioModificacion = this.UserId();
+
                     var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TPedido>(dto));
                     if (result)
                     {
@@ -93,6 +95,7 @@ namespace Copreter.Controllers
             if (resultService == null) return RedirectToAction(nameof(Index));
 
             resultService.IdEstadoPedido = 6;
+            resultService.IdUsuarioModificacion = this.UserId();
 
             var result = await this._service.ActualizarAsync(id, resultService);
             if (result)

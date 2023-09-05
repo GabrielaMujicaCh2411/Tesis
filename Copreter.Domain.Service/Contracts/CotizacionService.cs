@@ -2,6 +2,7 @@
 using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System;
 using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
@@ -16,6 +17,11 @@ namespace Copreter.Domain.Service.Contracts
         {
             var result = await this._data.Cotizacion.Add(entidad);
             return result == 1;
+        }
+
+        public async Task<int> CountAsync(int idEstado)
+        {
+            return await this._data.Cotizacion.CountIncludes(x => x.Borrado == false && x.IdEstadoCotizacion == idEstado);
         }
 
         public async Task<IEnumerable<TCotizacion>> ListarAsync(CotizacionFilter model)

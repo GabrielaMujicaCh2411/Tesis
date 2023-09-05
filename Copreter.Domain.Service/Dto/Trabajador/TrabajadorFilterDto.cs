@@ -2,7 +2,7 @@
 {
     public class TrabajadorFilterDto
     {
-        public int IdTipoTrabajador { get; set; }
-        public int IdEstadoTrabajador { get; set; }
+        public int IdTipo { get; set; }
+        public int IdEstado { get; set; }
     }
 }

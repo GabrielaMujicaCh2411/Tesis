@@ -69,6 +69,8 @@ namespace Copreter.Controllers
                     return View(dto);
                 }
 
+                dto.IdUsuarioRegistro = this.UserId();
+
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TTipoPartida>(dto));
                 if (result)
                 {
@@ -174,7 +176,7 @@ namespace Copreter.Controllers
             var result = await this._service.ObtenerAsync(dto.Id);
             if (result != null)
             {
-                result.IdUsuarioModificacion = 1;
+                dto.IdUsuarioModificacion = this.UserId();
 
                 await this._service.EliminarAsync(dto.Id, this.UserId());
             }

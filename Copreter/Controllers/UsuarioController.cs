@@ -113,6 +113,7 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    dto.IdUsuarioModificacion = this.UserId();
                     var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TUsuario>(dto));
                     if (result)
                     {
@@ -158,7 +159,7 @@ namespace Copreter.Controllers
             var result = await this._service.ObtenerAsync(dto.Id);
             if (result != null)
             {
-                result.IdUsuarioModificacion = 1;
+                dto.IdUsuarioModificacion = this.UserId();
 
                 await this._service.EliminarAsync(dto.Id, this.UserId());
             }

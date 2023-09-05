@@ -1,10 +1,11 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Trabajador;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface ITrabajadorService
     {
-        Task<IEnumerable<TTrabajador>> ListarAsync();
+        Task<IEnumerable<TTrabajador>> ListarAsync(TrabajadorFilter model);
 
         Task<bool> AgregarAsync(TTrabajador entidad);
 
@@ -13,5 +14,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> ActualizarAsync(int id, TTrabajador entidad);
 
         Task<bool> EliminarAsync(int id);
+
+        Task<int> CountAsync();
     }
 }

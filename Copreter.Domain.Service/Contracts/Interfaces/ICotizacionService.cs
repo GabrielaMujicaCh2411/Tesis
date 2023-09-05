@@ -10,5 +10,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> AgregarAsync(TCotizacion entidad);
 
         Task<TCotizacion> ObtenerAsync(int id);
+
+        Task<int> CountAsync(int idEstado);
     }
 }

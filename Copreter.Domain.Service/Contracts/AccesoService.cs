@@ -54,5 +54,11 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Acceso.GetById(id);
         }
+
+
+        public async Task<int> CountAsync(int idRol)
+        {
+            return await this._data.Acceso.CountIncludes(x => x.Borrado == false &&  x.IdRol == idRol);
+        }
     }
 }

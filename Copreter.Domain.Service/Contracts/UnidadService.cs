@@ -32,6 +32,12 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
+        public async Task<int> CountAsync(int idEstado)
+        {
+            var result = await this._data.Unidad.SelectIncludes(x => x.Borrado == false && x.IdEstadoUnidad == idEstado);
+            return result.Count();
+        }
+
         public async Task<bool> EliminarAsync(int id)
         {
             var entidadActual = await this._data.Unidad.GetById(id);
@@ -47,7 +53,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<IEnumerable<TUnidad>> ListarAsync()
         {
-            return await this._data.Unidad.GetAll();
+            return await this._data.Unidad.SelectIncludes(x => x.Borrado == false, x => x.IdTipoUnidadNavigation, x => x.IdEstadoUnidadNavigation);
         }
 
         public async Task<IEnumerable<TUnidad>> ListarCatalagoAsync(int tipoUnidad)

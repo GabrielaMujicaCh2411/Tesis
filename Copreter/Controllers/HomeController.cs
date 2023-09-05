@@ -4,16 +4,38 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static Copreter.Utils.Keys;
+using Copreter.Models.Home;
+using Copreter.Domain.Service.Contracts.Interfaces;
 
 namespace Copreter.Controllers
 {
     public class HomeController : Controller
     {
+        #region Fields
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnidadService _unidadService;
+
+        private readonly IObraService _obraService;
+
+        private readonly ITrabajadorService _trabajadorService;
+
+        private readonly ICotizacionService _cotizacionService;
+
+        private readonly IAccesoService _accesoService;
+
+
+        #endregion
+
+        public HomeController(ILogger<HomeController> logger, IUnidadService unidadService, IObraService obraService, ITrabajadorService trabajadorService, ICotizacionService cotizacionService, IAccesoService accesoService)
         {
-            _logger = logger;
+            this._logger = logger;
+            this._unidadService = unidadService;
+            this._obraService = obraService;
+            this._trabajadorService = trabajadorService;
+            this._cotizacionService = cotizacionService;
+            this._accesoService = accesoService;
         }
 
         public IActionResult Index()
@@ -31,9 +53,19 @@ namespace Copreter.Controllers
             return View();
         }
 
-		public IActionResult IndexAdmin()
+        public async Task<IActionResult> IndexAdmin()
 		{
-            return View();
+            var result = new HomeIndexVM
+            {
+                HerramientasEnMantenimiento = await this._unidadService.CountAsync(3),
+                HerramientasDisponibles = await this._unidadService.CountAsync(1),
+                TrabajadoresDisponibles = await this._trabajadorService.CountAsync(),
+                ObrasEnContruccion = await this._obraService.CountAsync(9),
+                ObrasTerminadas = await this._obraService.CountAsync(10),
+                NuevasCoticaciones = await this._cotizacionService.CountAsync(1),
+                UsuariosTotales = await this._accesoService.CountAsync(2)
+            };
+            return View(result);
         }
 
 		public async Task<IActionResult> LogOut()

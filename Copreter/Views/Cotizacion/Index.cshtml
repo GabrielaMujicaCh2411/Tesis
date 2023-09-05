@@ -117,7 +117,7 @@
             var param = {
                 id: parseInt(id)
             };
-            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Pedido)', JSON.stringify(param), function (data) {
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {
                 $.procesaRespuestaVistaParcial(data, $("#divPopupEliminarCotizacion"));
             }, function (XMLHttpRequest, textStatus, errorThrown) {
                 notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');

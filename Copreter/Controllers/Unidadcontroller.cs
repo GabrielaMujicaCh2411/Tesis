@@ -19,7 +19,6 @@ namespace Copreter.Controllers
         private readonly IEstadoUnidadService _estadoUnidadservice;
         private readonly ITipoUnidadService _tipoUnidadservice;
 
-
         #endregion
 
         public Unidadcontroller(IMapper mapper, IUnidadService service, IEstadoUnidadService estadoUnidadservice, ITipoUnidadService tipoUnidadservice) : base(mapper)
@@ -73,7 +72,7 @@ namespace Copreter.Controllers
                 return View(dto);
             }
 
-            dto.IdUsuarioRegistro = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            dto.IdUsuarioRegistro = this.UserId();
 
             var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
             if (usuarioExiste == null)
@@ -116,7 +115,7 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    dto.IdUsuarioModificacion = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                    dto.IdUsuarioModificacion = this.UserId();
 
                     var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TUnidad>(dto));
                     if (result)
@@ -163,7 +162,7 @@ namespace Copreter.Controllers
             var result = await this._service.ObtenerAsync(dto.Id);
             if (result != null)
             {
-                result.IdUsuarioModificacion = 1;
+                dto.IdUsuarioModificacion = this.UserId();
 
                 await this._service.EliminarAsync(dto.Id);
             }

@@ -10,8 +10,11 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TUsuario> ObtenerAsync(int id);
 
+        Task<TUsuario> ObtenerPorDniAsync(int dni);
+
         Task<bool> ActualizarAsync(int id, TUsuario entidad);
 
         Task<bool> EliminarAsync(int id, int idUsuario);
+
     }
 }

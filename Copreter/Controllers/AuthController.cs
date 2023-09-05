@@ -18,12 +18,15 @@ namespace Copreter.Controllers
 
         private readonly IAuthService _service;
 
+        private readonly IUsuarioService _usuarioservice;
+
         #endregion
 
-        public AuthController(ILogger<AuthController> logger, IAuthService service)
+        public AuthController(ILogger<AuthController> logger, IAuthService service, IUsuarioService usuarioservice)
         {
             this._logger = logger;
             this._service = service;
+            this._usuarioservice = usuarioservice;
         }
 
         [AllowAnonymous]
@@ -60,10 +63,12 @@ namespace Copreter.Controllers
                 return View();
             }
 
+            var user = await this._usuarioservice.ObtenerAsync(result.IdUsuario);
+
             var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.NameIdentifier, result.IdUsuario.ToString()),
                     new Claim(ClaimTypes.Role, result.IdRol.ToString()),
-                    new Claim(ClaimTypes.Name, "Pepito")
+                    new Claim(ClaimTypes.Name, $"{user.Nombre} {user.Apellido}")
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
             var properties = new AuthenticationProperties()

@@ -55,5 +55,10 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Usuario.GetById(id);
         }
+
+        public async Task<TUsuario> ObtenerPorDniAsync(int dni)
+        {
+            return await this._data.Usuario.FirstOrDefault(x=> x.Dni == dni);
+        }
     }
 }

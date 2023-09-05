@@ -30,7 +30,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-8">
 
                     <div class="card card-primary">
                         <div class="card-header">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="card-body">
                             <div id="contentPartial">
-                                  <div class="row">
+                                <div class="row">
                                     <div class="col-md-8">
                                         <form asp-action="Editar" asp-controller="Cliente" method="post">
                                             <div class="card-body">
@@ -115,15 +115,25 @@
                                             </div>
                                         </form>
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <p style="text-align:center">
-                                            <img src="~/images/@imagePath" width="350" height="350" alt="Product Image">
-                                        </p>
-                                    </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Previsualizacion de Imagen</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <p style="text-align:center">
+                                    <img src="~/images/@imagePath" width="350" height="350" alt="Product Image">
+                                </p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+ 
                     </div>
                 </div>
             </div>

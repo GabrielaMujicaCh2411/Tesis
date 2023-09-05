@@ -63,5 +63,10 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Obra.GetById(id);
         }
+
+        public async Task<int> CountAsync(int idEstado)
+        {
+            return await this._data.Obra.CountIncludes(x=> x.Borrado == false && x.IdEstadoObra == idEstado);
+        }
     }
 }
