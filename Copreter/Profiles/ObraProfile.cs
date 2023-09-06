@@ -3,6 +3,7 @@ using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Cotizacion;
 using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Models.Cotizacion;
 using Copreter.Models.Obra;
 
 namespace Copreter.Profiles
@@ -26,6 +27,16 @@ namespace Copreter.Profiles
 
 
             CreateMap<ObraxPartidumDto, TObraxPartida>().ReverseMap();
+
+            CreateMap<TObraxPartida, ObraPartidaDto>()
+                .ForMember(s => s.Partida, src => src.MapFrom(x => x.IdPartidaNavigation != null ? x.IdPartidaNavigation.Nombre : string.Empty))
+                .ReverseMap();
+
+            //CreateMap<TObraxPartida, CotizacionEditableVM>()
+            //    .ForMember(s => s.Empresa, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.Empresa : string.Empty))
+            //    .ForMember(s => s.Fecha, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.FechaInicio : DateTime.Now))
+            //    .ForMember(s => s.Direccion, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.Direccion : string.Empty))
+            //    .ReverseMap();
         }
     }
 }

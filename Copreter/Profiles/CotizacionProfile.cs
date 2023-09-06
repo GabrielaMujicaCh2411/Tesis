@@ -12,6 +12,7 @@ namespace Copreter.Profiles
         {
             CreateMap<TCotizacion, CotizacionDto>()
                 .ForMember(s => s.EstadoCotizacion, src => src.MapFrom(x => x.IdEstadoCotizacionNavigation != null ? x.IdEstadoCotizacionNavigation.Nombre : string.Empty))
+                .ForMember(s => s.Obra, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.NombreObra : string.Empty))
                 .ReverseMap();
 
             CreateMap<TEstadoCotizacion, ItemDto>()
@@ -21,12 +22,15 @@ namespace Copreter.Profiles
 
             CreateMap<CotizarDto, TCotizacion>()
                 .ForMember(s => s.IdObra, src => src.MapFrom(x => x.IdObra))
+                
                .ForMember(s => s.Total, src => src.MapFrom(x => x.Total))
                .ReverseMap();
 
-            CreateMap<TCotizacion, CotizacionEditableVM>().ReverseMap();
-
-
+            CreateMap<TCotizacion, CotizacionEditableVM>()
+                .ForMember(s => s.Obra, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.NombreObra : string.Empty))
+                .ForMember(s => s.Direccion, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.Direccion : string.Empty))
+                .ForMember(s => s.Empresa, src => src.MapFrom(x => x.IdObraNavigation != null ? x.IdObraNavigation.Empresa : string.Empty))
+                .ReverseMap();
         }
     }
 }

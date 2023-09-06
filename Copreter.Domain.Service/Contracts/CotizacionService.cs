@@ -42,7 +42,12 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<TCotizacion> ObtenerAsync(int id)
         {
-            return await this._data.Cotizacion.GetById(id);
+            return await this._data.Cotizacion.FirstOrDefault(x=> x.Id == id, x=> x.IdObraNavigation);
+        }
+
+        public async Task<TCotizacion> ObtenerPorIdObraAsync(int idObra)
+        {
+            return await this._data.Cotizacion.FirstOrDefault(x => x.IdObra == idObra);
         }
     }
 }

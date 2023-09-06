@@ -4,6 +4,7 @@ using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Cotizacion;
+using Copreter.Domain.Service.Dto.Obra;
 using Copreter.Domain.Service.Dto.Partida;
 using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Cotizacion;
@@ -107,14 +108,22 @@ namespace Copreter.Controllers
         {
             try
             {
-                var result = await this._service.ObtenerAsync(id);
-
-                return new ViewAsPdf("ListarPdf", this.Mapper.Map<CotizacionEditableVM>(result))
+                var resultService = await this._service.ObtenerAsync(id);
+                if(resultService != null)
                 {
-                    FileName = $"Cotizacion-{id}",
-                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-                    PageSize = Rotativa.AspNetCore.Options.Size.A4
-                };
+                    var resultPartidaXObra = await this._obraPartidaService.ListarPorIdObraAsync(resultService.IdObra);
+
+                    var result = this.Mapper.Map<CotizacionEditableVM>(resultService);
+                    result.ObraPartidaLista = this.Mapper.Map<IEnumerable<ObraPartidaDto>>(resultPartidaXObra);
+
+                    return new ViewAsPdf("CotizacionPdf", result)
+                    {
+                        FileName = $"Cotizacion-{id}.pdf",
+                        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                        PageSize = Rotativa.AspNetCore.Options.Size.A4
+                    };
+                }
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {

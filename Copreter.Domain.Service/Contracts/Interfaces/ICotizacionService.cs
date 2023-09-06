@@ -12,5 +12,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<TCotizacion> ObtenerAsync(int id);
 
         Task<int> CountAsync(int idEstado);
+
+        Task<TCotizacion> ObtenerPorIdObraAsync(int idObra);
     }
 }

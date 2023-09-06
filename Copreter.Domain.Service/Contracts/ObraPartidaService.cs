@@ -15,5 +15,10 @@ namespace Copreter.Domain.Service.Contracts
             await this._data.ObraPartida.AddRange(entidades);
             return true;
         }
+
+        public async Task<IEnumerable<TObraxPartida>> ListarPorIdObraAsync(int idObra)
+        {
+            return await this._data.ObraPartida.SelectIncludes(x=> x.IdObra == idObra, x=> x.IdObraNavigation, x=> x.IdPartidaNavigation);
+        }
     }
 }
