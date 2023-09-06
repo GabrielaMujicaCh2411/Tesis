@@ -35,9 +35,14 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
+            var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoObraService.ListarAsync());
+
             var result = new ObraIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService),
+                Filtro = new ObraFilterDto(),
+                EstadoLista = estadoLista.GetItems(),
+
             };
             return View(result);
         }
@@ -46,9 +51,13 @@ namespace Copreter.Controllers
         {
             var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
+            var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoObraService.ListarAsync());
+
             var result = new ObraIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<ObraDto>>(resultService),
+                Filtro = new ObraFilterDto(),
+                EstadoLista = estadoLista.GetItems(),
             };
             return PartialView(result);
         }
@@ -79,11 +88,11 @@ namespace Copreter.Controllers
 
                 if (dto.Foto != null)
                 {
-                    //string ficherosImagenes = Path.Combine(hosting.WebRootPath, "images");
-                    //var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
-                    //string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
-                    //dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
-                    //dto.Imagen = guidImage;
+                    string ficherosImagenes = Path.Combine("C:\\Temp\\Copreter", "images");
+                    var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
+                    string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
+                    dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
+                    dto.Imagen = guidImage;
                 }
 
                 dto.IdUsuario = this.UserId();
@@ -91,7 +100,7 @@ namespace Copreter.Controllers
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TObra>(dto));
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index), new { id = dto.IdUsuario });
+                    return RedirectToAction(nameof(Index), new { userId = dto.IdUsuario });
                 }
                 return View(dto);
             }

@@ -1,5 +1,5 @@
 ﻿using Copreter.Domain.Service.Dto.Obra;
-using Copreter.Domain.Service.Dto.Pedido;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Copreter.Models.Obra
 {
@@ -8,8 +8,15 @@ namespace Copreter.Models.Obra
         public ObraIndexVM()
         {
             this.DtoList = new List<ObraDto>();
+
+            this.Filtro = new ObraFilterDto();
+            this.EstadoLista = new List<SelectListItem>();
         }
 
         public IEnumerable<ObraDto> DtoList { get; set; }
+
+        public ObraFilterDto Filtro { get; set; }
+
+        public List<SelectListItem> EstadoLista { get; set; }
     }
 }

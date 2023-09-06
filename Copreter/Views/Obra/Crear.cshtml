@@ -67,8 +67,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>@Resource.OBRA_Plano</label>
-                                            <input class="form class custom-file-input" id="imagen" asp-for="Foto">
-                                            <span asp-validation-for="Foto" class="text-danger"> </span>
+                                            <div class="custom-file">
+                                                @*custom-file-input*@
+                                                <input class="form class" id="imagen" asp-for="Foto">
+                                                <span asp-validation-for="Foto" class="text-danger"> </span>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -89,7 +92,7 @@
 </div>
 
 @section Scripts
- {
+    {
     <script>
         $(document).ready(function () {
             $('.custom-file-input').on("change", function () {

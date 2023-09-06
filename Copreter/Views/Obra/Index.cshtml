@@ -44,16 +44,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">@Resource.OBRA_Estado</label>
-                                           @*     <input asp-for="Filtro.Registro" class="form-control" />
-                                                <span asp-validation-for="Filtro.Registro" class="text-danger"></span>*@
+                                                <select asp-for="Filtro.IdEstado" class="form-control" asp-items="Model.EstadoLista"></select>
+                                                <span asp-validation-for="Filtro.IdEstado" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                           @*     <label class="control-label">@Resource.CLIENTE_Rol</label>
-                                                <select asp-for="Filtro.IdRol" class="form-control" asp-items="Model.RolLista"></select>
-                                                <span asp-validation-for="Filtro.IdRol" class="text-danger"></span>*@
+
                                             </div>
                                         </div>
                                         <!-- /.col -->
@@ -113,6 +111,19 @@
 
 @section Scripts{
     <script type="text/javascript">
+
+        
+        function Filtrar(page) {
+            $.get("@Url.Action(Keys.PartialViewKeys.Index)", {
+                page: page,
+                idEstado: $('#Filtro_IdEstado').val(),
+            }, function (data) {
+                $("#contentPartial").html(data);
+            }).always(function () {
+                //$("#overlay").addClass("hidden");
+            });
+        }
+
         function eliminar(id) {
             var param = {
                 id: parseInt(id)

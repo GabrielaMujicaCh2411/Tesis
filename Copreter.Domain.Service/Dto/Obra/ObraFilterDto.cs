@@ -4,6 +4,6 @@
     {
         public int? IdUsuario { get; set; }
 
-        public int? Estado { get; set; }
+        public int? IdEstado { get; set; }
     }
 }
