@@ -8,7 +8,11 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TAcceso> Acceso { get; }
 
+        IRepository<TEstadoCotizacion> EstadoCotizacion { get; }
+
         IRepository<TEstadoObra> EstadoObra { get; }
+
+        IRepository<TEstadoPedido> EstadoPedido { get; }
 
         IRepository<TEstadoTrabajador> EstadoTrabajador {get;}
 

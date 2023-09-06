@@ -60,6 +60,21 @@
                                             <span asp-validation-for="Apellido" class="text-danger"> </span>
                                         </div>
                                         <div class="form-group">
+                                            <label>@Resource.USUARIO_Celular</label>
+                                            <input type="text" class="form-control" placeholder="Modelo" asp-for="Celular">
+                                            <span asp-validation-for="Celular" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.USUARIO_Direccion</label>
+                                            <input type="text" class="form-control" placeholder="Modelo" asp-for="Direccion">
+                                            <span asp-validation-for="Direccion" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@Resource.USUARIO_Email</label>
+                                            <input type="text" class="form-control" placeholder="Marca" asp-for="Email" readonly="@(true)">
+                                            <span asp-validation-for="Email" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
                                             <label>@Resource.USUARIO_Rol</label>
                                             <select asp-for="IdRol" class="form-control" asp-items="Model.RolLista"></select>
                                             <span asp-validation-for="IdRol" class="text-danger"> </span>

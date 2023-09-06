@@ -1,5 +1,4 @@
 ﻿using Copreter.Domain.Service.Dto.Trabajador;
-using Copreter.Domain.Service.Dto.Unidad;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Copreter.Models.Trabajador

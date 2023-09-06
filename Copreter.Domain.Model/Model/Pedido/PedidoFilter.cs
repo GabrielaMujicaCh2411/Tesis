@@ -2,8 +2,8 @@
 {
     public class PedidoFilter
     {
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
 
-        public int IdEstado { get; set; }
+        public int? IdEstado { get; set; }
     }
 }

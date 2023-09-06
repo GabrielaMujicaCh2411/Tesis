@@ -44,16 +44,16 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">@Resource.USUARIO_Dni</label>
-                                           @*     <input asp-for="Filtro.Registro" class="form-control" />
-                                                <span asp-validation-for="Filtro.Registro" class="text-danger"></span>*@
+                                                <input asp-for="Filtro.Dni" class="form-control" />
+                                                <span asp-validation-for="Filtro.Dni" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                           @*     <label class="control-label">@Resource.CLIENTE_Rol</label>
-                                                <select asp-for="Filtro.IdRol" class="form-control" asp-items="Model.RolLista"></select>
-                                                <span asp-validation-for="Filtro.IdRol" class="text-danger"></span>*@
+                                                <label class="control-label">@Resource.USUARIO_Apellido</label>
+                                                <input asp-for="Filtro.Apellido" class="form-control" />
+                                                <span asp-validation-for="Filtro.Apellido" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <!-- /.col -->
@@ -62,15 +62,12 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                      
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-4">
-                                        
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-2">
-                                    
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-primary" style="float: right;" onclick="Filtrar();">
@@ -83,7 +80,6 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
-
                                 <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->
@@ -111,6 +107,20 @@
 
 @section Scripts{
     <script type="text/javascript">
+
+        function Filtrar(page) {
+            $.get("@Url.Action(Keys.PartialViewKeys.Index)", {
+                page: page,
+                dni: $('#Filtro_Dni').val(),
+                apellido: $('#Filtro_Apellido').val(),
+            }, function (data) {
+                $("#contentPartial").html(data);
+            }).always(function () {
+                //$("#overlay").addClass("hidden");
+            });
+        }
+
+
         function eliminar(id) {
             var param = {
                 id: parseInt(id)

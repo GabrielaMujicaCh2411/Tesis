@@ -1,6 +1,7 @@
 ﻿@using Copreter.Resources;
 @using Copreter.Utils;
 @model Copreter.Models.Cotizacion.CotizacionIndexVM;
+@using System.Security.Claims;
 
 @{
     ViewData["Title"] = "Index";
@@ -44,16 +45,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">@Resource.COTIZACION_Estado</label>
-                                           @*     <input asp-for="Filtro.Registro" class="form-control" />
-                                                <span asp-validation-for="Filtro.Registro" class="text-danger"></span>*@
+                                                <select asp-for="Filtro.IdEstado" class="form-control" asp-items="Model.EstadoLista"></select>
+                                                <span asp-validation-for="Filtro.IdEstado" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                           @*     <label class="control-label">@Resource.CLIENTE_Rol</label>
-                                                <select asp-for="Filtro.IdRol" class="form-control" asp-items="Model.RolLista"></select>
-                                                <span asp-validation-for="Filtro.IdRol" class="text-danger"></span>*@
                                             </div>
                                         </div>
                                         <!-- /.col -->
@@ -62,17 +60,24 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <a type="button" class="btn btn-primary" asp-action="Crear">
-                                                <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Crear
-                                            </a>
+
+                                            @{
+                                                int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+
+                                                if (rolId == 2)
+                                                {
+                                                    <a type="button" class="btn btn-primary" asp-action="Crear">
+                                                        <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Crear
+                                                    </a>
+                                                }
+                                            }
+                                          
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-4">
-                                        
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-2">
-                                    
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-primary" style="float: right;" onclick="Filtrar();">
@@ -85,7 +90,6 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
-
                                 <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->
@@ -113,6 +117,18 @@
 
 @section Scripts{
     <script type="text/javascript">
+
+        function Filtrar(page) {
+            $.get("@Url.Action(Keys.PartialViewKeys.Index)", {
+                page: page,
+                idEstado: $('#Filtro_IdEstado').val(),
+            }, function (data) {
+                $("#contentPartial").html(data);
+            }).always(function () {
+                //$("#overlay").addClass("hidden");
+            });
+        }
+
         function eliminar(id) {
             var param = {
                 id: parseInt(id)

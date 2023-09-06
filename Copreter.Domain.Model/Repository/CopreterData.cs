@@ -11,7 +11,11 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TCotizacion> _cotizacion;
 
+        private readonly IRepository<TEstadoCotizacion> _estadoCotizacion;
+
         private readonly IRepository<TEstadoObra> _estadoObra;
+
+        private readonly IRepository<TEstadoPedido> _estadoPedido;
 
         private readonly IRepository<TEstadoTrabajador> _estadoTrabajador;
 
@@ -43,9 +47,11 @@ namespace Copreter.Domain.Model.Repository
 
         public CopreterData(
             IRepository<TCita> cita,
-             IRepository<TAcceso> acceso,
+            IRepository<TAcceso> acceso,
             IRepository<TCotizacion> cotizacion,
+            IRepository<TEstadoCotizacion> estadoCotizacion,
             IRepository<TEstadoObra> estadoObra,
+            IRepository<TEstadoPedido> estadoPedido,
             IRepository<TEstadoTrabajador> estadoTrabajador,
             IRepository<TEstadoUnidad> estadoUnidad,
             IRepository<TFactura> factura,
@@ -64,6 +70,8 @@ namespace Copreter.Domain.Model.Repository
             this._cita = cita;
             this._acceso = acceso;
             this._cotizacion = cotizacion;
+            this._estadoCotizacion = estadoCotizacion;
+            this._estadoPedido = estadoPedido;
             this._estadoObra = estadoObra;
             this._estadoTrabajador = estadoTrabajador;
             this._estadoUnidad = estadoUnidad;
@@ -87,7 +95,11 @@ namespace Copreter.Domain.Model.Repository
 
         public IRepository<TCotizacion> Cotizacion => this._cotizacion;
 
+        public IRepository<TEstadoCotizacion> EstadoCotizacion => this._estadoCotizacion;
+
         public IRepository<TEstadoObra> EstadoObra => this._estadoObra;
+
+        public IRepository<TEstadoPedido> EstadoPedido => this._estadoPedido;
 
         public IRepository<TEstadoTrabajador> EstadoTrabajador => this._estadoTrabajador;
 
@@ -116,5 +128,7 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TUnidad> Unidad => this._unidad;
 
         public IRepository<TUsuario> Usuario => this._usuario;
+
+     
     }
 }

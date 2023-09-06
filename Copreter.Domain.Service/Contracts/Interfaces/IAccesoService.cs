@@ -1,10 +1,11 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Acceso;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IAccesoService
     {
-        Task<IEnumerable<TAcceso>> ListarAsync();
+        Task<IEnumerable<TAcceso>> ListarAsync(AccesoFilter model);
 
         Task<TAcceso> ObtenerAsync(int id);
 

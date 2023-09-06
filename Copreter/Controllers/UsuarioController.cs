@@ -6,6 +6,10 @@ using static Copreter.Utils.Keys;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Usuario;
 using Copreter.Models.Usuario;
+using Copreter.Domain.Service.Dto.Trabajador;
+using Copreter.Domain.Model.Model.Usuario;
+using Microsoft.JSInterop.Infrastructure;
+using System.Net;
 
 namespace Copreter.Controllers
 {
@@ -29,24 +33,26 @@ namespace Copreter.Controllers
             this._accesoService = accesoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? dni, string? apellido)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new UsuarioFilter() { Dni = dni, Apellido = apellido });
 
             var result = new UsuarioIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService),
+                Filtro = new UsuarioFilterDto(),
             };
             return View(result);
         }
 
-        public async Task<IActionResult> _Index()
+        public async Task<IActionResult> _Index(string? dni, string? apellido)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new UsuarioFilter() { Dni = dni, Apellido = apellido });
 
             var result = new UsuarioIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<UsuarioDto>>(resultService),
+                Filtro = new UsuarioFilterDto(),
             };
             return PartialView(result);
         }

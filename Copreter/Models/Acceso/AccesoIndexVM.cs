@@ -7,8 +7,12 @@ namespace Copreter.Models.Acceso
         public AccesoIndexVM()
         {
             this.DtoList = new List<AccesoDto>();
+
+            this.Filtro = new AccesoFilterDto();
         }
 
         public IEnumerable<AccesoDto> DtoList { get; set; }
+
+        public AccesoFilterDto Filtro { get; set; } 
     }
 }

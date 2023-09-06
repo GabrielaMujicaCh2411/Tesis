@@ -7,7 +7,6 @@ using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Trabajador;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using static Copreter.Utils.Keys;
 
 namespace Copreter.Controllers
@@ -15,6 +14,8 @@ namespace Copreter.Controllers
     public class Trabajadorcontroller : BaseController
     {
         #region Fields
+
+        private readonly ILogger<Trabajadorcontroller> _logger;
 
         private readonly ITrabajadorService _service;
 
@@ -24,8 +25,10 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Trabajadorcontroller(IMapper mapper, ITrabajadorService service, IEstadoTrabajadorService estadoTrabajadorService, ITipoTrabajadorService tipoTrabajadorService) : base(mapper)
+        public Trabajadorcontroller(IMapper mapper, ILogger<Trabajadorcontroller> logger,
+            ITrabajadorService service, IEstadoTrabajadorService estadoTrabajadorService, ITipoTrabajadorService tipoTrabajadorService) : base(mapper)
         {
+            this._logger = logger;
             this._service = service;
             this._estadoTrabajadorService = estadoTrabajadorService;
             this._tipoTrabajadorService = tipoTrabajadorService;
@@ -33,7 +36,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int? idTipo, int? idEstado)
         {
-            var resultService = await this._service.ListarAsync(new TrabajadorFilter() { IdEstado = idEstado, IdTipo = idTipo});
+            var resultService = await this._service.ListarAsync(new TrabajadorFilter() { IdEstado = idEstado, IdTipo = idTipo });
 
             var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoTrabajadorService.ListarAsync());
             var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoTrabajadorService.ListarAsync());
@@ -104,8 +107,9 @@ namespace Copreter.Controllers
                 }
                 return View(dto);
             }
-            catch
+            catch (Exception ex)
             {
+                this._logger.LogError(ex.Message);
                 return View();
             }
         }
@@ -162,11 +166,13 @@ namespace Copreter.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                 }
-                return View(dto);
+
+                return RedirectToAction(nameof(Editar), id);
             }
-            catch
+            catch (Exception ex)
             {
-                return View(dto);
+                this._logger.LogError(ex.Message);
+                return View(dto.Id);
             }
         }
 

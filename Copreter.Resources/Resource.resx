@@ -411,6 +411,9 @@
   <data name="USUARIO_Apellido" xml:space="preserve">
     <value>Apellido</value>
   </data>
+  <data name="USUARIO_Celular" xml:space="preserve">
+    <value>Celular</value>
+  </data>
   <data name="USUARIO_Direccion" xml:space="preserve">
     <value>Dirección</value>
   </data>

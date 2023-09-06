@@ -46,6 +46,10 @@
                         <span class="fa fa-pencil" aria-hidden="true"></span>
                     </a>
 
+                    <a type="button" class="btn btn-primary" asp-action="Detalle" asp-route-id="@item.Id">
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </a>
+
                     <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
                         <span class="fa-light fa-trash" aria-hidden="true"></span>
                     </button>

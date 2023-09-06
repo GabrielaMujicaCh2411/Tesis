@@ -2,7 +2,7 @@
 {
     public class PedidoFilterDto
     {
-        public int? IdEstadoPedido { get; set; }
+        public int? IdEstado{ get; set; }
         public int? IdUsuario { get; set; }
         public int? IdTrabajador { get; set; }
     }

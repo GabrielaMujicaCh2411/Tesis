@@ -1,10 +1,11 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Usuario;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<IEnumerable<TUsuario>> ListarAsync();
+        Task<IEnumerable<TUsuario>> ListarAsync(UsuarioFilter model);
 
         Task<TUsuario> AgregarAsync(TUsuario entidad);
 

@@ -686,6 +686,7 @@ namespace Copreter.Domain.Model.DbModel
                 entity.HasOne(d => d.IdEstadoPedidoNavigation)
                     .WithMany(p => p.TPedido)
                     .HasForeignKey(d => d.IdEstadoPedido)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Pedido_T_EstadoPedido");
 
                 entity.HasOne(d => d.IdTrabajadorNavigation)
@@ -701,6 +702,7 @@ namespace Copreter.Domain.Model.DbModel
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.TPedido)
                     .HasForeignKey(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Pedido_T_Usuario1");
             });
 

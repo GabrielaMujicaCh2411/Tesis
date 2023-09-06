@@ -943,6 +943,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Celular.
+        /// </summary>
+        public static string USUARIO_Celular {
+            get {
+                return ResourceManager.GetString("USUARIO_Celular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dirección.
         /// </summary>
         public static string USUARIO_Direccion {

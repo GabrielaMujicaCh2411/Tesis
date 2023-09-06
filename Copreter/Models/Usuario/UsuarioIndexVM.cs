@@ -7,8 +7,12 @@ namespace Copreter.Models.Usuario
         public UsuarioIndexVM()
         {
             this.DtoList = new List<UsuarioDto>();
+
+            this.Filtro = new UsuarioFilterDto();
         }
 
         public IEnumerable<UsuarioDto> DtoList { get; set; }
+
+        public UsuarioFilterDto Filtro { get; set; }
     }
 }

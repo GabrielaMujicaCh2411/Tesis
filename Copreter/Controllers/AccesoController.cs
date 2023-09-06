@@ -8,6 +8,8 @@ using Copreter.Models.Acceso;
 using Copreter.Domain.Service.Dto.Acceso;
 using Copreter.Domain.Service.Dto.Usuario;
 using static Copreter.Utils.Keys;
+using Copreter.Domain.Service.Dto.Trabajador;
+using Copreter.Domain.Model.Model.Acceso;
 
 namespace Copreter.Controllers
 {
@@ -34,24 +36,26 @@ namespace Copreter.Controllers
             this._usuarioService = usuarioService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? dni, string? apellido)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new AccesoFilter() { Dni = dni, Apellido = apellido});
 
             var result = new AccesoIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<AccesoDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<AccesoDto>>(resultService),
+                Filtro = new AccesoFilterDto(),
             };
             return View(result);
         }
 
-        public async Task<IActionResult> _Index()
+        public async Task<IActionResult> _Index(int? dni, string? apellido)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new AccesoFilter() { Dni = dni, Apellido = apellido });
 
             var result = new AccesoIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<AccesoDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<AccesoDto>>(resultService),
+                Filtro = new AccesoFilterDto(),
             };
             return PartialView(result);
         }
@@ -93,6 +97,21 @@ namespace Copreter.Controllers
             }
         }
 
+
+        public async Task<IActionResult> Detalle(int id)
+        {
+            if (id == 0) return RedirectToAction(nameof(Index));
+
+            var resultService = await this._service.ObtenerAsync(id);
+
+            var rolLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._rolService.ListarAsync());
+
+            var result = this.Mapper.Map<AccesoEditableVM>(resultService);
+            result.RolLista = rolLista.GetItems();
+
+            return View(result);
+        }
+
         public async Task<IActionResult> Editar(int id)
         {
             if (id == 0) return RedirectToAction(nameof(Index));
@@ -120,6 +139,7 @@ namespace Copreter.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    dto.IdUsuarioModificacion = this.UserId();
                     var resultUser = await this._usuarioService.ActualizarAsync(id, this.Mapper.Map<TUsuario>(dto));
                     if (resultUser)
                     {
@@ -127,11 +147,13 @@ namespace Copreter.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                 }
-                return View(dto);
+
+                return RedirectToAction(nameof(Editar), id);
             }
-            catch
+          catch (Exception ex)
             {
-                return View(dto);
+                this._logger.LogError(ex.Message);
+                return View();
             }
         }
 

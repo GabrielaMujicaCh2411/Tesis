@@ -1,6 +1,8 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Acceso;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -17,7 +19,7 @@ namespace Copreter.Domain.Service.Contracts
 
             entidadActual.IdRol = entidad.IdRol;
 
-            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.IdUsuarioModificacion = entidad.IdUsuarioModificacion;
             entidadActual.FechaModificacion = DateTime.Now;
 
             var result = await this._data.Acceso.Update(entidadActual);
@@ -37,7 +39,7 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Acceso.GetById(id);
             if (entidadActual == null) return false;
 
-            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.IdUsuarioModificacion = 1;
             entidadActual.FechaModificacion = DateTime.Now;
             entidadActual.Borrado = true;
 
@@ -45,20 +47,33 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<IEnumerable<TAcceso>> ListarAsync()
+        public async Task<IEnumerable<TAcceso>> ListarAsync(AccesoFilter model)
         {
+            var predicates = new List<Expression<Func<TAcceso, bool>>>();
+
+            if (model.Dni.HasValue && model.Dni != 0)
+            {
+                predicates.Add(x => x.IdUsuarioNavigation.Dni.Equals(model.Dni));
+            }
+
+            if (!string.IsNullOrEmpty(model.Apellido))
+            {
+                predicates.Add(x => x.IdUsuarioNavigation.Apellido.ToUpper().Equals(model.Apellido.ToUpper()));
+            }
+
+            predicates.Add(x => x.Borrado == false);
+
             return await this._data.Acceso.SelectIncludes(x => x.Borrado == false, x => x.IdRolNavigation, x => x.IdUsuarioNavigation);
         }
 
         public async Task<TAcceso> ObtenerAsync(int id)
         {
-            return await this._data.Acceso.GetById(id);
+            return await this._data.Acceso.FirstOrDefault(x=> x.Id == id, x=> x.IdUsuarioNavigation, x=> x.IdRolNavigation);
         }
-
 
         public async Task<int> CountAsync(int idRol)
         {
-            return await this._data.Acceso.CountIncludes(x => x.Borrado == false &&  x.IdRol == idRol);
+            return await this._data.Acceso.CountIncludes(x => x.Borrado == false && x.IdRol == idRol);
         }
     }
 }

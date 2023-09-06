@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Pedido;
 
 namespace Copreter.Profiles
@@ -11,6 +12,11 @@ namespace Copreter.Profiles
             CreateMap<TPedido, PedidoDto>()
              .ForMember(s => s.EstadoPedido, src => src.MapFrom(x => x.IdEstadoPedidoNavigation != null ? x.IdEstadoPedidoNavigation.Nombre : string.Empty))
              .ReverseMap();
+
+            CreateMap<TEstadoPedido, ItemDto>()
+               .ForMember(s => s.Id, src => src.MapFrom(x => x.Id))
+               .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))
+               .ReverseMap();
         }
     }
 }

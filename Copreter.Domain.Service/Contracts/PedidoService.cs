@@ -55,11 +55,11 @@ namespace Copreter.Domain.Service.Contracts
         {
             var predicates = new List<Expression<Func<TPedido, bool>>>();
 
-            if (model.IdUsuario != -1)
+            if (model.IdUsuario.HasValue && model.IdUsuario != -1)
             {
                 predicates.Add(x => x.IdUsuario == model.IdUsuario);
             }
-            if (model.IdEstado != 0 && model.IdEstado != -1)
+            if (model.IdEstado.HasValue && model.IdEstado != -1)
             {
                 predicates.Add(x => x.IdEstadoPedido == model.IdEstado);
             }

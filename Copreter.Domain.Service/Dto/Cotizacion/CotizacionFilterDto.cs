@@ -1,8 +1,8 @@
 ﻿namespace Copreter.Domain.Service.Dto.Cotizacion
 {
-    internal class CotizacionFilterDto
+    public class CotizacionFilterDto
     {
         public int IdObra { get; set; }
-        public int IdEstadoCotizacion { get; set; }
+        public int IdEstado { get; set; }
     }
 }

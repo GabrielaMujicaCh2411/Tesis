@@ -1,5 +1,5 @@
 ﻿using Copreter.Domain.Service.Dto.Cotizacion;
-using Copreter.Domain.Service.Dto.Pedido;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Copreter.Models.Cotizacion
 {
@@ -8,8 +8,15 @@ namespace Copreter.Models.Cotizacion
         public CotizacionIndexVM()
         {
             this.DtoList = new List<CotizacionDto>();
+
+            this.Filtro = new CotizacionFilterDto();
+            this.EstadoLista = new List<SelectListItem>();
         }
 
         public IEnumerable<CotizacionDto> DtoList { get; set; }
+
+        public CotizacionFilterDto Filtro { get; set; }
+
+        public List<SelectListItem> EstadoLista { get; set; }
     }
 }

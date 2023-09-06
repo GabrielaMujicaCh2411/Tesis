@@ -1,0 +1,96 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Acceso.AccesoEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.USUARIO_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.USUARIO_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+
+                                <div class="card-body">
+
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="IdUsuarioRegistro" />
+                                    <input type="hidden" asp-for="FechaRegistro" />
+
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Dni</label>
+                                        <input type="text" class="form-control" placeholder="Serie" asp-for="Dni" readonly="@(true)">
+                                        <span asp-validation-for="Dni" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Nombre</label>
+                                        <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre" readonly="@(true)">
+                                        <span asp-validation-for="Nombre" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Apellido</label>
+                                        <input type="text" class="form-control" placeholder="Modelo" asp-for="Apellido" readonly="@(true)">
+                                        <span asp-validation-for="Apellido" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Celular</label>
+                                        <input type="text" class="form-control" placeholder="Modelo" asp-for="Celular" readonly="@(true)">
+                                        <span asp-validation-for="Celular" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Direccion</label>
+                                        <input type="text" class="form-control" placeholder="Modelo" asp-for="Direccion" readonly="@(true)">
+                                        <span asp-validation-for="Direccion" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Email</label>
+                                        <input type="text" class="form-control" placeholder="Marca" asp-for="Email" readonly="@(true)">
+                                        <span asp-validation-for="Email" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.USUARIO_Rol</label>
+                                        <select asp-for="IdRol" class="form-control" asp-items="Model.RolLista" readonly="@(true)"></select>
+                                        <span asp-validation-for="IdRol" class="text-danger"> </span>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <a asp-action="Index" class="btn btn-primary">@Resource.BTN_Volver</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

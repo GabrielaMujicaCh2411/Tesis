@@ -1,6 +1,8 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.Usuario;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -10,9 +12,23 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<IEnumerable<TUsuario>> ListarAsync()
+        public async Task<IEnumerable<TUsuario>> ListarAsync(UsuarioFilter model)
         {
-            return await this._data.Usuario.SelectIncludes(x => x.Borrado == false);
+            var predicates = new List<Expression<Func<TUsuario, bool>>>();
+
+            if (!string.IsNullOrEmpty(model.Apellido))
+            {
+                predicates.Add(x => x.Apellido.ToUpper().Equals(model.Apellido.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(model.Dni))
+            {
+                predicates.Add(x => x.Dni.Equals(model.Dni));
+            }
+
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.Usuario.SelectPredicatesWithIncludes(predicates);
         }
 
         public async Task<bool> ActualizarAsync(int id, TUsuario entidad)
@@ -27,7 +43,6 @@ namespace Copreter.Domain.Service.Contracts
 
             entidadActual.IdUsuarioModificacion = entidad.IdUsuarioModificacion;
             entidadActual.FechaModificacion = DateTime.Now;
-
 
             var result = await this._data.Usuario.Update(entidadActual);
             return result == 1;
@@ -58,7 +73,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<TUsuario> ObtenerPorDniAsync(int dni)
         {
-            return await this._data.Usuario.FirstOrDefault(x=> x.Dni == dni);
+            return await this._data.Usuario.FirstOrDefault(x => x.Dni == dni);
         }
     }
 }
