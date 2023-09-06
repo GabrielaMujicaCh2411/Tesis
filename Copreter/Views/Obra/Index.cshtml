@@ -1,6 +1,7 @@
 ﻿@using Copreter.Resources;
 @using Copreter.Utils;
 @model Copreter.Models.Obra.ObraIndexVM;
+@using System.Security.Claims;
 
 @{
     ViewData["Title"] = "Index";
@@ -51,7 +52,6 @@
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-
                                             </div>
                                         </div>
                                         <!-- /.col -->
@@ -60,17 +60,21 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <a type="button" class="btn btn-primary" asp-action="Crear">
-                                                <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Crear
-                                            </a>
+                                            @{
+                                                int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+                                                if (rolId == 2)
+                                                {
+                                                    <a type="button" class="btn btn-primary" asp-action="Crear">
+                                                        <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Crear
+                                                    </a>
+                                                }
+                                            }
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-4">
-                                        
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-2">
-                                    
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-primary" style="float: right;" onclick="Filtrar();">
@@ -83,7 +87,6 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
-
                                 <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->
@@ -112,7 +115,7 @@
 @section Scripts{
     <script type="text/javascript">
 
-        
+
         function Filtrar(page) {
             $.get("@Url.Action(Keys.PartialViewKeys.Index)", {
                 page: page,

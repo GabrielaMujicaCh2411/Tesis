@@ -72,18 +72,24 @@ namespace Copreter.Controllers
                 return View(dto);
             }
 
+            if (dto.Foto != null)
+            {
+                string ficherosImagenes = Path.Combine("C:\\Temp\\Copreter", "images");
+                var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
+                string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
+                dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
+                dto.Imagen = guidImage;
+            }
+
             dto.IdUsuarioRegistro = this.UserId();
 
-            var usuarioExiste = await this._service.ObtenerAsync(dto.Id);
-            if (usuarioExiste == null)
+            var result = await this._service.AgregarAsync(this.Mapper.Map<TUnidad>(dto));
+            if (result)
             {
-                var result = await this._service.AgregarAsync(this.Mapper.Map<TUnidad>(dto));
-                if (result)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
+                return RedirectToAction(nameof(Index));
             }
-            return View(dto);
+
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Editar(int id)
@@ -187,7 +193,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> DetalleCatalago(int? id)
         {
-            if(id == null) return RedirectToAction(nameof(Index));
+            if (id == null) return RedirectToAction(nameof(Index));
 
             var result = await this._service.ObtenerAsync(id.Value);
 

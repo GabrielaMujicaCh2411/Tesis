@@ -128,9 +128,10 @@ namespace Copreter.Controllers
                 }
                 return View(dto);
             }
-            catch
+            catch (Exception ex)
             {
-                return View(dto);
+                this._logger.LogError(ex.Message);
+                return View();
             }
         }
 

@@ -8,8 +8,12 @@ namespace Copreter.Models.TipoPartida
         public TipoPartidaIndexVM()
         {
             this.DtoList = new List<TipoPartidaDto>();
+
+            this.Filtro = new TipoPartidaFiltroDto();
         }
 
         public IEnumerable<TipoPartidaDto> DtoList { get; set; }
+
+        public TipoPartidaFiltroDto Filtro { get; set; }
     }
 }

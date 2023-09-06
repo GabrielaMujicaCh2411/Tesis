@@ -187,6 +187,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cotizar.
+        /// </summary>
+        public static string COTIZACION_COTIZAR {
+            get {
+                return ResourceManager.GetString("COTIZACION_COTIZAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cotizar.
+        /// </summary>
+        public static string COTIZACION_COTIZAR_Titulo {
+            get {
+                return ResourceManager.GetString("COTIZACION_COTIZAR_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string COTIZACION_Estado {

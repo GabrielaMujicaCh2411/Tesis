@@ -1,6 +1,8 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Model.TipoPartida;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
 {
@@ -43,9 +45,18 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<IEnumerable<TTipoPartida>> ListarAsync()
+        public async Task<IEnumerable<TTipoPartida>> ListarAsync(TipoPartidaFilter model)
         {
-            return await this._data.TipoPartida.SelectIncludes(x => x.Borrado == false);
+            var predicates = new List<Expression<Func<TTipoPartida, bool>>>();
+
+            if (!string.IsNullOrEmpty(model.Nombre))
+            {
+                predicates.Add(x => x.Nombre.ToUpper().Equals(model.Nombre.ToUpper()));
+            }
+
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.TipoPartida.SelectPredicatesWithIncludes(predicates);
         }
 
         public async Task<TTipoPartida> ObtenerAsync(int id)

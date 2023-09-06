@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto;
+using Copreter.Domain.Service.Dto.Cotizacion;
 using Copreter.Domain.Service.Dto.Obra;
 using Copreter.Models.Obra;
 
@@ -22,6 +23,9 @@ namespace Copreter.Profiles
                .ForMember(s => s.Id, src => src.MapFrom(x => x.Id))
                .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))
                .ReverseMap();
+
+
+            CreateMap<ObraxPartidumDto, TObraxPartida>().ReverseMap();
         }
     }
 }

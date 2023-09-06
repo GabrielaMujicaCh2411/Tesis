@@ -2,13 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Model.DbModel;
 using AutoMapper;
-using Copreter.Domain.Service.Dto.Partida;
-using Copreter.Models.Partida;
 using Copreter.Models.TipoPartida;
 using Copreter.Domain.Service.Dto.TipoPartida;
-using Copreter.Domain.Service.Dto.Usuario;
 using Copreter.Domain.Service.Dto;
 using static Copreter.Utils.Keys;
+using Copreter.Domain.Model.Model.TipoPartida;
 
 namespace Copreter.Controllers
 {
@@ -28,24 +26,26 @@ namespace Copreter.Controllers
             this._service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? nombre)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new TipoPartidaFilter() { Nombre = nombre});
 
             var result = new TipoPartidaIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<TipoPartidaDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<TipoPartidaDto>>(resultService),
+                Filtro = new TipoPartidaFiltroDto()
             };
             return View(result);
         }
 
-        public async Task<IActionResult> _Index()
+        public async Task<IActionResult> _Index(string? nombre)
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new TipoPartidaFilter() { Nombre = nombre });
 
             var result = new TipoPartidaIndexVM
             {
-                DtoList = this.Mapper.Map<IEnumerable<TipoPartidaDto>>(resultService)
+                DtoList = this.Mapper.Map<IEnumerable<TipoPartidaDto>>(resultService),
+                Filtro = new TipoPartidaFiltroDto()
             };
             return PartialView(result);
         }
@@ -54,7 +54,7 @@ namespace Copreter.Controllers
         // GET: TipoPartida/Create
         public async Task<IActionResult> Crear()
         {
-            return View();
+            return View(new TipoPartidaEditableVM());
         }
 
         // POST: TipoPartida/Create

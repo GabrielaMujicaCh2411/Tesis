@@ -159,6 +159,12 @@
   <data name="CITA_Titulo" xml:space="preserve">
     <value>Cita</value>
   </data>
+  <data name="COTIZACION_COTIZAR" xml:space="preserve">
+    <value>Cotizar</value>
+  </data>
+  <data name="COTIZACION_COTIZAR_Titulo" xml:space="preserve">
+    <value>Cotizar</value>
+  </data>
   <data name="COTIZACION_Estado" xml:space="preserve">
     <value>Estado</value>
   </data>

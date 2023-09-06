@@ -105,7 +105,7 @@ namespace Copreter.Controllers
                 {
                     return RedirectToAction(nameof(Index));
                 }
-                return View(dto);
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {

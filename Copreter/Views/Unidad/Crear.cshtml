@@ -40,14 +40,14 @@
                             <div id="contentPartial">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <form asp-action="Crear" asp-controller="Cliente" method="post">
+                                        <form asp-action="Crear" asp-controller="Unidad" method="post">
                                             <div class="card-body">
-                                                <div class="form-group" style="display: none">
+                                                <div class="form-group">
                                                     <label>@Resource.UNIDAD_Serie</label>
-                                                    <input type="text" class="form-control" placeholder="Serie" asp-for="Serie" readonly="@(true)">
+                                                    <input type="text" class="form-control" placeholder="Serie" asp-for="Serie">
                                                     <span asp-validation-for="Serie" class="text-danger"> </span>
                                                 </div>
-                                                <div class="form-group" style="display: none">
+                                                <div class="form-group">
                                                     <label>@Resource.UNIDAD_Nombre</label>
                                                     <input type="text" class="form-control" placeholder="Nombre" asp-for="Nombre">
                                                     <span asp-validation-for="Nombre" class="text-danger"> </span>
@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>@Resource.UNIDAD_Imagen</label>
-                                                    <input class="form class custom-file-input" id="imagen" asp-for="Foto">
+                                                    <input class="form class" id="imagen" asp-for="Foto">
                                                     <span asp-validation-for="IdEstadoUnidad" class="text-danger"> </span>
                                                 </div>
                                             </div>

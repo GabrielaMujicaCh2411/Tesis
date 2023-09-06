@@ -1,0 +1,96 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Cotizacion.CotizarVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.COTIZACION_COTIZAR_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.COTIZACION_COTIZAR_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Sistema Drywall</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+
+                                @foreach (var partida in Model.DtoList.Where(x => x.IdTipoPartida == 1).ToList())
+                                {
+                                    <div class="row" style="padding:0 5px 5%">
+                                        <div class="col-6 col-sm-5">
+                                            @partida.Id . @partida.Nombre
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="unidadMedida" class="form-label">Unidad:</label>
+                                          @*  <select class="form-select form-control" id="@partida.Id-UnidadMedida" name="unidadMedida"
+                                                    aria-label="Default select example">
+                                                <option selected value="Gbl">gbl</option>
+                                                <option value="m2">m2</option>
+                                                <option value="und">un</option>
+                                                <option value="ml">ml</option>
+                                            </select>*@
+                                            <select id="@partida.Id-UnidadMedida" class="form-control" asp-items="Model.UnidadMedidaLista"></select>
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="metrado" class="form-label">Metrado:</label>
+                                            <input class="form-control" id="@partida.Id-Metrado" name="metrado"
+                                                   onblur="cambioParcial(@partida.Id)">
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="precioUnitario" class="form-label">P. Unitario:</label>
+                                            <input type="text" class="form-control" value="@partida.PrecioUnidad" id="@partida.Id-PrecioUnitario"
+                                                   name="precioUnitario" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="parcial" class="form-label">Parcial:</label>
+                                            <input class="form-control" id="@partida.Id-Parcial" value="0.00" name="parcial">
+                                        </div>
+                                        <div class="col-6 col-sm-1" style="display:flex">
+                                            <a class="btn btn-primary" id="idAgregarPartida"
+                                               onclick="addPartida(@partida.Id,'@partida.Nombre');" style="align-self:flex-end">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script>
+ 
+    </script>
+}

@@ -57,7 +57,12 @@ namespace Copreter.Controllers
         // GET: Partida/Create
         public async Task<IActionResult> Crear()
         {
-            return View();
+            var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoPartidaService.ListarAsync(new Domain.Model.Model.TipoPartida.TipoPartidaFilter()));
+
+            var result = new PartidaEditableVM();
+            result.TipoLista = tipoLista.GetItems();
+
+            return View(result);
         }
 
         // POST: Partida/Create
@@ -92,7 +97,7 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ObtenerAsync(id.Value);
 
-            var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoPartidaService.ListarAsync());
+            var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoPartidaService.ListarAsync(new Domain.Model.Model.TipoPartida.TipoPartidaFilter()));
 
             var result = this.Mapper.Map<PartidaEditableVM>(resultService);
             result.TipoLista = tipoLista.GetItems();
@@ -106,7 +111,7 @@ namespace Copreter.Controllers
             if (id == null) return RedirectToAction(nameof(Index));
 
             var resultService = await this._service.ObtenerAsync(id.Value);
-            var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoPartidaService.ListarAsync());
+            var tipoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoPartidaService.ListarAsync(new Domain.Model.Model.TipoPartida.TipoPartidaFilter()));
 
             var result = this.Mapper.Map<PartidaEditableVM>(resultService);
             result.TipoLista = tipoLista.GetItems();

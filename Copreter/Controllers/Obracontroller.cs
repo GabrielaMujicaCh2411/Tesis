@@ -124,5 +124,15 @@ namespace Copreter.Controllers
 
             return View(result);
         }
+
+        public async Task<IActionResult> ActualizarEstado(int? id, int idEstado)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var resultService = await this._service.ActualizarEstado(id.Value, (Domain.Model.Enums.EObraEstado)idEstado);
+
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
