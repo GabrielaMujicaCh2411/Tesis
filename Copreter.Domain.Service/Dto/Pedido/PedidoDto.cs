@@ -1,4 +1,6 @@
-﻿namespace Copreter.Domain.Service.Dto.Pedido
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Copreter.Domain.Service.Dto.Pedido
 {
     public class PedidoDto : BaseDto
     {
@@ -13,6 +15,11 @@
         public string? EstadoPedido { get; set; }
         public int? IdUsuario { get; set; }
         public int? IdTrabajador { get; set; }
-        public int? IdUnidad { get; set; }
+        public int IdUnidad { get; set; }
+
+        [Required]
+        public int Cantidad { get; set; }
+
+        public decimal? PrecioUnidad { get; set; }
     }
 }

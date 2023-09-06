@@ -22,12 +22,27 @@ namespace Copreter.Domain.Service.Contracts
 
             entidad.FechaModificacion = DateTime.Now;
 
-            var result = await this._data.Unidad.Update(entidad);
+            var result = await this._data.Unidad.Update(entidadActual);
+            return result > 0;
+        }
+
+        public async Task<bool> ActualizarCantidadAsync(int id, int cantidad)
+        {
+            var entidadActual = await this._data.Unidad.GetById(id);
+            if (entidadActual == null) return false;
+
+            var cantidadCalculada = entidadActual.CantidadDisponible - cantidad;
+
+            entidadActual.CantidadDisponible = cantidadCalculada;
+
+            var result = await this._data.Unidad.Update(entidadActual);
             return result > 0;
         }
 
         public async Task<bool> AgregarAsync(TUnidad entidad)
         {
+            entidad.CantidadDisponible = entidad.Cantidad;
+
             var result = await this._data.Unidad.Add(entidad);
             return result == 1;
         }

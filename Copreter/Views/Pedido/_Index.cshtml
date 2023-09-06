@@ -1,5 +1,6 @@
 ﻿@using Copreter.Resources;
 @model Copreter.Models.Pedido.PedidoIndexVM;
+@using System.Security.Claims;
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -42,24 +43,27 @@
                     @Html.DisplayFor(modelItem => item.EstadoPedido)
                 </td>
                 <td>
-                    @if (@item.IdEstadoPedido == 1)
-                    {
-                        <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id">
-                            <span class="fa fa-pencil" aria-hidden="true"></span>
-                        </a>
+                    @{
+                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
 
-                        <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id">
-                            <span class="fa fa-pencil" aria-hidden="true"></span>
-                        </a>
+                        if (@item.IdEstadoPedido == 1 && rolId == 1)
+                        {
+                            <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                            </a>
+
+                            <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                            </a>
+                        }
                     }
+                    @*                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
+                <span class="fa fa-pencil" aria-hidden="true"></span>
+                </a>*@
 
-@*                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
-                        <span class="fa fa-pencil" aria-hidden="true"></span>
-                    </a>*@
-
-               @*     <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
-                        <span class="fa-light fa-trash" aria-hidden="true"></span>
-                    </button>*@
+                    @*     <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                <span class="fa-light fa-trash" aria-hidden="true"></span>
+                </button>*@
                 </td>
             </tr>
         }

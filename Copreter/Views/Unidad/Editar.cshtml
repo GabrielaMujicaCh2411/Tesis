@@ -40,7 +40,7 @@
                             <div id="contentPartial">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <form asp-action="Editar" asp-controller="Cliente" method="post">
+                                        <form asp-action="Editar" asp-controller="Unidad" method="post">
                                             <div class="card-body">
 
                                                 <input type="hidden" asp-for="Id" />
@@ -110,7 +110,7 @@
                                             </div>
                                             <!-- /.card-body -->
                                             <div class="card-footer">
-                                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                <button type="submit" class="btn btn-primary">@Resource.BTN_Guardar</button>
                                                 <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
                                             </div>
                                         </form>

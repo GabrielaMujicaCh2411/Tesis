@@ -34,6 +34,6 @@ namespace Copreter.Domain.Service.Dto.Unidad
         public string? Imagen { get; set; }
         public IFormFile? Foto { get; set; }
 
-
+        public int? CantidadDisponible { get; set; }
     }
 }

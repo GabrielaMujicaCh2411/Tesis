@@ -45,7 +45,7 @@
                                         <div class="card mb-2 bg-gradient-dark">
                                             <img class="card-img-top" src="~/images/@imagePath" alt="Dist Photo 1" width="390" height="350">
                                             <div class="card-img-overlay d-flex flex-column justify-content-end">
-                                                <a asp-controller="Unidad" asp-action="DetalleCatalago" asp-route-id="@item.Id" class="card-title text-primary text-black">@item.Nombre , @item.Modelo </a>
+                                                <a asp-controller="Unidad" asp-action="DetalleCatalago" asp-route-id="@item.Id" class="card-title text-primary text-black">@item.Nombre , @item.Modelo (@item.CantidadDisponible) </a>
                                             </div>
                                         </div>
                                     </div>

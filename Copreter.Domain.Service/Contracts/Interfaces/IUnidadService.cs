@@ -14,6 +14,8 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<bool> ActualizarAsync(int id, TUnidad entidad);
 
+        Task<bool> ActualizarCantidadAsync(int id, int entidad);
+
         Task<bool> EliminarAsync(int id);
 
         Task<int> CountAsync(int idEstado);

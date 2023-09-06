@@ -6,6 +6,7 @@
     [Marca]            NVARCHAR (100) NOT NULL,
     [Precio]           DECIMAL (18)   NOT NULL,
     [Cantidad]         INT            NOT NULL,
+    [CantidadDisponible]         INT            NOT NULL DEFAULT 0,
     [Descripcion]      NVARCHAR (500) NOT NULL,
     [Caracteristica1]  NVARCHAR (500) NOT NULL,
     [Caracteristica2]  NVARCHAR (500) NULL,

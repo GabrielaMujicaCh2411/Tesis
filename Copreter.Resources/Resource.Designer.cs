@@ -610,11 +610,29 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Solicitar Alquiler.
+        /// </summary>
+        public static string PEDIDO_Alquilar_Titulo {
+            get {
+                return ResourceManager.GetString("PEDIDO_Alquilar_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asignar Pedido.
         /// </summary>
         public static string PEDIDO_Asignar_Titulo {
             get {
                 return ResourceManager.GetString("PEDIDO_Asignar_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cantidad de días.
+        /// </summary>
+        public static string PEDIDO_Cantidad_Dias {
+            get {
+                return ResourceManager.GetString("PEDIDO_Cantidad_Dias", resourceCulture);
             }
         }
         
@@ -660,6 +678,15 @@ namespace Copreter.Resources {
         public static string PEDIDO_Obra {
             get {
                 return ResourceManager.GetString("PEDIDO_Obra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precio.
+        /// </summary>
+        public static string PEDIDO_Precio {
+            get {
+                return ResourceManager.GetString("PEDIDO_Precio", resourceCulture);
             }
         }
         

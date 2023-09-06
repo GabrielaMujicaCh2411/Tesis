@@ -6,10 +6,7 @@ using static Copreter.Utils.Keys;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Usuario;
 using Copreter.Models.Usuario;
-using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Domain.Model.Model.Usuario;
-using Microsoft.JSInterop.Infrastructure;
-using System.Net;
 
 namespace Copreter.Controllers
 {

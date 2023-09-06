@@ -23,6 +23,7 @@ namespace Copreter.Domain.Model.DbModel
         public int IdUsuario { get; set; }
         public int? IdTrabajador { get; set; }
         public int? IdUnidad { get; set; }
+        public int Cantidad { get; set; }
         public bool Borrado { get; set; }
         public int IdUsuarioRegistro { get; set; }
         public DateTime FechaRegistro { get; set; }

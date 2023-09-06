@@ -195,7 +195,14 @@ namespace Copreter.Controllers
         {
             if (id == null) return RedirectToAction(nameof(Index));
 
-            var result = await this._service.ObtenerAsync(id.Value);
+            var resultService = await this._service.ObtenerAsync(id.Value);
+
+            var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
+            var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
+
+            var result = this.Mapper.Map<UnidadEditableVM>(resultService);
+            result.EstadoLista = estadoUnidadLista.GetItems();
+            result.TipoLista = tipoUnidadLista.GetItems();
 
             return View(Keys.ActionKeys.DetalleCatalago, result);
         }

@@ -1,0 +1,138 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Pedido.PedidoEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.PEDIDO_Alquilar_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">@Resource.PEDIDO_Titulo</li>
+                        <li class="breadcrumb-item active">@Resource.PEDIDO_Alquilar_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <form asp-action="Alquilar" asp-controller="Pedido" method="post">
+                                    <div class="card-body">
+
+                                        <input type="hidden" asp-for="IdUnidad" />
+                                    @*    style="display: none"*@
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Obra</label>
+                                            <input type="text" class="form-control" placeholder="Obra" asp-for="Obra">
+                                            <span asp-validation-for="Obra" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Empresa</label>
+                                            <input type="text" class="form-control" placeholder="Empresa" asp-for="Empresa">
+                                            <span asp-validation-for="Empresa" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Ubicacion</label>
+                                            <input type="text" class="form-control" placeholder="Ubicacion" asp-for="Ubicacion">
+                                            <span asp-validation-for="Ubicacion" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Fecha_Inicio</label>
+                                            <input type="date" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio">
+                                            <span asp-validation-for="FechaInicio" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Cantidad_Dias</label>
+                                            <input type="number" class="form-control" placeholder="Cantidad Dias" asp-for="CantidadDias">
+                                            <span asp-validation-for="CantidadDias" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input type="number" class="form-control" placeholder="Cantidad" asp-for="Cantidad">
+                                            <span asp-validation-for="Cantidad" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Precio Unidad</label>
+                                            <input type="text" class="form-control" placeholder="Precio Unidad" asp-for="PrecioUnidad" readonly="@(true)">
+                                            <span asp-validation-for="PrecioUnidad" class="text-danger"> </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>@Resource.PEDIDO_Precio Total</label>
+                                            <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioPedido" readonly="@(true)">
+                                            <span asp-validation-for="PrecioPedido" class="text-danger"> </span>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">@Resource.BTN_Aceptar</button>
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#CantidadDias").change(function (e) {
+                recalcular();
+            });
+
+            $("#Cantidad").change(function (e) {
+                recalcular();
+            });
+        });
+
+        function recalcular() {
+
+            var precioUnidad = parseInt(document.getElementById("PrecioUnidad").value);
+
+            var cantidad = parseInt(document.getElementById("Cantidad").value);
+
+            var cantidadDias = parseInt(document.getElementById("CantidadDias").value);
+
+            var precio = (precioUnidad * cantidad) * cantidadDias;
+
+            document.getElementById("PrecioPedido").value = precio;
+        };
+    </script>
+}

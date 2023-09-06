@@ -300,8 +300,14 @@
   <data name="PARTIDA_Titulo" xml:space="preserve">
     <value>Partida</value>
   </data>
+  <data name="PEDIDO_Alquilar_Titulo" xml:space="preserve">
+    <value>Solicitar Alquiler</value>
+  </data>
   <data name="PEDIDO_Asignar_Titulo" xml:space="preserve">
     <value>Asignar Pedido</value>
+  </data>
+  <data name="PEDIDO_Cantidad_Dias" xml:space="preserve">
+    <value>Cantidad de días</value>
   </data>
   <data name="PEDIDO_Empresa" xml:space="preserve">
     <value>Empresa</value>
@@ -317,6 +323,9 @@
   </data>
   <data name="PEDIDO_Obra" xml:space="preserve">
     <value>Obra</value>
+  </data>
+  <data name="PEDIDO_Precio" xml:space="preserve">
+    <value>Precio</value>
   </data>
   <data name="PEDIDO_Titulo" xml:space="preserve">
     <value>Pedido</value>

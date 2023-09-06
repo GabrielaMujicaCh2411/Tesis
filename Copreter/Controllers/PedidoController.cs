@@ -3,7 +3,6 @@ using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Pedido;
-using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Pedido;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -14,18 +13,26 @@ namespace Copreter.Controllers
     {
         #region Fields
 
+        private readonly ILogger<PedidoController> _logger;
+
         private readonly IPedidoService _service;
+
         private readonly ITrabajadorService _trabajadorService;
 
         private readonly IEstadoPedidoService _estadoPedidoService;
 
+        private readonly IUnidadService _unidadService;
+
         #endregion
 
-        public PedidoController(IMapper mapper, IPedidoService service, ITrabajadorService trabajadorService, IEstadoPedidoService estadoPedidoService) : base(mapper)
+        public PedidoController(IMapper mapper, ILogger<PedidoController> logger, IPedidoService service, 
+            ITrabajadorService trabajadorService, IEstadoPedidoService estadoPedidoService, IUnidadService unidadService) : base(mapper)
         {
+            this._logger = logger;
             this._service = service;
             this._trabajadorService = trabajadorService;
             this._estadoPedidoService = estadoPedidoService;
+            this._unidadService = unidadService;
         }
 
         public async Task<IActionResult> Index(int? userId, int? idEstado)
@@ -116,6 +123,64 @@ namespace Copreter.Controllers
             }
 
             return BadRequest();
+        }
+
+        public async Task<IActionResult> Alquilar(int idUnidad)
+        {
+            var resultService = await this._unidadService.ObtenerAsync(idUnidad);
+            if (resultService == null) return RedirectToAction(nameof(Index));
+
+            var result = new PedidoEditableVM
+            {
+                FechaInicio = DateTime.Now,
+                PrecioUnidad = resultService.Precio,
+                IdUnidad = idUnidad,
+                Cantidad = 1,
+                CantidadDias = 1,
+                PrecioPedido = 1 * resultService.Precio,
+            };
+
+            return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Alquilar([Bind()] PedidoDto dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+
+                var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
+                if(resultServiceUnidad != null)
+                {
+                    if(resultServiceUnidad.CantidadDisponible < dto.Cantidad)
+                    {
+                        ModelState.AddModelError("", "Cantidad insuficientes de unidades");
+                    }
+            
+                    dto.IdUsuario = this.UserId();
+                    dto.IdUsuarioRegistro = this.UserId();
+                    dto.IdEstadoPedido = 1;
+
+                    var result = await this._service.AgregarAsync(this.Mapper.Map<TPedido>(dto));
+                    if (result)
+                    {
+                        var resultUnidad = await this._unidadService.ActualizarCantidadAsync(dto.IdUnidad, dto.Cantidad);
+                        return RedirectToAction(nameof(Index), new { userId = this.UserId() });
+                    }
+                }
+
+                return RedirectToAction(nameof(Index), new { userId = this.UserId() });
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
         }
     }
 }
