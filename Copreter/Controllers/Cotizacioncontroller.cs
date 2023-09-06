@@ -9,6 +9,7 @@ using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Cotizacion;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
 
 namespace Copreter.Controllers
 {
@@ -101,6 +102,27 @@ namespace Copreter.Controllers
             }
         }
 
+
+        public async Task<IActionResult> CotizacionPdf(int id)
+        {
+            try
+            {
+                var result = await this._service.ObtenerAsync(id);
+
+                return new ViewAsPdf("ListarPdf", this.Mapper.Map<CotizacionEditableVM>(result))
+                {
+                    FileName = $"Cotizacion-{id}",
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                    PageSize = Rotativa.AspNetCore.Options.Size.A4
+                };
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
+        
+        }
 
     }
 }

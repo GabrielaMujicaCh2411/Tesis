@@ -2,6 +2,7 @@
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Cotizacion;
+using Copreter.Models.Cotizacion;
 
 namespace Copreter.Profiles
 {
@@ -22,6 +23,9 @@ namespace Copreter.Profiles
                 .ForMember(s => s.IdObra, src => src.MapFrom(x => x.IdObra))
                .ForMember(s => s.Total, src => src.MapFrom(x => x.Total))
                .ReverseMap();
+
+            CreateMap<TCotizacion, CotizacionEditableVM>().ReverseMap();
+
 
         }
     }
