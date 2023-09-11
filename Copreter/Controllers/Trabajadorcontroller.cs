@@ -6,11 +6,13 @@ using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Trabajador;
 using Copreter.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Copreter.Utils.Keys;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class Trabajadorcontroller : BaseController
     {
         #region Fields

@@ -7,9 +7,11 @@ using Copreter.Domain.Service.Dto.TipoPartida;
 using Copreter.Domain.Service.Dto;
 using static Copreter.Utils.Keys;
 using Copreter.Domain.Model.Model.TipoPartida;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class TipoPartidacontroller : BaseController
     {
         #region Fields

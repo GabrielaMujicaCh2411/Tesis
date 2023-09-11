@@ -9,11 +9,13 @@ using Copreter.Domain.Service.Dto.Partida;
 using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Cotizacion;
 using Copreter.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class Cotizacioncontroller : BaseController
     {
         #region Fields
@@ -28,16 +30,19 @@ namespace Copreter.Controllers
 
         private readonly IObraPartidaService _obraPartidaService;
 
+        private readonly IObraService _obraService;
+
         #endregion
 
         public Cotizacioncontroller(IMapper mapper, ILogger<Cotizacioncontroller> logger,
-            ICotizacionService service, IEstadoCotizacionService estadoCotizacionService, IPartidaService partidaService, IObraPartidaService obraPartidaService) : base(mapper)
+            ICotizacionService service, IEstadoCotizacionService estadoCotizacionService, IPartidaService partidaService, IObraPartidaService obraPartidaService, IObraService obraService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
             this._estadoCotizacionService = estadoCotizacionService;
             this._partidaService = partidaService;
             this._obraPartidaService = obraPartidaService;
+            this._obraService = obraService;
         }
 
         public async Task<IActionResult> Index(int? idEstado = 0)
@@ -72,13 +77,20 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Cotizar(int? idObra = 0)
         {
+            if(idObra == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var obra = await this._obraService.ObtenerAsync(idObra.Value);
             var resultService = await this._partidaService.ListarAsync();
 
             var result = new CotizarVM
             {
+                Obra = this.Mapper.Map<ObraDto>(obra),
                 DtoList = this.Mapper.Map<IEnumerable<PartidaDto>>(resultService)
             };
-            return PartialView(result);
+            return View(result);
         }
 
         [HttpPost]

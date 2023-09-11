@@ -9,9 +9,11 @@ using Copreter.Utils;
 using Copreter.Models.Obra;
 using Copreter.Domain.Service.Dto.Usuario;
 using static Copreter.Utils.Keys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class PartidaController : BaseController
     {
         #region Fields

@@ -7,7 +7,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
     {
         Task<IEnumerable<TCita>> ListarAsync(CitaFilter model);
 
-        Task<TCita> ObtenerPorIdAsync(int id);
+        Task<TCita> ObtenerAsync(int id);
 
         Task<bool> AgregarAsync(TCita entidad);
     }

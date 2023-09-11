@@ -9,9 +9,11 @@ using Copreter.Domain.Service.Dto.Obra;
 using System.Security.Claims;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Model.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class Obracontroller : BaseController
     {
         #region Fields

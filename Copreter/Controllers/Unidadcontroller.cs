@@ -8,9 +8,11 @@ using Copreter.Domain.Service.Dto.Unidad;
 using Copreter.Models.Unidad;
 using Copreter.Utils;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class Unidadcontroller : BaseController
     {
         #region Fields
@@ -179,7 +181,6 @@ namespace Copreter.Controllers
 
         #region Catalago
 
-
         public async Task<IActionResult> IndexCatalago(int type)
         {
             var resultService = await this._service.ListarCatalagoAsync(type);
@@ -207,6 +208,36 @@ namespace Copreter.Controllers
             return View(Keys.ActionKeys.DetalleCatalago, result);
         }
 
-        #endregion
-    }
+        [AllowAnonymous]
+        public async Task<IActionResult> IndexCatalagoExterno(int type)
+		{
+			var resultService = await this._service.ListarCatalagoAsync(type);
+
+			var result = new UnidadIndexVM
+			{
+				DtoList = this.Mapper.Map<IEnumerable<UnidadDto>>(resultService)
+			};
+			return View(Keys.ActionKeys.IndexCatalagoExterno, result);
+		}
+
+        [AllowAnonymous]
+        public async Task<IActionResult> DetalleCatalagoExterno(int? id)
+		{
+			if (id == null) return RedirectToAction(nameof(Index));
+
+			var resultService = await this._service.ObtenerAsync(id.Value);
+
+			var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
+			var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
+
+			var result = this.Mapper.Map<UnidadEditableVM>(resultService);
+			result.EstadoLista = estadoUnidadLista.GetItems();
+			result.TipoLista = tipoUnidadLista.GetItems();
+
+			return View(Keys.ActionKeys.DetalleCatalagoExterno, result);
+		}
+
+
+		#endregion
+	}
 }

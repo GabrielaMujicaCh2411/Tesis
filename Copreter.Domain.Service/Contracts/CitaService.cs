@@ -32,9 +32,9 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<TCita> ObtenerPorIdAsync(int id)
+        public async Task<TCita> ObtenerAsync(int id)
         {
-            return await this._data.Cita.GetById(id);
+            return await this._data.Cita.FirstOrDefault(x=> x.Id == id, x=> x.IdObraNavigation);
         }
     }
 }

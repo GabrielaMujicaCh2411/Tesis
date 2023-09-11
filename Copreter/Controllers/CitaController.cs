@@ -4,12 +4,15 @@ using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto.Cita;
 using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Domain.Service.Dto.Usuario;
 using Copreter.Models.Cita;
 using Copreter.Models.Obra;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class CitaController : BaseController
     {
 
@@ -49,6 +52,15 @@ namespace Copreter.Controllers
                 DtoList = this.Mapper.Map<IEnumerable<CitaDto>>(resultService)
             };
             return PartialView(result);
+        }
+
+        public async Task<IActionResult> Detalle(int? id)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+
+            return View(this.Mapper.Map<CitaEditableVM>(result));
         }
 
     }

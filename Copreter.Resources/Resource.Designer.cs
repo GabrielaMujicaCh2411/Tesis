@@ -151,6 +151,33 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        public static string CITA_Fecha {
+            get {
+                return ResourceManager.GetString("CITA_Fecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hora.
+        /// </summary>
+        public static string CITA_Hora {
+            get {
+                return ResourceManager.GetString("CITA_Hora", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lugar.
+        /// </summary>
+        public static string CITA_Lugar {
+            get {
+                return ResourceManager.GetString("CITA_Lugar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre de la Empresa.
         /// </summary>
         public static string CITA_Nombre_Empresa {

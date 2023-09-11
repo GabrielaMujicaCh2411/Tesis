@@ -1,4 +1,5 @@
-﻿using Copreter.Domain.Service.Dto.Partida;
+﻿using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Domain.Service.Dto.Partida;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Copreter.Models.Cotizacion
@@ -7,6 +8,8 @@ namespace Copreter.Models.Cotizacion
     {
         public CotizarVM()
         {
+            this.Obra = new ObraDto();
+
             this.DtoList = new List<PartidaDto>();
 
             this.UnidadMedidaLista = new List<SelectListItem>();
@@ -15,6 +18,8 @@ namespace Copreter.Models.Cotizacion
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "und", Text = "un" });
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "ml", Text = "ml" });
         }
+
+        public ObraDto Obra { get; set; }   
 
         public IEnumerable<PartidaDto> DtoList { get; set; }
 

@@ -5,10 +5,12 @@ using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Pedido;
 using Copreter.Models.Pedido;
 using Copreter.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Copreter.Controllers
 {
+    [Authorize]
     public class PedidoController : BaseController
     {
         #region Fields

@@ -1,5 +1,7 @@
-﻿@using Copreter.Resources;
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
 @model Copreter.Models.Obra.ObraIndexVM;
+@using System.Security.Claims;
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -46,10 +48,14 @@
                         <span class="far fa-eye" aria-hidden="true"></span>
                     </a>
 
-                    @if(item.IdEstadoObra == 1)
-                    {
-                        <a class="btn btn-info" asp-controller="Cotizacion" asp-action="Cotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
-                        <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3"><span class="fas fa-glasses" aria-hidden="true"></span>Observada</a>
+                    @{
+                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+
+                        if(item.IdEstadoObra == 1 && rolId == (int)ERolEnum.Gerente)
+                        {
+                            <a class="btn btn-info" asp-controller="Cotizacion" asp-action="Cotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
+                            <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3"><span class="fas fa-glasses" aria-hidden="true"></span>Observada</a>
+                        }
                     }
 
                     <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">

@@ -44,7 +44,10 @@
 
 			public const string IndexCatalago = "IndexCatalago";
             public const string DetalleCatalago = "DetalleCatalago";
-        }
+
+			public const string IndexCatalagoExterno = "IndexCatalagoExterno";
+			public const string DetalleCatalagoExterno = "DetalleCatalagoExterno";
+		}
 
 		public class PartialViewKeys
 		{
