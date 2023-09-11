@@ -72,14 +72,14 @@
 
                                     <div class="form-group">
                                         <label>@Resource.OBRA_Estado</label>
-                                        <select asp-for="IdEstadoObra" class="form-control" asp-items="Model.EstadoLista" readonly="@(true)"></select>
-                                        <span asp-validation-for="IdEstadoObra" class="text-danger"> </span>
+                                        <input type="text" class="form-control" placeholder="Duración de la obra" asp-for="EstadoObra" readonly="@(true)">
+                                        <span asp-validation-for="EstadoObra" class="text-danger"> </span>
                                     </div>
 
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <a asp-action="Index" class="btn btn-primary">@Resource.BTN_Volver</a>
+                                    <a asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Volver</a>
                                 </div>
                             </div>
 

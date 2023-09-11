@@ -8,6 +8,7 @@ using Copreter.Models.Obra;
 using Copreter.Domain.Service.Dto.Obra;
 using System.Security.Claims;
 using Copreter.Domain.Model.Model.Obra;
+using Copreter.Domain.Model.Enums;
 
 namespace Copreter.Controllers
 {
@@ -33,6 +34,11 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
         {
+            if(this.RolId() == ERolEnum.Cliente)
+            {
+                userId = this.UserId();
+            }
+
             var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
             var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoObraService.ListarAsync());
@@ -49,6 +55,11 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> _Index(int? userId, int? idEstado = 0)
         {
+            if (this.RolId() == ERolEnum.Cliente)
+            {
+                userId = this.UserId();
+            }
+
             var resultService = await this._service.ListarAsync(new ObraFilter() { IdUsuario = userId, IdEstado = idEstado });
 
             var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoObraService.ListarAsync());

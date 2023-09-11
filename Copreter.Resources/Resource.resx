@@ -120,6 +120,9 @@
   <data name="BTN_Aceptar" xml:space="preserve">
     <value>Aceptar</value>
   </data>
+  <data name="BTN_Actualizar" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
   <data name="BTN_Cancelar" xml:space="preserve">
     <value>Cancelar</value>
   </data>

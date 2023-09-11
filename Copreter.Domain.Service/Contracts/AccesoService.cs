@@ -29,7 +29,6 @@ namespace Copreter.Domain.Service.Contracts
         public async Task<bool> AgregarAsync(int idUsuario, TAcceso entidad)
         {
             entidad.IdUsuario = idUsuario;
-            entidad.IdRol = 5;
             var result = await this._data.Acceso.Add(entidad);
             return result == 1;
         }

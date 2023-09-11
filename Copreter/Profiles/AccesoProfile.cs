@@ -11,7 +11,7 @@ namespace Copreter.Profiles
         {
             CreateMap<TUsuario, AccesoDto>().ReverseMap();
             CreateMap<TAcceso, AccesoDto>()
-                .ForMember(s => s.Dni, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? x.IdUsuarioNavigation.Dni : 0))
+                .ForMember(s => s.Dni, src => src.MapFrom(x => x.Contrasenya))
                 .ForMember(s => s.Nombre, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? x.IdUsuarioNavigation.Nombre : string.Empty))
                 .ForMember(s => s.Apellido, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? x.IdUsuarioNavigation.Apellido : string.Empty))
                 .ForMember(s => s.Celular, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? x.IdUsuarioNavigation.Celular : 0))

@@ -49,11 +49,11 @@
                         if (@item.IdEstadoPedido == 1 && rolId == 1)
                         {
                             <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id">
-                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                                <span class="fas fa-eye" aria-hidden="true"></span>
                             </a>
 
                             <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id">
-                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                                <span class="fas fa-eye-slash" aria-hidden="true"></span>
                             </a>
                         }
                     }

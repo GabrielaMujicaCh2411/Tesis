@@ -99,19 +99,19 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>@Resource.UNIDAD_Tipo_Unidad</label>
-                                                <select asp-for="IdTipoUnidad" class="form-control" asp-items="Model.TipoLista" readonly="@(true)"></select>
-                                                <span asp-validation-for="IdTipoUnidad" class="text-danger"> </span>
+                                                <input type="text" class="form-control" placeholder="Tipo unidad" asp-for="TipoUnidad" readonly="@(true)">
+                                                <span asp-validation-for="TipoUnidad" class="text-danger"> </span>
                                             </div>
                                             <div class="form-group">
                                                 <label>@Resource.UNIDAD_Estado</label>
-                                                <select asp-for="IdEstadoUnidad" class="form-control" asp-items="Model.EstadoLista" readonly="@(true)"></select>
-                                                <span asp-validation-for="IdEstadoUnidad" class="text-danger"> </span>
+                                                <input type="text" class="form-control" placeholder="Estado unidad" asp-for="EstadoUnidad" readonly="@(true)">
+                                                <span asp-validation-for="EstadoUnidad" class="text-danger"> </span>
                                             </div>
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
                                             <a asp-controller="Pedido" asp-action="Alquilar" asp-route-idUnidad="@Model.Id" class="btn btn-primary">Pedir</a>
-                                            <a asp-action="Index" class="btn btn-primary">@Resource.BTN_Volver</a>
+                                            <button asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Volver</button>
                                         </div>
 
                                     </div>

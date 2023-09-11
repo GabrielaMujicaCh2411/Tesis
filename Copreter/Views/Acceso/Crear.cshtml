@@ -53,22 +53,22 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>@Resource.USUARIO_Apellido</label>
-                                                    <input type="text" class="form-control" placeholder="Modelo" asp-for="Apellido">
+                                                    <input type="text" class="form-control" placeholder="Apellido" asp-for="Apellido">
                                                     <span asp-validation-for="Apellido" class="text-danger"> </span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>@Resource.TRABAJADOR_Celular</label>
-                                                    <input type="text" class="form-control" placeholder="Marca" asp-for="Celular">
+                                                    <input type="text" class="form-control" placeholder="Celular" asp-for="Celular">
                                                     <span asp-validation-for="Celular" class="text-danger"> </span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>@Resource.USUARIO_Email</label>
-                                                    <input type="text" class="form-control" placeholder="Marca" asp-for="Email">
+                                                    <input type="text" class="form-control" placeholder="ejemplo@email.com" asp-for="Email">
                                                     <span asp-validation-for="Email" class="text-danger"> </span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>@Resource.USUARIO_Direccion</label>
-                                                    <input type="text" class="form-control" placeholder="Marca" asp-for="Direccion">
+                                                    <input type="text" class="form-control" placeholder="Direccion" asp-for="Direccion">
                                                     <span asp-validation-for="Direccion" class="text-danger"> </span>
                                                 </div>
                                                 <div class="form-group">
@@ -80,8 +80,8 @@
                                             </div>
                                             <!-- /.card-body -->
                                             <div class="card-footer">
-                                                <button type="submit" class="btn btn-primary">@Resource.BTN_Guardar</button>
-                                                <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
+                                                <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span>@Resource.BTN_Guardar</button>
+                                                <button asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Cancelar</button>
                                             </div>
                                         </form>
                                     </div>

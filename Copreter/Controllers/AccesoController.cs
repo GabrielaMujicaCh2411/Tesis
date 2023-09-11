@@ -78,17 +78,20 @@ namespace Copreter.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(dto);
+                    var rolLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._rolService.ListarAsync());
+                    var resultFail = this.Mapper.Map<AccesoEditableVM>(dto);
+                    resultFail.RolLista = rolLista.GetItems();
+                    return View(resultFail);
                 }
 
                 var result = await this._usuarioService.AgregarAsync(this.Mapper.Map<TUsuario>(dto));
                 if (result != null)
                 {
                     await this._service.AgregarAsync(result.Id, this.Mapper.Map<TAcceso>(dto));
-
-                    return RedirectToAction(ActionKeys.Index, ControllerKeys.Home);
+                    return RedirectToAction(ActionKeys.Index);
                 }
-                return View(dto);
+
+                return RedirectToAction(ActionKeys.Index);
             }
             catch (Exception ex)
             {

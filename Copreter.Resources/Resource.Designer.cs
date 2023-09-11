@@ -70,6 +70,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actualizar.
+        /// </summary>
+        public static string BTN_Actualizar {
+            get {
+                return ResourceManager.GetString("BTN_Actualizar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelar.
         /// </summary>
         public static string BTN_Cancelar {
