@@ -6,7 +6,6 @@ using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Cotizacion;
 using Copreter.Domain.Service.Dto.Obra;
 using Copreter.Domain.Service.Dto.Partida;
-using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Models.Cotizacion;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +15,11 @@ using Rotativa.AspNetCore;
 namespace Copreter.Controllers
 {
     [Authorize]
-    public class Cotizacioncontroller : BaseController
+    public class CotizarController : BaseController
     {
         #region Fields
 
-        private readonly ILogger<Cotizacioncontroller> _logger;
+        private readonly ILogger<CotizarController> _logger;
 
         private readonly ICotizacionService _service;
 
@@ -34,7 +33,7 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Cotizacioncontroller(IMapper mapper, ILogger<Cotizacioncontroller> logger,
+        public CotizarController(IMapper mapper, ILogger<CotizarController> logger,
             ICotizacionService service, IEstadoCotizacionService estadoCotizacionService, IPartidaService partidaService, IObraPartidaService obraPartidaService, IObraService obraService) : base(mapper)
         {
             this._logger = logger;
@@ -75,7 +74,8 @@ namespace Copreter.Controllers
             return PartialView(result);
         }
 
-        public async Task<IActionResult> Cotizar(int? idObra = 0)
+        [HttpGet("PreCotizar/{idObra}")]
+        public async Task<IActionResult> PreCotizar(int? idObra = 0)
         {
             if(idObra == null)
             {
@@ -93,9 +93,8 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Cotizar([Bind()] CotizarDto dto)
+        [HttpPost, ActionName("PostCotizar")]
+        public async Task<IActionResult> PostCotizar([FromBody()] CotizarDto dto)
         {
             try
             {
@@ -104,7 +103,8 @@ namespace Copreter.Controllers
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TCotizacion>(dto));
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));
+                    var resultObra = await this._obraService.ActualizarEstado(dto.IdObra, Domain.Model.Enums.EObraEstado.Cotizado);
+                    return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
                 }
                 return RedirectToAction(nameof(Index));
             }

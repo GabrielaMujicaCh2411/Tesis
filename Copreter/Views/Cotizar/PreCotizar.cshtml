@@ -1,11 +1,7 @@
 ﻿@using Copreter.Resources;
+@using Copreter.Utils;
 @model Copreter.Models.Cotizacion.CotizarVM;
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -161,7 +157,7 @@
                                 </div>
                                 <br />
                                 <div style="text-align: end; margin: 4px;">
-                                    <button type="submit" style="width:10%" class="btn btn-info" onclick="AgregarCotizacion('@ViewBag.Obra.IdObra')">Cotizar</button>
+                                    <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
                                 </div>
 
                             </div>
@@ -176,9 +172,9 @@
 
 @section Scripts
     {
-    <script>
+    <script type="text/javascript">
         var costoTotal = 0.00;
-        var partidasxObra = [];
+
 
         function cambioParcial(idPartida) {
             let meter = Number(document.getElementById(`${idPartida}-Metrado`).value);
@@ -207,6 +203,38 @@
             document.getElementById(`${idPartida}-Metrado`).value = '';
             document.getElementById(`${idPartida}-Parcial`).value = '0.00';
         }
- 
+
+        function AgregarCotizacion(idObra) {
+            var partidasxObra = [];
+
+            var row = document.getElementById('partidasAgregadas').rows.length;
+
+            for (i = 1; i < row; i++) {
+                var parti = {
+                    idPartida: document.getElementById("partidasAgregadas").rows[i].cells.item(0).innerHTML,
+                    idObra: idObra,
+                    unidad: document.getElementById("partidasAgregadas").rows[i].cells.item(2).innerHTML,
+                    metrado: Number(document.getElementById("partidasAgregadas").rows[i].cells.item(3).innerHTML),
+                    parcial: parseFloat(document.getElementById("partidasAgregadas").rows[i].cells.item(4).innerHTML)
+                };
+                partidasxObra.push(parti);
+            };
+
+            var param = {
+                total : Number(costoTotal),
+                IdObra : idObra,
+                lista : partidasxObra
+            };
+
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.PostCotizar, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {
+
+                alert('Hola');
+                location.href = '@Url.Action(Keys.ActionKeys.Index, Keys.ControllerKeys.Obra)';
+
+            }, function (XMLHttpRequest, textStatus, errorThrown) {
+                notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');
+            });
+        }
+
     </script>
 }

@@ -15,6 +15,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<bool> AgregarAsync(TCotizacion entidad)
         {
+            entidad.Fecha = DateTime.Now;
             entidad.IdEstadoCotizacion = 1;
             var result = await this._data.Cotizacion.Add(entidad);
             return result == 1;

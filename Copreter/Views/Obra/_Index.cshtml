@@ -53,8 +53,8 @@
 
                         if(item.IdEstadoObra == 1 && rolId == (int)ERolEnum.Gerente)
                         {
-                            <a class="btn btn-info" asp-controller="Cotizacion" asp-action="Cotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
-                            <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3"><span class="fas fa-glasses" aria-hidden="true"></span>Observada</a>
+                            <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
+                            <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3"><span class="fas fa-glasses" aria-hidden="true"></span></a>
                         }
                     }
 
