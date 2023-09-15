@@ -20,6 +20,9 @@ namespace Copreter.Domain.Service.Dto.Obra
         public int? DuracionObra { get; set; }
         public int IdUsuario { get; set; }
         public int IdEstadoObra { get; set; }
-        public string? EstadoObra { get;set; }
+        public string? EstadoObra { get; set; }
+
+        //
+        public string? Cliente { get; set; }
     }
 }

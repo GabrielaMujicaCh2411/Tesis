@@ -295,6 +295,51 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string INCIDENCIA_Descripcion {
+            get {
+                return ResourceManager.GetString("INCIDENCIA_Descripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        public static string INCIDENCIA_Fecha {
+            get {
+                return ResourceManager.GetString("INCIDENCIA_Fecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horas Trabajadas.
+        /// </summary>
+        public static string INCIDENCIA_Hora {
+            get {
+                return ResourceManager.GetString("INCIDENCIA_Hora", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pedido.
+        /// </summary>
+        public static string INCIDENCIA_Pedido {
+            get {
+                return ResourceManager.GetString("INCIDENCIA_Pedido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incidencia.
+        /// </summary>
+        public static string INCIDENCIA_Titulo {
+            get {
+                return ResourceManager.GetString("INCIDENCIA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administrar Clientes.
         /// </summary>
         public static string MANU_CLIENTE_TODOS {
@@ -529,6 +574,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cliente.
+        /// </summary>
+        public static string OBRA_Cliente {
+            get {
+                return ResourceManager.GetString("OBRA_Cliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solicitar Cotización.
+        /// </summary>
+        public static string OBRA_CREAR_TITULO {
+            get {
+                return ResourceManager.GetString("OBRA_CREAR_TITULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dirección.
         /// </summary>
         public static string OBRA_Direccion {
@@ -574,7 +637,7 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre.
+        ///   Looks up a localized string similar to Nombre de la Obra.
         /// </summary>
         public static string OBRA_Nombre {
             get {

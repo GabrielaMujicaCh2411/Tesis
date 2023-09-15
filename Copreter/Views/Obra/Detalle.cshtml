@@ -1,10 +1,13 @@
 ﻿@using Copreter.Resources;
 @model Copreter.Models.Obra.ObraEditableVM;
+@using System.Security.Claims;
+@using Copreter.Domain.Model.Enums;
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var imagePath = @Html.DisplayFor(model => model.Imagen);
 }
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -64,17 +67,38 @@
                                         <input type="text" class="form-control" placeholder="Duración de la obra" asp-for="DuracionObra" readonly="@(true)">
                                         <span asp-validation-for="DuracionObra" class="text-danger"> </span>
                                     </div>
-                 @*                   <div class="form-group">
-                                        <label>@Resource.OBRA_Plano</label>
-                                        <input class="form class custom-file-input" id="imagen" asp-for="Foto" readonly="@(true)">
-                                        <span asp-validation-for="Foto" class="text-danger"> </span>
+                                    @*                   <div class="form-group">
+                                    <label>@Resource.OBRA_Plano</label>
+                                    <input class="form class custom-file-input" id="imagen" asp-for="Foto" readonly="@(true)">
+                                    <span asp-validation-for="Foto" class="text-danger"> </span>
                                     </div>*@
 
                                     <div class="form-group">
                                         <label>@Resource.OBRA_Estado</label>
-                                        <input type="text" class="form-control" placeholder="Duración de la obra" asp-for="EstadoObra" readonly="@(true)">
+                                        <input type="text" class="form-control" placeholder="Estado de la obra" asp-for="EstadoObra" readonly="@(true)">
                                         <span asp-validation-for="EstadoObra" class="text-danger"> </span>
                                     </div>
+
+                                    @{
+                                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+
+                                        if (rolId == (int)ERolEnum.Gerente)
+                                        {
+                                            <div class="form-group">
+                                                <label>@Resource.OBRA_Cliente</label>
+                                                <input type="text" class="form-control" placeholder="Cliente" asp-for="Cliente" readonly="@(true)">
+                                                <span asp-validation-for="Cliente" class="text-danger"> </span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h5>Descargar Plano:</h5>
+
+                                                <a href="~/images/@imagePath" class="btn btn-warning" download="Plano @Html.DisplayFor(model =>model.Id) ">Descargar</a>
+
+                                            </div>
+                                        }
+                                    }
+
 
                                 </div>
                                 <!-- /.card-body -->

@@ -25,7 +25,9 @@ namespace Copreter.Profiles
                 .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))
                 .ReverseMap();
 
-            CreateMap<TUnidad, UnidadEditableVM>().ReverseMap();
+            CreateMap<TUnidad, UnidadEditableVM>()
+                .ForMember(s => s.EstadoUnidad, src => src.MapFrom(x => x.IdEstadoUnidadNavigation != null ? x.IdEstadoUnidadNavigation.Nombre : string.Empty))
+                .ForMember(s => s.TipoUnidad, src => src.MapFrom(x => x.IdTipoUnidadNavigation != null ? x.IdTipoUnidadNavigation.Nombre : string.Empty)).ReverseMap();
         }
     }
 }

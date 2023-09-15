@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Model.Enums;
 using Microsoft.AspNetCore.Authorization;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Copreter.Controllers
 {
@@ -26,12 +27,13 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger,
+        public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger, IHostingEnvironment hosting,
             IObraService service, IEstadoObraService estadoObraService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
             this._estadoObraService = estadoObraService;
+            this._hosting = _hosting;
         }
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
@@ -101,7 +103,7 @@ namespace Copreter.Controllers
 
                 if (dto.Foto != null)
                 {
-                    string ficherosImagenes = Path.Combine("C:\\Temp\\Copreter", "images");
+                    string ficherosImagenes = Path.Combine(this._hosting.WebRootPath, "images");
                     var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
                     string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
                     dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
@@ -142,7 +144,7 @@ namespace Copreter.Controllers
         {
             if (id == null) return RedirectToAction(nameof(Index));
 
-            var resultService = await this._service.ActualizarEstado(id.Value, (Domain.Model.Enums.EObraEstado)idEstado);
+            var resultService = await this._service.ActualizarEstado(id.Value, (Domain.Model.Enums.EObraEstado)idEstado, this.UserId());
 
 
             return RedirectToAction(nameof(Index));

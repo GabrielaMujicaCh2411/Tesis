@@ -14,7 +14,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TObra> ObtenerAsync(int id);
 
-        Task<bool> ActualizarEstado(int id, EObraEstado estado);
+        Task<bool> ActualizarEstado(int id, EObraEstado estado, int idUsuarioModificacion);
 
         Task<int> CountAsync(int idEstado);
     }

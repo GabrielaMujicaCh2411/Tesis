@@ -1,4 +1,5 @@
-﻿@using Copreter.Resources;
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
 @model Copreter.Models.Pedido.PedidoIndexVM;
 @using System.Security.Claims;
 
@@ -19,6 +20,9 @@
             </th>
             <th>
                 @Html.DisplayName(@Resource.PEDIDO_Estado)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.UNIDAD_Tipo_Unidad)
             </th>
             <th></th>
         </tr>
@@ -43,10 +47,13 @@
                     @Html.DisplayFor(modelItem => item.EstadoPedido)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.TipoUnidad)
+                </td>
+                <td>
                     @{
                         int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
 
-                        if (@item.IdEstadoPedido == 1 && rolId == 1)
+                        if (item.IdEstadoPedido == 1 && rolId != (int)ERolEnum.Cliente && item.IdTipoUnidad == 2)
                         {
                             <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id">
                                 <span class="fas fa-eye" aria-hidden="true"></span>
@@ -55,6 +62,11 @@
                             <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id">
                                 <span class="fas fa-eye-slash" aria-hidden="true"></span>
                             </a>
+                        }
+
+                        if (item.IdTipoUnidad == 1)
+                        {
+                            <a class="btn btn-danger" asp-controller="Incidencia" asp-action="Index" asp-route-idPedido="@item.Id">Incidencias</a>
                         }
                     }
                     @*                    <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">

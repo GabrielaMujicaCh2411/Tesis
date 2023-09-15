@@ -2,24 +2,35 @@
 @using Copreter.Resources;
 @model Copreter.Models.Obra.ObraIndexVM;
 @using System.Security.Claims;
-
+@{
+    int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+}
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
+            @{
+                if (rolId == (int)ERolEnum.Gerente)
+                {
+                    <th>
+                        @Html.DisplayName(@Resource.OBRA_Cliente)
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        @Html.DisplayName(@Resource.OBRA_Empresa)
+                    </th>
+                    <th>
+                        @Html.DisplayName(@Resource.OBRA_Direccion)
+                    </th>
+                }
+            }
+
             <th>
-                @Html.DisplayName(@Resource.COTIZACION_Nro)
+                @Html.DisplayName(@Resource.OBRA_Nombre)
             </th>
             <th>
-                @Html.DisplayName(@Resource.COTIZACION_Obra)
-            </th>
-            <th>
-                @Html.DisplayName(@Resource.COTIZACION_Total)
-            </th>
-            <th>
-                @Html.DisplayName(@Resource.COTIZACION_Fecha)
-            </th>
-            <th>
-                @Html.DisplayName(@Resource.COTIZACION_Estado)
+                @Html.DisplayName(@Resource.OBRA_Estado)
             </th>
             <th></th>
         </tr>
@@ -28,17 +39,26 @@
         @foreach (var item in Model.DtoList)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem =>item.Empresa)
-                </td>
-                <td>
-                   @Html.DisplayFor(modelItem =>item.Direccion)
-                </td>
+                @{
+                    if (rolId == (int)ERolEnum.Gerente)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem =>item.Cliente)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem =>item.Empresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                    }
+                }
+
                 <td>
                     @Html.DisplayFor(modelItem => item.NombreObra)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaInicio)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EstadoObra)
@@ -49,18 +69,59 @@
                     </a>
 
                     @{
-                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
-
-                        if(item.IdEstadoObra == 1 && rolId == (int)ERolEnum.Gerente)
+                        switch (item.IdEstadoObra)
                         {
-                            <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
-                            <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3"><span class="fas fa-glasses" aria-hidden="true"></span></a>
+                            case 1:
+                                {
+                                    if (rolId == (int)ERolEnum.Gerente)
+                                    {
+                                        <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
+                                        <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3" title="Observada"><span class="fas fa-glasses" aria-hidden="true"></span></a>
+                                    }
+                                }
+                                break;
+                            case 2:
+                                {
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                }
+                                break;
+                            case 3:
+                                {
+                                    if (rolId == (int)ERolEnum.Cliente)
+                                    {
+                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Solicitar" asp-route-id="@item.Id">Solicitar Cita</a>
+                                    }
+                                }
+                                break;
+                            case 5:
+                                {
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="2">Aceptar</a>
+                                    <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="6">Rechazar</a>
+                                }
+                                break;
+                            case 7:
+                            case 10:
+                                {
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="DetalleCoti" asp-route-id="@item.Id">Pagar</a>
+                                }
+                                break;
+                            case 9:
+                                {
+                                    <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="10">Obra Terminada</a>
+                                }
+                                break;
+                        }
+
+                        if (rolId == (int)ERolEnum.Cliente)
+                        {
+                            <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                                <span class="far fa-trash-alt" aria-hidden="true"></span>
+                            </button>
                         }
                     }
 
-                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
-                        <span class="far fa-trash-alt" aria-hidden="true"></span>
-                    </button>
                 </td>
             </tr>
         }

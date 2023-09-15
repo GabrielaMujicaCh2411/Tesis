@@ -87,7 +87,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<TUnidad> ObtenerAsync(int id)
         {
-            return await this._data.Unidad.GetById(id);
+            return await this._data.Unidad.FirstOrDefault(x => x.Id == id, x => x.IdTipoUnidadNavigation, x => x.IdEstadoUnidadNavigation);
         }
     }
 }

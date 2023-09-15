@@ -17,7 +17,13 @@ namespace Copreter.Domain.Service.Contracts
             var entidadActual = await this._data.Pedido.GetById(id);
             if (entidadActual == null) return false;
 
-            var result = await this._data.Pedido.Update(entidad);
+            entidadActual.IdEstadoPedido = entidad.IdEstadoPedido;
+            entidadActual.IdTrabajador = entidad.IdTrabajador;
+
+            entidadActual.IdUsuarioModificacion = entidad.IdUsuarioModificacion;
+            entidadActual.FechaModificacion = DateTime.Now;
+
+            var result = await this._data.Pedido.Update(entidadActual);
             return result > 0;
         }
 
@@ -65,7 +71,9 @@ namespace Copreter.Domain.Service.Contracts
             }
             predicates.Add(x => x.Borrado == false);
 
-            return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoPedidoNavigation);
+            return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoPedidoNavigation,
+                x=> x.IdUnidadNavigation,
+                x=> x.IdUnidadNavigation.IdTipoUnidadNavigation);
         }
 
         public async Task<TPedido> ObtenerAsync(int id)

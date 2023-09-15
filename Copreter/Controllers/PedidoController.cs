@@ -27,7 +27,7 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public PedidoController(IMapper mapper, ILogger<PedidoController> logger, IPedidoService service, 
+        public PedidoController(IMapper mapper, ILogger<PedidoController> logger, IPedidoService service,
             ITrabajadorService trabajadorService, IEstadoPedidoService estadoPedidoService, IUnidadService unidadService) : base(mapper)
         {
             this._logger = logger;
@@ -52,7 +52,7 @@ namespace Copreter.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> _Index(int? userId,int? idEstado)
+        public async Task<IActionResult> _Index(int? userId, int? idEstado)
         {
             var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId, IdEstado = idEstado });
 
@@ -91,22 +91,30 @@ namespace Copreter.Controllers
                     return NotFound();
                 }
 
-                if (ModelState.IsValid)
+                if (dto.IdTrabajador == null || dto.IdTrabajador == 0)
                 {
-                    dto.IdEstadoPedido = 3;
-                    dto.IdUsuarioModificacion = this.UserId();
+                    var trabajadorLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._trabajadorService.ListarAsync(new Domain.Model.Model.Trabajador.TrabajadorFilter()));
 
-                    var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TPedido>(dto));
-                    if (result)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
+                    var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                    resultInvalid.TrabajadorLista = trabajadorLista.GetItems();
+
+                    return View(resultInvalid);
                 }
-                return View(dto);
+
+                dto.IdEstadoPedido = 3;
+                dto.IdUsuarioModificacion = this.UserId();
+
+                var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TPedido>(dto));
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View(dto);
+                this._logger.LogError(ex.Message);
+                return View();
             }
         }
 
@@ -153,17 +161,37 @@ namespace Copreter.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(dto);
+                    var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                    return View(resultInvalid);
                 }
 
-                var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
-                if(resultServiceUnidad != null)
+                if (dto.FechaInicio <= DateTime.Now)
                 {
-                    if(resultServiceUnidad.CantidadDisponible < dto.Cantidad)
+                    ViewData["ValidateMessage"] = "La fecha de inicio debe ser mayor a la fecha de hoy";
+
+                    var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                    return View(resultInvalid);
+                }
+
+                if (dto.FechaInicio >= DateTime.Now.AddDays(8))
+                {
+                    ViewData["ValidateMessage"] = "La fecha de inicio no debe ser mayor a la 7 días";
+
+                    var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                    return View(resultInvalid);
+                }
+
+
+                var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
+                if (resultServiceUnidad != null)
+                {
+                    if (resultServiceUnidad.CantidadDisponible < dto.Cantidad)
                     {
-                        ModelState.AddModelError("", "Cantidad insuficientes de unidades");
+                        ViewData["ValidateMessage"] = "Cantidad insuficientes de unidades";
+                        var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                        return View(resultInvalid);
                     }
-            
+
                     dto.IdUsuario = this.UserId();
                     dto.IdUsuarioRegistro = this.UserId();
                     dto.IdEstadoPedido = 1;

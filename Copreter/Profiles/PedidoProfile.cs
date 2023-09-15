@@ -12,6 +12,8 @@ namespace Copreter.Profiles
         {
             CreateMap<TPedido, PedidoDto>()
              .ForMember(s => s.EstadoPedido, src => src.MapFrom(x => x.IdEstadoPedidoNavigation != null ? x.IdEstadoPedidoNavigation.Nombre : string.Empty))
+             .ForMember(s => s.IdTipoUnidad, src => src.MapFrom(x => x.IdUnidadNavigation != null  ? x.IdUnidadNavigation.IdTipoUnidad : 0))
+             .ForMember(s => s.TipoUnidad, src => src.MapFrom(x => x.IdUnidadNavigation != null && x.IdUnidadNavigation.IdTipoUnidadNavigation != null ? x.IdUnidadNavigation.IdTipoUnidadNavigation.Nombre : string.Empty))
              .ReverseMap();
 
             CreateMap<TEstadoPedido, ItemDto>()
@@ -20,6 +22,8 @@ namespace Copreter.Profiles
                .ReverseMap();
 
             CreateMap<TPedido, PedidoEditableVM>().ReverseMap();
+
+            CreateMap<PedidoDto, PedidoEditableVM>().ReverseMap();
         }
     }
 }

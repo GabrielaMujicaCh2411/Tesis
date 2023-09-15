@@ -14,11 +14,15 @@ namespace Copreter.Profiles
         {
             CreateMap<TObra, ObraDto>()
                 .ForMember(s => s.EstadoObra, src => src.MapFrom(x => x.IdEstadoObraNavigation != null ? x.IdEstadoObraNavigation.Nombre : string.Empty))
+                .ForMember(s => s.Cliente, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? $"{x.IdUsuarioNavigation.Nombre} {x.IdUsuarioNavigation.Apellido}" : string.Empty))
                  .ReverseMap();
 
             CreateMap<ObraDto, ObraEditableVM>().ReverseMap();
 
-            CreateMap<TObra, ObraEditableVM>().ReverseMap();
+            CreateMap<TObra, ObraEditableVM>()
+                .ForMember(s => s.EstadoObra, src => src.MapFrom(x => x.IdEstadoObraNavigation != null ? x.IdEstadoObraNavigation.Nombre : string.Empty))
+                .ForMember(s => s.Cliente, src => src.MapFrom(x => x.IdUsuarioNavigation != null ? $"{x.IdUsuarioNavigation.Nombre} {x.IdUsuarioNavigation.Apellido}" : string.Empty))
+                .ReverseMap();
 
             CreateMap<TEstadoObra, ItemDto>()
                .ForMember(s => s.Id, src => src.MapFrom(x => x.Id))

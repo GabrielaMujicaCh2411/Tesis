@@ -103,7 +103,7 @@ namespace Copreter.Controllers
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TCotizacion>(dto));
                 if (result)
                 {
-                    var resultObra = await this._obraService.ActualizarEstado(dto.IdObra, Domain.Model.Enums.EObraEstado.Cotizado);
+                    var resultObra = await this._obraService.ActualizarEstado(dto.IdObra, Domain.Model.Enums.EObraEstado.Cotizado, this.UserId());
                     return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
                 }
                 return RedirectToAction(nameof(Index));
@@ -142,8 +142,35 @@ namespace Copreter.Controllers
                 this._logger.LogError(ex.Message);
                 return View();
             }
-        
         }
 
+
+        public async Task<IActionResult> CotizacionPorObraPdf(int idObra)
+        {
+            try
+            {
+                var resultService = await this._service.ObtenerPorIdObraAsync(idObra);
+                if (resultService != null)
+                {
+                    var resultPartidaXObra = await this._obraPartidaService.ListarPorIdObraAsync(resultService.IdObra);
+
+                    var result = this.Mapper.Map<CotizacionEditableVM>(resultService);
+                    result.ObraPartidaLista = this.Mapper.Map<IEnumerable<ObraPartidaDto>>(resultPartidaXObra);
+
+                    return new ViewAsPdf("CotizacionPdf", result)
+                    {
+                        FileName = $"Cotizacion-{resultService.Id}.pdf",
+                        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                        PageSize = Rotativa.AspNetCore.Options.Size.A4
+                    };
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
+        }
     }
 }

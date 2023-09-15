@@ -38,6 +38,14 @@
                         </div>
                         <div class="card-body">
                             <div id="contentPartial">
+
+                                @if (ViewData["ValidateMessage"] != null)
+                                {
+                                    <br />
+                                    <br />
+                                    <label>@ViewData["ValidateMessage"]</label>
+                                }
+
                                 <form asp-action="Alquilar" asp-controller="Pedido" method="post">
                                     <div class="card-body">
 

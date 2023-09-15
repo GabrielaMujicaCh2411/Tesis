@@ -22,7 +22,7 @@ namespace Copreter.Domain.Service.Contracts
             }
             if (model.IdEstado != null && model.IdEstado != 0)
             {
-                if(model.IdEstado == 1)
+                if (model.IdEstado == 1)
                 {
                     predicates.Add(x => x.IdEstadoObra == 1 || x.IdEstadoObra == 3);
                 }
@@ -34,7 +34,7 @@ namespace Copreter.Domain.Service.Contracts
 
             predicates.Add(x => x.Borrado == false);
 
-            return await this._data.Obra.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoObraNavigation);
+            return await this._data.Obra.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoObraNavigation, x=> x.IdUsuarioNavigation);
         }
 
         public async Task<IEnumerable<TObra>> ListarPorEstadoAsync(List<int> estados)
@@ -49,24 +49,27 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<bool> ActualizarEstado(int id, EObraEstado estado)
+        public async Task<bool> ActualizarEstado(int id, EObraEstado estado, int idUsuarioModificacion)
         {
             var result = await this._data.Obra.GetById(id);
             if (result == null) return false;
 
             result.IdEstadoObra = (int)estado;
 
+            result.IdUsuarioModificacion = idUsuarioModificacion;
+            result.FechaModificacion = DateTime.Now;
+
             return await this._data.Obra.Update(result) > 0;
         }
 
         public async Task<TObra> ObtenerAsync(int id)
         {
-            return await this._data.Obra.GetById(id);
+            return await this._data.Obra.FirstOrDefault(x => x.Id == id, x => x.IdEstadoObraNavigation);
         }
 
         public async Task<int> CountAsync(int idEstado)
         {
-            return await this._data.Obra.CountIncludes(x=> x.Borrado == false && x.IdEstadoObra == idEstado);
+            return await this._data.Obra.CountIncludes(x => x.Borrado == false && x.IdEstadoObra == idEstado);
         }
     }
 }

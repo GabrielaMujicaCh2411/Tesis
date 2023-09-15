@@ -195,6 +195,21 @@
   <data name="COTIZACION_Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="INCIDENCIA_Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="INCIDENCIA_Fecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="INCIDENCIA_Hora" xml:space="preserve">
+    <value>Horas Trabajadas</value>
+  </data>
+  <data name="INCIDENCIA_Pedido" xml:space="preserve">
+    <value>Pedido</value>
+  </data>
+  <data name="INCIDENCIA_Titulo" xml:space="preserve">
+    <value>Incidencia</value>
+  </data>
   <data name="MANU_CLIENTE_TODOS" xml:space="preserve">
     <value>Administrar Clientes</value>
   </data>
@@ -273,6 +288,12 @@
   <data name="MENU_USUARIO_TODOS" xml:space="preserve">
     <value>Gestionar Usuarios</value>
   </data>
+  <data name="OBRA_Cliente" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="OBRA_CREAR_TITULO" xml:space="preserve">
+    <value>Solicitar Cotización</value>
+  </data>
   <data name="OBRA_Direccion" xml:space="preserve">
     <value>Dirección</value>
   </data>
@@ -289,7 +310,7 @@
     <value>Fecha Inicio</value>
   </data>
   <data name="OBRA_Nombre" xml:space="preserve">
-    <value>Nombre</value>
+    <value>Nombre de la Obra</value>
   </data>
   <data name="OBRA_Plano" xml:space="preserve">
     <value>Plano</value>

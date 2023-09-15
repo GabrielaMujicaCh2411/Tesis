@@ -22,6 +22,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TFactura> Factura { get; }
 
+        IRepository<TIncidencia> Incidencia { get; }
+
         IRepository<TObra> Obra { get; }
 
         IRepository<TObraxPartida> ObraPartida { get; }

@@ -9,6 +9,8 @@ using Copreter.Models.Unidad;
 using Copreter.Utils;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Copreter.Domain.Service.Dto.Usuario;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Copreter.Controllers
 {
@@ -23,11 +25,14 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Unidadcontroller(IMapper mapper, IUnidadService service, IEstadoUnidadService estadoUnidadservice, ITipoUnidadService tipoUnidadservice) : base(mapper)
+        public Unidadcontroller(IMapper mapper, ILogger<Obracontroller> logger, IHostingEnvironment hosting, 
+            IUnidadService service,
+            IEstadoUnidadService estadoUnidadservice, ITipoUnidadService tipoUnidadservice) : base(mapper)
         {
             this._service = service;
             this._estadoUnidadservice = estadoUnidadservice;
             this._tipoUnidadservice = tipoUnidadservice;
+            this._hosting = hosting;
         }
 
         public async Task<IActionResult> Index()
@@ -71,12 +76,20 @@ namespace Copreter.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(dto);
+                var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
+                var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
+
+                var resultInvalid = new UnidadEditableVM
+                {
+                    EstadoLista = estadoUnidadLista.GetItems(),
+                    TipoLista = tipoUnidadLista.GetItems()
+                };
+                return View(resultInvalid);
             }
 
             if (dto.Foto != null)
             {
-                string ficherosImagenes = Path.Combine("C:\\Temp\\Copreter", "images");
+                string ficherosImagenes = Path.Combine(this._hosting.WebRootPath, "images");
                 var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
                 string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
                 dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
@@ -93,6 +106,23 @@ namespace Copreter.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Detalle(int? id)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
+            var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
+
+
+            var resultService = await this._service.ObtenerAsync(id.Value);
+
+            var result = this.Mapper.Map<UnidadEditableVM>(resultService);
+            result.EstadoLista = estadoUnidadLista.GetItems();
+            result.TipoLista = tipoUnidadLista.GetItems();
+            return View(result);
+        }
+
 
         public async Task<IActionResult> Editar(int id)
         {
@@ -210,34 +240,34 @@ namespace Copreter.Controllers
 
         [AllowAnonymous]
         public async Task<IActionResult> IndexCatalagoExterno(int type)
-		{
-			var resultService = await this._service.ListarCatalagoAsync(type);
+        {
+            var resultService = await this._service.ListarCatalagoAsync(type);
 
-			var result = new UnidadIndexVM
-			{
-				DtoList = this.Mapper.Map<IEnumerable<UnidadDto>>(resultService)
-			};
-			return View(Keys.ActionKeys.IndexCatalagoExterno, result);
-		}
+            var result = new UnidadIndexVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<UnidadDto>>(resultService)
+            };
+            return View(Keys.ActionKeys.IndexCatalagoExterno, result);
+        }
 
         [AllowAnonymous]
         public async Task<IActionResult> DetalleCatalagoExterno(int? id)
-		{
-			if (id == null) return RedirectToAction(nameof(Index));
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
 
-			var resultService = await this._service.ObtenerAsync(id.Value);
+            var resultService = await this._service.ObtenerAsync(id.Value);
 
-			var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
-			var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
+            var estadoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoUnidadservice.ListarAsync());
+            var tipoUnidadLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._tipoUnidadservice.ListarAsync());
 
-			var result = this.Mapper.Map<UnidadEditableVM>(resultService);
-			result.EstadoLista = estadoUnidadLista.GetItems();
-			result.TipoLista = tipoUnidadLista.GetItems();
+            var result = this.Mapper.Map<UnidadEditableVM>(resultService);
+            result.EstadoLista = estadoUnidadLista.GetItems();
+            result.TipoLista = tipoUnidadLista.GetItems();
 
-			return View(Keys.ActionKeys.DetalleCatalagoExterno, result);
-		}
+            return View(Keys.ActionKeys.DetalleCatalagoExterno, result);
+        }
 
 
-		#endregion
-	}
+        #endregion
+    }
 }

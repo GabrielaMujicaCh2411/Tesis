@@ -22,6 +22,7 @@
             public const string Trabajador = "Trabajador";
             public const string Unidad = "Unidad";
             public const string Usuario = "Usuario";
+            public const string Incidencia = "Incidencia";
         }
 
         public class ActionKeys

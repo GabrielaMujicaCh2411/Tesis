@@ -21,5 +21,9 @@ namespace Copreter.Domain.Service.Dto.Pedido
         public int Cantidad { get; set; }
 
         public decimal? PrecioUnidad { get; set; }
+
+        //
+        public int IdTipoUnidad { get; set; }
+        public string? TipoUnidad { get;set; }
     }
 }
