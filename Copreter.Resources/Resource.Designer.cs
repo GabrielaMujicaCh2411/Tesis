@@ -124,6 +124,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pagar.
+        /// </summary>
+        public static string BTN_Pagar {
+            get {
+                return ResourceManager.GetString("BTN_Pagar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Volver.
         /// </summary>
         public static string BTN_Volver {
@@ -295,6 +304,33 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1º Pago.
+        /// </summary>
+        public static string FACTURA_1Pago {
+            get {
+                return ResourceManager.GetString("FACTURA_1Pago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2º Pago.
+        /// </summary>
+        public static string FACTURA_2Pago {
+            get {
+                return ResourceManager.GetString("FACTURA_2Pago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descargar Factura.
+        /// </summary>
+        public static string FACTURA_Descargar {
+            get {
+                return ResourceManager.GetString("FACTURA_Descargar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enviar Factura.
         /// </summary>
         public static string FACTURA_Enviar {
@@ -304,11 +340,47 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nº Factura.
+        /// </summary>
+        public static string FACTURA_Factura {
+            get {
+                return ResourceManager.GetString("FACTURA_Factura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        public static string FACTURA_Fecha {
+            get {
+                return ResourceManager.GetString("FACTURA_Fecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Cotización.
+        /// </summary>
+        public static string FACTURA_NroCotizacion {
+            get {
+                return ResourceManager.GetString("FACTURA_NroCotizacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Factura.
         /// </summary>
         public static string FACTURA_Titulo {
             get {
                 return ResourceManager.GetString("FACTURA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string FACTURA_Total {
+            get {
+                return ResourceManager.GetString("FACTURA_Total", resourceCulture);
             }
         }
         
@@ -678,6 +750,15 @@ namespace Copreter.Resources {
         public static string OBRA_Titulo {
             get {
                 return ResourceManager.GetString("OBRA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Información de Pago.
+        /// </summary>
+        public static string PAGO_Pagar {
+            get {
+                return ResourceManager.GetString("PAGO_Pagar", resourceCulture);
             }
         }
         

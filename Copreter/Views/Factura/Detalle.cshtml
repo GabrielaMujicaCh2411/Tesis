@@ -1,0 +1,119 @@
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
+@model Copreter.Domain.Service.Dto.Factura.FacturaDetalleDto;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var imagePath = @Html.DisplayFor(model => model.Imagen);
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.FACTURA_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.FACTURA_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+
+                                <div class="card-body">
+
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="IdUsuarioRegistro" />
+                                    <input type="hidden" asp-for="FechaRegistro" />
+
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_NroCotizacion</label>
+                                        <input type="text" class="form-control" placeholder="NroCotizacion" asp-for="IdCotizacion" readonly="@(true)">
+                                        <span asp-validation-for="IdCotizacion" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_Factura</label>
+                                        <input type="text" class="form-control" placeholder="Id" asp-for="Id" readonly="@(true)">
+                                        <span asp-validation-for="Id" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_Total</label>
+                                        <input type="text" class="form-control" placeholder="Total" asp-for="Total" readonly="@(true)">
+                                        <span asp-validation-for="Total" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_1Pago</label>
+                                        <input type="text" class="form-control" placeholder="Pago" asp-for="Pago" readonly="@(true)">
+                                        <span asp-validation-for="Pago" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_2Pago</label>
+                                        <input type="text" class="form-control" placeholder="Pago" asp-for="Pago2" readonly="@(true)">
+                                        <span asp-validation-for="Pago2" class="text-danger"> </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_Fecha</label>
+                                        <input type="text" class="form-control" placeholder="Pago" asp-for="Fecha" readonly="@(true)">
+                                        <span asp-validation-for="Fecha" class="text-danger"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@Resource.FACTURA_Descargar</label>
+                                        <h5>Descargar Factura:</h5>
+
+                                        <a href="~/images/@imagePath" class="btn btn-warning" download="Factura @Html.DisplayFor(model =>model.Id) ">Descargar</a>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <a asp-controller="Obra" asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Volver</a>
+
+                                    @{
+                                        switch ((ECotizacionEstado)Model.IdCotizacion)
+                                        {
+                                            case ECotizacionEstado.Primerfacturado:
+                                                {
+                                                    <a class="btn btn-primary" asp-controller="Pago" asp-action="Pagar" asp-route-idCotizacion="@Model.IdCotizacion"><span class="far fa-credit-card" aria-hidden="true"></span></a>
+                                                }
+                                                break;
+                                            case ECotizacionEstado.Segundofacturado:
+                                                {
+                                                    <a class="btn btn-primary" asp-controller="Pago" asp-action="Pagar2" asp-route-idCotizacion="@Model.IdCotizacion"><span class="far fa-credit-card" aria-hidden="true"></span></a>
+                                                }
+                                                break;
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

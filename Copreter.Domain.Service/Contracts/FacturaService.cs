@@ -15,5 +15,10 @@ namespace Copreter.Domain.Service.Contracts
             var result = await this._data.Factura.Add(entidad);
             return result == 1;
         }
+
+        public async Task<TFactura> ObtenerAsync(int id)
+        {
+            return await this._data.Factura.FirstOrDefault(x => x.Id == id, x => x.IdCotizacionNavigation);
+        }
     }
 }

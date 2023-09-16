@@ -1,4 +1,5 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Cotizacion;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
@@ -14,5 +15,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<int> CountAsync(int idEstado);
 
         Task<TCotizacion> ObtenerPorIdObraAsync(int idObra);
+
+        Task<bool> ActualizarEstado(int idObra, ECotizacionEstado estado, int idUsuarioModificacion);
     }
 }

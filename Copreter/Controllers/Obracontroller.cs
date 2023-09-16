@@ -24,20 +24,25 @@ namespace Copreter.Controllers
 
         private readonly IEstadoObraService _estadoObraService;
 
+        private readonly ICotizacionService _cotizacionService;
+
         #endregion
 
         public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger, IWebHostEnvironment hosting,
-            IObraService service, IEstadoObraService estadoObraService) : base(mapper)
+            IObraService service, IEstadoObraService estadoObraService, ICotizacionService cotizacionService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
-            this._estadoObraService = estadoObraService;
+
             this._hosting = hosting;
+
+            this._estadoObraService = estadoObraService;
+            this._cotizacionService = cotizacionService;
         }
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
         {
-            if(this.RolId() == ERolEnum.Cliente)
+            if (this.RolId() == ERolEnum.Cliente)
             {
                 userId = this.UserId();
             }
@@ -145,6 +150,19 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ActualizarEstado(id.Value, (Domain.Model.Enums.EObraEstado)idEstado, this.UserId());
 
+            switch ((EObraEstado)idEstado)
+            {
+                case EObraEstado.Aceptado:
+                    {
+                        await this._cotizacionService.ActualizarEstado(id.Value, ECotizacionEstado.aceptado, this.UserId());
+                    }
+                    break;
+                case EObraEstado.Rechazado:
+                    {
+                        await this._cotizacionService.ActualizarEstado(id.Value, ECotizacionEstado.rechazado, this.UserId());
+                    }
+                    break;
+            }
 
             return RedirectToAction(nameof(Index));
         }

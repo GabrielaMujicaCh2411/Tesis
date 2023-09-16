@@ -1,4 +1,5 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
@@ -11,6 +12,19 @@ namespace Copreter.Domain.Service.Contracts
     {
         public CotizacionService(ICopreterData data) : base(data)
         {
+        }
+
+        public async Task<bool> ActualizarEstado(int idObra, ECotizacionEstado estado, int idUsuarioModificacion)
+        {
+            var result = await this._data.Cotizacion.FirstOrDefault(x=> x.IdObra == idObra);
+            if (result == null) return false;
+
+            result.IdEstadoCotizacion = (int)estado;
+
+            result.IdUsuarioModificacion = idUsuarioModificacion;
+            result.FechaModificacion = DateTime.Now;
+
+            return await this._data.Cotizacion.Update(result) > 0;
         }
 
         public async Task<bool> AgregarAsync(TCotizacion entidad)

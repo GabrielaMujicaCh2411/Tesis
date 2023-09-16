@@ -146,7 +146,6 @@ namespace Copreter.Controllers
             }
         }
 
-
         public async Task<IActionResult> CotizacionPorObraPdf(int idObra)
         {
             try

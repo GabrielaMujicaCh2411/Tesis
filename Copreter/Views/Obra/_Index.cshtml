@@ -104,7 +104,7 @@
                             case EObraEstado.Terminado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="DetalleCoti" asp-route-id="@item.Id">Pagar</a>
+                                    <a class="btn btn-warning" asp-controller="Factura" asp-action="Crear" asp-route-id="@item.Id">Pagar</a>
                                 }
                                 break;
                             case EObraEstado.Proceso:

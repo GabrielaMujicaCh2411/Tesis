@@ -138,6 +138,9 @@
   <data name="BTN_Guardar" xml:space="preserve">
     <value>Guardar</value>
   </data>
+  <data name="BTN_Pagar" xml:space="preserve">
+    <value>Pagar</value>
+  </data>
   <data name="BTN_Volver" xml:space="preserve">
     <value>Volver</value>
   </data>
@@ -195,11 +198,32 @@
   <data name="COTIZACION_Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="FACTURA_1Pago" xml:space="preserve">
+    <value>1º Pago</value>
+  </data>
+  <data name="FACTURA_2Pago" xml:space="preserve">
+    <value>2º Pago</value>
+  </data>
+  <data name="FACTURA_Descargar" xml:space="preserve">
+    <value>Descargar Factura</value>
+  </data>
   <data name="FACTURA_Enviar" xml:space="preserve">
     <value>Enviar Factura</value>
   </data>
+  <data name="FACTURA_Factura" xml:space="preserve">
+    <value>Nº Factura</value>
+  </data>
+  <data name="FACTURA_Fecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="FACTURA_NroCotizacion" xml:space="preserve">
+    <value>Nº Cotización</value>
+  </data>
   <data name="FACTURA_Titulo" xml:space="preserve">
     <value>Factura</value>
+  </data>
+  <data name="FACTURA_Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="INCIDENCIA_Descripcion" xml:space="preserve">
     <value>Descripción</value>
@@ -323,6 +347,9 @@
   </data>
   <data name="OBRA_Titulo" xml:space="preserve">
     <value>Obra</value>
+  </data>
+  <data name="PAGO_Pagar" xml:space="preserve">
+    <value>Información de Pago</value>
   </data>
   <data name="PARTIDA_Nombre" xml:space="preserve">
     <value>Nombre</value>
