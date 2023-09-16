@@ -2,7 +2,6 @@
 using Copreter.Domain.Model.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Copreter.Controllers
 {
@@ -12,7 +11,7 @@ namespace Copreter.Controllers
 
         public readonly IMapper Mapper;
 
-        public IHostingEnvironment _hosting;
+        public IWebHostEnvironment _hosting;
 
         #endregion
 

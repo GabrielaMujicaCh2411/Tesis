@@ -1,76 +1,68 @@
-using System.Net.Sockets;
-using System.Net.NetworkInformation;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using System.Xml.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using System.Threading.Tasks;
-using Program.Data;
-using Program.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using AutoMapper;
+using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto.Factura;
+using Copreter.Domain.Model.DbModel;
+using Copreter.Utils;
 
 namespace Copreter.Controllers
 {
- public class Facturacontroller : Controller
+    public class Facturacontroller : BaseController
     {
-        ApplicationDbContext _context ;
-          IHostingEnvironment  hosting;
-         public Facturacontroller(ApplicationDbContext context, IHostingEnvironment  _hosting)
-        {
-            _context = context;
-            hosting  = _hosting;
-        }
-        public async Task<IActionResult> Enviar(string id)
-        {
-             List<TFactura> Factura = await _context.TFacturas.ToListAsync();
-            TFactura fact = new TFactura();
-            var obj =   (from prod in Factura select prod)
-                        .Count();
-            int cantRegistro= obj+1;
-            fact.IdFactura = "Factura-00"+cantRegistro;
-            fact.IdCotizacionFactura =id;
-            return View(fact);
-        } 
-        
-        [BindProperty]
-        public TFactura factura{get;set;}
-        public async Task<IActionResult> Guardar()
-        {
-          string guidImage = null;
-            if(factura.Foto !=null)
-            {
-                string ficherosImagenes =Path.Combine(hosting.WebRootPath,"images");
-                guidImage = Guid.NewGuid().ToString() + factura.Foto.FileName;
-                string rutaDefinitiva = Path.Combine(ficherosImagenes,guidImage);
-                factura.Foto.CopyTo(new FileStream(rutaDefinitiva,FileMode.Create));
-            }
+        #region Fields
 
-              if(!ModelState.IsValid)
+        private readonly ILogger<Facturacontroller> _logger;
+
+        private readonly IFacturaService _service;
+
+
+        #endregion
+
+        public Facturacontroller(IMapper mapper, ILogger<Facturacontroller> logger, IWebHostEnvironment hosting,
+            IFacturaService service) : base(mapper)
+        {
+            this._logger = logger;
+            this._service = service;
+            this._hosting = hosting;
+        }
+
+        public IActionResult Cargar(int idCotizacion)
+        {
+            var result = new FacturaDto
             {
-               return View(factura);
-            }
-            
-             factura.Imagen= guidImage;            
-            _context.TFacturas.Add(factura);
-             await  _context.SaveChangesAsync();
-           return Redirect("/Home/VistaAdministrador");
+                IdCotizacion = idCotizacion
+            };
+            return View(result);
         }
 
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Enviar([Bind()] FacturaDto dto)
         {
-            return View("Error!");
+            try
+            {
+                if (dto.Foto != null)
+                {
+                    string ficherosImagenes = Path.Combine(this._hosting.WebRootPath, "images");
+                    var guidImage = Guid.NewGuid().ToString() + dto.Foto.FileName;
+                    string rutaDefinitiva = Path.Combine(ficherosImagenes, guidImage);
+                    dto.Foto.CopyTo(new FileStream(rutaDefinitiva, FileMode.Create));
+                    dto.Imagen = guidImage;
+                }
+
+                dto.IdUsuarioRegistro = this.UserId();
+
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TFactura>(dto));
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index), Keys.ControllerKeys.Cotizacion);
+                }
+                return RedirectToAction(nameof(Index), Keys.ControllerKeys.Cotizacion);
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
         }
     }
 }

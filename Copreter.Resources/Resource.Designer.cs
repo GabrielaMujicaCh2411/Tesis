@@ -295,6 +295,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enviar Factura.
+        /// </summary>
+        public static string FACTURA_Enviar {
+            get {
+                return ResourceManager.GetString("FACTURA_Enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Factura.
+        /// </summary>
+        public static string FACTURA_Titulo {
+            get {
+                return ResourceManager.GetString("FACTURA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descripción.
         /// </summary>
         public static string INCIDENCIA_Descripcion {

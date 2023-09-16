@@ -53,7 +53,7 @@
                         {
                             case ECotizacionEstado.aceptado:
                                 {
-                                    <a class="btn btn-primary" asp-controller="Factura" asp-action="Enviar" asp-route-id="@item.Id">Enviar Factura</a>
+                                    <a class="btn btn-primary" asp-controller="Factura" asp-action="Cargar" asp-route-idCotizacion="@item.Id">Enviar Factura</a>
                                 }
                                 break;
                             case ECotizacionEstado.pago:

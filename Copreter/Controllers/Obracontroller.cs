@@ -10,7 +10,6 @@ using System.Security.Claims;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Model.Enums;
 using Microsoft.AspNetCore.Authorization;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Copreter.Controllers
 {
@@ -27,13 +26,13 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger, IHostingEnvironment hosting,
+        public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger, IWebHostEnvironment hosting,
             IObraService service, IEstadoObraService estadoObraService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
             this._estadoObraService = estadoObraService;
-            this._hosting = _hosting;
+            this._hosting = hosting;
         }
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)

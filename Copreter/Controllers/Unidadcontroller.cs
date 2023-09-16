@@ -7,10 +7,7 @@ using static Copreter.Utils.Keys;
 using Copreter.Domain.Service.Dto.Unidad;
 using Copreter.Models.Unidad;
 using Copreter.Utils;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Copreter.Domain.Service.Dto.Usuario;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Copreter.Controllers
 {
@@ -25,7 +22,7 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public Unidadcontroller(IMapper mapper, ILogger<Obracontroller> logger, IHostingEnvironment hosting, 
+        public Unidadcontroller(IMapper mapper, ILogger<Obracontroller> logger, IWebHostEnvironment hosting, 
             IUnidadService service,
             IEstadoUnidadService estadoUnidadservice, ITipoUnidadService tipoUnidadservice) : base(mapper)
         {

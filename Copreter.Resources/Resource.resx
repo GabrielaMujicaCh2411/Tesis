@@ -195,6 +195,12 @@
   <data name="COTIZACION_Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="FACTURA_Enviar" xml:space="preserve">
+    <value>Enviar Factura</value>
+  </data>
+  <data name="FACTURA_Titulo" xml:space="preserve">
+    <value>Factura</value>
+  </data>
   <data name="INCIDENCIA_Descripcion" xml:space="preserve">
     <value>Descripción</value>
   </data>
