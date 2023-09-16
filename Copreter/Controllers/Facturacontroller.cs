@@ -41,6 +41,8 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ObtenerAsync(id);
 
+            if (resultService == null) return RedirectToAction(nameof(Index));
+
             var resultCotizacionService = await this._cotizacionService.ObtenerAsync(resultService.IdCotizacion);
 
             var result = new FacturaDetalleDto();
