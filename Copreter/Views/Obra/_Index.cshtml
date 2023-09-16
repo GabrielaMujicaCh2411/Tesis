@@ -69,9 +69,9 @@
                     </a>
 
                     @{
-                        switch (item.IdEstadoObra)
+                        switch ((EObraEstado)item.IdEstadoObra)
                         {
-                            case 1:
+                            case EObraEstado.Pendiente:
                                 {
                                     if (rolId == (int)ERolEnum.Gerente)
                                     {
@@ -80,12 +80,12 @@
                                     }
                                 }
                                 break;
-                            case 2:
+                            case EObraEstado.Aceptado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
                                 }
                                 break;
-                            case 3:
+                            case EObraEstado.Observada:
                                 {
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
@@ -93,21 +93,21 @@
                                     }
                                 }
                                 break;
-                            case 5:
+                            case EObraEstado.Cotizado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
                                     <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="2">Aceptar</a>
                                     <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="6">Rechazar</a>
                                 }
                                 break;
-                            case 7:
-                            case 10:
+                            case EObraEstado.Facturado:
+                            case EObraEstado.Terminado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="DetalleCoti" asp-route-id="@item.Id">Pagar</a>
                                 }
                                 break;
-                            case 9:
+                            case EObraEstado.Proceso:
                                 {
                                     <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="10">Obra Terminada</a>
                                 }

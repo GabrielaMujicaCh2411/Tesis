@@ -77,7 +77,7 @@ namespace Copreter.Controllers
         [HttpGet("PreCotizar/{idObra}")]
         public async Task<IActionResult> PreCotizar(int? idObra = 0)
         {
-            if(idObra == null)
+            if (idObra == null)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -100,7 +100,9 @@ namespace Copreter.Controllers
             {
                 var resultPartida = await this._obraPartidaService.AgregarAsync(this.Mapper.Map<IEnumerable<TObraxPartida>>(dto.Lista));
 
-                var result = await this._service.AgregarAsync(this.Mapper.Map<TCotizacion>(dto));
+                var cotizacion = this.Mapper.Map<TCotizacion>(dto);
+                cotizacion.IdEstadoCotizacion = 1;
+                var result = await this._service.AgregarAsync(cotizacion);
                 if (result)
                 {
                     var resultObra = await this._obraService.ActualizarEstado(dto.IdObra, Domain.Model.Enums.EObraEstado.Cotizado, this.UserId());
@@ -121,7 +123,7 @@ namespace Copreter.Controllers
             try
             {
                 var resultService = await this._service.ObtenerAsync(id);
-                if(resultService != null)
+                if (resultService != null)
                 {
                     var resultPartidaXObra = await this._obraPartidaService.ListarPorIdObraAsync(resultService.IdObra);
 

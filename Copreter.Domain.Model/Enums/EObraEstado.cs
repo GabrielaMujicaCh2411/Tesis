@@ -3,15 +3,15 @@
     public enum EObraEstado
     {
         Pendiente = 1,
-        Aceptado,
-        Observada,
-        Citado,
-        Cotizado,
-        Rechazado,
-        Facturado,
-        Pago,
-        Proceso,
-        Terminado,
-        Finalizado
+        Aceptado =2,
+        Observada =3,
+        Citado = 4,
+        Cotizado = 5,
+        Rechazado = 6,
+        Facturado = 7,
+        Pago = 8,
+        Proceso = 9,
+        Terminado = 10,
+        Finalizado = 11
     }
 }

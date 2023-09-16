@@ -1,4 +1,5 @@
-﻿@using Copreter.Resources;
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
 @model Copreter.Models.Cotizacion.CotizacionIndexVM;
 
 <table class="table table-bordered table-hover">
@@ -48,19 +49,19 @@
                     </a>
 
                     @{
-                        switch (item.IdEstadoCotizacion)
+                        switch ((ECotizacionEstado)item.IdEstadoCotizacion)
                         {
-                            case 2:
+                            case ECotizacionEstado.aceptado:
                                 {
                                     <a class="btn btn-primary" asp-controller="Factura" asp-action="Enviar" asp-route-id="@item.Id">Enviar Factura</a>
                                 }
                                 break;
-                            case 5:
+                            case ECotizacionEstado.pago:
                                 {
                                     <a class="btn btn-primary" asp-controller="Trabajador" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Trabajador</a>
                                 }
                                 break;
-                            case 9:
+                            case ECotizacionEstado.trabajadorAsignado:
                                 {
                                     <a class="btn btn-primary" asp-controller="Unidad" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Herramientas</a>
                                 }
