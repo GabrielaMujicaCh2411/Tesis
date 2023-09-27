@@ -1,5 +1,6 @@
 using AutoMapper;
 using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Pedido;
@@ -118,12 +119,30 @@ namespace Copreter.Controllers
             }
         }
 
+
+        public async Task<IActionResult> Aceptar(int id)
+        {
+            var resultService = await this._service.ObtenerAsync(id);
+            if (resultService == null) return RedirectToAction(nameof(Index));
+
+            resultService.IdEstadoPedido = (int)EPedidoEstado.Aceptado;
+            resultService.IdUsuarioModificacion = this.UserId();
+
+            var result = await this._service.ActualizarAsync(id, resultService);
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return BadRequest();
+        }
+
         public async Task<IActionResult> Rechazar(int id)
         {
             var resultService = await this._service.ObtenerAsync(id);
             if (resultService == null) return RedirectToAction(nameof(Index));
 
-            resultService.IdEstadoPedido = 6;
+            resultService.IdEstadoPedido = (int)EPedidoEstado.Rechazado;
             resultService.IdUsuarioModificacion = this.UserId();
 
             var result = await this._service.ActualizarAsync(id, resultService);

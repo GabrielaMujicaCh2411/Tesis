@@ -12,6 +12,7 @@ namespace Copreter.Domain.Service.Dto.Incidencia
         public int HorasTrabajadas { get; set; }
         [Required]
         public int IdPedido { get; set; }
+
         public string? Pedido { get; set; }
     }
 }

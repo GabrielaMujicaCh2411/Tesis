@@ -1,0 +1,240 @@
+﻿@using Copreter.Resources;
+@using Copreter.Utils;
+@model Copreter.Models.Trabajador.TrabajadorAsignarVM;
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.TRABAJADOR_Asignar</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        @*<li class="breadcrumb-item active">Asignar Trabajador en N° @Model.Obra.NombreObra</li>*@
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Sistema Drywall</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                    @*            @foreach (var partida in Model.DtoList.Where(x => x.IdTipoPartida == 1).ToList())
+                                {
+                                    <div class="row" style="padding:0 5px 5%">
+                                        <div class="col-6 col-sm-5">
+                                            @partida.Id . @partida.Nombre
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="unidadMedida" class="form-label">Unidad:</label>
+                                            <select id="@partida.Id-UnidadMedida" class="form-control" asp-items="Model.UnidadMedidaLista"></select>
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="metrado" class="form-label">Metrado:</label>
+                                            <input class="form-control" id="@partida.Id-Metrado" name="metrado"
+                                                   onblur="cambioParcial(@partida.Id)">
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="precioUnitario" class="form-label">P. Unitario:</label>
+                                            <input type="text" class="form-control" value="@partida.PrecioUnidad" id="@partida.Id-PrecioUnitario"
+                                                   name="precioUnitario" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="parcial" class="form-label">Parcial:</label>
+                                            <input class="form-control" id="@partida.Id-Parcial" value="0.00" name="parcial" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-1" style="display:flex">
+                                            <a class="btn btn-primary" id="idAgregarPartida"
+                                               onclick="addPartida(@partida.Id,'@partida.Nombre');" style="align-self:flex-end">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }*@
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Encofrados</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+       @*                         @foreach (var partida in Model.DtoList.Where(x => x.IdTipoPartida == 2).ToList())
+                                {
+                                    <div class="row" style="padding:0 5px 5%">
+                                        <div class="col-6 col-sm-5">
+                                            @partida.Id . @partida.Nombre
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="unidadMedida" class="form-label">Unidad:</label>
+                                            <select id="@partida.Id-UnidadMedida" class="form-control" asp-items="Model.UnidadMedidaLista"></select>
+                                        </div>
+                                        <div class="col-6 col-sm-1">
+                                            <label for="metrado" class="form-label">Metrado:</label>
+                                            <input class="form-control" id="@partida.Id-Metrado" name="metrado"
+                                                   onblur="cambioParcial(@partida.Id)">
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="precioUnitario" class="form-label">P. Unitario:</label>
+                                            <input type="text" class="form-control" value="@partida.PrecioUnidad" id="@partida.Id-PrecioUnitario"
+                                                   name="precioUnitario" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-2">
+                                            <label for="parcial" class="form-label">Parcial:</label>
+                                            <input class="form-control" id="@partida.Id-Parcial" value="0.00" name="parcial" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-1" style="display:flex">
+                                            <a class="btn btn-primary" id="idAgregarPartida"
+                                               onclick="addPartida(@partida.Id,'@partida.Nombre');" style="align-self:flex-end">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }*@
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Encofrados</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                <table id="partidasAgregadas" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">N° Partida</th>
+                                            <th scope="col">Nombre Partida</th>
+                                            <th scope="col">Unidad</th>
+                                            <th scope="col">Metrado</th>
+                                            <th scope="col">Parcial</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <div style="text-align: right">
+                                    <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
+                                </div>
+                                <br />
+                                <div style="text-align: end; margin: 4px;">
+                                    @*<button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>*@
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        var costoTotal = 0.00;
+
+
+        function cambioParcial(idPartida) {
+            let meter = Number(document.getElementById(`${idPartida}-Metrado`).value);
+            let puni = Number(document.getElementById(`${idPartida}-PrecioUnitario`).value);
+            let partial = parseFloat(meter * puni).toFixed(2);
+            document.getElementById(`${idPartida}-Parcial`).value = partial;
+        }
+
+        function addPartida(idPartida, nombrePartida) {
+            var medida = $("#" + idPartida + "-UnidadMedida" + " option:selected").text();
+            var e = document.getElementById(`${idPartida}-UnidadMedida`);
+            var unidadMedida = e.options[e.selectedIndex].text;
+            var unidad = Number(document.getElementById(`${idPartida}-PrecioUnitario`).value);
+            var metrado = Number(document.getElementById(`${idPartida}-Metrado`).value);
+            var parcial = unidad * metrado;
+            var row = "<tr>" +
+                "<td>" + idPartida + "</td>" +
+                "<td>" + nombrePartida + "</td>" +
+                "<td>" + unidadMedida + "</td>" +
+                "<td>" + metrado + "</td>" +
+                "<td>" + parseFloat(parcial).toFixed(2) + "</td>" +
+                "</tr>";
+            $('#partidasAgregadas > tbody').append(row);
+            costoTotal += parseFloat(parcial);
+            $('#registrarTotal').text(parseFloat(costoTotal).toFixed(2));
+            document.getElementById(`${idPartida}-Metrado`).value = '';
+            document.getElementById(`${idPartida}-Parcial`).value = '0.00';
+        }
+
+        function AgregarCotizacion(idObra) {
+            var partidasxObra = [];
+
+            var row = document.getElementById('partidasAgregadas').rows.length;
+
+            for (i = 1; i < row; i++) {
+                var parti = {
+                    idPartida: document.getElementById("partidasAgregadas").rows[i].cells.item(0).innerHTML,
+                    idObra: idObra,
+                    unidad: document.getElementById("partidasAgregadas").rows[i].cells.item(2).innerHTML,
+                    metrado: Number(document.getElementById("partidasAgregadas").rows[i].cells.item(3).innerHTML),
+                    parcial: parseFloat(document.getElementById("partidasAgregadas").rows[i].cells.item(4).innerHTML)
+                };
+                partidasxObra.push(parti);
+            };
+
+            var param = {
+                total: Number(costoTotal),
+                IdObra: idObra,
+                lista: partidasxObra
+            };
+
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.PostCotizar, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {
+
+                alert('Hola');
+                location.href = '@Url.Action(Keys.ActionKeys.Index, Keys.ControllerKeys.Obra)';
+
+            }, function (XMLHttpRequest, textStatus, errorThrown) {
+                notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');
+            });
+        }
+
+    </script>
+}

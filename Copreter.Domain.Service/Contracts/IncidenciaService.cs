@@ -49,7 +49,8 @@ namespace Copreter.Domain.Service.Contracts
         public async Task<IEnumerable<TIncidencia>> ListarAsync(IncidenciaFilter model)
         {
             var predicates = new List<Expression<Func<TIncidencia, bool>>>();
-  
+
+            predicates.Add(x => x.IdPedido == model.IdPedido);
             predicates.Add(x => x.Borrado == false);
 
             return await this._data.Incidencia.SelectPredicatesWithIncludes(predicates, x => x.IdPedidoNavigation);

@@ -1,6 +1,7 @@
 ﻿@using Copreter.Domain.Model.Enums;
 @using Copreter.Resources;
 @model Copreter.Models.Cotizacion.CotizacionIndexVM;
+@using System.Security.Claims;
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -49,6 +50,8 @@
                     </a>
 
                     @{
+                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+
                         switch ((ECotizacionEstado)item.IdEstadoCotizacion)
                         {
                             case ECotizacionEstado.aceptado:
@@ -58,7 +61,10 @@
                                 break;
                             case ECotizacionEstado.pago:
                                 {
-                                    <a class="btn btn-primary" asp-controller="Trabajador" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Trabajador</a>
+                                    if (rolId == (int)ERolEnum.Administrador)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Trabajador" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Trabajador</a>
+                                    }
                                 }
                                 break;
                             case ECotizacionEstado.trabajadorAsignado:

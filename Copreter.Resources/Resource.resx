@@ -426,6 +426,9 @@
   <data name="TRABAJADOR_Apellido" xml:space="preserve">
     <value>Apellido</value>
   </data>
+  <data name="TRABAJADOR_Asignar" xml:space="preserve">
+    <value>Asignar trabajador</value>
+  </data>
   <data name="TRABAJADOR_Celular" xml:space="preserve">
     <value>Celular</value>
   </data>

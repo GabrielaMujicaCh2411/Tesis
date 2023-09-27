@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Resource.INCIDENCIA_Titulo</h1>
+                    <h1>@Resource.INCIDENCIA_Titulo : @Model.Pedido</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -40,6 +40,10 @@
 
                                 <form asp-action="Crear" asp-controller="Incidencia" method="post">
                                     <div class="card-body">
+
+                                        <input type="hidden" asp-for="IdPedido" />
+
+
                                         <div class="form-group">
                                             <label>@Resource.INCIDENCIA_Fecha</label>
                                             <input type="text" class="form-control" placeholder="Fecha" asp-for="Fecha">

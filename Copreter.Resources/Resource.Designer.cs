@@ -988,6 +988,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asignar trabajador.
+        /// </summary>
+        public static string TRABAJADOR_Asignar {
+            get {
+                return ResourceManager.GetString("TRABAJADOR_Asignar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Celular.
         /// </summary>
         public static string TRABAJADOR_Celular {

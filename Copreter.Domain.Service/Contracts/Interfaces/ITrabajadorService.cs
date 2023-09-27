@@ -13,7 +13,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<bool> ActualizarAsync(int id, TTrabajador entidad);
 
-        Task<bool> EliminarAsync(int id);
+        Task<bool> EliminarAsync(int id, int idUsuario);
 
         Task<int> CountAsync();
     }

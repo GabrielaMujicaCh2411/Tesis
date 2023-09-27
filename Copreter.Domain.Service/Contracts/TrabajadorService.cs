@@ -41,12 +41,12 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Trabajador.CountIncludes(x => x.Borrado == false);
         }
 
-        public async Task<bool> EliminarAsync(int id)
+        public async Task<bool> EliminarAsync(int id, int idUsuario)
         {
             var entidadActual = await this._data.Trabajador.GetById(id);
             if (entidadActual == null) return false;
 
-            entidadActual.IdUsuarioModificacion = 2;
+            entidadActual.IdUsuarioModificacion = idUsuario;
             entidadActual.FechaModificacion = DateTime.Now;
             entidadActual.Borrado = true;
 

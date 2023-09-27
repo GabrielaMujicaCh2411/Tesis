@@ -209,9 +209,7 @@ namespace Copreter.Controllers
             var result = await this._service.ObtenerAsync(dto.Id);
             if (result != null)
             {
-                dto.IdUsuarioModificacion = this.UserId();
-
-                await this._service.EliminarAsync(dto.Id);
+                await this._service.EliminarAsync(dto.Id, this.UserId());
             }
 
             return RedirectToAction(nameof(Index));
