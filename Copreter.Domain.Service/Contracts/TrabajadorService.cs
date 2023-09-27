@@ -1,4 +1,5 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Trabajador;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
@@ -28,6 +29,22 @@ namespace Copreter.Domain.Service.Contracts
 
             var result = await this._data.Trabajador.Update(entidadActual);
             return result > 0;
+        }
+
+        public async Task<bool> ActualizarEstadoAsync(IEnumerable<TTrabajador> lista, ETrabajadorEstado estado, int idUsuario)
+        {
+            foreach (var item in lista)
+            {
+                var entidadActual = await this._data.Trabajador.GetById(item.Id);
+                if (entidadActual == null) continue;
+
+                entidadActual.IdEstadoTrabajador = (int)estado;
+                entidadActual.IdUsuarioModificacion = idUsuario;
+                entidadActual.FechaModificacion = DateTime.Now;
+
+                await this._data.Trabajador.Update(entidadActual);
+            }
+            return true;
         }
 
         public async Task<bool> AgregarAsync(TTrabajador entidad)

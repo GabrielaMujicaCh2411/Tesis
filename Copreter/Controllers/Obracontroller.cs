@@ -154,12 +154,12 @@ namespace Copreter.Controllers
             {
                 case EObraEstado.Aceptado:
                     {
-                        await this._cotizacionService.ActualizarEstado(id.Value, ECotizacionEstado.aceptado, this.UserId());
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.aceptado, this.UserId());
                     }
                     break;
                 case EObraEstado.Rechazado:
                     {
-                        await this._cotizacionService.ActualizarEstado(id.Value, ECotizacionEstado.rechazado, this.UserId());
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.rechazado, this.UserId());
                     }
                     break;
             }

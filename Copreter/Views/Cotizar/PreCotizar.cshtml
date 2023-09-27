@@ -228,7 +228,7 @@
 
             $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.PostCotizar, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {
 
-                alert('Hola');
+                //alert('Hola');
                 location.href = '@Url.Action(Keys.ActionKeys.Index, Keys.ControllerKeys.Obra)';
 
             }, function (XMLHttpRequest, textStatus, errorThrown) {

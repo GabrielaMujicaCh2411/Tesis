@@ -44,6 +44,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TTrabajador> Trabajador { get; }
 
+        IRepository<TTrabajadorxCotizacion> TrabajadorxCotizacion { get; }
+
         IRepository<TUnidad> Unidad { get; }
 
         IRepository<TUsuario> Usuario { get; }

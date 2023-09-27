@@ -2,6 +2,7 @@
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Trabajador;
+using Copreter.Domain.Service.Dto.TrabajadorxCotizacion;
 using Copreter.Models.Trabajador;
 
 namespace Copreter.Profiles
@@ -33,6 +34,8 @@ namespace Copreter.Profiles
                 .ForMember(s => s.Id, src => src.MapFrom(x => x.Id))
                 .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))
                 .ReverseMap();
+
+            CreateMap<TTrabajador, ATrabajadorDto>().ReverseMap();
         }
     }
 }

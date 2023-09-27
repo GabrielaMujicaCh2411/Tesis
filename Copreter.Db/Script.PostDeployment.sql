@@ -110,8 +110,11 @@ INSERT [dbo].[T_TipoUnidad] ([Id], [Nombre]) VALUES (2, N'Herramienta')
 SET IDENTITY_INSERT [dbo].[T_TipoUnidad] OFF
 GO
 
-INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (71458541, N'Elcar', N'Litos', 921745873, 2, 2)
-INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (74847574, N'Eljua', N'Nito', 924785987, 3, 2)
+INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (44700264, N'Daniel', N'Lopez', 924554873, 1,1)
+INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (44575075, N'Juan', N'Arteaga', 924566873, 1,1)
+INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (44057504, N'Luis', N'Alayo', 921745873, 2,1)
+INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (71458541, N'Elcar', N'Litos', 921745873, 2,1)
+INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (74847574, N'Eljua', N'Nito', 924785987, 3, 1)
 INSERT [dbo].[T_Trabajador] ([dni], [nombre], [apellido], [celular], [id_Tipo_Trabajador], [id_Estado_Trabajador]) VALUES (75878474, N'Mario', N'Bros', 952958787, 3, 1)
 GO
 

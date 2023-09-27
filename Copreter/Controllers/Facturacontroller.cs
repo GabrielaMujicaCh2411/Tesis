@@ -85,7 +85,7 @@ namespace Copreter.Controllers
                 {
                     var cotización = await this._cotizacionService.ObtenerAsync(dto.IdCotizacion);
 
-                    await this._cotizacionService.ActualizarEstado(cotización.IdObra, ECotizacionEstado.Primerfacturado, this.UserId());
+                    await this._cotizacionService.ActualizarEstadoPorObraAsync(cotización.IdObra, ECotizacionEstado.Primerfacturado, this.UserId());
 
                     await this._obraservice.ActualizarEstado(cotización.IdObra, EObraEstado.Facturado, this.UserId());
 

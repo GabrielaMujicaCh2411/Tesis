@@ -1,4 +1,5 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Trabajador;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
@@ -16,5 +17,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> EliminarAsync(int id, int idUsuario);
 
         Task<int> CountAsync();
+
+        Task<bool> ActualizarEstadoAsync(IEnumerable<TTrabajador> lista, ETrabajadorEstado estado, int idUsuario);
     }
 }

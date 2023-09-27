@@ -63,13 +63,16 @@
                                 {
                                     if (rolId == (int)ERolEnum.Administrador)
                                     {
-                                        <a class="btn btn-primary" asp-controller="Trabajador" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Trabajador</a>
+                                        <a class="btn btn-primary" asp-controller="ATrabajador" asp-action="PreAsignar" asp-route-idCotizacion="@item.Id"><spam class="fas fa-user-check" aria-hidden="true"></spam></a>
                                     }
                                 }
                                 break;
                             case ECotizacionEstado.trabajadorAsignado:
                                 {
-                                    <a class="btn btn-primary" asp-controller="Unidad" asp-action="Asignar" asp-route-idCotizacion="@item.Id">Asignar Herramientas</a>
+                                    if (rolId == (int)ERolEnum.Administrador)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="AHerramientas" asp-action="PreAsignar" asp-route-idCotizacion="@item.Id"><span class="fas fa-hammer" aria-hidden="true"></span></a>
+                                    }
                                 }
                                 break;
                         }

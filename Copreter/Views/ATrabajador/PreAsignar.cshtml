@@ -1,0 +1,202 @@
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
+@using Copreter.Utils;
+@model Copreter.Models.TrabajadorxCotizacion.TrabajadorxCotizacionVM;
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.TRABAJADOR_Asignar : @Model.Cotizacion.Obra</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.TRABAJADOR_Asignar </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Ayudante</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                @foreach (var item in Model.DtoList.Where(x => x.IdTipoTrabajador == (int)ETipoTrabajador.Ayudante).ToList())
+                                {
+                                    <div class="row" style="padding:0 5px 5%">
+                                        <div class="col-6 col-sm-4">
+                                            <label for="metrado" class="form-label">Nombre:</label>
+                                            <input class="form-control" value="@item.Nombre" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-4">
+                                            <label for="metrado" class="form-label">Apellido:</label>
+                                            <input class="form-control" value="@item.Apellido" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-3">
+                                            <label for="metrado" class="form-label">Dni:</label>
+                                            <input class="form-control" value="@item.Dni" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-1" style="display:flex">
+                                            <a class="btn btn-primary" id="idAgregarPartida"
+                                               onclick="addPartida(@item.Id, @item.Dni,'@item.Nombre','@item.Apellido');" style="align-self:flex-end">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Capataz</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                @foreach (var item in Model.DtoList.Where(x => x.IdTipoTrabajador == (int)ETipoTrabajador.Capataz).ToList())
+                                {
+                                    <div class="row" style="padding:0 5px 5%">
+                                        <div class="col-6 col-sm-4">
+                                            <label for="metrado" class="form-label">Nombre:</label>
+                                            <input class="form-control" value="@item.Nombre" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-4">
+                                            <label for="metrado" class="form-label">Apellido:</label>
+                                            <input class="form-control" value="@item.Apellido" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-3">
+                                            <label for="metrado" class="form-label">Dni:</label>
+                                            <input class="form-control" value="@item.Dni" readonly="@(true)">
+                                        </div>
+
+                                        <div class="col-6 col-sm-1" style="display:flex">
+                                            <a class="btn btn-primary" id="idAgregarPartida"
+                                               onclick="addPartida(@item.Id, @item.Dni,'@item.Nombre','@item.Apellido');" style="align-self:flex-end">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Encofrados</h3>
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                <table id="partidasAgregadas" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">N° DNI</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <div style="text-align: end; margin: 4px;">
+                                    <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.IdCotizacion)">Asignar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+
+        function addPartida(id, dniTrabajador, nombre, apellido) {
+
+            var row = "<tr>" +
+                "<td>" + id + "</td>" +
+                "<td>" + dniTrabajador + "</td>" +
+                "<td>" + nombre + "</td>" +
+                "<td>" + apellido + "</td>" +
+                "</tr>";
+            $('#partidasAgregadas > tbody').append(row);
+        }
+
+        function AgregarCotizacion(idCotizacion) {
+            var partidasxObra = [];
+
+            var row = document.getElementById('partidasAgregadas').rows.length;
+
+            for (i = 1; i < row; i++) {
+                var parti = {
+                    id: document.getElementById("partidasAgregadas").rows[i].cells.item(0).innerHTML,
+                    idCotizacion: idCotizacion,
+                    dni: document.getElementById("partidasAgregadas").rows[i].cells.item(1).innerHTML,
+                };
+                partidasxObra.push(parti);
+            };
+
+            var param = {
+                IdCotizacion: idCotizacion,
+                lista: partidasxObra
+            };
+
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.PostAsignar, Keys.ControllerKeys.ATrabajador)', JSON.stringify(param), function (data) {
+
+                //alert('Hola');
+                location.href = '@Url.Action(Keys.ActionKeys.Index, Keys.ControllerKeys.Cotizacion)';
+
+            }, function (XMLHttpRequest, textStatus, errorThrown) {
+                notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');
+            });
+        }
+
+    </script>
+}

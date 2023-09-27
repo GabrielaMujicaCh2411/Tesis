@@ -40,6 +40,7 @@ namespace Copreter.Domain.Service
             services.AddScoped<ITipoUnidadService, TipoUnidadService>();
 
             services.AddScoped<ITrabajadorService, TrabajadorService>();
+            services.AddScoped<ITrabajadorxCotizacionService, TrabajadorxCotizacionService>();
             services.AddScoped<IUnidadService, UnidadService>();
             services.AddScoped<IAccesoService, AccesoService>();
             services.AddCustomRepositories(configuration.GetConnectionString(ConfigKeys.DatabaseConnection));

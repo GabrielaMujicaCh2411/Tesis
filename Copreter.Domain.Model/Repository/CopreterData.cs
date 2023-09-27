@@ -45,6 +45,8 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TTrabajador> _trabajador;
 
+        private readonly IRepository<TTrabajadorxCotizacion> _trabajadorxCotizacion;
+
         private readonly IRepository<TUnidad> _unidad;
 
         private readonly IRepository<TUsuario> _usuario;
@@ -59,7 +61,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TEstadoTrabajador> estadoTrabajador,
             IRepository<TEstadoUnidad> estadoUnidad,
             IRepository<TFactura> factura,
-              IRepository<TIncidencia> incidencia,
+            IRepository<TIncidencia> incidencia,
             IRepository<TObra> obra,
             IRepository<TObraxPartida> obraPartida,
             IRepository<TPago> pago,
@@ -70,6 +72,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TTipoTrabajador> tipoTrabajador,
             IRepository<TTipoUnidad> tipoUnidad,
             IRepository<TTrabajador> trabajador,
+            IRepository<TTrabajadorxCotizacion> trabajadorxCotizacion,
             IRepository<TUnidad> unidad,
             IRepository<TUsuario> usuario)
         {
@@ -93,6 +96,7 @@ namespace Copreter.Domain.Model.Repository
             this._tipoTrabajador = tipoTrabajador;
             this._tipoUnidad = tipoUnidad;
             this._trabajador = trabajador;
+            this._trabajadorxCotizacion = trabajadorxCotizacion;
             this._unidad = unidad;
             this._usuario = usuario;
         }
@@ -136,6 +140,8 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TTipoUnidad> TipoUnidad => this._tipoUnidad;
 
         public IRepository<TTrabajador> Trabajador => this._trabajador;
+
+        public IRepository<TTrabajadorxCotizacion> TrabajadorxCotizacion => this._trabajadorxCotizacion;
 
         public IRepository<TUnidad> Unidad => this._unidad;
 

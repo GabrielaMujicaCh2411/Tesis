@@ -23,6 +23,8 @@
             public const string Unidad = "Unidad";
             public const string Usuario = "Usuario";
             public const string Incidencia = "Incidencia";
+
+            public const string ATrabajador = "ATrabajador";
         }
 
         public class ActionKeys
@@ -51,6 +53,9 @@
 
             public const string Cotizar = "Cotizar";
             public const string PostCotizar = "PostCotizar";
+
+            public const string PreAsignar = "PreAsignar";
+            public const string PostAsignar = "PostAsignar";
         }
 
         public class PartialViewKeys
