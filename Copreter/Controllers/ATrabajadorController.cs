@@ -1,18 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
-using Copreter.Domain.Service.Dto.Obra;
-using Copreter.Domain.Service.Dto.Partida;
-using Copreter.Models.Cotizacion;
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Service.Dto.Cotizacion;
 using Copreter.Utils;
 using Copreter.Domain.Model.Model.Trabajador;
 using Copreter.Models.TrabajadorxCotizacion;
-using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Service.Dto.TrabajadorxCotizacion;
 

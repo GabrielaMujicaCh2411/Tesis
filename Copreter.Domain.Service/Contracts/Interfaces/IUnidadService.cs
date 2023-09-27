@@ -1,10 +1,12 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
+using Copreter.Domain.Model.Model.Unidad;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces
 {
     public interface IUnidadService
     {
-        Task<IEnumerable<TUnidad>> ListarAsync();
+        Task<IEnumerable<TUnidad>> ListarAsync(UnidadFilter model);
 
         Task<IEnumerable<TUnidad>> ListarCatalagoAsync(int tipoUnidad);
 
@@ -19,5 +21,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> EliminarAsync(int id);
 
         Task<int> CountAsync(int idEstado);
+
+        Task<bool> ActualizarEstadoAsync(IEnumerable<TUnidad> enumerable, EUnidadEstado noDisponible, int v);
     }
 }

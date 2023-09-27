@@ -447,6 +447,9 @@
   <data name="TRABAJADOR_Titulo" xml:space="preserve">
     <value>Trabajador</value>
   </data>
+  <data name="UNIDAD_Asignar" xml:space="preserve">
+    <value>Asignar Herramientas</value>
+  </data>
   <data name="UNIDAD_Cantidad" xml:space="preserve">
     <value>Cantidad</value>
   </data>

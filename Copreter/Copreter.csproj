@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\AHerramientasController.cs" />
     <Compile Remove="Controllers\TipoUnidadcontroller.cs" />
   </ItemGroup>
 

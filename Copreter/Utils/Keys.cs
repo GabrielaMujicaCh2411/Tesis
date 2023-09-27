@@ -25,6 +25,7 @@
             public const string Incidencia = "Incidencia";
 
             public const string ATrabajador = "ATrabajador";
+            public const string AHerramienta = "AHerramienta";
         }
 
         public class ActionKeys
@@ -56,6 +57,8 @@
 
             public const string PreAsignar = "PreAsignar";
             public const string PostAsignar = "PostAsignar";
+
+            public const string PostAsignarH = "PostAsignarH";
         }
 
         public class PartialViewKeys

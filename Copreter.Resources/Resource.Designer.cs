@@ -1051,6 +1051,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asignar Herramientas.
+        /// </summary>
+        public static string UNIDAD_Asignar {
+            get {
+                return ResourceManager.GetString("UNIDAD_Asignar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cantidad.
         /// </summary>
         public static string UNIDAD_Cantidad {

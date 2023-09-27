@@ -8,6 +8,7 @@ using Copreter.Domain.Service.Dto.Unidad;
 using Copreter.Models.Unidad;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Authorization;
+using Copreter.Domain.Model.Model.Unidad;
 
 namespace Copreter.Controllers
 {
@@ -34,7 +35,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new UnidadFilter());
 
             var result = new UnidadIndexVM
             {
@@ -45,7 +46,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> _Index()
         {
-            var resultService = await this._service.ListarAsync();
+            var resultService = await this._service.ListarAsync(new UnidadFilter());
 
             var result = new UnidadIndexVM
             {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Copreter.Domain.Model.DbModel;
-using Copreter.Domain.Service.Dto.Trabajador;
 using Copreter.Domain.Service.Dto.TrabajadorxCotizacion;
 
 namespace Copreter.Profiles

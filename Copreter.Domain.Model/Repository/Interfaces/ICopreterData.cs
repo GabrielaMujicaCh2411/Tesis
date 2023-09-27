@@ -20,6 +20,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TCotizacion> Cotizacion { get; }
 
+        IRepository<TCotizacionxUnidad> CotizacionXUnidad { get; }
+
         IRepository<TFactura> Factura { get; }
 
         IRepository<TIncidencia> Incidencia { get; }

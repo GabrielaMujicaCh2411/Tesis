@@ -1,4 +1,6 @@
 ﻿using Copreter.Domain.Model.DbModel;
+using Copreter.Domain.Model.Enums;
+using Copreter.Domain.Model.Model.Unidad;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using System.Linq.Expressions;
@@ -39,6 +41,26 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
+        public async Task<bool> ActualizarEstadoAsync(IEnumerable<TUnidad> lista, EUnidadEstado estado, int idUsuario)
+        {
+            foreach (var item in lista)
+            {
+                var entidadActual = await this._data.Unidad.GetById(item.Id);
+                if (entidadActual == null) continue;
+
+                var disponible = entidadActual.CantidadDisponible - item.Cantidad;
+                entidadActual.CantidadDisponible = disponible > 0 ? disponible : 0;
+
+                entidadActual.IdEstadoUnidad = disponible > 0 ? (int)EUnidadEstado.Disponible : (int)EUnidadEstado.NoDisponible;
+
+                entidadActual.IdUsuarioModificacion = idUsuario;
+                entidadActual.FechaModificacion = DateTime.Now;
+
+                await this._data.Unidad.Update(entidadActual);
+            }
+            return true;
+        }
+
         public async Task<bool> AgregarAsync(TUnidad entidad)
         {
             entidad.CantidadDisponible = entidad.Cantidad;
@@ -66,9 +88,23 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<IEnumerable<TUnidad>> ListarAsync()
+        public async Task<IEnumerable<TUnidad>> ListarAsync(UnidadFilter model)
         {
-            return await this._data.Unidad.SelectIncludes(x => x.Borrado == false, x => x.IdTipoUnidadNavigation, x => x.IdEstadoUnidadNavigation);
+            var predicates = new List<Expression<Func<TUnidad, bool>>>();
+
+            if (model.IdEstado.HasValue && model.IdEstado != 0)
+            {
+                predicates.Add(x => x.IdEstadoUnidad == model.IdEstado);
+            }
+
+            if (model.IdTipo.HasValue && model.IdTipo != 0)
+            {
+                predicates.Add(x => x.IdTipoUnidad == model.IdTipo);
+            }
+
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.Unidad.SelectPredicatesWithIncludes(predicates, x => x.IdTipoUnidadNavigation, x => x.IdEstadoUnidadNavigation);
         }
 
         public async Task<IEnumerable<TUnidad>> ListarCatalagoAsync(int tipoUnidad)
