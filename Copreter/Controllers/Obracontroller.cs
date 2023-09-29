@@ -26,10 +26,19 @@ namespace Copreter.Controllers
 
         private readonly ICotizacionService _cotizacionService;
 
+
+
+        private readonly ITrabajadorxCotizacionService _trabajadorxCotizacionService;
+
+
+
+        private readonly ICotizacionxUnidadService _cotizacionxUnidadService;
+
         #endregion
 
         public Obracontroller(IMapper mapper, ILogger<Obracontroller> logger, IWebHostEnvironment hosting,
-            IObraService service, IEstadoObraService estadoObraService, ICotizacionService cotizacionService) : base(mapper)
+            IObraService service, IEstadoObraService estadoObraService, ICotizacionService cotizacionService,
+            ITrabajadorxCotizacionService trabajadorxCotizacionService, ICotizacionxUnidadService cotizacionxUnidadService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
@@ -38,6 +47,9 @@ namespace Copreter.Controllers
 
             this._estadoObraService = estadoObraService;
             this._cotizacionService = cotizacionService;
+
+            this._trabajadorxCotizacionService = trabajadorxCotizacionService;
+            this._cotizacionxUnidadService = cotizacionxUnidadService;
         }
 
         public async Task<IActionResult> Index(int? userId = 0, int? idEstado = 0)
@@ -160,6 +172,19 @@ namespace Copreter.Controllers
                 case EObraEstado.Rechazado:
                     {
                         await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.rechazado, this.UserId());
+                    }
+                    break;
+                case EObraEstado.Terminado:
+                    {
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.finalizado, this.UserId());
+
+                        var cotizacíon = await this._cotizacionService.ObtenerPorIdObraAsync(id.Value);
+                        if (cotizacíon != null)
+                        {
+                            var trabajadorXCotizacion = await this._trabajadorxCotizacionService.RestaurarTrabajadorAsync(cotizacíon.Id, this.UserId());
+
+                            var herramientaXCotizacion = await this._cotizacionxUnidadService.RestaurarUnidadAsync(cotizacíon.Id, this.UserId());
+                        }
                     }
                     break;
             }

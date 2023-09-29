@@ -18,6 +18,6 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<int> CountAsync();
 
-        Task<bool> ActualizarEstadoAsync(IEnumerable<TTrabajador> lista, ETrabajadorEstado estado, int idUsuario);
+        Task<bool> ActualizarEstadoAsync(IEnumerable<int> lista, ETrabajadorEstado estado, int idUsuario);
     }
 }

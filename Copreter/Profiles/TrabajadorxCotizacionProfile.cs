@@ -12,6 +12,12 @@ namespace Copreter.Profiles
                 .ForMember(s => s.IdTrabajador, src => src.MapFrom(x => x.Id))
                 .ForMember(s => s.IdCotizacion, src => src.MapFrom(x => x.IdCotizacion))
                 .ReverseMap();
+
+
+            CreateMap<TTrabajadorxCotizacion, TTrabajador>()
+                .ForMember(s => s.Id, src => src.MapFrom(x => x.IdTrabajador))
+                .ReverseMap();
+
         }
     }
 }

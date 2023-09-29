@@ -218,7 +218,7 @@ namespace Copreter.Controllers
                     var result = await this._service.AgregarAsync(this.Mapper.Map<TPedido>(dto));
                     if (result)
                     {
-                        var resultUnidad = await this._unidadService.ActualizarCantidadAsync(dto.IdUnidad, dto.Cantidad);
+                        var resultUnidad = await this._unidadService.ActualizarCantidadAsync(dto.IdUnidad, dto.Cantidad, false, this.UserId());
                         return RedirectToAction(nameof(Index), new { userId = this.UserId() });
                     }
                 }

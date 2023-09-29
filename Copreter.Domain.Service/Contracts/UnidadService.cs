@@ -9,6 +9,8 @@ namespace Copreter.Domain.Service.Contracts
 {
     internal class UnidadService : BaseService, IUnidadService
     {
+
+
         public UnidadService(ICopreterData data) : base(data)
         {
         }
@@ -28,14 +30,24 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<bool> ActualizarCantidadAsync(int id, int cantidad)
+        public async Task<bool> ActualizarCantidadAsync(int id, int cantidad, bool aumentar, int idUsuario)
         {
             var entidadActual = await this._data.Unidad.GetById(id);
             if (entidadActual == null) return false;
 
-            var cantidadCalculada = entidadActual.CantidadDisponible - cantidad;
+            int cantidadCalculada;
+            if (aumentar)
+            {
+                cantidadCalculada = entidadActual.CantidadDisponible + cantidad;
+            }
+            else
+            {
+                cantidadCalculada = entidadActual.CantidadDisponible - cantidad;
+            }
 
             entidadActual.CantidadDisponible = cantidadCalculada;
+            entidadActual.IdEstadoUnidad = entidadActual.CantidadDisponible > 0 ? (int)EUnidadEstado.Disponible : (int)EUnidadEstado.NoDisponible;
+            entidadActual.IdUsuarioModificacion = idUsuario;
 
             var result = await this._data.Unidad.Update(entidadActual);
             return result > 0;

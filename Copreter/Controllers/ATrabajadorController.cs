@@ -76,7 +76,7 @@ namespace Copreter.Controllers
                     {
                         var resultObra = await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, ECotizacionEstado.trabajadorAsignado, this.UserId());
 
-                        var resultTrabajador = await this._trabajadorService.ActualizarEstadoAsync(this.Mapper.Map<IEnumerable<TTrabajador>>(dist), ETrabajadorEstado.NoDisponible, this.UserId());
+                        var resultTrabajador = await this._trabajadorService.ActualizarEstadoAsync(dist.Select(x=> x.Id), ETrabajadorEstado.NoDisponible, this.UserId());
 
                         return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
                     }

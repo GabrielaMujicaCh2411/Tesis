@@ -31,11 +31,11 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<bool> ActualizarEstadoAsync(IEnumerable<TTrabajador> lista, ETrabajadorEstado estado, int idUsuario)
+        public async Task<bool> ActualizarEstadoAsync(IEnumerable<int> lista, ETrabajadorEstado estado, int idUsuario)
         {
             foreach (var item in lista)
             {
-                var entidadActual = await this._data.Trabajador.GetById(item.Id);
+                var entidadActual = await this._data.Trabajador.GetById(item);
                 if (entidadActual == null) continue;
 
                 entidadActual.IdEstadoTrabajador = (int)estado;
