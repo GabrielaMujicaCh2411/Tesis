@@ -21,7 +21,9 @@ namespace Copreter.Profiles
                .ForMember(s => s.Name, src => src.MapFrom(x => x.Nombre))
                .ReverseMap();
 
-            CreateMap<TPedido, PedidoEditableVM>().ReverseMap();
+            CreateMap<TPedido, PedidoEditableVM>()
+                .ForMember(s => s.PrecioUnidad, src => src.MapFrom(x => x.IdUnidadNavigation != null && x.IdUnidadNavigation.Precio != null ? x.IdUnidadNavigation.Precio : 0))
+                .ReverseMap();
 
             CreateMap<PedidoDto, PedidoEditableVM>().ReverseMap();
         }

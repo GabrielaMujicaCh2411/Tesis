@@ -8,5 +8,7 @@
         Terminado = 4,
         Finalizado = 5,
         Rechazado = 6,
+        PendienteDevolucion = 7,
+        Devuelto = 8,
     }
 }

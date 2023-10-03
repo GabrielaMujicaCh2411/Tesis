@@ -1,0 +1,86 @@
+﻿@using Copreter.Resources;
+@model Copreter.Models.Cita.CitaEditableVM;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.CITA_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.CITA_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <div class="row">
+                                    <form asp-action="Crear" asp-controller="Cita" method="post" enctype="multipart/form-data">
+                                        <div class="card-body">
+
+                                            <input type="hidden" asp-for="IdObra" />
+
+                                            <div class="form-group">
+                                                <label>@Resource.CITA_Obra</label>
+                                                <input type="text" class="form-control" placeholder="NombreObra" asp-for="NombreObra" readonly="@(true)">
+                                                <span asp-validation-for="NombreObra" class="text-danger"> </span>
+                                            </div>
+                                  
+                                            <div class="form-group">
+                                                <label>@Resource.CITA_Fecha</label>
+                                                <input type="text" class="form-control" placeholder="Modelo" asp-for="Fecha" readonly="@(true)">
+                                                <span asp-validation-for="Fecha" class="text-danger"> </span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>@Resource.CITA_Hora</label>
+                                                <input type="text" class="form-control" placeholder="Marca" asp-for="Hora" readonly="@(true)">
+                                                <span asp-validation-for="Hora" class="text-danger"> </span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>@Resource.CITA_Lugar</label>
+                                                <input type="text" class="form-control" placeholder="Lugar" asp-for="Lugar" readonly="@(true)">
+                                                <span asp-validation-for="Lugar" class="text-danger"> </span>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span>@Resource.BTN_Guardar</button>
+                                            <button asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

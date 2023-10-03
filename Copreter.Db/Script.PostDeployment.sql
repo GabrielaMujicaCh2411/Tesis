@@ -74,6 +74,8 @@ INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (3, N'envia
 INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (4, N'terminado', N'pedido y alquiler acabo')
 INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (5, N'finalizado', N'todo el proceso terminado')
 INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (6, N'Rechazado', N'Pedido Rechazado')
+INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (7, N'Pendiente Devolucion', N'Pedido pendiente de devolver')
+INSERT [dbo].[T_EstadoPedido] ([Id], [Nombre], [Descripcion]) VALUES (8, N'Devuelto', N'Pedido devuelto')
 SET IDENTITY_INSERT [dbo].[T_EstadoPedido] OFF
 GO
 SET IDENTITY_INSERT [dbo].[T_EstadoTrabajador] ON 

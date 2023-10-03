@@ -89,22 +89,29 @@
                                 {
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
-                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Solicitar" asp-route-id="@item.Id">Solicitar Cita</a>
+                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Crear" asp-route-idObra="@item.Id">Solicitar Cita</a>
                                     }
                                 }
                                 break;
                             case EObraEstado.Cotizado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
-                                    <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="2">Aceptar</a>
-                                    <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="6">Rechazar</a>
+                                    if (rolId == (int)ERolEnum.Cliente)
+                                    {
+                                        <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="2">Aceptar</a>
+                                        <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="6">Rechazar</a>
+                                    }
                                 }
                                 break;
                             case EObraEstado.Facturado:
                             case EObraEstado.Terminado:
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
-                                    <a class="btn btn-warning" asp-controller="Factura" asp-action="Detalle" asp-route-id="@item.Id">Pagar</a>
+
+                                    if (rolId == (int)ERolEnum.Cliente)
+                                    {
+                                        <a class="btn btn-warning" asp-controller="Factura" asp-action="Detalle" asp-route-id="@item.Id">Pagar</a>
+                                    }
                                 }
                                 break;
                             case EObraEstado.Proceso:

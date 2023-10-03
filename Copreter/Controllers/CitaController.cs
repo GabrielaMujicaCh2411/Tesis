@@ -1,12 +1,16 @@
 using AutoMapper;
+using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Model.Cita;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Cita;
 using Copreter.Domain.Service.Dto.Obra;
+using Copreter.Domain.Service.Dto.Unidad;
 using Copreter.Domain.Service.Dto.Usuario;
 using Copreter.Models.Cita;
 using Copreter.Models.Obra;
+using Copreter.Models.Unidad;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +65,31 @@ namespace Copreter.Controllers
             var result = await this._service.ObtenerAsync(id.Value);
 
             return View(this.Mapper.Map<CitaEditableVM>(result));
+        }
+
+        public IActionResult Crear(int? idObra)
+        {
+            return View(new CitaEditableVM() { IdObra = idObra });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear([Bind()] CitaDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(this.Mapper.Map<CitaEditableVM>(dto));
+            }
+
+            dto.IdUsuarioRegistro = this.UserId();
+
+            var result = await this._service.AgregarAsync(this.Mapper.Map<TCita>(dto));
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

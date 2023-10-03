@@ -4,6 +4,7 @@ using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto;
 using Copreter.Domain.Service.Dto.Pedido;
+using Copreter.Models.Cita;
 using Copreter.Models.Pedido;
 using Copreter.Utils;
 using Microsoft.AspNetCore.Authorization;
@@ -68,6 +69,15 @@ namespace Copreter.Controllers
             return PartialView(result);
         }
 
+        public async Task<IActionResult> Detalle(int? id)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var result = await this._service.ObtenerAsync(id.Value);
+
+            return View(this.Mapper.Map<PedidoEditableVM>(result));
+        }
+
         public async Task<IActionResult> Asignar(int id)
         {
             var resultService = await this._service.ObtenerAsync(id);
@@ -102,7 +112,7 @@ namespace Copreter.Controllers
                     return View(resultInvalid);
                 }
 
-                dto.IdEstadoPedido = 3;
+                dto.IdEstadoPedido = (int)EPedidoEstado.Enviado;
                 dto.IdUsuarioModificacion = this.UserId();
 
                 var result = await this._service.ActualizarAsync(id, this.Mapper.Map<TPedido>(dto));
