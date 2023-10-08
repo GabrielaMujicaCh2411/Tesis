@@ -1,4 +1,5 @@
-﻿@using Copreter.Resources;
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
 @using Microsoft.AspNetCore.Http
 @using System.Security.Claims;
 @using static Copreter.Utils.Keys;
@@ -45,9 +46,9 @@
                     {
                         int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
            
-                        switch (rolId)
+                        switch ((ERolEnum)rolId)
                         {
-                            case 1:
+                            case ERolEnum.Administrador:
                                 {
                                     <li class="nav-header">CONSTRUCCION</li>
                                     <li class="nav-item">
@@ -89,6 +90,15 @@
                                                 </a>
                                             </li>
                                         </ul>
+
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a asp-controller="Pedido" asp-action="PendienteDevolver" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>@Resource.MENU_PEDIDO_SIN_DEVOLVER</p>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="nav-header">PERFIL</li>
                                     <li class="nav-item">
@@ -99,7 +109,7 @@
                                     </li>
                                 }
                                 break;
-                            case 2:
+                            case ERolEnum.Cliente:
                                 {
                                     int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
@@ -170,7 +180,7 @@
                                     </li>
                                 }
                                 break;
-                            case 3:
+                            case ERolEnum.Gerente:
                                 {
                                     <li class="nav-header">CONSTRUCCION</li>
                                     <li class="nav-item">
@@ -259,7 +269,7 @@
                                     </li>
                                 }
                                 break;
-                            case 4:
+                            case ERolEnum.Operario:
                                 {
                                     <li class="nav-header">CONSTRUCCION</li>
                                     <li class="nav-item">

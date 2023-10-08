@@ -241,5 +241,26 @@ namespace Copreter.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> ActualizarEstado(int? id, int idEstado)
+        {
+            if (id == null) return RedirectToAction(nameof(Index));
+
+            var resultService = await this._service.ActualizarEstadoAsync(id.Value, idEstado, this.UserId());
+                  
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public async Task<IActionResult> PendienteDevolver()
+        {
+            var resultService = await this._service.PendienteDevolverAsync();
+
+            var result = new PedidoSinDevolverVM
+            {
+                DtoList = this.Mapper.Map<IEnumerable<PedidoSinDevolverDto>>(resultService),
+            };
+            return PartialView(result);
+        }
     }
 }

@@ -13,6 +13,9 @@
         public int HerramientasDisponibles { get; internal set; }
 
         public int HerramientasEnMantenimiento { get; internal set; }
+
         public int TrabajadoresDisponibles { get; internal set; }
+
+        public int HerramientasPorDevolver { get; internal set; }
     }
 }

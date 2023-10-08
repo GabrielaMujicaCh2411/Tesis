@@ -160,23 +160,23 @@ namespace Copreter.Controllers
         {
             if (id == null) return RedirectToAction(nameof(Index));
 
-            var resultService = await this._service.ActualizarEstado(id.Value, (Domain.Model.Enums.EObraEstado)idEstado, this.UserId());
+            var resultService = await this._service.ActualizarEstadoAsync(id.Value, idEstado, this.UserId());
 
             switch ((EObraEstado)idEstado)
             {
                 case EObraEstado.Aceptado:
                     {
-                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.aceptado, this.UserId());
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, (int)ECotizacionEstado.aceptado, this.UserId());
                     }
                     break;
                 case EObraEstado.Rechazado:
                     {
-                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.rechazado, this.UserId());
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, (int)ECotizacionEstado.rechazado, this.UserId());
                     }
                     break;
                 case EObraEstado.Terminado:
                     {
-                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, ECotizacionEstado.finalizado, this.UserId());
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, (int)ECotizacionEstado.finalizado, this.UserId());
 
                         var cotizacíon = await this._cotizacionService.ObtenerPorIdObraAsync(id.Value);
                         if (cotizacíon != null)

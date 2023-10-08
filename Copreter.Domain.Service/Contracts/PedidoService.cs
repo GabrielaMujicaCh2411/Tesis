@@ -27,12 +27,15 @@ namespace Copreter.Domain.Service.Contracts
             return result > 0;
         }
 
-        public async Task<bool> ActualizarEstadoAsync(int id, int estado)
+        public async Task<bool> ActualizarEstadoAsync(int id, int estado, int idUsuarioModificacion)
         {
             var entidadActual = await this._data.Pedido.GetById(id);
             if (entidadActual == null) return false;
 
             entidadActual.IdEstadoPedido = estado;
+
+            entidadActual.IdUsuarioModificacion = idUsuarioModificacion;
+            entidadActual.FechaModificacion = DateTime.Now;
 
             var result = await this._data.Pedido.Update(entidadActual);
             return result > 0;
@@ -42,6 +45,11 @@ namespace Copreter.Domain.Service.Contracts
         {
             var result = await this._data.Pedido.Add(entidad);
             return result > 0;
+        }
+
+        public async Task<int> CountAsync(int estado)
+        {
+            return await this._data.Pedido.CountIncludes(x => x.Borrado == false && x.IdEstadoPedido == estado);
         }
 
         public async Task<bool> EliminarAsync(int id)
@@ -71,14 +79,26 @@ namespace Copreter.Domain.Service.Contracts
             }
             predicates.Add(x => x.Borrado == false);
 
-            return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x=> x.IdEstadoPedidoNavigation,
-                x=> x.IdUnidadNavigation,
-                x=> x.IdUnidadNavigation.IdTipoUnidadNavigation);
+            return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoPedidoNavigation,
+                x => x.IdUnidadNavigation,
+                x => x.IdUnidadNavigation.IdTipoUnidadNavigation);
         }
 
         public async Task<TPedido> ObtenerAsync(int id)
         {
-            return await this._data.Pedido.FirstOrDefault(x=> x.Id == id, x=> x.IdUnidadNavigation);
+            return await this._data.Pedido.FirstOrDefault(x => x.Id == id, x => x.IdUnidadNavigation);
+        }
+
+        public async Task<IEnumerable<TPedido>> PendienteDevolverAsync()
+        {
+            var predicates = new List<Expression<Func<TPedido, bool>>>();
+
+            predicates.Add(x => x.FechaEntrega.Value.AddDays(x.CantidadDias) > DateTime.Now);
+            predicates.Add(x => x.Borrado == false);
+
+            return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoPedidoNavigation,
+            x => x.IdUnidadNavigation,
+            x => x.IdUnidadNavigation.IdTipoUnidadNavigation);
         }
     }
 }

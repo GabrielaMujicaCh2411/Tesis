@@ -556,6 +556,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pedido sin devolver.
+        /// </summary>
+        public static string MENU_PEDIDO_SIN_DEVOLVER {
+            get {
+                return ResourceManager.GetString("MENU_PEDIDO_SIN_DEVOLVER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pedidos.
         /// </summary>
         public static string MENU_PEDIDO_TODOS {
@@ -867,6 +876,15 @@ namespace Copreter.Resources {
         public static string PEDIDO_Fecha_Inicio {
             get {
                 return ResourceManager.GetString("PEDIDO_Fecha_Inicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dias sin devolución.
+        /// </summary>
+        public static string PEDIDO_Fecha_Sin_Devolver {
+            get {
+                return ResourceManager.GetString("PEDIDO_Fecha_Sin_Devolver", resourceCulture);
             }
         }
         

@@ -28,6 +28,7 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<bool> AgregarAsync(TCita entidad)
         {
+            entidad.Hora = entidad.Fecha.Hour.ToString("HH:mm");
             var result = await this._data.Cita.Add(entidad);
             return result == 1;
         }

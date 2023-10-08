@@ -1,0 +1,102 @@
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
+@model Copreter.Models.Pedido.PedidoSinDevolverVM;
+@using System.Security.Claims;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.MENU_PEDIDO_SIN_DEVOLVER</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item">@Resource.MENU_PEDIDO_SIN_DEVOLVER</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName(@Resource.PEDIDO_Obra)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName(@Resource.PEDIDO_Empresa)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName(@Resource.PEDIDO_Ubicacion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName(@Resource.PEDIDO_Fecha_Inicio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName(@Resource.PEDIDO_Fecha_Sin_Devolver)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName(@Resource.UNIDAD_Tipo_Unidad)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.DtoList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Obra)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Empresa)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ubicacion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FechaInicio)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DiasSinDevolver)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TipoUnidad)
+                                            </td>
+                                            <td>
+
+                                                <a class="btn btn-danger" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="8">Confirmar Devolución</a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

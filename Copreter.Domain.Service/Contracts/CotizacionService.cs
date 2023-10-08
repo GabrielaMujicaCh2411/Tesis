@@ -14,12 +14,12 @@ namespace Copreter.Domain.Service.Contracts
         {
         }
 
-        public async Task<bool> ActualizarEstadoAsync(int id, ECotizacionEstado estado, int idUsuarioModificacion)
+        public async Task<bool> ActualizarEstadoAsync(int id, int estado, int idUsuarioModificacion)
         {
             var result = await this._data.Cotizacion.GetById(id);
             if (result == null) return false;
 
-            result.IdEstadoCotizacion = (int)estado;
+            result.IdEstadoCotizacion = estado;
 
             result.IdUsuarioModificacion = idUsuarioModificacion;
             result.FechaModificacion = DateTime.Now;
@@ -27,12 +27,12 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Cotizacion.Update(result) > 0;
         }
 
-        public async Task<bool> ActualizarEstadoPorObraAsync(int idObra, ECotizacionEstado estado, int idUsuarioModificacion)
+        public async Task<bool> ActualizarEstadoPorObraAsync(int idObra, int estado, int idUsuarioModificacion)
         {
             var result = await this._data.Cotizacion.FirstOrDefault(x=> x.IdObra == idObra);
             if (result == null) return false;
 
-            result.IdEstadoCotizacion = (int)estado;
+            result.IdEstadoCotizacion = estado;
 
             result.IdUsuarioModificacion = idUsuarioModificacion;
             result.FechaModificacion = DateTime.Now;

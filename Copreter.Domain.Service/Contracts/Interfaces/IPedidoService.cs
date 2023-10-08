@@ -13,8 +13,12 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<bool> ActualizarAsync(int id, TPedido entidad);
 
-        Task<bool> ActualizarEstadoAsync(int id, int estado);
+        Task<bool> ActualizarEstadoAsync(int id, int estado, int idUsuarioModificacion);
 
         Task<bool> EliminarAsync(int id);
+
+        Task<int> CountAsync(int estado);
+
+        Task<IEnumerable<TPedido>> PendienteDevolverAsync();
     }
 }

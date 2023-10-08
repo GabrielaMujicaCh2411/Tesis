@@ -74,7 +74,7 @@ namespace Copreter.Controllers
                     var result = await this._service.AgregarAsync(this.Mapper.Map<IEnumerable<TTrabajadorxCotizacion>>(dto.Lista));
                     if (result)
                     {
-                        var resultObra = await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, ECotizacionEstado.trabajadorAsignado, this.UserId());
+                        var resultObra = await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, (int)ECotizacionEstado.trabajadorAsignado, this.UserId());
 
                         var resultTrabajador = await this._trabajadorService.ActualizarEstadoAsync(dist.Select(x=> x.Id), ETrabajadorEstado.NoDisponible, this.UserId());
 

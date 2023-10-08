@@ -78,7 +78,7 @@
                                                 <span asp-validation-for="Usuario" class="text-danger"> </span>
                                             </div>
                                             <div class="form-group">
-                                                <label>@Resource.UNIDAD_Descripcion</label>
+                                                <label>@Resource.UNIDAD_Estado</label>
                                                 <input type="text" class="form-control" placeholder="Descripción" asp-for="EstadoObra" readonly="@(true)">
                                                 <span asp-validation-for="EstadoObra" class="text-danger"> </span>
                                             </div>
@@ -118,11 +118,11 @@
                                 <input type="text" class="form-control" placeholder="Modelo" asp-for="Fecha" readonly="@(true)">
                                 <span asp-validation-for="Fecha" class="text-danger"> </span>
                             </div>
-                            <div class="form-group">
+                    @*        <div class="form-group">
                                 <label>@Resource.CITA_Hora</label>
                                 <input type="text" class="form-control" placeholder="Marca" asp-for="Hora" readonly="@(true)">
                                 <span asp-validation-for="Hora" class="text-danger"> </span>
-                            </div>
+                            </div>*@
                         </div>
                         <!-- /.card-body -->
                     </div>

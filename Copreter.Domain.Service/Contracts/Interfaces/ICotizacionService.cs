@@ -16,8 +16,8 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TCotizacion> ObtenerPorIdObraAsync(int idObra);
 
-        Task<bool> ActualizarEstadoPorObraAsync(int idObra, ECotizacionEstado estado, int idUsuarioModificacion);
+        Task<bool> ActualizarEstadoPorObraAsync(int idObra, int estado, int idUsuarioModificacion);
 
-        Task<bool> ActualizarEstadoAsync(int id, ECotizacionEstado estado, int idUsuarioModificacion);
+        Task<bool> ActualizarEstadoAsync(int id, int estado, int idUsuarioModificacion);
     }
 }

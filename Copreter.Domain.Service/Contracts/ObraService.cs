@@ -1,5 +1,4 @@
 ﻿using Copreter.Domain.Model.DbModel;
-using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Obra;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
@@ -49,12 +48,12 @@ namespace Copreter.Domain.Service.Contracts
             return result == 1;
         }
 
-        public async Task<bool> ActualizarEstado(int id, EObraEstado estado, int idUsuarioModificacion)
+        public async Task<bool> ActualizarEstadoAsync(int id, int estado, int idUsuarioModificacion)
         {
             var result = await this._data.Obra.GetById(id);
             if (result == null) return false;
 
-            result.IdEstadoObra = (int)estado;
+            result.IdEstadoObra = estado;
 
             result.IdUsuarioModificacion = idUsuarioModificacion;
             result.FechaModificacion = DateTime.Now;

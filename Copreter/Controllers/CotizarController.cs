@@ -105,7 +105,7 @@ namespace Copreter.Controllers
                 var result = await this._service.AgregarAsync(cotizacion);
                 if (result)
                 {
-                    var resultObra = await this._obraService.ActualizarEstado(dto.IdObra, Domain.Model.Enums.EObraEstado.Cotizado, this.UserId());
+                    var resultObra = await this._obraService.ActualizarEstadoAsync(dto.IdObra, (int)Domain.Model.Enums.EObraEstado.Cotizado, this.UserId());
                     return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
                 }
                 return RedirectToAction(nameof(Index));

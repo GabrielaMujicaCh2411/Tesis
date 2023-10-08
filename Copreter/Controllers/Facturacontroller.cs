@@ -5,8 +5,6 @@ using Copreter.Domain.Service.Dto.Factura;
 using Copreter.Domain.Model.DbModel;
 using Copreter.Utils;
 using Copreter.Domain.Model.Enums;
-using Copreter.Domain.Service.Dto;
-using Copreter.Models.Trabajador;
 
 namespace Copreter.Controllers
 {
@@ -41,7 +39,7 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ObtenerAsync(id);
 
-            if (resultService == null) return RedirectToAction(nameof(Index));
+            if (resultService == null) return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra, new { userId = this.UserId() });
 
             var resultCotizacionService = await this._cotizacionService.ObtenerAsync(resultService.IdCotizacion);
 
@@ -85,9 +83,9 @@ namespace Copreter.Controllers
                 {
                     var cotización = await this._cotizacionService.ObtenerAsync(dto.IdCotizacion);
 
-                    await this._cotizacionService.ActualizarEstadoPorObraAsync(cotización.IdObra, ECotizacionEstado.Primerfacturado, this.UserId());
+                    await this._cotizacionService.ActualizarEstadoPorObraAsync(cotización.IdObra, (int)ECotizacionEstado.Primerfacturado, this.UserId());
 
-                    await this._obraservice.ActualizarEstado(cotización.IdObra, EObraEstado.Facturado, this.UserId());
+                    await this._obraservice.ActualizarEstadoAsync(cotización.IdObra, (int)EObraEstado.Facturado, this.UserId());
 
                     return RedirectToAction(nameof(Index), Keys.ControllerKeys.Cotizacion);
                 }

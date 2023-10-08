@@ -6,6 +6,7 @@ using System.Diagnostics;
 using static Copreter.Utils.Keys;
 using Copreter.Models.Home;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Model.Enums;
 
 namespace Copreter.Controllers
 {
@@ -25,10 +26,15 @@ namespace Copreter.Controllers
 
         private readonly IAccesoService _accesoService;
 
+        private readonly IPedidoService _pedidoService;
+
 
         #endregion
 
-        public HomeController(ILogger<HomeController> logger, IUnidadService unidadService, IObraService obraService, ITrabajadorService trabajadorService, ICotizacionService cotizacionService, IAccesoService accesoService)
+        public HomeController(ILogger<HomeController> logger, IUnidadService unidadService, 
+            IObraService obraService, ITrabajadorService trabajadorService, 
+            ICotizacionService cotizacionService, IAccesoService accesoService,
+            IPedidoService pedidoService)
         {
             this._logger = logger;
             this._unidadService = unidadService;
@@ -36,6 +42,7 @@ namespace Copreter.Controllers
             this._trabajadorService = trabajadorService;
             this._cotizacionService = cotizacionService;
             this._accesoService = accesoService;
+            this._pedidoService = pedidoService;
         }
 
         public IActionResult Index()
@@ -58,12 +65,13 @@ namespace Copreter.Controllers
             var result = new HomeIndexVM
             {
                 HerramientasEnMantenimiento = await this._unidadService.CountAsync(3),
-                HerramientasDisponibles = await this._unidadService.CountAsync(1),
+                HerramientasDisponibles = await this._unidadService.CountAsync((int)EUnidadEstado.Disponible),
                 TrabajadoresDisponibles = await this._trabajadorService.CountAsync(),
                 ObrasEnContruccion = await this._obraService.CountAsync(9),
                 ObrasTerminadas = await this._obraService.CountAsync(10),
                 NuevasCoticaciones = await this._cotizacionService.CountAsync(1),
-                UsuariosTotales = await this._accesoService.CountAsync(2)
+                UsuariosTotales = await this._accesoService.CountAsync(2),
+                HerramientasPorDevolver = await this._pedidoService.CountAsync((int)EPedidoEstado.PendienteDevolucion)
             };
             return View(result);
         }

@@ -1,5 +1,11 @@
 ﻿<!-- Content Wrapper. Contains page content -->
 @model Copreter.Models.Home.HomeIndexVM;
+@using System.Security.Claims;
+@using Copreter.Domain.Model.Enums;
+
+@{
+    int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+}
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -22,36 +28,41 @@
             <div class="col-md-6">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <div class="col-lg-6 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>@Model.NuevasCoticaciones<sup style="font-size: 20px">%</sup></h3>
+                    @if (rolId != (int)ERolEnum.Cliente)
+                    {
+                        <div class="row">
 
-                                    <p>Nuevas cotizaciones</p>
+                            <div class="col-lg-6 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.NuevasCoticaciones<sup style="font-size: 20px">%</sup></h3>
+
+                                        <p>Nuevas cotizaciones</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
                                 </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <!-- ./col -->
+
+                            <div class="col-lg-6 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.UsuariosTotales</h3>
+
+                                        <p>Usuarios registrados</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- ./col -->
+                    }
 
-                        <div class="col-lg-6 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>@Model.UsuariosTotales</h3>
-
-                                    <p>Usuarios registrados</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- ./col -->
                     <div class="row">
                         <div class="col-lg-6 col-6">
@@ -138,6 +149,27 @@
                         </div>
                     </div>
 
+                    @if (rolId != (int)ERolEnum.Cliente)
+                    {
+                        <div class="row">
+                            <div class="col-lg-6 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.HerramientasPorDevolver</h3>
+                                        <p>Herramientas Pendientes de devolución</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-6">
+                             
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-md-6">

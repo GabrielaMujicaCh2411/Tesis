@@ -282,6 +282,9 @@
   <data name="MENU_PEDIDO_POR_ASIGNAR" xml:space="preserve">
     <value>Por asignar</value>
   </data>
+  <data name="MENU_PEDIDO_SIN_DEVOLVER" xml:space="preserve">
+    <value>Pedido sin devolver</value>
+  </data>
   <data name="MENU_PEDIDO_TODOS" xml:space="preserve">
     <value>Pedidos</value>
   </data>
@@ -386,6 +389,9 @@
   </data>
   <data name="PEDIDO_Fecha_Inicio" xml:space="preserve">
     <value>Fecha Inicio</value>
+  </data>
+  <data name="PEDIDO_Fecha_Sin_Devolver" xml:space="preserve">
+    <value>Dias sin devolución</value>
   </data>
   <data name="PEDIDO_Obra" xml:space="preserve">
     <value>Obra</value>

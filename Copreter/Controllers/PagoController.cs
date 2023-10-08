@@ -69,7 +69,7 @@ namespace Copreter.Controllers
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TPago>(dto));
                 if (result)
                 {
-                    await this._cotizacionService.ActualizarEstadoPorObraAsync(dto.IdCotizacion, ECotizacionEstado.pago, this.UserId());
+                    await this._cotizacionService.ActualizarEstadoPorObraAsync(dto.IdCotizacion, (int)ECotizacionEstado.pago, this.UserId());
                     return Redirect("/Home/IndexAdmin");
                 }
                 return View(dto);
