@@ -75,13 +75,13 @@
                                     if (item.IdEstadoPedido == 1)
                                     {
                                         <a type="button" class="btn btn-warning" asp-action="Aceptar" asp-route-id="@item.Id">
-                                            <span class="fas fa-eye-slash" aria-hidden="true"></span>
+                                            <span class="fas fa-spell-check" aria-hidden="true"></span>
                                         </a>
                                     }
-                                    if (item.IdTipoUnidad == 2)
+                                    if (item.IdTipoUnidad == 2 && item.IdEstadoPedido != (int)EPedidoEstado.Rechazado)
                                     {
                                         <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id">
-                                            <span class="fas fa-eye" aria-hidden="true"></span>
+                                            <span class="fas fa-user-tag" aria-hidden="true"></span>
                                         </a>
                                     }
 

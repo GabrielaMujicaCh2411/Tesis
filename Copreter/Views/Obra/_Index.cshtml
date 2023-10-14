@@ -65,7 +65,7 @@
                 </td>
                 <td>
                     <a type="button" class="btn btn-success" asp-action="Detalle" asp-route-id="@item.Id">
-                        <span class="far fa-eye" aria-hidden="true"></span>
+                        <span class="far fa-eye" aria-hidden="true" title="Detalle"></span>
                     </a>
 
                     @{
@@ -78,11 +78,18 @@
                                         <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
                                         <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3" title="Observada"><span class="fas fa-glasses" aria-hidden="true"></span></a>
                                     }
+
+                                    if (rolId == (int)ERolEnum.Cliente)
+                                    {
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                                            <span class="far fa-trash-alt" aria-hidden="true"></span>
+                                        </button>
+                                    }
                                 }
                                 break;
                             case EObraEstado.Aceptado:
                                 {
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id" >Ver Cotizacion</a>
                                 }
                                 break;
                             case EObraEstado.Observada:
@@ -121,12 +128,7 @@
                                 break;
                         }
 
-                        if (rolId == (int)ERolEnum.Cliente)
-                        {
-                            <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
-                                <span class="far fa-trash-alt" aria-hidden="true"></span>
-                            </button>
-                        }
+                 
                     }
 
                 </td>
