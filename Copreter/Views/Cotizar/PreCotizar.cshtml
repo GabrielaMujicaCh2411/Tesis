@@ -27,10 +27,18 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="card card-primary">
+                    <div class="card card-success shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Sistema Drywall</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
                         </div>
+                        <!-- /.card-header -->
                         <div class="card-body">
                             <div>
 
@@ -68,9 +76,11 @@
                                 }
 
                             </div>
-
                         </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
+
                 </div>
             </div>
         </div>
@@ -79,10 +89,18 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="card card-primary">
+                    <div class="card card-warning shadow">
                         <div class="card-header">
                             <h3 class="card-title">Encofrados</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
                         </div>
+                        <!-- /.card-header -->
                         <div class="card-body">
                             <div>
 
@@ -120,53 +138,62 @@
                                 }
 
                             </div>
-
+                            <!-- /.card-body -->
                         </div>
+
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
 
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Encofrados</h3>
-                        </div>
-                        <div class="card-body">
-                            <div>
+                        <div class="card card-danger shadow-lg">
+                            <div class="card-header">
+                                <h3 class="card-title">TOTAL</h3>
 
-                                <table id="partidasAgregadas" class="table">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">N° Partida</th>
-                                            <th scope="col">Nombre Partida</th>
-                                            <th scope="col">Unidad</th>
-                                            <th scope="col">Metrado</th>
-                                            <th scope="col">Parcial</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                                <br />
-                                <div style="text-align: right">
-                                    <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
                                 </div>
-                                <br />
-                                <div style="text-align: end; margin: 4px;">
-                                    <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
-                                </div>
-
+                                <!-- /.card-tools -->
                             </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div>
 
+                                    <table id="partidasAgregadas" class="table">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">N° Partida</th>
+                                                <th scope="col">Nombre Partida</th>
+                                                <th scope="col">Unidad</th>
+                                                <th scope="col">Metrado</th>
+                                                <th scope="col">Parcial</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <div style="text-align: right">
+                                        <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
+                                    </div>
+                                    <br />
+                                    <div style="text-align: end; margin: 4px;">
+                                        <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 </div>
 
@@ -221,9 +248,9 @@
             };
 
             var param = {
-                total : Number(costoTotal),
-                IdObra : idObra,
-                lista : partidasxObra
+                total: Number(costoTotal),
+                IdObra: idObra,
+                lista: partidasxObra
             };
 
             $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.PostCotizar, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {

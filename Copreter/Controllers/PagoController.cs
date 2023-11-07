@@ -39,11 +39,23 @@ namespace Copreter.Controllers
             {
                 var cotizacion = await this._cotizacionService.ObtenerAsync(idCotizacion);
 
-                var result = new PagoDto();
-                result.IdCotizacion = idCotizacion;
-                result.Fecha = DateTime.Now;
-                result.Pago1 = cotizacion.Total / 2;
-                result.Pago2 = 0;
+                var result = new PagoDto
+                {
+                    IdCotizacion = idCotizacion,
+                    Fecha = DateTime.Now
+                };
+
+                var factura = await this._service.ObtenerPoIdCotizacionAsync(idCotizacion);
+                if (factura != null)
+                {
+                    result.Monto = factura.Saldo;
+                    result.Saldo = 0;
+                }
+                else
+                {
+                    result.Monto = cotizacion.Total / 2;
+                    result.Saldo = cotizacion.Total - result.Monto;
+                }
 
                 return View(result);
             }
@@ -66,10 +78,13 @@ namespace Copreter.Controllers
                     return View(dto);
                 }
 
+                var cotizacion = await this._cotizacionService.ObtenerAsync(dto.IdCotizacion);
+                if (cotizacion == null) return Redirect("/Home/IndexAdmin");
+
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TPago>(dto));
                 if (result)
                 {
-                    await this._cotizacionService.ActualizarEstadoPorObraAsync(dto.IdCotizacion, (int)ECotizacionEstado.pago, this.UserId());
+                    await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, (int)ECotizacionEstado.Segundofacturado, this.UserId());
                     return Redirect("/Home/IndexAdmin");
                 }
                 return View(dto);

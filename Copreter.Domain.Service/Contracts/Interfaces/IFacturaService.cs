@@ -6,5 +6,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
     {
         Task<bool> AgregarAsync(TFactura entidad);
         Task<TFactura> ObtenerAsync(int id);
+
+        Task<TFactura> ObtenerPorIdCotizacionAsync(int idCotizacion);
     }
 }

@@ -17,5 +17,8 @@
         public int TrabajadoresDisponibles { get; internal set; }
 
         public int HerramientasPorDevolver { get; internal set; }
+
+        public int HerramientasAlquiladas { get; internal set; }
+        public decimal DineroEnMes { get; internal set; }
     }
 }

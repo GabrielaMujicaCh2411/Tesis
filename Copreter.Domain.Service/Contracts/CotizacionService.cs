@@ -1,9 +1,7 @@
 ﻿using Copreter.Domain.Model.DbModel;
-using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Cotizacion;
 using Copreter.Domain.Model.Repository.Interfaces;
 using Copreter.Domain.Service.Contracts.Interfaces;
-using System;
 using System.Linq.Expressions;
 
 namespace Copreter.Domain.Service.Contracts
@@ -44,6 +42,7 @@ namespace Copreter.Domain.Service.Contracts
         {
             entidad.Fecha = DateTime.Now;
             entidad.IdEstadoCotizacion = 1;
+            entidad.Saldo = entidad.Total;
             var result = await this._data.Cotizacion.Add(entidad);
             return result == 1;
         }

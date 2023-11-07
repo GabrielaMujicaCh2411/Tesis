@@ -20,10 +20,12 @@ namespace Copreter.Controllers
 
         private readonly ICotizacionService _cotizacionService;
 
+        private readonly IPagoService _pagoService;
+
         #endregion
 
         public Facturacontroller(IMapper mapper, ILogger<Facturacontroller> logger, IWebHostEnvironment hosting,
-            IFacturaService service, IObraService obraservice, ICotizacionService cotizacionService) : base(mapper)
+            IFacturaService service, IObraService obraservice, ICotizacionService cotizacionService, IPagoService pagoService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
@@ -31,24 +33,41 @@ namespace Copreter.Controllers
 
             this._obraservice = obraservice;
             this._cotizacionService = cotizacionService;
+            this._pagoService = pagoService;
         }
 
         public async Task<IActionResult> Detalle(int id)
         {
             if (id == 0) return RedirectToAction(nameof(Index));
 
-            var resultService = await this._service.ObtenerAsync(id);
+            var resultService = await this._service.ObtenerPorIdCotizacionAsync(id);
 
             if (resultService == null) return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra, new { userId = this.UserId() });
 
             var resultCotizacionService = await this._cotizacionService.ObtenerAsync(resultService.IdCotizacion);
 
-            var result = new FacturaDetalleDto();
-            result.Id = id;
-            result.Fecha = resultCotizacionService.Fecha;
-            result.Pago = resultCotizacionService.Total / 2;
-            result.Pago2 = resultCotizacionService.Total - result.Pago;
-            result.IdEstadoCotizacion = resultCotizacionService.IdEstadoCotizacion;
+            var result = new FacturaDetalleDto
+            {
+                Id = resultService.Id,
+                IdCotizacion = resultService.IdCotizacion,
+                Fecha = resultCotizacionService.Fecha,
+                IdEstadoCotizacion = resultCotizacionService.IdEstadoCotizacion,
+                Imagen = resultService.Imagen,
+                Total = resultCotizacionService.Total
+            };
+
+            var factura = await this._pagoService.ObtenerPoIdCotizacionAsync(resultService.IdCotizacion);
+            if (factura != null)
+            {
+              
+                result.Monto = factura.Saldo;
+                result.Saldo = 0;
+            }
+            else
+            {
+                result.Monto = resultCotizacionService.Total / 2;
+                result.Saldo = resultCotizacionService.Total - result.Monto;
+            }
 
             return View(result);
         }

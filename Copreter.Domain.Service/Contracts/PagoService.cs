@@ -20,5 +20,19 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Pago.GetById(id);
         }
+
+        public async Task<TPago> ObtenerPoIdCotizacionAsync(int idCotizacion)
+        {
+            return await this._data.Pago.FirstOrDefault(x=> x.IdCotizacion == idCotizacion);
+        }
+
+        public async Task<decimal> DineroEnMesAsync()
+        {
+            var currentDate = DateTime.Now;
+
+            var result = await this._data.Pago.SelectIncludes(x => x.FechaRegistro >= new DateTime(currentDate.Year, currentDate.Month, 1, 0, 0, 0) && x.FechaRegistro >= new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 23, 59, 00));
+
+            return result != null ? result.Sum(x => x.Monto) : 0;
+        }
     }
 }

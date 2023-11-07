@@ -260,7 +260,7 @@ namespace Copreter.Controllers
             {
                 DtoList = this.Mapper.Map<IEnumerable<PedidoSinDevolverDto>>(resultService),
             };
-            return PartialView(result);
+            return View(result);
         }
     }
 }

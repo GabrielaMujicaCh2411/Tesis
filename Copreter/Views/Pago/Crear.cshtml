@@ -163,22 +163,26 @@
                                         <input type="hidden" asp-for="IdUsuarioRegistro" />
                                         <input type="hidden" asp-for="FechaRegistro" />
                                         <input type="hidden" asp-for="IdCotizacion" />
+                                        <input type="hidden" asp-for="Saldo" />
 
                                         <div class="form-group">
                                             <label>@Resource.FACTURA_Fecha</label>
-                                            <input type="text" class="form-control" placeholder="Fecha" asp-for="Fecha">
+                                            <input type="text" class="form-control" placeholder="Fecha" asp-for="Fecha" readonly="@(true)">
                                             <span asp-validation-for="Fecha" class="text-danger"> </span>
                                         </div>
                                         <div class="form-group">
-                                            <label>@Resource.FACTURA_1Pago</label>
-                                            <input type="text" class="form-control" placeholder="Pago1" asp-for="Pago1">
-                                            <span asp-validation-for="Pago1" class="text-danger"> </span>
+                                            <label>@Resource.FACTURA_Pago</label>
+                                            <input type="text" class="form-control" placeholder="Monto" asp-for="Monto" readonly="@(true)">
+                                            <span asp-validation-for="Monto" class="text-danger"> </span>
                                         </div>
 
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span>@Resource.BTN_Pagar</button>
+
+                                        <a asp-controller="Obra" asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span> @Resource.BTN_Volver</a>
+
+                                        <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span> @Resource.BTN_Pagar</button>
                                     </div>
                                 </form>
 

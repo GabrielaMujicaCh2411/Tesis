@@ -62,14 +62,14 @@
                                         <span asp-validation-for="Total" class="text-danger"> </span>
                                     </div>
                                     <div class="form-group">
-                                        <label>@Resource.FACTURA_1Pago</label>
-                                        <input type="text" class="form-control" placeholder="Pago" asp-for="Pago" readonly="@(true)">
-                                        <span asp-validation-for="Pago" class="text-danger"> </span>
+                                        <label>@Resource.FACTURA_Monto</label>
+                                        <input type="text" class="form-control" placeholder="Monto" asp-for="Monto" readonly="@(true)">
+                                        <span asp-validation-for="Monto" class="text-danger"> </span>
                                     </div>
                                     <div class="form-group">
-                                        <label>@Resource.FACTURA_2Pago</label>
-                                        <input type="text" class="form-control" placeholder="Pago" asp-for="Pago2" readonly="@(true)">
-                                        <span asp-validation-for="Pago2" class="text-danger"> </span>
+                                        <label>@Resource.FACTURA_Saldo</label>
+                                        <input type="text" class="form-control" placeholder="Saldo" asp-for="Saldo" readonly="@(true)">
+                                        <span asp-validation-for="Saldo" class="text-danger"> </span>
                                     </div>
                                     <div class="form-group">
                                         <label>@Resource.FACTURA_Fecha</label>
@@ -89,19 +89,15 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <a asp-controller="Obra" asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Volver</a>
+                                    <a asp-controller="Obra" asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span> @Resource.BTN_Volver</a>
 
                                     @{
-                                        switch ((ECotizacionEstado)Model.IdCotizacion)
+                                        switch ((ECotizacionEstado)Model.IdEstadoCotizacion)
                                         {
                                             case ECotizacionEstado.Primerfacturado:
-                                                {
-                                                    <a class="btn btn-primary" asp-controller="Pago" asp-action="Pagar" asp-route-idCotizacion="@Model.IdCotizacion"><span class="far fa-credit-card" aria-hidden="true"></span></a>
-                                                }
-                                                break;
                                             case ECotizacionEstado.Segundofacturado:
                                                 {
-                                                    <a class="btn btn-primary" asp-controller="Pago" asp-action="Pagar2" asp-route-idCotizacion="@Model.IdCotizacion"><span class="far fa-credit-card" aria-hidden="true"></span></a>
+                                                    <a class="btn btn-primary" asp-controller="Pago" asp-action="Crear" asp-route-idCotizacion="@Model.IdCotizacion"><span class="far fa-credit-card" aria-hidden="true"></span> Pagar</a>
                                                 }
                                                 break;
                                         }

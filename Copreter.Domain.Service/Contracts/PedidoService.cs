@@ -49,7 +49,24 @@ namespace Copreter.Domain.Service.Contracts
 
         public async Task<int> CountAsync(int estado)
         {
-            return await this._data.Pedido.CountIncludes(x => x.Borrado == false && x.IdEstadoPedido == estado);
+            var predicates = new List<Expression<Func<TPedido, bool>>>();
+
+            var currentDate = DateTime.Now;
+
+            switch (estado)
+            {
+                case 7:
+                    {
+                        predicates.Add(x => x.FechaRegistro >= new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 0, 0, 0) && x.FechaRegistro >= new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 23, 59, 00));
+                    }
+                    break;
+            }
+
+            predicates.Add(x => x.IdEstadoPedido == estado);
+            predicates.Add(x => x.Borrado == false);
+
+            var result = await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoPedidoNavigation);
+            return result != null ? result.Count() : 0;
         }
 
         public async Task<bool> EliminarAsync(int id)

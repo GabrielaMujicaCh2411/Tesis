@@ -358,11 +358,38 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Pagar.
+        /// </summary>
+        public static string FACTURA_Monto {
+            get {
+                return ResourceManager.GetString("FACTURA_Monto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nº Cotización.
         /// </summary>
         public static string FACTURA_NroCotizacion {
             get {
                 return ResourceManager.GetString("FACTURA_NroCotizacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pago.
+        /// </summary>
+        public static string FACTURA_Pago {
+            get {
+                return ResourceManager.GetString("FACTURA_Pago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saldo.
+        /// </summary>
+        public static string FACTURA_Saldo {
+            get {
+                return ResourceManager.GetString("FACTURA_Saldo", resourceCulture);
             }
         }
         

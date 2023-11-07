@@ -28,13 +28,15 @@ namespace Copreter.Controllers
 
         private readonly IPedidoService _pedidoService;
 
+        private readonly IPagoService _pagoService;
+
 
         #endregion
 
         public HomeController(ILogger<HomeController> logger, IUnidadService unidadService, 
             IObraService obraService, ITrabajadorService trabajadorService, 
             ICotizacionService cotizacionService, IAccesoService accesoService,
-            IPedidoService pedidoService)
+            IPedidoService pedidoService, IPagoService pagoService)
         {
             this._logger = logger;
             this._unidadService = unidadService;
@@ -43,6 +45,7 @@ namespace Copreter.Controllers
             this._cotizacionService = cotizacionService;
             this._accesoService = accesoService;
             this._pedidoService = pedidoService;
+            this._pagoService = pagoService;
         }
 
         public IActionResult Index()
@@ -71,7 +74,9 @@ namespace Copreter.Controllers
                 ObrasTerminadas = await this._obraService.CountAsync(10),
                 NuevasCoticaciones = await this._cotizacionService.CountAsync(1),
                 UsuariosTotales = await this._accesoService.CountAsync(2),
-                HerramientasPorDevolver = await this._pedidoService.CountAsync((int)EPedidoEstado.PendienteDevolucion)
+                HerramientasPorDevolver = await this._pedidoService.CountAsync((int)EPedidoEstado.PendienteDevolucion),
+                HerramientasAlquiladas = await this._pedidoService.CountAsync((int)EPedidoEstado.Aceptado),
+                DineroEnMes = await this._pagoService.DineroEnMesAsync()
             };
             return View(result);
         }

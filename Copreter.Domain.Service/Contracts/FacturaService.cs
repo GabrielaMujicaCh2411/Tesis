@@ -20,5 +20,10 @@ namespace Copreter.Domain.Service.Contracts
         {
             return await this._data.Factura.FirstOrDefault(x => x.Id == id, x => x.IdCotizacionNavigation);
         }
+
+        public async Task<TFactura> ObtenerPorIdCotizacionAsync(int idCotizacion)
+        {
+            return await this._data.Factura.FirstOrDefault(x => x.IdCotizacion == idCotizacion, x => x.IdCotizacionNavigation);
+        }
     }
 }

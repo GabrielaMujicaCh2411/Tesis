@@ -7,8 +7,8 @@ namespace Copreter.Domain.Model.DbModel
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
-        public decimal Fago1 { get; set; }
-        public decimal? Pago2 { get; set; }
+        public decimal Monto { get; set; }
+        public decimal Saldo { get; set; }
         public int IdCotizacion { get; set; }
         public bool Borrado { get; set; }
         public int IdUsuarioRegistro { get; set; }

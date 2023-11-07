@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[T_Pago] (
     [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [Fecha]              DATETIME       NOT NULL,
-    [Fago1]              DECIMAL (18)   NOT NULL,
-    [Pago2]              DECIMAL (18)   NULL,
+    [Monto]              DECIMAL (18)   NOT NULL,
+    [Saldo]              DECIMAL (18)   NOT NULL,
     [Id_Cotizacion]      INT NOT NULL,
-        [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,
+    [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,
     [ID_USUARIO_REGISTRO]     INT            NOT NULL DEFAULT 1,
     [FECHA_REGISTRO]          DATETIME       NOT NULL DEFAULT GETDATE(),
     [FECHA_MODIFICACION]      DATETIME       NULL,

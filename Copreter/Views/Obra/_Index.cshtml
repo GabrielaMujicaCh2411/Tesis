@@ -75,7 +75,7 @@
                                 {
                                     if (rolId == (int)ERolEnum.Gerente)
                                     {
-                                        <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true"></span></a>
+                                        <a class="btn btn-info" asp-controller="Cotizar" asp-action="PreCotizar" asp-route-idObra="@item.Id"><span class="fas fa-calculator" aria-hidden="true" title="Cotizar"></span></a>
                                         <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="3" title="Observada"><span class="fas fa-glasses" aria-hidden="true"></span></a>
                                     }
 
@@ -89,14 +89,14 @@
                                 break;
                             case EObraEstado.Aceptado:
                                 {
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id" >Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
                                 }
                                 break;
                             case EObraEstado.Observada:
                                 {
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
-                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Crear" asp-route-idObra="@item.Id">Solicitar Cita</a>
+                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Crear" asp-route-idObra="@item.Id" >Solicitar Cita</a>
                                     }
                                 }
                                 break;

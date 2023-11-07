@@ -52,8 +52,6 @@ namespace Copreter.Domain.Model.DbModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
-
             modelBuilder.Entity<TAcceso>(entity =>
             {
                 entity.ToTable("T_Acceso");
@@ -166,6 +164,8 @@ namespace Copreter.Domain.Model.DbModel
                 entity.Property(e => e.IdUsuarioRegistro)
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Saldo).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.Total).HasColumnType("decimal(18, 0)");
 
@@ -572,8 +572,6 @@ namespace Copreter.Domain.Model.DbModel
 
                 entity.Property(e => e.Borrado).HasColumnName("BORRADO");
 
-                entity.Property(e => e.Fago1).HasColumnType("decimal(18, 0)");
-
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaModificacion)
@@ -593,7 +591,9 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Pago2).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Monto).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Saldo).HasColumnType("decimal(18, 0)");
 
                 entity.HasOne(d => d.IdCotizacionNavigation)
                     .WithMany(p => p.TPago)

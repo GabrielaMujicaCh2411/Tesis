@@ -7,5 +7,9 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<bool> AgregarAsync(TPago entidad);
 
         Task<TPago> ObtenerAsync(int id);
+
+        Task<decimal> DineroEnMesAsync();
+
+        Task<TPago> ObtenerPoIdCotizacionAsync(int idCotizacion);
     }
 }

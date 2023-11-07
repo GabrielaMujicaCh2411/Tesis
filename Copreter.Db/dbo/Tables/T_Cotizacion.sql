@@ -2,6 +2,7 @@
     [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [Fecha]                DATETIME       NOT NULL,
     [Total]                DECIMAL (18)   NOT NULL,
+    [Saldo]                DECIMAL (18)   NOT NULL,
     [Id_Obra]   INT  NOT NULL,
     [Id_EstadoCotizacion] INT            NOT NULL,
         [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,

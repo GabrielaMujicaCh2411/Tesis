@@ -149,7 +149,7 @@
                         </div>
                     </div>
 
-                    @if (rolId != (int)ERolEnum.Cliente)
+                    @if (rolId != (int)ERolEnum.Cliente && rolId != (int)ERolEnum.Operario && rolId != (int)ERolEnum.SinAsignar)
                     {
                         <div class="row">
                             <div class="col-lg-6 col-6">
@@ -167,6 +167,34 @@
 
                             <div class="col-lg-6 col-6">
                              
+                            </div>
+                        </div>
+
+                        <!-- small box -->
+                        <div class="row">
+                            <div class="col-lg-6 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@Model.HerramientasAlquiladas</h3>
+                                        <p>Alquileres en el dìa</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-truck-loading"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-6">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>@Model.DineroEnMes</h3>
+                                        <p>Dinero recaudado del mes</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-donate"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     }
