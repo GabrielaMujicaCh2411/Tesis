@@ -88,6 +88,10 @@
                                     <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id" title="Rechazar">
                                         <span class="far fa-window-close" aria-hidden="true"></span>
                                     </a>
+
+                                    <a type="button" class="btn btn-warning" asp-asp-controller="Adenda" asp-action="Cargar" asp-route-id="@item.Id" title="Enviar adenda">
+                                        <span class="	fas fa-upload" aria-hidden="true"></span>
+                                    </a>
                                 }
                                 break;
                             case ERolEnum.Cliente:

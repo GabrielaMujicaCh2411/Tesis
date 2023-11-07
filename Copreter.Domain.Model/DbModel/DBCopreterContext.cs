@@ -17,6 +17,7 @@ namespace Copreter.Domain.Model.DbModel
         }
 
         public virtual DbSet<TAcceso> TAcceso { get; set; } = null!;
+        public virtual DbSet<TAdenda> TAdenda { get; set; } = null!;
         public virtual DbSet<TCita> TCita { get; set; } = null!;
         public virtual DbSet<TCotizacion> TCotizacion { get; set; } = null!;
         public virtual DbSet<TCotizacionxUnidad> TCotizacionxUnidad { get; set; } = null!;
@@ -94,6 +95,40 @@ namespace Copreter.Domain.Model.DbModel
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Acceso_To_Usuario");
+            });
+
+            modelBuilder.Entity<TAdenda>(entity =>
+            {
+                entity.ToTable("T_Adenda");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Imagen).IsUnicode(false);
+
+                entity.HasOne(d => d.IdPedidoNavigation)
+                    .WithMany(p => p.TAdenda)
+                    .HasForeignKey(d => d.IdPedido)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Adenda_To_Orden");
             });
 
             modelBuilder.Entity<TCita>(entity =>

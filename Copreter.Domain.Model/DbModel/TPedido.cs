@@ -7,6 +7,7 @@ namespace Copreter.Domain.Model.DbModel
     {
         public TPedido()
         {
+            TAdenda = new HashSet<TAdenda>();
             TIncidencia = new HashSet<TIncidencia>();
         }
 
@@ -33,6 +34,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual TTrabajador? IdTrabajadorNavigation { get; set; }
         public virtual TUnidad? IdUnidadNavigation { get; set; }
         public virtual TUsuario IdUsuarioNavigation { get; set; } = null!;
+        public virtual ICollection<TAdenda> TAdenda { get; set; }
         public virtual ICollection<TIncidencia> TIncidencia { get; set; }
     }
 }

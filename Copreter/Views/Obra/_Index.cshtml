@@ -135,7 +135,7 @@
                                 {
                                     <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id"><span class="fas fa-paste" aria-hidden="true" title="Ver Cotizacion"></span></a>
 
-                                    if (rolId != (int)ERolEnum.Cliente)
+                                    if (rolId == (int)ERolEnum.Gerente)
                                     {
                                         <a class="btn btn-success" asp-controller="OrdenServicio" asp-action="Detalle" asp-route-idObra="@item.Id" asp-route-idEstado="10">Ver Orden servicio</a>
                                     }

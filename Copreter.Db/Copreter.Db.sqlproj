@@ -85,6 +85,7 @@
     <Build Include="dbo\Tables\T_Cotizacion.sql" />
     <Build Include="dbo\Tables\T_Usuario.sql" />
     <Build Include="dbo\Tables\T_Cita.sql" />
+    <Build Include="dbo\Tables\T_Adenda.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

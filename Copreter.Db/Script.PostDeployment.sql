@@ -92,6 +92,7 @@ BEGIN
     INSERT [dbo].[T_EstadoPedido] ([Nombre], [Descripcion]) VALUES (N'Rechazado', N'Pedido Rechazado')
     INSERT [dbo].[T_EstadoPedido] ([Nombre], [Descripcion]) VALUES (N'Pendiente Devolucion', N'Pedido pendiente de devolver')
     INSERT [dbo].[T_EstadoPedido] ([Nombre], [Descripcion]) VALUES (N'Devuelto', N'Pedido devuelto')
+    INSERT [dbo].[T_EstadoPedido] ([Nombre], [Descripcion]) VALUES (N'Adenda Enviado', N'Adenda Enviado')
 END
 GO
 

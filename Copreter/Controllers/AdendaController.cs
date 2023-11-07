@@ -2,19 +2,23 @@
 using Copreter.Domain.Model.DbModel;
 using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Service.Contracts.Interfaces;
+using Copreter.Domain.Service.Dto.Adenda;
 using Copreter.Domain.Service.Dto.OrdenServicio;
 using Copreter.Utils;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Copreter.Controllers
 {
-    public class OrdenServicioController : BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AdendaController : BaseController
     {
         #region Fields
 
         private readonly ILogger<OrdenServicioController> _logger;
 
-        private readonly IOrdenServicioService _service;
+        private readonly IAdendaService _service;
 
         private readonly IObraService _obraservice;
 
@@ -24,8 +28,8 @@ namespace Copreter.Controllers
 
         #endregion
 
-        public OrdenServicioController(IMapper mapper, ILogger<OrdenServicioController> logger, IWebHostEnvironment hosting,
-            IOrdenServicioService service, IObraService obraservice, ICotizacionService cotizacionService, IPagoService pagoService) : base(mapper)
+        public AdendaController(IMapper mapper, ILogger<OrdenServicioController> logger, IWebHostEnvironment hosting,
+            IAdendaService service, IObraService obraservice, ICotizacionService cotizacionService, IPagoService pagoService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
@@ -40,15 +44,14 @@ namespace Copreter.Controllers
         {
             var cotizacion = await this._cotizacionService.ObtenerPorIdObraAsync(idObra);
 
-            var result = new OrdenServicioDto
+            var result = new AdendaDto
             {
-                IdCotizacion = cotizacion.Id,
                 IdObra = idObra,
             };
             return View(result);
         }
 
-        public async Task<IActionResult> Enviar([Bind()] OrdenServicioDto dto)
+        public async Task<IActionResult> Enviar([Bind()] AdendaDto dto)
         {
             try
             {
@@ -63,12 +66,12 @@ namespace Copreter.Controllers
 
                 dto.IdUsuarioRegistro = this.UserId();
 
-                var result = await this._service.AgregarAsync(this.Mapper.Map<TOrdenServicio>(dto));
+                var result = await this._service.AgregarAsync(this.Mapper.Map<TAdenda>(dto));
                 if (result)
                 {
-                    await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, (int)ECotizacionEstado.OrdenServicioEnviado, this.UserId());
+                    //await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, (int)ECotizacionEstado.OrdenServicioEnviado, this.UserId());
 
-                    await this._obraservice.ActualizarEstadoAsync(dto.IdObra, (int)EObraEstado.OrdenEnviado, this.UserId());
+                    //await this._obraservice.ActualizarEstadoAsync(dto.IdObra, (int)EObraEstado.OrdenEnviado, this.UserId());
 
                     return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
                 }
@@ -79,19 +82,6 @@ namespace Copreter.Controllers
                 this._logger.LogError(ex.Message);
                 return View();
             }
-        }
-
-        public async Task<IActionResult> Detalle(int idObra)
-        {
-            if (idObra == null) return RedirectToAction(nameof(Index));
-
-            var cotizacion = await this._cotizacionService.ObtenerPorIdObraAsync(idObra);
-
-            var resultService = await this._service.ObtenerPorIdCotizacionAsync(cotizacion.Id);
-
-            var result = this.Mapper.Map<OrdenServicioDto>(resultService);
-            result.IdObra = idObra;
-            return View(result);
         }
     }
 }

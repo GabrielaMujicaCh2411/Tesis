@@ -61,6 +61,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enviar adenda.
+        /// </summary>
+        public static string ADENDA_Enviar {
+            get {
+                return ResourceManager.GetString("ADENDA_Enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adenda.
+        /// </summary>
+        public static string ADENDA_Titulo {
+            get {
+                return ResourceManager.GetString("ADENDA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aceptar.
         /// </summary>
         public static string BTN_Aceptar {

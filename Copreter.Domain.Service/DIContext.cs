@@ -11,6 +11,7 @@ namespace Copreter.Domain.Service
     {
         public static void AddCustomServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IAdendaService, AdendaService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICitaService, CitaService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
@@ -23,7 +24,7 @@ namespace Copreter.Domain.Service
             services.AddScoped<IEstadoTrabajadorService, EstadoTrabajadorService>();
             services.AddScoped<IEstadoUnidadService, EstadoUnidadService>();
 
-            
+
             services.AddScoped<IFacturaService, FacturaService>();
             services.AddScoped<IIncidenciaService, IncidenciaService>();
             services.AddScoped<IObraService, ObraService>();

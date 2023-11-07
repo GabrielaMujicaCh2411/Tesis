@@ -10,5 +10,7 @@
         Rechazado = 6,
         PendienteDevolucion = 7,
         Devuelto = 8,
+        AdendaEnviado = 9,
+        AdendaAceptada = 10,
     }
 }
