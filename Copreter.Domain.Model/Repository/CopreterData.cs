@@ -31,6 +31,8 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TObraxPartida> _obraPartida;
 
+        private readonly IRepository<TOrdenServicio> _ordenServicio;
+
         private readonly IRepository<TPago> _pago;
 
         private readonly IRepository<TPartida> _partida;
@@ -67,6 +69,7 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TIncidencia> incidencia,
             IRepository<TObra> obra,
             IRepository<TObraxPartida> obraPartida,
+            IRepository<TOrdenServicio> ordenServicio,
             IRepository<TPago> pago,
             IRepository<TPartida> partida,
             IRepository<TPedido> pedido,
@@ -92,6 +95,7 @@ namespace Copreter.Domain.Model.Repository
             this._incidencia = incidencia;
             this._obra = obra;
             this._obraPartida = obraPartida;
+            this._ordenServicio = ordenServicio;
             this._pago = pago;
             this._partida = partida;
             this._pedido = pedido;
@@ -130,6 +134,8 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TObra> Obra => this._obra;
 
         public IRepository<TObraxPartida> ObraPartida => this._obraPartida;
+
+        public IRepository<TOrdenServicio> OrdenServicio => this._ordenServicio;
 
         public IRepository<TPago> Pago => this._pago;
 

@@ -536,8 +536,6 @@ namespace Copreter.Domain.Model.DbModel
 
                 entity.Property(e => e.Borrado).HasColumnName("BORRADO");
 
-                entity.Property(e => e.Fecha).HasColumnType("datetime");
-
                 entity.Property(e => e.FechaModificacion)
                     .HasColumnType("datetime")
                     .HasColumnName("FECHA_MODIFICACION");
@@ -547,7 +545,7 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("FECHA_REGISTRO")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
+                entity.Property(e => e.IdCotizacion).HasColumnName("Id_Cotizacion");
 
                 entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
 
@@ -555,13 +553,15 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
+                entity.Property(e => e.Imagen).IsUnicode(false);
+
                 entity.Property(e => e.Liquidacion).HasColumnType("decimal(18, 0)");
 
-                entity.HasOne(d => d.IdPedidoNavigation)
+                entity.HasOne(d => d.IdCotizacionNavigation)
                     .WithMany(p => p.TOrdenServicio)
-                    .HasForeignKey(d => d.IdPedido)
+                    .HasForeignKey(d => d.IdCotizacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_T_OrdenServicio_T_Pedido");
+                    .HasConstraintName("FK_T_OrdenServicio_T_Cotizacion");
             });
 
             modelBuilder.Entity<TPago>(entity =>

@@ -1,5 +1,4 @@
 ﻿using Copreter.Domain.Model.DbModel;
-using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Model.Model.Obra;
 
 namespace Copreter.Domain.Service.Contracts.Interfaces

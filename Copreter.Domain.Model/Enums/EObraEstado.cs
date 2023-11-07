@@ -12,6 +12,8 @@
         Pago = 8,
         Proceso = 9,
         Terminado = 10,
-        Finalizado = 11
+        Finalizado = 11,
+        OrdenEnviado= 12,
+               OrdenAceptado = 13
     }
 }

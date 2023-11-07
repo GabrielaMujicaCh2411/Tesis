@@ -132,6 +132,12 @@
   <data name="BTN_Editar" xml:space="preserve">
     <value>Editar</value>
   </data>
+  <data name="BTN_Enviar_Orden" xml:space="preserve">
+    <value>Enviar Orden</value>
+  </data>
+  <data name="BTN_Envia_Adenda" xml:space="preserve">
+    <value>Envia Adenda</value>
+  </data>
   <data name="BTN_Filtrar" xml:space="preserve">
     <value>Filtrar</value>
   </data>
@@ -359,6 +365,18 @@
   </data>
   <data name="OBRA_Titulo" xml:space="preserve">
     <value>Obra</value>
+  </data>
+  <data name="ORDENSERVICIO_Descargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="ORDENSERVICIO_Enviar" xml:space="preserve">
+    <value>Enviar orden de servicio</value>
+  </data>
+  <data name="ORDENSERVICIO_NroCotizacion" xml:space="preserve">
+    <value>Nº Cotización</value>
+  </data>
+  <data name="ORDENSERVICIO_Titulo" xml:space="preserve">
+    <value>Orden de Servicio</value>
   </data>
   <data name="PAGO_Pagar" xml:space="preserve">
     <value>Información de Pago</value>

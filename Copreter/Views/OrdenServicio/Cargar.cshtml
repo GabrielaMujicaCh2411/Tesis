@@ -1,0 +1,83 @@
+﻿@using Copreter.Resources;
+@model Copreter.Domain.Service.Dto.OrdenServicio.OrdenServicioDto;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var imagePath = @Html.DisplayFor(model => model.Imagen);
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.ORDENSERVICIO_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.ORDENSERVICIO_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.ORDENSERVICIO_Enviar</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+
+                                <form asp-action="Enviar" asp-controller="OrdenServicio" method="post" enctype="multipart/form-data">
+                                    <div class="card-body">
+
+                                        <input type="hidden" asp-for="IdCotizacion" />
+                                        <input type="hidden" asp-for="IdObra" />
+
+                                        <div class="form-group">
+                                            <label>@Resource.ORDENSERVICIO_Titulo</label>
+                                            <input class="form class" id="imagen" asp-for="Foto">
+                                            <span asp-validation-for="Imagen" class="text-danger"> </span>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span> @Resource.BTN_Guardar</button>
+                                        <button asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span> @Resource.BTN_Cancelar</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        })
+
+    </script>
+}

@@ -5,7 +5,7 @@
     [Saldo]                DECIMAL (18)   NOT NULL,
     [Id_Obra]   INT  NOT NULL,
     [Id_EstadoCotizacion] INT            NOT NULL,
-        [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,
+    [BORRADO]                 BIT            DEFAULT ((0)) NOT NULL,
     [ID_USUARIO_REGISTRO]     INT            NOT NULL DEFAULT 1,
     [FECHA_REGISTRO]          DATETIME       NOT NULL DEFAULT GETDATE(),
     [FECHA_MODIFICACION]      DATETIME       NULL,

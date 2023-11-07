@@ -89,20 +89,25 @@
                                 break;
                             case EObraEstado.Aceptado:
                                 {
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id"><span class="fas fa-paste" aria-hidden="true" title="Ver Cotizacion"></span></a>
+
+                                    if (rolId == (int)ERolEnum.Cliente)
+                                    {
+                                        <a class="btn btn-danger" asp-controller="OrdenServicio" asp-action="Cargar" asp-route-idObra="@item.Id"><span class="far fa-paper-plane" aria-hidden="true" title="Enviar Orden de servicio"></span></a>
+                                    }
                                 }
                                 break;
                             case EObraEstado.Observada:
                                 {
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
-                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Crear" asp-route-idObra="@item.Id" >Solicitar Cita</a>
+                                        <a class="btn btn-danger" asp-controller="Cita" asp-action="Crear" asp-route-idObra="@item.Id">Solicitar Cita</a>
                                     }
                                 }
                                 break;
                             case EObraEstado.Cotizado:
                                 {
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id"><span class="fas fa-paste" aria-hidden="true" title="Ver Cotizacion"></span></a>
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
                                         <a class="btn btn-warning" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="2">Aceptar</a>
@@ -113,7 +118,7 @@
                             case EObraEstado.Facturado:
                             case EObraEstado.Terminado:
                                 {
-                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id">Ver Cotizacion</a>
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id"><span class="fas fa-paste" aria-hidden="true" title="Ver Cotizacion"></span></a>
 
                                     if (rolId == (int)ERolEnum.Cliente)
                                     {
@@ -126,9 +131,19 @@
                                     <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="10">Obra Terminada</a>
                                 }
                                 break;
+                            case EObraEstado.OrdenEnviado:
+                                {
+                                    <a class="btn btn-danger" asp-controller="Cotizar" asp-action="CotizacionPorObraPdf" asp-route-idObra="@item.Id"><span class="fas fa-paste" aria-hidden="true" title="Ver Cotizacion"></span></a>
+
+                                    if (rolId != (int)ERolEnum.Cliente)
+                                    {
+                                        <a class="btn btn-success" asp-controller="OrdenServicio" asp-action="Detalle" asp-route-idObra="@item.Id" asp-route-idEstado="10">Ver Orden servicio</a>
+                                    }
+                                }
+                                break;
                         }
 
-                 
+
                     }
 
                 </td>

@@ -106,6 +106,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Envia Adenda.
+        /// </summary>
+        public static string BTN_Envia_Adenda {
+            get {
+                return ResourceManager.GetString("BTN_Envia_Adenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar Orden.
+        /// </summary>
+        public static string BTN_Enviar_Orden {
+            get {
+                return ResourceManager.GetString("BTN_Enviar_Orden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filtrar.
         /// </summary>
         public static string BTN_Filtrar {
@@ -786,6 +804,42 @@ namespace Copreter.Resources {
         public static string OBRA_Titulo {
             get {
                 return ResourceManager.GetString("OBRA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descargar.
+        /// </summary>
+        public static string ORDENSERVICIO_Descargar {
+            get {
+                return ResourceManager.GetString("ORDENSERVICIO_Descargar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar orden de servicio.
+        /// </summary>
+        public static string ORDENSERVICIO_Enviar {
+            get {
+                return ResourceManager.GetString("ORDENSERVICIO_Enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nº Cotización.
+        /// </summary>
+        public static string ORDENSERVICIO_NroCotizacion {
+            get {
+                return ResourceManager.GetString("ORDENSERVICIO_NroCotizacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orden de Servicio.
+        /// </summary>
+        public static string ORDENSERVICIO_Titulo {
+            get {
+                return ResourceManager.GetString("ORDENSERVICIO_Titulo", resourceCulture);
             }
         }
         

@@ -158,7 +158,7 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> ActualizarEstado(int? id, int idEstado)
         {
-            if (id == null) return RedirectToAction(nameof(Index));
+            if (id == null || id == 0) return RedirectToAction(nameof(Index));
 
             var resultService = await this._service.ActualizarEstadoAsync(id.Value, idEstado, this.UserId());
 
@@ -185,6 +185,11 @@ namespace Copreter.Controllers
 
                             var herramientaXCotizacion = await this._cotizacionxUnidadService.RestaurarUnidadAsync(cotizacíon.Id, this.UserId());
                         }
+                    }
+                    break;
+                case EObraEstado.OrdenAceptado:
+                    {
+                        await this._cotizacionService.ActualizarEstadoPorObraAsync(id.Value, (int)ECotizacionEstado.OrdenServicioRecibido, this.UserId());
                     }
                     break;
             }

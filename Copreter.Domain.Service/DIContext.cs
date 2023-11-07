@@ -27,8 +27,8 @@ namespace Copreter.Domain.Service
             services.AddScoped<IFacturaService, FacturaService>();
             services.AddScoped<IIncidenciaService, IncidenciaService>();
             services.AddScoped<IObraService, ObraService>();
-
             services.AddScoped<IObraPartidaService, ObraPartidaService>();
+            services.AddScoped<IOrdenServicioService, OrdenServicioService>();
 
             services.AddScoped<IPagoService, PagoService>();
             services.AddScoped<IPartidaService, PartidaService>();

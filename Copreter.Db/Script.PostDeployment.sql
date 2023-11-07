@@ -57,6 +57,8 @@ BEGIN
     INSERT [dbo].[T_EstadoCotizacion] ([Nombre], [Descripcion]) VALUES (N'herramienta asignada', N'cotizacion en asignacion de recursos')
     INSERT [dbo].[T_EstadoCotizacion] ([Nombre], [Descripcion]) VALUES (N'trabajador asignado', N'cotizacion en asignacion de trabajador')
     INSERT [dbo].[T_EstadoCotizacion] ([Nombre], [Descripcion]) VALUES (N'asignados', N'recursos asignados')
+    INSERT [dbo].[T_EstadoCotizacion] ([Nombre], [Descripcion]) VALUES (N'Orden Servicio Enviado', N'Orden Servicio Enviado')
+    INSERT [dbo].[T_EstadoCotizacion] ([Nombre], [Descripcion]) VALUES (N'Orden Servicio Recibido', N'Orden Servicio Recibido')
 END
 GO
 
@@ -74,6 +76,8 @@ BEGIN
     INSERT [dbo].[T_EstadoObra] ([Nombre], [Descripcion]) VALUES (N'proceso', N'obra en construccion')
     INSERT [dbo].[T_EstadoObra] ([Nombre], [Descripcion]) VALUES (N'terminado', N'obra construccion terminada')
     INSERT [dbo].[T_EstadoObra] ([Nombre], [Descripcion]) VALUES (N'finalizado', N'obra finalizada')
+    INSERT [dbo].[T_EstadoObra] ([Nombre], [Descripcion]) VALUES (N'Orden Enviado', N'Orden Enviado')
+    INSERT [dbo].[T_EstadoObra] ([Nombre], [Descripcion]) VALUES (N'Orden Aceptado', N'Orden Aceptado')
 END
 GO
 

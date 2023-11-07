@@ -54,11 +54,16 @@
 
                         switch ((ECotizacionEstado)item.IdEstadoCotizacion)
                         {
-                            case ECotizacionEstado.aceptado:
+                            case ECotizacionEstado.OrdenServicioRecibido:
                                 {
                                     <a class="btn btn-primary" asp-controller="Factura" asp-action="Cargar" asp-route-idCotizacion="@item.Id">Enviar Factura</a>
                                 }
                                 break;
+                            // case ECotizacionEstado.aceptado:
+                            //     {
+                            //         <a class="btn btn-primary" asp-controller="Factura" asp-action="Cargar" asp-route-idCotizacion="@item.Id">Enviar Factura</a>
+                            //     }
+                            //     break;
                             case ECotizacionEstado.pago:
                                 {
                                     if (rolId == (int)ERolEnum.Administrador)

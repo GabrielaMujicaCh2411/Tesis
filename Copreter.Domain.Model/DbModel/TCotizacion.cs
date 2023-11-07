@@ -9,6 +9,7 @@ namespace Copreter.Domain.Model.DbModel
         {
             TCotizacionxUnidad = new HashSet<TCotizacionxUnidad>();
             TFactura = new HashSet<TFactura>();
+            TOrdenServicio = new HashSet<TOrdenServicio>();
             TPago = new HashSet<TPago>();
             TTrabajadorxCotizacion = new HashSet<TTrabajadorxCotizacion>();
         }
@@ -29,6 +30,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual TObra IdObraNavigation { get; set; } = null!;
         public virtual ICollection<TCotizacionxUnidad> TCotizacionxUnidad { get; set; }
         public virtual ICollection<TFactura> TFactura { get; set; }
+        public virtual ICollection<TOrdenServicio> TOrdenServicio { get; set; }
         public virtual ICollection<TPago> TPago { get; set; }
         public virtual ICollection<TTrabajadorxCotizacion> TTrabajadorxCotizacion { get; set; }
     }

@@ -12,5 +12,7 @@
         herramientaAsignada = 8,
         trabajadorAsignado = 9,
         asignados = 10,
+        OrdenServicioEnviado = 11,
+        OrdenServicioRecibido = 12,
     }
 }

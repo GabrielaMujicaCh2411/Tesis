@@ -30,6 +30,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TObraxPartida> ObraPartida { get; }
 
+        IRepository<TOrdenServicio> OrdenServicio { get; }
+
         IRepository<TPago> Pago { get; }
 
         IRepository<TPartida> Partida { get; }
