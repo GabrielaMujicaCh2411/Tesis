@@ -41,6 +41,10 @@ namespace Copreter.Domain.Model.Repository
 
         private readonly IRepository<TPedido> _pedido;
 
+        private readonly IRepository<TPedidoOrdenServicio> _pedidoOrdenServicio;
+
+        private readonly IRepository<TPedidoSolicitud> _pedidoSolicitud;
+
         private readonly IRepository<TRol> _rol;
 
         private readonly IRepository<TTipoPartida> _tipoPartida;
@@ -76,6 +80,8 @@ namespace Copreter.Domain.Model.Repository
             IRepository<TPago> pago,
             IRepository<TPartida> partida,
             IRepository<TPedido> pedido,
+            IRepository<TPedidoOrdenServicio> pedidoOrdenServicio,
+            IRepository<TPedidoSolicitud> pedidoSolicitud,
             IRepository<TRol> rol,
             IRepository<TTipoPartida> tipoPartida,
             IRepository<TTipoTrabajador> tipoTrabajador,
@@ -103,6 +109,8 @@ namespace Copreter.Domain.Model.Repository
             this._pago = pago;
             this._partida = partida;
             this._pedido = pedido;
+            this._pedidoOrdenServicio = pedidoOrdenServicio;
+            this._pedidoSolicitud = pedidoSolicitud;
             this._rol = rol;
             this._tipoPartida = tipoPartida;
             this._tipoTrabajador = tipoTrabajador;
@@ -148,6 +156,10 @@ namespace Copreter.Domain.Model.Repository
         public IRepository<TPartida> Partida => this._partida;
 
         public IRepository<TPedido> Pedido => this._pedido;
+
+        public IRepository<TPedidoOrdenServicio> PedidoOrdenServicio => this._pedidoOrdenServicio;
+
+        public IRepository<TPedidoSolicitud> PedidoSolicitud => this._pedidoSolicitud;
 
         public IRepository<TRol> Rol => this._rol;
 

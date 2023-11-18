@@ -1,12 +1,9 @@
 ﻿CREATE TABLE [dbo].[T_Pedido] (
     [ID]                   INT            IDENTITY (1, 1) NOT NULL,
     [Fecha_Inicio]         DATETIME       NOT NULL,
-    [Cantidad_Dias]        INT            NOT NULL,
     [Obra]                 NVARCHAR (MAX) NOT NULL,
     [Empresa]              NVARCHAR (MAX) NOT NULL,
     [Ubicacion]            NVARCHAR (MAX) NOT NULL,
-    [Fecha_Entrega]        DATETIME       NULL,
-    [Precio_Pedido]        DECIMAL (18)   NULL,
     [Id_Estado_Pedido]     INT            NOT NULL,
     [Id_Usuario]           INT            NOT NULL,
     [Id_Trabajador]        INT            NULL,

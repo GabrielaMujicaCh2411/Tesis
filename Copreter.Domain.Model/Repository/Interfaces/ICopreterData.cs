@@ -40,6 +40,10 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TPedido> Pedido { get; }
 
+        IRepository<TPedidoOrdenServicio> PedidoOrdenServicio { get; }
+
+        IRepository<TPedidoSolicitud> PedidoSolicitud { get; }
+
         IRepository<TRol> Rol { get; }
 
         IRepository<TTipoPartida> TipoPartida { get; }

@@ -41,6 +41,11 @@ namespace Copreter.Controllers
 
         public async Task<IActionResult> Index(int? userId, int? idEstado)
         {
+            if (this.RolId() == ERolEnum.Cliente)
+            {
+                userId = this.UserId();
+            }
+
             var resultService = await this._service.ListarAsync(new Domain.Model.Model.Pedido.PedidoFilter() { IdUsuario = userId, IdEstado = idEstado });
 
             var estadoLista = this.Mapper.Map<IEnumerable<ItemDto>>(await this._estadoPedidoService.ListarAsync());
@@ -73,9 +78,18 @@ namespace Copreter.Controllers
         {
             if (id == null) return RedirectToAction(nameof(Index));
 
-            var result = await this._service.ObtenerAsync(id.Value);
+            var resultService = await this._service.ObtenerAsync(id.Value);
 
-            return View(this.Mapper.Map<PedidoEditableVM>(result));
+            var result = this.Mapper.Map<PedidoEditableVM>(resultService);
+            var pedidoSolicitudes = await this._service.ObtenerPedidoSolicitudAsync(id.Value);
+
+            if (pedidoSolicitudes != null && pedidoSolicitudes.Any())
+            {
+                result.CantidadDias = pedidoSolicitudes.Sum(x => x.CantidadDias);
+                //result.FechaInicio = pedidoSolicitudes.Sum(x => x.CantidadDias);
+            }
+
+            return View(result);
         }
 
         public async Task<IActionResult> Asignar(int id)
@@ -171,7 +185,7 @@ namespace Copreter.Controllers
 
             var result = new PedidoEditableVM
             {
-                FechaInicio = DateTime.Now,
+                FechaInicio = DateTime.Now.AddDays(1),
                 PrecioUnidad = resultService.Precio,
                 IdUnidad = idUnidad,
                 Cantidad = 1,
@@ -225,7 +239,7 @@ namespace Copreter.Controllers
                     dto.IdUsuarioRegistro = this.UserId();
                     dto.IdEstadoPedido = 1;
 
-                    var result = await this._service.AgregarAsync(this.Mapper.Map<TPedido>(dto));
+                    var result = await this._service.AgregarAsync(this.Mapper.Map<TPedido>(dto), this.Mapper.Map<TPedidoSolicitud>(dto));
                     if (result)
                     {
                         var resultUnidad = await this._unidadService.ActualizarCantidadAsync(dto.IdUnidad, dto.Cantidad, false, this.UserId());
@@ -247,7 +261,7 @@ namespace Copreter.Controllers
             if (id == null) return RedirectToAction(nameof(Index));
 
             var resultService = await this._service.ActualizarEstadoAsync(id.Value, idEstado, this.UserId());
-                  
+
             return RedirectToAction(nameof(Index));
         }
 
