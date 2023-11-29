@@ -71,7 +71,7 @@
 
                                         <div class="form-group">
                                             <label>@Resource.PEDIDO_Fecha_Inicio</label>
-                                            <input type="date" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio">
+                                            <input type="date" min="@DateTime.Now.AddDays(1)" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio">
                                             <span asp-validation-for="FechaInicio" class="text-danger"> </span>
                                         </div>
 
@@ -117,6 +117,10 @@
 </div>
 
 @section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script type="text/javascript">
 
         $(document).ready(function () {

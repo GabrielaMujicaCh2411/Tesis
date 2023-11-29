@@ -9,16 +9,15 @@ namespace Copreter.Domain.Model.DbModel
         {
             TAdenda = new HashSet<TAdenda>();
             TIncidencia = new HashSet<TIncidencia>();
+            TPedidoOrdenServicio = new HashSet<TPedidoOrdenServicio>();
+            TPedidoSolicitud = new HashSet<TPedidoSolicitud>();
         }
 
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
-        public int CantidadDias { get; set; }
         public string Obra { get; set; } = null!;
         public string Empresa { get; set; } = null!;
         public string Ubicacion { get; set; } = null!;
-        public DateTime? FechaEntrega { get; set; }
-        public decimal? PrecioPedido { get; set; }
         public int IdEstadoPedido { get; set; }
         public int IdUsuario { get; set; }
         public int? IdTrabajador { get; set; }
@@ -36,5 +35,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual TUsuario IdUsuarioNavigation { get; set; } = null!;
         public virtual ICollection<TAdenda> TAdenda { get; set; }
         public virtual ICollection<TIncidencia> TIncidencia { get; set; }
+        public virtual ICollection<TPedidoOrdenServicio> TPedidoOrdenServicio { get; set; }
+        public virtual ICollection<TPedidoSolicitud> TPedidoSolicitud { get; set; }
     }
 }

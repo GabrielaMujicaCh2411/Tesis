@@ -153,19 +153,19 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM [dbo].[T_Pedido] WHERE ID = 1)
-BEGIN
-    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2021-12-20T00:00:00.000' AS DateTime), 15, N'EdiObra03', N'Edificar', N'Surco', NULL, CAST(18450 AS Decimal(18, 0)), 3,1, 1, 1,1)
-    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2021-12-27T00:00:00.000' AS DateTime), 5, N'EdiObra04', N'PSY', N'Surco', NULL, CAST(175 AS Decimal(18, 0)), 2, 2, NULL, 2,1)
-    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2023-08-07T00:00:00.000' AS DateTime), 10, N'Ts', N'teet', N'tete', NULL, CAST(12300 AS Decimal(18, 0)), 1, 1, NULL, 3,1)
-END
-GO
+--IF NOT EXISTS (SELECT * FROM [dbo].[T_Pedido] WHERE ID = 1)
+--BEGIN
+--    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2021-12-20T00:00:00.000' AS DateTime), 15, N'EdiObra03', N'Edificar', N'Surco', NULL, CAST(18450 AS Decimal(18, 0)), 3,1, 1, 1,1)
+--    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2021-12-27T00:00:00.000' AS DateTime), 5, N'EdiObra04', N'PSY', N'Surco', NULL, CAST(175 AS Decimal(18, 0)), 2, 2, NULL, 2,1)
+--    INSERT [dbo].[T_Pedido] ([fecha_Inicio], [cantidad_Dias], [obra], [empresa], [ubicacion], [fecha_Entrega], [precio_Pedido], [id_Estado_Pedido], [id_Usuario], [id_Trabajador], [id_Unidad],[Cantidad]) VALUES (CAST(N'2023-08-07T00:00:00.000' AS DateTime), 10, N'Ts', N'teet', N'tete', NULL, CAST(12300 AS Decimal(18, 0)), 1, 1, NULL, 3,1)
+--END
+--GO
 
-IF NOT EXISTS (SELECT * FROM [dbo].[T_Obra] WHERE ID = 1)
-BEGIN
-    INSERT [dbo].[T_Obra] ([empresa], [direccion], [nombre_Obra], [imagen], [fecha_Inicio], [duracion_Obra], [id_Usuario], [id_Estado_Obra]) VALUES (N'PSY', N'San juan de Miraflores 123', N'Obra de EDificio 1', N'd67a1b93-2dfd-4131-9e8d-056c3a16c194plano.jpeg', CAST(N'2021-12-20T00:00:00.000' AS DateTime), 5, 1, 11)
-END
-GO
+--IF NOT EXISTS (SELECT * FROM [dbo].[T_Obra] WHERE ID = 1)
+--BEGIN
+--    INSERT [dbo].[T_Obra] ([empresa], [direccion], [nombre_Obra], [imagen], [fecha_Inicio], [duracion_Obra], [id_Usuario], [id_Estado_Obra]) VALUES (N'PSY', N'San juan de Miraflores 123', N'Obra de EDificio 1', N'd67a1b93-2dfd-4131-9e8d-056c3a16c194plano.jpeg', CAST(N'2021-12-20T00:00:00.000' AS DateTime), 5, 1, 11)
+--END
+--GO
 
 IF NOT EXISTS (SELECT * FROM [dbo].[T_Partida] WHERE ID = 1)
 BEGIN
@@ -176,21 +176,21 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (SELECT * FROM [dbo].[T_ObraxPartida] WHERE ID = 1)
-BEGIN
-    INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (1, 1, CAST(2 AS Decimal(18, 0)), N'gbl', CAST(180 AS Decimal(18, 0)))
-    INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (2, 1, CAST(1 AS Decimal(18, 0)), N'gbl', CAST(54 AS Decimal(18, 0)))
-END
-GO
+--IF NOT EXISTS (SELECT * FROM [dbo].[T_ObraxPartida] WHERE ID = 1)
+--BEGIN
+--    INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (1, 1, CAST(2 AS Decimal(18, 0)), N'gbl', CAST(180 AS Decimal(18, 0)))
+--    INSERT [dbo].[T_ObraxPartida] ([id_Partida], [id_Obra], [metrado], [unidad], [parcial]) VALUES (2, 1, CAST(1 AS Decimal(18, 0)), N'gbl', CAST(54 AS Decimal(18, 0)))
+--END
+--GO
 
-IF NOT EXISTS (SELECT * FROM [dbo].[T_Cotizacion] WHERE ID = 1)
-BEGIN
-    INSERT [dbo].[T_Cotizacion] ([fecha], [total], [Saldo], [id_Obra], [id_EstadoCotizacion]) VALUES (CAST(N'2021-12-13T05:12:30.863' AS DateTime), CAST(234 AS Decimal(18, 0)),CAST(234 AS Decimal(18, 0)), 1, 7)
-END
-GO
+--IF NOT EXISTS (SELECT * FROM [dbo].[T_Cotizacion] WHERE ID = 1)
+--BEGIN
+--    INSERT [dbo].[T_Cotizacion] ([fecha], [total], [Saldo], [id_Obra], [id_EstadoCotizacion]) VALUES (CAST(N'2021-12-13T05:12:30.863' AS DateTime), CAST(234 AS Decimal(18, 0)),CAST(234 AS Decimal(18, 0)), 1, 7)
+--END
+--GO
 
-IF NOT EXISTS (SELECT * FROM [dbo].[T_CotizacionxUnidad] WHERE ID = 1)
-BEGIN
-    INSERT [dbo].[T_CotizacionxUnidad] ([Id_Unidad], [id_Cotizacion], [cantidad]) VALUES (1, 1, 1)
-END
-GO
+--IF NOT EXISTS (SELECT * FROM [dbo].[T_CotizacionxUnidad] WHERE ID = 1)
+--BEGIN
+--    INSERT [dbo].[T_CotizacionxUnidad] ([Id_Unidad], [id_Cotizacion], [cantidad]) VALUES (1, 1, 1)
+--END
+--GO

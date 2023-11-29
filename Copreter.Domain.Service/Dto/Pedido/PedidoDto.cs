@@ -4,10 +4,15 @@ namespace Copreter.Domain.Service.Dto.Pedido
 {
     public class PedidoDto : BaseDto
     {
+        [Required]
         public DateTime? FechaInicio { get; set; }
+        [Required]
         public int? CantidadDias { get; set; }
+        [Required]
         public string? Obra { get; set; }
+        [Required]
         public string? Empresa { get; set; }
+        [Required]
         public string? Ubicacion { get; set; }
         public DateTime? FechaEntrega { get; set; }
         public decimal? PrecioPedido { get; set; }

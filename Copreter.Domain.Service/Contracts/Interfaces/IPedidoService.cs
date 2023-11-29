@@ -9,7 +9,9 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
 
         Task<TPedido> ObtenerAsync(int id);
 
-        Task<bool> AgregarAsync(TPedido entidad);
+        Task<IEnumerable<TPedidoSolicitud>> ObtenerPedidoSolicitudAsync(int idPedido);
+
+        Task<bool> AgregarAsync(TPedido entidad, TPedidoSolicitud entidadSolicitud);
 
         Task<bool> ActualizarAsync(int id, TPedido entidad);
 

@@ -34,6 +34,8 @@ namespace Copreter.Domain.Model.DbModel
         public virtual DbSet<TPago> TPago { get; set; } = null!;
         public virtual DbSet<TPartida> TPartida { get; set; } = null!;
         public virtual DbSet<TPedido> TPedido { get; set; } = null!;
+        public virtual DbSet<TPedidoOrdenServicio> TPedidoOrdenServicio { get; set; } = null!;
+        public virtual DbSet<TPedidoSolicitud> TPedidoSolicitud { get; set; } = null!;
         public virtual DbSet<TRol> TRol { get; set; } = null!;
         public virtual DbSet<TTipoPartida> TTipoPartida { get; set; } = null!;
         public virtual DbSet<TTipoTrabajador> TTipoTrabajador { get; set; } = null!;
@@ -681,12 +683,6 @@ namespace Copreter.Domain.Model.DbModel
 
                 entity.Property(e => e.Borrado).HasColumnName("BORRADO");
 
-                entity.Property(e => e.CantidadDias).HasColumnName("Cantidad_Dias");
-
-                entity.Property(e => e.FechaEntrega)
-                    .HasColumnType("datetime")
-                    .HasColumnName("Fecha_Entrega");
-
                 entity.Property(e => e.FechaInicio)
                     .HasColumnType("datetime")
                     .HasColumnName("Fecha_Inicio");
@@ -714,10 +710,6 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.PrecioPedido)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("Precio_Pedido");
-
                 entity.HasOne(d => d.IdEstadoPedidoNavigation)
                     .WithMany(p => p.TPedido)
                     .HasForeignKey(d => d.IdEstadoPedido)
@@ -739,6 +731,90 @@ namespace Copreter.Domain.Model.DbModel
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Pedido_T_Usuario1");
+            });
+
+            modelBuilder.Entity<TPedidoOrdenServicio>(entity =>
+            {
+                entity.ToTable("T_Pedido_OrdenServicio");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Imagen).IsUnicode(false);
+
+                entity.HasOne(d => d.IdPedidoNavigation)
+                    .WithMany(p => p.TPedidoOrdenServicio)
+                    .HasForeignKey(d => d.IdPedido)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Pedido_OrdenServicio_T_Pedido");
+            });
+
+            modelBuilder.Entity<TPedidoSolicitud>(entity =>
+            {
+                entity.ToTable("T_Pedido_Solicitud");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.CantidadDias).HasColumnName("Cantidad_Dias");
+
+                entity.Property(e => e.FechaDevolucion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Fecha_Devolucion");
+
+                entity.Property(e => e.FechaEntrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Fecha_Entrega");
+
+                entity.Property(e => e.FechaInicio)
+                    .HasColumnType("datetime")
+                    .HasColumnName("Fecha_Inicio");
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdPedido).HasColumnName("Id_Pedido");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.PrecioPedido)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnName("Precio_Pedido");
+
+                entity.HasOne(d => d.IdPedidoNavigation)
+                    .WithMany(p => p.TPedidoSolicitud)
+                    .HasForeignKey(d => d.IdPedido)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Pedido_Solicitud_T_Pedido");
             });
 
             modelBuilder.Entity<TRol>(entity =>
