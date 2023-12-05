@@ -997,6 +997,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pedido Orden de Servicio.
+        /// </summary>
+        public static string PEDIDO_ORDENSERVICIO_Titulo {
+            get {
+                return ResourceManager.GetString("PEDIDO_ORDENSERVICIO_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Precio.
         /// </summary>
         public static string PEDIDO_Precio {
@@ -1092,6 +1101,15 @@ namespace Copreter.Resources {
         public static string TITLE_Eliminar {
             get {
                 return ResourceManager.GetString("TITLE_Eliminar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        public static string TITLE_Fecha {
+            get {
+                return ResourceManager.GetString("TITLE_Fecha", resourceCulture);
             }
         }
         

@@ -34,6 +34,7 @@ namespace Copreter.Domain.Service
             services.AddScoped<IPagoService, PagoService>();
             services.AddScoped<IPartidaService, PartidaService>();
             services.AddScoped<IPedidoService, PedidoService>();
+            services.AddScoped<IPedidoOrdenServicioService, PedidoOrdenServicioService>();
             services.AddScoped<IRolService, RolService>();
 
 

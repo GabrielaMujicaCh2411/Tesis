@@ -86,7 +86,7 @@ namespace Copreter.Controllers
             if (pedidoSolicitudes != null && pedidoSolicitudes.Any())
             {
                 result.CantidadDias = pedidoSolicitudes.Sum(x => x.CantidadDias);
-                //result.FechaInicio = pedidoSolicitudes.Sum(x => x.CantidadDias);
+                result.PrecioPedido = pedidoSolicitudes.Sum(x => x.PrecioPedido);
             }
 
             return View(result);
@@ -265,16 +265,82 @@ namespace Copreter.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
         public async Task<IActionResult> PendienteDevolver()
         {
-            var resultService = await this._service.PendienteDevolverAsync();
-
-            var result = new PedidoSinDevolverVM
+            try
             {
-                DtoList = this.Mapper.Map<IEnumerable<PedidoSinDevolverDto>>(resultService),
-            };
-            return View(result);
+                var resultService = await this._service.PendienteDevolverAsync();
+
+                var result = new PedidoSinDevolverVM
+                {
+                    DtoList = this.Mapper.Map<IEnumerable<PedidoSinDevolverDto>>(resultService),
+                };
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
+        }
+
+        public async Task<IActionResult> CargarMasDias(int id)
+        {
+            try
+            {
+                var resultService = await this._service.ObtenerAsync(id);
+
+                var result = this.Mapper.Map<PedidoEditableVM>(resultService);
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AlquilarMasDias([Bind()] PedidoDto dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                    return View(resultInvalid);
+                }
+
+
+                var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
+                if (resultServiceUnidad != null)
+                {
+                    if (resultServiceUnidad.CantidadDisponible < dto.Cantidad)
+                    {
+                        ViewData["ValidateMessage"] = "Cantidad insuficientes de unidades";
+                        var resultInvalid = this.Mapper.Map<PedidoEditableVM>(dto);
+                        return View(resultInvalid);
+                    }
+
+                    dto.IdUsuario = this.UserId();
+                    dto.IdUsuarioRegistro = this.UserId();
+                    dto.IdEstadoPedido = 1;
+
+                    var result = await this._service.AgregarMasDiasAsync(dto.Id, this.Mapper.Map<TPedidoSolicitud>(dto));
+                    if (result)
+                    {
+                        return RedirectToAction(nameof(Index), new { userId = this.UserId() });
+                    }
+                }
+
+                return RedirectToAction(nameof(Index), new { userId = this.UserId() });
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex.Message);
+                return View();
+            }
         }
     }
 }

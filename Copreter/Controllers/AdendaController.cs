@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using Copreter.Domain.Model.DbModel;
-using Copreter.Domain.Model.Enums;
 using Copreter.Domain.Service.Contracts.Interfaces;
 using Copreter.Domain.Service.Dto.Adenda;
-using Copreter.Domain.Service.Dto.OrdenServicio;
 using Copreter.Utils;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Copreter.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AdendaController : BaseController
     {
         #region Fields
@@ -40,13 +35,11 @@ namespace Copreter.Controllers
             this._pagoService = pagoService;
         }
 
-        public async Task<IActionResult> Cargar(int idObra)
+        public IActionResult Cargar(int idPedido)
         {
-            var cotizacion = await this._cotizacionService.ObtenerPorIdObraAsync(idObra);
-
             var result = new AdendaDto
             {
-                IdObra = idObra,
+                IdPedido = idPedido,
             };
             return View(result);
         }
@@ -67,15 +60,8 @@ namespace Copreter.Controllers
                 dto.IdUsuarioRegistro = this.UserId();
 
                 var result = await this._service.AgregarAsync(this.Mapper.Map<TAdenda>(dto));
-                if (result)
-                {
-                    //await this._cotizacionService.ActualizarEstadoAsync(dto.IdCotizacion, (int)ECotizacionEstado.OrdenServicioEnviado, this.UserId());
 
-                    //await this._obraservice.ActualizarEstadoAsync(dto.IdObra, (int)EObraEstado.OrdenEnviado, this.UserId());
-
-                    return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
-                }
-                return RedirectToAction(nameof(Index), Keys.ControllerKeys.Obra);
+                return RedirectToAction(nameof(Index), Keys.ControllerKeys.Pedido);
             }
             catch (Exception ex)
             {

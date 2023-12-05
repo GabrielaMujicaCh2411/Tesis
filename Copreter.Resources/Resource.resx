@@ -429,6 +429,9 @@
   <data name="PEDIDO_Obra" xml:space="preserve">
     <value>Obra</value>
   </data>
+  <data name="PEDIDO_ORDENSERVICIO_Titulo" xml:space="preserve">
+    <value>Pedido Orden de Servicio</value>
+  </data>
   <data name="PEDIDO_Precio" xml:space="preserve">
     <value>Precio</value>
   </data>
@@ -461,6 +464,9 @@
   </data>
   <data name="TITLE_Eliminar" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="TITLE_Fecha" xml:space="preserve">
+    <value>Fecha</value>
   </data>
   <data name="TRABAJADOR_Apellido" xml:space="preserve">
     <value>Apellido</value>

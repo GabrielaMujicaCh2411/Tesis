@@ -48,6 +48,8 @@ namespace Copreter.Domain.Service.Contracts
             if (result != null)
             {
                 entidadSolicitud.IdPedido = result.Id;
+                entidadSolicitud.FechaDevolucion = entidad.FechaInicio.AddDays(entidadSolicitud.CantidadDias);
+
                 var resultDetail = await this._data.PedidoSolicitud.Add(entidadSolicitud);
                 return resultDetail == 1;
             }
@@ -129,6 +131,27 @@ namespace Copreter.Domain.Service.Contracts
             return await this._data.Pedido.SelectPredicatesWithIncludes(predicates, x => x.IdEstadoPedidoNavigation,
             x => x.IdUnidadNavigation,
             x => x.IdUnidadNavigation.IdTipoUnidadNavigation);
+        }
+
+        public async Task<bool> AgregarMasDiasAsync(int idPedido, TPedidoSolicitud entidadSolicitud)
+        {
+            var result = await this.ObtenerAsync(idPedido);
+
+            if (result != null)
+            {
+                var pedidos = await this._data.PedidoSolicitud.SelectIncludes(x => x.IdPedido == idPedido);
+
+                var pedidoActual = pedidos.OrderByDescending(x => x.FechaDevolucion).ToList();
+
+                entidadSolicitud.Id = 0;
+                entidadSolicitud.IdPedido = result.Id;
+                entidadSolicitud.FechaDevolucion = pedidoActual != null && pedidoActual.Any() ? pedidoActual.FirstOrDefault().FechaDevolucion.Value.AddDays(entidadSolicitud.CantidadDias) : DateTime.Now;
+
+                var resultDetail = await this._data.PedidoSolicitud.Add(entidadSolicitud);
+                return resultDetail == 1;
+            }
+
+            return result != null && result.Id > 0;
         }
     }
 }

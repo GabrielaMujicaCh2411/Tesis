@@ -57,7 +57,7 @@
                         {
                             case ERolEnum.Operario:
                                 {
-                                    if (item.IdTipoUnidad == 1)
+                                    if (item.IdTipoUnidad == (int)ETipoUnidad.Maquinaria)
                                     {
                                         <a class="btn btn-danger" asp-controller="Incidencia" asp-action="Index" asp-route-idPedido="@item.Id">Incidencias</a>
                                         <a class="btn btn-success" asp-controller="Incidencia" asp-action="Crear" asp-route-idPedido="@item.Id">Agregar incidencia</a>
@@ -67,7 +67,7 @@
                             case ERolEnum.Administrador:
                             case ERolEnum.Gerente:
                                 {
-                                    if (item.IdTipoUnidad == 1 && item.IdEstadoPedido == (int)EPedidoEstado.Enviado)
+                                    if (item.IdTipoUnidad == (int)ETipoUnidad.Maquinaria && item.IdEstadoPedido == (int)EPedidoEstado.Enviado)
                                     {
                                         <a class="btn btn-danger" asp-controller="Incidencia" asp-action="Index" asp-route-idPedido="@item.Id">Incidencias</a>
                                     }
@@ -78,22 +78,26 @@
                                             <span class="fas fa-spell-check" aria-hidden="true"></span>
                                         </a>
 
-                                        <a type="button" class="btn btn-warning" asp-action="Rechazar" asp-route-id="@item.Id" title="Rechazar">
+                                        <a type="button" class="btn btn-danger" asp-action="Rechazar" asp-route-id="@item.Id" title="Rechazar">
                                             <span class="far fa-window-close" aria-hidden="true"></span>
                                         </a>
                                     }
 
                                     if (item.IdEstadoPedido == (int)EPedidoEstado.Aceptado)
                                     {
-                                        if (item.IdTipoUnidad == 2)
+                                        if (item.IdTipoUnidad == (int)ETipoUnidad.Maquinaria)
                                         {
                                             <a type="button" class="btn btn-info" asp-action="Asignar" asp-route-id="@item.Id" title="Asignar">
                                                 <span class="fas fa-user-tag" aria-hidden="true"></span>
                                             </a>
                                         }
 
-                                        <a type="button" class="btn btn-warning" asp-asp-controller="Adenda" asp-action="Cargar" asp-route-id="@item.Id" title="Enviar adenda">
+                                        <a type="button" class="btn btn-warning" asp-controller="PedidoServicio" asp-action="Cargar" asp-route-idPedido="@item.Id" title="Enviar orden servicio">
                                             <span class="	fas fa-upload" aria-hidden="true"></span>
+                                        </a>
+
+                                        <a type="button" class="btn btn-info" asp-controller="PedidoServicio" asp-action="Index" asp-route-idPedido="@item.Id" title="Ordenes de servicio">
+                                            <span class="	fas fa-list" aria-hidden="true"></span>
                                         </a>
                                     }
                                 }
@@ -106,7 +110,12 @@
                                     //<button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
                                     //    <span class="fa-light fa-trash" aria-hidden="true"></span>
                                     //</button>
-
+                                    if (item.IdEstadoPedido == (int)EPedidoEstado.PendienteDevolucion)
+                                    {
+                                        <a type="button" class="btn btn-warning" asp-controller="Pedido" asp-action="CargarMasDias" asp-route-id="@item.Id" title="Solicitar días adicionales">
+                                            <span class="	fas fa-sync" aria-hidden="true"></span>
+                                        </a>
+                                    }
                                 }
                                 break;
                         }

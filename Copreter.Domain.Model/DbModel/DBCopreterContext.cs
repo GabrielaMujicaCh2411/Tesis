@@ -785,10 +785,6 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnType("datetime")
                     .HasColumnName("Fecha_Entrega");
 
-                entity.Property(e => e.FechaInicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("Fecha_Inicio");
-
                 entity.Property(e => e.FechaModificacion)
                     .HasColumnType("datetime")
                     .HasColumnName("FECHA_MODIFICACION");
@@ -809,6 +805,10 @@ namespace Copreter.Domain.Model.DbModel
                 entity.Property(e => e.PrecioPedido)
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("Precio_Pedido");
+
+                entity.Property(e => e.PrecioUnidad)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnName("Precio_Unidad");
 
                 entity.HasOne(d => d.IdPedidoNavigation)
                     .WithMany(p => p.TPedidoSolicitud)

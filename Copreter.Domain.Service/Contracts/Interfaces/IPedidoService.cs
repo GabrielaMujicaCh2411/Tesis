@@ -22,5 +22,7 @@ namespace Copreter.Domain.Service.Contracts.Interfaces
         Task<int> CountAsync(int estado);
 
         Task<IEnumerable<TPedido>> PendienteDevolverAsync();
+
+        Task<bool> AgregarMasDiasAsync(int idPedido, TPedidoSolicitud entidadSolicitud);
     }
 }
