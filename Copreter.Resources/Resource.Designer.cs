@@ -799,6 +799,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incidencia en Obra.
+        /// </summary>
+        public static string OBRA_INCIDENCIA_Titulo {
+            get {
+                return ResourceManager.GetString("OBRA_INCIDENCIA_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre de la Obra.
         /// </summary>
         public static string OBRA_Nombre {

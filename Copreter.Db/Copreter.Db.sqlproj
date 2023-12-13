@@ -88,6 +88,7 @@
     <Build Include="dbo\Tables\T_Adenda.sql" />
     <Build Include="dbo\Tables\T_Pedido_OrdenServicio.sql" />
     <Build Include="dbo\Tables\T_Pedido_Solicitud.sql" />
+    <Build Include="dbo\Tables\T_Obra_Incidencia.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

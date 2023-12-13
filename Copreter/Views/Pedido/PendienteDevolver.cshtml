@@ -62,33 +62,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.DtoList)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Obra)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Empresa)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Ubicacion)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FechaInicio)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DiasSinDevolver)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TipoUnidad)
-                                            </td>
-                                            <td>
+                                    @{
+                                        if (Model.DtoList != null && Model.DtoList.Any())
+                                        {
+                                            foreach (var item in Model.DtoList)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Obra)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Empresa)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Ubicacion)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DiasSinDevolver)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TipoUnidad)
+                                                    </td>
+                                                    <td>
 
-                                                <a class="btn btn-danger" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="8">Confirmar Devolución</a>
+                                                        <a class="btn btn-danger" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="8">Confirmar Devolución</a>
 
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
                                     }
                                 </tbody>
                             </table>

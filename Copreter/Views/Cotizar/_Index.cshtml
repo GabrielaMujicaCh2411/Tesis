@@ -72,6 +72,14 @@
                                     }
                                 }
                                 break;
+                            case ECotizacionEstado.Segundofacturado:
+                                {
+                                    if (rolId == (int)ERolEnum.Administrador)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="ATrabajador" asp-action="PreAsignar" asp-route-idCotizacion="@item.Id"><span class="fas fa-hammer" aria-hidden="true"></span></a>
+                                    }
+                                }
+                                break;
                             case ECotizacionEstado.trabajadorAsignado:
                                 {
                                     if (rolId == (int)ERolEnum.Administrador)

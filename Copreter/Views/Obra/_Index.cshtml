@@ -129,6 +129,17 @@
                             case EObraEstado.Proceso:
                                 {
                                     <a class="btn btn-success" asp-action="ActualizarEstado" asp-route-id="@item.Id" asp-route-idEstado="10">Obra Terminada</a>
+
+                                    if (rolId == (int)ERolEnum.Operario)
+                                    {
+                                        <a class="btn btn-danger" asp-controller="ObraIncidencia" asp-action="Index" asp-route-idObra="@item.Id">Incidencias</a>
+                                        <a class="btn btn-success" asp-controller="ObraIncidencia" asp-action="Crear" asp-route-idObra="@item.Id">Agregar incidencia</a>
+                                    }
+
+                                    if (rolId == (int)ERolEnum.Gerente || rolId == (int)ERolEnum.Administrador)
+                                    {
+                                        <a class="btn btn-danger" asp-controller="ObraIncidencia" asp-action="Index" asp-route-idObra="@item.Id">Incidencias</a>
+                                    }
                                 }
                                 break;
                             case EObraEstado.OrdenEnviado:
@@ -142,8 +153,6 @@
                                 }
                                 break;
                         }
-
-
                     }
 
                 </td>

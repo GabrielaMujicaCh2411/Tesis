@@ -23,6 +23,7 @@
             public const string Unidad = "Unidad";
             public const string Usuario = "Usuario";
             public const string Incidencia = "Incidencia";
+            public const string ObraIncidencia = "ObraIncidencia";
 
             public const string ATrabajador = "ATrabajador";
             public const string AHerramienta = "AHerramienta";

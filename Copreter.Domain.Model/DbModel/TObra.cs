@@ -9,6 +9,7 @@ namespace Copreter.Domain.Model.DbModel
         {
             TCita = new HashSet<TCita>();
             TCotizacion = new HashSet<TCotizacion>();
+            TObraIncidencia = new HashSet<TObraIncidencia>();
             TObraxPartida = new HashSet<TObraxPartida>();
         }
 
@@ -31,6 +32,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual TUsuario IdUsuarioNavigation { get; set; } = null!;
         public virtual ICollection<TCita> TCita { get; set; }
         public virtual ICollection<TCotizacion> TCotizacion { get; set; }
+        public virtual ICollection<TObraIncidencia> TObraIncidencia { get; set; }
         public virtual ICollection<TObraxPartida> TObraxPartida { get; set; }
     }
 }

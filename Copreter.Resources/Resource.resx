@@ -363,6 +363,9 @@
   <data name="OBRA_Fecha_Inicio" xml:space="preserve">
     <value>Fecha Inicio</value>
   </data>
+  <data name="OBRA_INCIDENCIA_Titulo" xml:space="preserve">
+    <value>Incidencia en Obra</value>
+  </data>
   <data name="OBRA_Nombre" xml:space="preserve">
     <value>Nombre de la Obra</value>
   </data>

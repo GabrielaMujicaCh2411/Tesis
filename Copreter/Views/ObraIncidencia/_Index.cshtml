@@ -1,0 +1,63 @@
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
+@model Copreter.Models.ObraIncidencia.ObraIncidenciaIndexVM;
+@using System.Security.Claims;
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName(@Resource.INCIDENCIA_Fecha)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.INCIDENCIA_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.INCIDENCIA_Hora)
+            </th>
+            <th>
+                @Html.DisplayName(@Resource.OBRA_Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DtoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Incidencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorasTrabajadas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Obra)
+                </td>
+                <td>
+                    @{
+                        int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
+                        if (rolId == (int)ERolEnum.Operario)
+                        {
+                            <a type="button" class="btn btn-success" asp-action="Editar" asp-route-id="@item.Id">
+                                <span class="far fa-edit" aria-hidden="true"></span>
+                            </a>
+
+                            <a type="button" class="btn btn-primary" asp-action="Detalle" asp-route-id="@item.Id">
+                                <span class="far fa-eye" aria-hidden="true"></span>
+                            </a>
+
+                            <button type="button" class="btn btn-danger" data-toggle="modal" onclick="eliminar(@item.Id);">
+                                <span class="far fa-trash-alt" aria-hidden="true"></span>
+                            </button>
+                        }
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

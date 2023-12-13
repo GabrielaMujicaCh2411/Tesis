@@ -29,6 +29,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual DbSet<TFactura> TFactura { get; set; } = null!;
         public virtual DbSet<TIncidencia> TIncidencia { get; set; } = null!;
         public virtual DbSet<TObra> TObra { get; set; } = null!;
+        public virtual DbSet<TObraIncidencia> TObraIncidencia { get; set; } = null!;
         public virtual DbSet<TObraxPartida> TObraxPartida { get; set; } = null!;
         public virtual DbSet<TOrdenServicio> TOrdenServicio { get; set; } = null!;
         public virtual DbSet<TPago> TPago { get; set; } = null!;
@@ -517,6 +518,42 @@ namespace Copreter.Domain.Model.DbModel
                     .HasForeignKey(d => d.IdUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Obra_T_Usuario");
+            });
+
+            modelBuilder.Entity<TObraIncidencia>(entity =>
+            {
+                entity.ToTable("T_Obra_Incidencia");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.HorasTrabajadas).HasColumnName("Horas_Trabajadas");
+
+                entity.Property(e => e.IdObra).HasColumnName("Id_Obra");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.IdObraNavigation)
+                    .WithMany(p => p.TObraIncidencia)
+                    .HasForeignKey(d => d.IdObra)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_T_Obra_Incidencia_To_Obra");
             });
 
             modelBuilder.Entity<TObraxPartida>(entity =>
