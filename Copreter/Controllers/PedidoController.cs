@@ -27,16 +27,19 @@ namespace Copreter.Controllers
 
         private readonly IUnidadService _unidadService;
 
+        private readonly IConfiguracionService _configuracionService;
+
         #endregion
 
         public PedidoController(IMapper mapper, ILogger<PedidoController> logger, IPedidoService service,
-            ITrabajadorService trabajadorService, IEstadoPedidoService estadoPedidoService, IUnidadService unidadService) : base(mapper)
+            ITrabajadorService trabajadorService, IEstadoPedidoService estadoPedidoService, IUnidadService unidadService, IConfiguracionService configuracionService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
             this._trabajadorService = trabajadorService;
             this._estadoPedidoService = estadoPedidoService;
             this._unidadService = unidadService;
+            this._configuracionService = configuracionService;
         }
 
         public async Task<IActionResult> Index(int? userId, int? idEstado)
@@ -80,13 +83,21 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ObtenerAsync(id.Value);
 
+            var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
+
+            var igvCal = igv / 100;
+
             var result = this.Mapper.Map<PedidoEditableVM>(resultService);
+            result.Igv = igvCal;
+
             var pedidoSolicitudes = await this._service.ObtenerPedidoSolicitudAsync(id.Value);
 
             if (pedidoSolicitudes != null && pedidoSolicitudes.Any())
             {
                 result.CantidadDias = pedidoSolicitudes.Sum(x => x.CantidadDias);
-                result.PrecioPedido = pedidoSolicitudes.Sum(x => x.PrecioPedido);
+                result.PrecioSubTotal = pedidoSolicitudes.Sum(x => x.PrecioSubTotal);
+                result.PrecioTotal = pedidoSolicitudes.Sum(x => x.PrecioTotal);
+                result.IgvCalculado = pedidoSolicitudes.Select(x=> x.IgvCalculado).LastOrDefault();
             }
 
             return View(result);
@@ -183,6 +194,10 @@ namespace Copreter.Controllers
             var resultService = await this._unidadService.ObtenerAsync(idUnidad);
             if (resultService == null) return RedirectToAction(nameof(Index));
 
+            var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
+
+            var igvCal = igv / 100;
+
             var result = new PedidoEditableVM
             {
                 FechaInicio = DateTime.Now.AddDays(1),
@@ -190,8 +205,12 @@ namespace Copreter.Controllers
                 IdUnidad = idUnidad,
                 Cantidad = 1,
                 CantidadDias = 1,
-                PrecioPedido = 1 * resultService.Precio,
+                PrecioSubTotal = 1 * resultService.Precio,
+                Igv = igv,
             };
+
+            result.IgvCalculado = result.PrecioSubTotal * igvCal;
+            result.PrecioTotal = (result.PrecioSubTotal * igvCal) + result.PrecioSubTotal;
 
             return View(result);
         }
@@ -228,6 +247,9 @@ namespace Copreter.Controllers
                 var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
                 if (resultServiceUnidad != null)
                 {
+                    var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
+                    var igvCal = igv / 100;
+
                     if (resultServiceUnidad.CantidadDisponible < dto.Cantidad)
                     {
                         ViewData["ValidateMessage"] = "Cantidad insuficientes de unidades";
@@ -235,6 +257,9 @@ namespace Copreter.Controllers
                         return View(resultInvalid);
                     }
 
+                    dto.Igv = igv;
+                    dto.IgvCalculado = dto.PrecioSubTotal * igvCal;
+                    dto.PrecioTotal = dto.PrecioSubTotal + dto.IgvCalculado;
                     dto.IdUsuario = this.UserId();
                     dto.IdUsuarioRegistro = this.UserId();
                     dto.IdEstadoPedido = 1;

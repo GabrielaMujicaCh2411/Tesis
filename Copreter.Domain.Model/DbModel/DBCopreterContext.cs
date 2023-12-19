@@ -19,6 +19,7 @@ namespace Copreter.Domain.Model.DbModel
         public virtual DbSet<TAcceso> TAcceso { get; set; } = null!;
         public virtual DbSet<TAdenda> TAdenda { get; set; } = null!;
         public virtual DbSet<TCita> TCita { get; set; } = null!;
+        public virtual DbSet<TConfiguracion> TConfiguracion { get; set; } = null!;
         public virtual DbSet<TCotizacion> TCotizacion { get; set; } = null!;
         public virtual DbSet<TCotizacionxUnidad> TCotizacionxUnidad { get; set; } = null!;
         public virtual DbSet<TEstadoCotizacion> TEstadoCotizacion { get; set; } = null!;
@@ -174,6 +175,32 @@ namespace Copreter.Domain.Model.DbModel
                     .HasConstraintName("FK_T_Cita_T_Obra");
             });
 
+            modelBuilder.Entity<TConfiguracion>(entity =>
+            {
+                entity.ToTable("T_Configuracion");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Borrado).HasColumnName("BORRADO");
+
+                entity.Property(e => e.FechaModificacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_MODIFICACION");
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_REGISTRO")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IdUsuarioModificacion).HasColumnName("ID_USUARIO_MODIFICACION");
+
+                entity.Property(e => e.IdUsuarioRegistro)
+                    .HasColumnName("ID_USUARIO_REGISTRO")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Nombre).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<TCotizacion>(entity =>
             {
                 entity.ToTable("T_Cotizacion");
@@ -203,9 +230,17 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Saldo).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Igv).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.Total).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.IgvCalculado)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("Igv_Calculado");
+
+                entity.Property(e => e.Saldo).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.SubTotal).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Total).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.IdEstadoCotizacionNavigation)
                     .WithMany(p => p.TCotizacion)
@@ -839,12 +874,22 @@ namespace Copreter.Domain.Model.DbModel
                     .HasColumnName("ID_USUARIO_REGISTRO")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.PrecioPedido)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("Precio_Pedido");
+                entity.Property(e => e.Igv).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.IgvCalculado)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("Igv_Calculado");
+
+                entity.Property(e => e.PrecioSubTotal)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("Precio_SubTotal");
+
+                entity.Property(e => e.PrecioTotal)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("Precio_Total");
 
                 entity.Property(e => e.PrecioUnidad)
-                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnType("decimal(18, 2)")
                     .HasColumnName("Precio_Unidad");
 
                 entity.HasOne(d => d.IdPedidoNavigation)

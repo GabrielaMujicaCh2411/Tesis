@@ -13,13 +13,15 @@ namespace Copreter.Models.Cotizacion
             this.DtoList = new List<PartidaDto>();
 
             this.UnidadMedidaLista = new List<SelectListItem>();
-            this.UnidadMedidaLista.Add(new SelectListItem() { Value = "Gbl" , Text = "gbl" });
+            this.UnidadMedidaLista.Add(new SelectListItem() { Value = "Gbl", Text = "gbl" });
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "m2", Text = "m2" });
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "und", Text = "un" });
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "ml", Text = "ml" });
         }
 
-        public ObraDto Obra { get; set; }   
+        public decimal Igv { get; set; }
+
+        public ObraDto Obra { get; set; }
 
         public IEnumerable<PartidaDto> DtoList { get; set; }
 

@@ -1,12 +1,12 @@
 ﻿@using Copreter.Resources;
 @using Copreter.Utils;
-@model Copreter.Models.Cotizacion.CotizacionIndexVM;
-@using System.Security.Claims;
+@model Copreter.Models.Configuracion.ConfiguracionIndexVM;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -15,12 +15,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Resource.COTIZACION_Titulo</h1>
+                    <h1>@Resource.CONFIGURACION_Titulo</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">@Resource.COTIZACION_Titulo</li>
+                        <li class="breadcrumb-item active">@Resource.CONFIGURACION_Titulo</li>
                     </ol>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">@Resource.TAB_Filtro</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">@Resource.TAB_Index</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -43,16 +43,19 @@
                                 <div class="active tab-pane" id="activity">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">@Resource.COTIZACION_Estado</label>
-                                                <select asp-for="Filtro.IdEstado" class="form-control" asp-items="Model.EstadoLista"></select>
-                                                <span asp-validation-for="Filtro.IdEstado" class="text-danger"></span>
-                                            </div>
+                                            @*                  <div class="form-group">
+                                            <label class="control-label">@Resource.USUARIO_Dni</label>
+                                            <input asp-for="Filtro.Dni" class="form-control" />
+                                            <span asp-validation-for="Filtro.Dni" class="text-danger"></span>
+                                            </div> *@
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                            </div>
+                                            @*         <div class="form-group">
+                                            <label class="control-label">@Resource.USUARIO_Apellido</label>
+                                            <input asp-for="Filtro.Apellido" class="form-control" />
+                                            <span asp-validation-for="Filtro.Apellido" class="text-danger"></span>
+                                            </div> *@
                                         </div>
                                         <!-- /.col -->
                                     </div>
@@ -60,18 +63,9 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-
-                                            @{
-                                                int rolId = int.Parse(User.FindFirstValue(ClaimTypes.Role));
-
-                                                if (rolId == 2)
-                                                {
-                                                    <a type="button" class="btn btn-primary" asp-action="Crear">
-                                                        <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Crear
-                                                    </a>
-                                                }
-                                            }
-                                          
+                                            <a type="button" class="btn btn-primary" asp-action="Crear">
+                                                <span class="far fa-file" aria-hidden="true"></span>@Resource.BTN_Crear
+                                            </a>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-4">
@@ -80,9 +74,9 @@
                                         <div class="col-md-2">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-primary" style="float: right;" onclick="Filtrar();">
-                                                <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Filtrar
-                                            </button>
+                                            @*        <button type="button" class="btn btn-primary" style="float: right;" onclick="Filtrar();">
+                                            <span class="fa fa-search" aria-hidden="true"></span>@Resource.BTN_Filtrar
+                                            </button> *@
                                         </div>
                                         <!-- /.col -->
                                     </div>
@@ -110,7 +104,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="divPopupEliminarCotizacion"></div>
+        <div class="modal fade" id="divPopupEliminarConfiguracion"></div>
 
     </section>
 </div>
@@ -124,7 +118,6 @@
 
             $.get("@Url.Action(Keys.PartialViewKeys.Index)", {
                 page: page,
-                idEstado: $('#Filtro_IdEstado').val(),
             }, function (data) {
                 $("#contentPartial").html(data);
             }).always(function () {
@@ -136,11 +129,16 @@
             var param = {
                 id: parseInt(id)
             };
-            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Cotizacion)', JSON.stringify(param), function (data) {
-                $.procesaRespuestaVistaParcial(data, $("#divPopupEliminarCotizacion"));
+            $.llamadaAjax('POST', 'html', 'json', '@Url.Action(Keys.ActionKeys.DeletePopup, Keys.ControllerKeys.Configuracion)', JSON.stringify(param), function (data) {
+                $.procesaRespuestaVistaParcial(data, $("#divPopupEliminarConfiguracion"));
             }, function (XMLHttpRequest, textStatus, errorThrown) {
                 notificacionAjax('@Resource.RESULT_ERROR', errorThrown, '@Resource.BTN_Aceptar');
             });
         };
+
+        function displayLoading() {
+            $("#overlay").removeClass("hiddenLoading");
+        }
+
     </script>
 }

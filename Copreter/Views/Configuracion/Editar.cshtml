@@ -1,0 +1,73 @@
+﻿@using Copreter.Domain.Model.Enums;
+@using Copreter.Resources;
+@model Copreter.Domain.Service.Dto.Configuracion.ConfiguracionDto;
+@using System.Security.Claims;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Resource.CONFIGURACION_Titulo</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@Resource.CONFIGURACION_Titulo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">@Resource.CARD_TITLE</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentPartial">
+                                <form asp-action="Editar" asp-controller="Configuracion" method="post">
+                                    <div class="card-body">
+
+                                        <input type="hidden" asp-for="Id" />
+                                        <input type="hidden" asp-for="IdUsuarioRegistro" />
+                                        <input type="hidden" asp-for="FechaRegistro" />
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">@Resource.CONFIGURACION_Nombre: </label>
+                                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Nombre" readonly="@(true)">
+                                            <span asp-validation-for="Nombre" class="text-danger"> </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">@Resource.CONFIGURACION_Valor: </label>
+                                            <input type="text" class="form-control" placeholder="Valor" asp-for="Valor">
+                                            <span asp-validation-for="Valor" class="text-danger"> </span>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary"><span class="	fas fa-spell-check" aria-hidden="true"></span>@Resource.BTN_Actualizar</button>
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

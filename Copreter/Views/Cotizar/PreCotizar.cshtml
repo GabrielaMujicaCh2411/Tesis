@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-6 col-sm-1" style="display:flex">
                                             <a class="btn btn-primary" id="idAgregarPartida"
-                                               onclick="addPartida(@partida.Id,'@partida.Nombre');" style="align-self:flex-end">
+                                               onclick="addPartida(@partida.Id,'@partida.Nombre', @Model.Igv);" style="align-self:flex-end">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="col-6 col-sm-1" style="display:flex">
                                             <a class="btn btn-primary" id="idAgregarPartida"
-                                               onclick="addPartida(@partida.Id,'@partida.Nombre');" style="align-self:flex-end">
+                                               onclick="addPartida(@partida.Id,'@partida.Nombre', @Model.Igv);" style="align-self:flex-end">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -179,9 +179,18 @@
                                     </table>
                                     <br />
                                     <div style="text-align: right">
+                                        <h2>Total: S/. <span id="registrarSubTotal">0.00</span></h2>
+                                    </div>
+                                    <br />
+                                    <div style="text-align: right">
+                                        <h2>Igv (0,@Model.Igv %):  S/. <span id="registrarIgvCal">0.00</span></h2>
+                                    </div>
+                                    <br />
+                                    <div style="text-align: right">
                                         <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
                                     </div>
                                     <br />
+
                                     <div style="text-align: end; margin: 4px;">
                                         <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
                                     </div>
@@ -200,8 +209,10 @@
 @section Scripts
     {
     <script type="text/javascript">
+        var costoSubTotal = 0.00;
+        var costoIgv = 0.00;
         var costoTotal = 0.00;
-
+        var igvCal = 0.00;
 
         function cambioParcial(idPartida) {
             let meter = Number(document.getElementById(`${idPartida}-Metrado`).value);
@@ -210,7 +221,7 @@
             document.getElementById(`${idPartida}-Parcial`).value = partial;
         }
 
-        function addPartida(idPartida, nombrePartida) {
+        function addPartida(idPartida, nombrePartida, igv) {
             var medida = $("#" + idPartida + "-UnidadMedida" + " option:selected").text();
             var e = document.getElementById(`${idPartida}-UnidadMedida`);
             var unidadMedida = e.options[e.selectedIndex].text;
@@ -225,8 +236,16 @@
                 "<td>" + parseFloat(parcial).toFixed(2) + "</td>" +
                 "</tr>";
             $('#partidasAgregadas > tbody').append(row);
-            costoTotal += parseFloat(parcial);
-            $('#registrarTotal').text(parseFloat(costoTotal).toFixed(2));
+            costoSubTotal += parseFloat(parcial);
+
+            igvCal = igv / 100;
+            //costoSubTotal = parseFloat(costoTotal);
+            costoIgv = costoSubTotal * igvCal
+            costoTotal = costoSubTotal + costoIgv;
+
+            $('#registrarSubTotal').text(costoSubTotal.toFixed(2));
+            $('#registrarIgvCal').text(costoIgv.toFixed(2));
+            $('#registrarTotal').text(costoTotal.toFixed(2));
             document.getElementById(`${idPartida}-Metrado`).value = '';
             document.getElementById(`${idPartida}-Parcial`).value = '0.00';
         }
@@ -248,6 +267,7 @@
             };
 
             var param = {
+                subTotal: Number(costoSubTotal),
                 total: Number(costoTotal),
                 IdObra: idObra,
                 lista: partidasxObra

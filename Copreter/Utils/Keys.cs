@@ -27,6 +27,9 @@
 
             public const string ATrabajador = "ATrabajador";
             public const string AHerramienta = "AHerramienta";
+
+            public const string Configuracion = "Configuracion";
+            
         }
 
         public class ActionKeys

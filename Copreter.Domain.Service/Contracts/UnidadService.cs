@@ -26,7 +26,7 @@ namespace Copreter.Domain.Service.Contracts
 
             entidad.FechaModificacion = DateTime.Now;
 
-            var result = await this._data.Unidad.Update(entidadActual);
+            var result = await this._data.Unidad.Update(entidad);
             return result > 0;
         }
 

@@ -186,6 +186,15 @@
   <data name="CITA_Titulo" xml:space="preserve">
     <value>Cita</value>
   </data>
+  <data name="CONFIGURACION_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="CONFIGURACION_Titulo" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="CONFIGURACION_Valor" xml:space="preserve">
+    <value>Valor</value>
+  </data>
   <data name="COTIZACION_COTIZAR" xml:space="preserve">
     <value>Cotizar</value>
   </data>
@@ -246,6 +255,9 @@
   <data name="FACTURA_Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="IGV" xml:space="preserve">
+    <value>Igv</value>
+  </data>
   <data name="INCIDENCIA_Descripcion" xml:space="preserve">
     <value>Descripción</value>
   </data>
@@ -278,6 +290,9 @@
   </data>
   <data name="MENU_CITA" xml:space="preserve">
     <value>Citas</value>
+  </data>
+  <data name="MENU_CONFIGURACION" xml:space="preserve">
+    <value>Configuracion</value>
   </data>
   <data name="MENU_COTIZACION_ESPERA" xml:space="preserve">
     <value>En espera</value>
@@ -447,11 +462,20 @@
   <data name="PEDIDO_Ubicacion" xml:space="preserve">
     <value>Ubicación</value>
   </data>
+  <data name="PRECIO_SubTotal" xml:space="preserve">
+    <value>SubTotal</value>
+  </data>
+  <data name="PRECIO_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="RESULT_ERROR" xml:space="preserve">
     <value>Error al realizar la operación</value>
   </data>
   <data name="TAB_Filtro" xml:space="preserve">
     <value>Filtro</value>
+  </data>
+  <data name="TAB_Index" xml:space="preserve">
+    <value>Index</value>
   </data>
   <data name="TIPOPARTIDA_Descripcion" xml:space="preserve">
     <value>Descripción</value>

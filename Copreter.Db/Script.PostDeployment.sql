@@ -14,6 +14,13 @@ Post-Deployment Script Template
 USE [DB-Copreter]
 GO
 
+
+IF NOT EXISTS (SELECT * FROM [dbo].[T_Configuracion] WHERE ID = 1)
+BEGIN
+    INSERT INTO [dbo].[T_Configuracion]  ([Nombre]  ,[Valor])  VALUES ('IGV', '0.18');
+END
+GO
+
 IF NOT EXISTS (SELECT * FROM [dbo].[T_Rol] WHERE ID = 1)
 BEGIN
     INSERT INTO [dbo].[T_Rol] ([Nombre] ,[Descripcion]) VALUES('Administrador','Administrador del sistema')

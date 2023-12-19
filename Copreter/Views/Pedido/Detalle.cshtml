@@ -46,64 +46,76 @@
                                 }
 
 
-                                    <div class="card-body">
+                                <div class="card-body">
 
-                                        <input type="hidden" asp-for="IdUnidad" />
+                                    <input type="hidden" asp-for="IdUnidad" />
                                     @*    style="display: none"*@
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Obra</label>
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Obra</label>
                                         <input type="text" class="form-control" placeholder="Obra" asp-for="Obra" readonly="@(true)" disabled>
-                                            <span asp-validation-for="Obra" class="text-danger"> </span>
-                                        </div>
+                                        <span asp-validation-for="Obra" class="text-danger"> </span>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Empresa</label>
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Empresa</label>
                                         <input type="text" class="form-control" placeholder="Empresa" asp-for="Empresa" readonly="@(true)">
-                                            <span asp-validation-for="Empresa" class="text-danger"> </span>
-                                        </div>
+                                        <span asp-validation-for="Empresa" class="text-danger"> </span>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Ubicacion</label>
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Ubicacion</label>
                                         <input type="text" class="form-control" placeholder="Ubicacion" asp-for="Ubicacion" readonly="@(true)">
-                                            <span asp-validation-for="Ubicacion" class="text-danger"> </span>
-                                        </div>
+                                        <span asp-validation-for="Ubicacion" class="text-danger"> </span>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Fecha_Inicio</label>
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Fecha_Inicio</label>
                                         <input type="date" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio" readonly="@(true)">
-                                            <span asp-validation-for="FechaInicio" class="text-danger"> </span>
-                                        </div>
+                                        <span asp-validation-for="FechaInicio" class="text-danger"> </span>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Cantidad_Dias</label>
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Cantidad_Dias</label>
                                         <input type="number" class="form-control" placeholder="Cantidad Dias" asp-for="CantidadDias" readonly="@(true)">
-                                            <span asp-validation-for="CantidadDias" class="text-danger"> </span>
-                                        </div>
+                                        <span asp-validation-for="CantidadDias" class="text-danger"> </span>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label>Cantidad</label>
+                                    <div class="form-group">
+                                        <label>Cantidad</label>
                                         <input type="number" class="form-control" placeholder="Cantidad" asp-for="Cantidad" readonly="@(true)">
-                                            <span asp-validation-for="Cantidad" class="text-danger"> </span>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Precio Unidad</label>
-                                            <input type="text" class="form-control" placeholder="Precio Unidad" asp-for="PrecioUnidad" readonly="@(true)">
-                                            <span asp-validation-for="PrecioUnidad" class="text-danger"> </span>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>@Resource.PEDIDO_Precio Total</label>
-                                            <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioPedido" readonly="@(true)">
-                                            <span asp-validation-for="PrecioPedido" class="text-danger"> </span>
-                                        </div>
-
+                                        <span asp-validation-for="Cantidad" class="text-danger"> </span>
                                     </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
+
+                                    <div class="form-group">
+                                        <label>@Resource.PEDIDO_Precio Unidad</label>
+                                        <input type="text" class="form-control" placeholder="Precio Unidad" asp-for="PrecioUnidad" readonly="@(true)">
+                                        <span asp-validation-for="PrecioUnidad" class="text-danger"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@Resource.PRECIO_SubTotal</label>
+                                        <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioSubTotal" readonly="@(true)">
+                                        <span asp-validation-for="PrecioSubTotal" class="text-danger"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@Resource.IGV (@Model.Igv %)</label>
+                                        <input type="text" class="form-control" placeholder="Igv" asp-for="IgvCalculado" readonly="@(true)">
+                                        <span asp-validation-for="IgvCalculado" class="text-danger"> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@Resource.PRECIO_Total</label>
+                                        <input type="text" class="form-control" placeholder="PrecioTotal" asp-for="PrecioTotal" readonly="@(true)">
+                                        <span asp-validation-for="PrecioTotal" class="text-danger"> </span>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
                                     <a asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span>@Resource.BTN_Volver</a>
-                                    </div>
-                         
+                                </div>
+
                             </div>
                         </div>
                     </div>

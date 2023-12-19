@@ -31,10 +31,13 @@ namespace Copreter.Controllers
 
         private readonly IObraService _obraService;
 
+        private readonly IConfiguracionService _configuracionService;
+
         #endregion
 
         public CotizarController(IMapper mapper, ILogger<CotizarController> logger,
-            ICotizacionService service, IEstadoCotizacionService estadoCotizacionService, IPartidaService partidaService, IObraPartidaService obraPartidaService, IObraService obraService) : base(mapper)
+            ICotizacionService service, IEstadoCotizacionService estadoCotizacionService, IPartidaService partidaService,
+            IObraPartidaService obraPartidaService, IObraService obraService, IConfiguracionService configuracionService) : base(mapper)
         {
             this._logger = logger;
             this._service = service;
@@ -42,6 +45,7 @@ namespace Copreter.Controllers
             this._partidaService = partidaService;
             this._obraPartidaService = obraPartidaService;
             this._obraService = obraService;
+            this._configuracionService = configuracionService;
         }
 
         public async Task<IActionResult> Index(int? idEstado = 0)
@@ -82,11 +86,12 @@ namespace Copreter.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
             var obra = await this._obraService.ObtenerAsync(idObra.Value);
             var resultService = await this._partidaService.ListarAsync();
-
             var result = new CotizarVM
             {
+                Igv = igv,
                 Obra = this.Mapper.Map<ObraDto>(obra),
                 DtoList = this.Mapper.Map<IEnumerable<PartidaDto>>(resultService)
             };
@@ -100,7 +105,12 @@ namespace Copreter.Controllers
             {
                 var resultPartida = await this._obraPartidaService.AgregarAsync(this.Mapper.Map<IEnumerable<TObraxPartida>>(dto.Lista));
 
+                var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
+  
                 var cotizacion = this.Mapper.Map<TCotizacion>(dto);
+
+                cotizacion.IgvCalculado = dto.SubTotal * (igv / 100);
+                cotizacion.Igv = igv / 100;
                 cotizacion.IdEstadoCotizacion = 1;
                 var result = await this._service.AgregarAsync(cotizacion);
                 if (result)

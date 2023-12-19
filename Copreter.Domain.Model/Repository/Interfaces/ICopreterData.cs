@@ -6,6 +6,8 @@ namespace Copreter.Domain.Model.Repository.Interfaces
     {
         IRepository<TCita> Cita { get; }
 
+        IRepository<TConfiguracion> Configuracion { get; }
+
         IRepository<TAdenda> Adenda { get; }
 
         IRepository<TAcceso> Acceso { get; }
@@ -16,7 +18,7 @@ namespace Copreter.Domain.Model.Repository.Interfaces
 
         IRepository<TEstadoPedido> EstadoPedido { get; }
 
-        IRepository<TEstadoTrabajador> EstadoTrabajador {get;}
+        IRepository<TEstadoTrabajador> EstadoTrabajador { get; }
 
         IRepository<TEstadoUnidad> EstadoUnidad { get; }
 

@@ -15,7 +15,7 @@ namespace Copreter.Domain.Service.Dto.Pedido
         [Required]
         public string? Ubicacion { get; set; }
         public DateTime? FechaEntrega { get; set; }
-        public decimal? PrecioPedido { get; set; }
+        //public decimal? PrecioPedido { get; set; }
         public int? IdEstadoPedido { get; set; }
         public string? EstadoPedido { get; set; }
         public int? IdUsuario { get; set; }
@@ -26,6 +26,11 @@ namespace Copreter.Domain.Service.Dto.Pedido
         public int Cantidad { get; set; }
 
         public decimal? PrecioUnidad { get; set; }
+
+        public decimal PrecioSubTotal { get; set; }
+        public decimal Igv { get; set; }
+        public decimal IgvCalculado { get; set; }
+        public decimal PrecioTotal { get; set; }
 
         //
         public int IdTipoUnidad { get; set; }

@@ -268,6 +268,33 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string CONFIGURACION_Nombre {
+            get {
+                return ResourceManager.GetString("CONFIGURACION_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuración.
+        /// </summary>
+        public static string CONFIGURACION_Titulo {
+            get {
+                return ResourceManager.GetString("CONFIGURACION_Titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valor.
+        /// </summary>
+        public static string CONFIGURACION_Valor {
+            get {
+                return ResourceManager.GetString("CONFIGURACION_Valor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cotizar.
         /// </summary>
         public static string COTIZACION_COTIZAR {
@@ -448,6 +475,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Igv.
+        /// </summary>
+        public static string IGV {
+            get {
+                return ResourceManager.GetString("IGV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descripción.
         /// </summary>
         public static string INCIDENCIA_Descripcion {
@@ -543,6 +579,15 @@ namespace Copreter.Resources {
         public static string MENU_CITA {
             get {
                 return ResourceManager.GetString("MENU_CITA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuracion.
+        /// </summary>
+        public static string MENU_CONFIGURACION {
+            get {
+                return ResourceManager.GetString("MENU_CONFIGURACION", resourceCulture);
             }
         }
         
@@ -1051,6 +1096,24 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SubTotal.
+        /// </summary>
+        public static string PRECIO_SubTotal {
+            get {
+                return ResourceManager.GetString("PRECIO_SubTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string PRECIO_Total {
+            get {
+                return ResourceManager.GetString("PRECIO_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error al realizar la operación.
         /// </summary>
         public static string RESULT_ERROR {
@@ -1065,6 +1128,15 @@ namespace Copreter.Resources {
         public static string TAB_Filtro {
             get {
                 return ResourceManager.GetString("TAB_Filtro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        public static string TAB_Index {
+            get {
+                return ResourceManager.GetString("TAB_Index", resourceCulture);
             }
         }
         

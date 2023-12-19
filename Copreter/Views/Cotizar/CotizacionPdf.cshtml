@@ -187,14 +187,14 @@
                         <td class="total">@item.Parcial</td>
                     </tr>
                 }
-                @*              <tr>
-                <td colspan="4">SUBTOTAL</td>
-                <td class="total">$5,200.00</td>
+                <tr>
+                    <td colspan="4" class="grand total">SUBTOTAL</td>
+                    <td class="grand total">@Model.SubTotal</td>
                 </tr>
                 <tr>
-                <td colspan="4">TAX 25%</td>
-                <td class="total">$1,300.00</td>
-                </tr>*@
+                    <td colspan="4" class="grand total">Igv (@Model.Igv %)</td>
+                    <td class="grand total">@Model.IgvCalculado</td>
+                </tr>
                 <tr>
                     <td colspan="4" class="grand total">TOTAL</td>
                     <td class="grand total">@Model.Total</td>
