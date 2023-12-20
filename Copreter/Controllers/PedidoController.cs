@@ -83,21 +83,13 @@ namespace Copreter.Controllers
 
             var resultService = await this._service.ObtenerAsync(id.Value);
 
-            var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
-
-            var igvCal = igv / 100;
-
             var result = this.Mapper.Map<PedidoEditableVM>(resultService);
-            result.Igv = igvCal;
-
             var pedidoSolicitudes = await this._service.ObtenerPedidoSolicitudAsync(id.Value);
 
             if (pedidoSolicitudes != null && pedidoSolicitudes.Any())
             {
                 result.CantidadDias = pedidoSolicitudes.Sum(x => x.CantidadDias);
-                result.PrecioSubTotal = pedidoSolicitudes.Sum(x => x.PrecioSubTotal);
                 result.PrecioTotal = pedidoSolicitudes.Sum(x => x.PrecioTotal);
-                result.IgvCalculado = pedidoSolicitudes.Select(x=> x.IgvCalculado).LastOrDefault();
             }
 
             return View(result);
@@ -153,8 +145,6 @@ namespace Copreter.Controllers
                 return View();
             }
         }
-
-
         public async Task<IActionResult> Aceptar(int id)
         {
             var resultService = await this._service.ObtenerAsync(id);
@@ -194,23 +184,16 @@ namespace Copreter.Controllers
             var resultService = await this._unidadService.ObtenerAsync(idUnidad);
             if (resultService == null) return RedirectToAction(nameof(Index));
 
-            var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
-
-            var igvCal = igv / 100;
-
             var result = new PedidoEditableVM
             {
-                FechaInicio = DateTime.Now.AddDays(1),
+                FechaInicio = DateTime.Now.AddDays(3),
                 PrecioUnidad = resultService.Precio,
                 IdUnidad = idUnidad,
                 Cantidad = 1,
                 CantidadDias = 1,
                 PrecioSubTotal = 1 * resultService.Precio,
-                Igv = igv,
             };
-
-            result.IgvCalculado = result.PrecioSubTotal * igvCal;
-            result.PrecioTotal = (result.PrecioSubTotal * igvCal) + result.PrecioSubTotal;
+            result.PrecioTotal = result.PrecioSubTotal;
 
             return View(result);
         }
@@ -247,9 +230,6 @@ namespace Copreter.Controllers
                 var resultServiceUnidad = await this._unidadService.ObtenerAsync(dto.IdUnidad);
                 if (resultServiceUnidad != null)
                 {
-                    var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
-                    var igvCal = igv / 100;
-
                     if (resultServiceUnidad.CantidadDisponible < dto.Cantidad)
                     {
                         ViewData["ValidateMessage"] = "Cantidad insuficientes de unidades";
@@ -257,9 +237,7 @@ namespace Copreter.Controllers
                         return View(resultInvalid);
                     }
 
-                    dto.Igv = igv;
-                    dto.IgvCalculado = dto.PrecioSubTotal * igvCal;
-                    dto.PrecioTotal = dto.PrecioSubTotal + dto.IgvCalculado;
+                    dto.PrecioTotal = dto.PrecioTotal;
                     dto.IdUsuario = this.UserId();
                     dto.IdUsuarioRegistro = this.UserId();
                     dto.IdEstadoPedido = 1;

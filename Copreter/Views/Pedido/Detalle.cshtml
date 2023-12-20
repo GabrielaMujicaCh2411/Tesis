@@ -93,20 +93,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>@Resource.PRECIO_SubTotal</label>
-                                        <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioSubTotal" readonly="@(true)">
-                                        <span asp-validation-for="PrecioSubTotal" class="text-danger"> </span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>@Resource.IGV (@Model.Igv %)</label>
-                                        <input type="text" class="form-control" placeholder="Igv" asp-for="IgvCalculado" readonly="@(true)">
-                                        <span asp-validation-for="IgvCalculado" class="text-danger"> </span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>@Resource.PRECIO_Total</label>
-                                        <input type="text" class="form-control" placeholder="PrecioTotal" asp-for="PrecioTotal" readonly="@(true)">
+                                        <label>@Resource.PEDIDO_Precio Total</label>
+                                        <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioTotal" readonly="@(true)">
                                         <span asp-validation-for="PrecioTotal" class="text-danger"> </span>
                                     </div>
 
@@ -150,7 +138,7 @@
 
             var precio = (precioUnidad * cantidad) * cantidadDias;
 
-            document.getElementById("PrecioPedido").value = precio;
+            document.getElementById("PrecioTotal").value = precio;
         };
     </script>
 }

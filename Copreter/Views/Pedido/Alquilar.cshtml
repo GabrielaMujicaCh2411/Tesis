@@ -50,7 +50,7 @@
                                     <div class="card-body">
 
                                         <input type="hidden" asp-for="IdUnidad" />
-                                    @*    style="display: none"*@
+                                        @*    style="display: none"*@
                                         <div class="form-group">
                                             <label>@Resource.PEDIDO_Obra</label>
                                             <input type="text" class="form-control" placeholder="Obra" asp-for="Obra">
@@ -71,7 +71,8 @@
 
                                         <div class="form-group">
                                             <label>@Resource.PEDIDO_Fecha_Inicio</label>
-                                            <input type="date" min="@DateTime.Now.AddDays(1)" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio">
+                                            @* <input type="date" min="@DateTime.Now.AddDays(1)" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio"> *@
+                                            <input type="date" class="form-control datepicker" placeholder="FechaInicio" asp-for="FechaInicio">
                                             <span asp-validation-for="FechaInicio" class="text-danger"> </span>
                                         </div>
 
@@ -89,38 +90,21 @@
 
                                         <div class="form-group">
                                             <label>@Resource.PEDIDO_Precio Unidad</label>
-                                            <input type="number" class="form-control" placeholder="Precio Unidad" asp-for="PrecioUnidad" readonly="@(true)">
+                                            <input type="text" class="form-control" placeholder="Precio Unidad" asp-for="PrecioUnidad" readonly="@(true)">
                                             <span asp-validation-for="PrecioUnidad" class="text-danger"> </span>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>@Resource.PRECIO_SubTotal</label>
-                                            <input type="number" class="form-control" placeholder="Precio" asp-for="PrecioSubTotal" readonly="@(true)">
-                                            <span asp-validation-for="PrecioSubTotal" class="text-danger"> </span>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>@Resource.IGV </label>
-                                            <input type="number" class="form-control" placeholder="Igv" asp-for="Igv" readonly="@(true)">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>@Resource.IGV Calculado</label>
-                                            <input type="text" class="form-control" placeholder="Igv" asp-for="IgvCalculado" readonly="@(true)">
-                                            <span asp-validation-for="IgvCalculado" class="text-danger"> </span>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>@Resource.PRECIO_Total</label>
-                                            <input type="text" class="form-control" placeholder="PrecioTotal" asp-for="PrecioTotal" readonly="@(true)">
+                                            <label>@Resource.PEDIDO_Precio Total</label>
+                                            <input type="text" class="form-control" placeholder="Precio" asp-for="PrecioTotal" readonly="@(true)">
                                             <span asp-validation-for="PrecioTotal" class="text-danger"> </span>
                                         </div>
 
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary" onclick="return displayLoading(this)"><span class="	fas fa-spell-check" aria-hidden="true"></span> @Resource.BTN_Aceptar</button>
-                                        <button asp-action="Index" class="btn btn-danger"><span class="fas fa-undo-alt" aria-hidden="true"></span> @Resource.BTN_Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">@Resource.BTN_Aceptar</button>
+                                        <button asp-action="Index" class="btn btn-primary">@Resource.BTN_Cancelar</button>
                                     </div>
                                 </form>
                             </div>
@@ -159,23 +143,9 @@
 
             var cantidadDias = parseInt(document.getElementById("CantidadDias").value);
 
-            var igv = parseInt(document.getElementById("Igv").value);
-
-            var igvCal = igv / 100;
-
             var precio = (precioUnidad * cantidad) * cantidadDias;
 
-            var precioIgv = precio * igvCal;
-
-            document.getElementById("IgvCalculado").value = precioIgv;
-
-            document.getElementById("PrecioSubTotal").value = precio;
-
-            document.getElementById("PrecioTotal").value = precio + precioIgv;
+            document.getElementById("PrecioTotal").value = precio;
         };
-
-        function displayLoading() {
-            $("#overlay").removeClass("hiddenLoading");
-        }
     </script>
 }

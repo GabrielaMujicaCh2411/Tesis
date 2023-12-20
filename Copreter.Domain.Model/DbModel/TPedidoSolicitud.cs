@@ -9,9 +9,9 @@ namespace Copreter.Domain.Model.DbModel
         public int IdPedido { get; set; }
         public int CantidadDias { get; set; }
         public decimal PrecioUnidad { get; set; }
-        public decimal PrecioSubTotal { get; set; }
-        public decimal Igv { get; set; }
-        public decimal IgvCalculado { get; set; }
+        public decimal? PrecioSubTotal { get; set; }
+        public decimal? Igv { get; set; }
+        public decimal? IgvCalculado { get; set; }
         public decimal PrecioTotal { get; set; }
         public DateTime? FechaEntrega { get; set; }
         public DateTime? FechaDevolucion { get; set; }

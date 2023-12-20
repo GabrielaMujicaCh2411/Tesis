@@ -134,7 +134,7 @@ namespace Copreter.Controllers
                 cotizacion.SubTotal = costoSubTotal;
                 cotizacion.Total = costoTotal;
                 cotizacion.IgvCalculado = costoIgv;
-                cotizacion.Igv = igvCal;
+                cotizacion.Igv = igv;
                 cotizacion.IdEstadoCotizacion = 1;
                 var result = await this._service.AgregarAsync(cotizacion);
                 if (result)
