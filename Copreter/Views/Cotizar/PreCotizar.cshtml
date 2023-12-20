@@ -23,6 +23,51 @@
 
     <!-- Main content -->
     <section class="content">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card card-gray shadow-lg">
+                        <div class="card-header">
+                            <h3 class="card-title">Informar de IGV</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                                <div class="row" style="margin: 1rem;">
+                                    <div class="col-md-4">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                    </div>
+
+                                    <!-- /.col -->
+                                    <div class="col-md-4">
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" asp-for="IsIgv" />
+                                            <label class="form-check-label">@Resource.CALCULO_INCLUYE_IGV</label>
+                                            <span asp-validation-for="IsIgv" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                  
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -144,58 +189,58 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
 
-                        <div class="card card-danger shadow-lg">
-                            <div class="card-header">
-                                <h3 class="card-title">TOTAL</h3>
+                    <div class="card card-danger shadow-lg">
+                        <div class="card-header">
+                            <h3 class="card-title">TOTAL</h3>
 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                                        <i class="fas fa-expand"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div>
 
-                                    <table id="partidasAgregadas" class="table">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">N° Partida</th>
-                                                <th scope="col">Nombre Partida</th>
-                                                <th scope="col">Unidad</th>
-                                                <th scope="col">Metrado</th>
-                                                <th scope="col">Parcial</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                    <br />
-                                    <div style="text-align: right">
-                                        <h2>Total: S/. <span id="registrarSubTotal">0.00</span></h2>
-                                    </div>
-                                    <br />
-                                    <div style="text-align: right">
-                                        <h2>Igv (0,@Model.Igv %):  S/. <span id="registrarIgvCal">0.00</span></h2>
-                                    </div>
-                                    <br />
-                                    <div style="text-align: right">
-                                        <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
-                                    </div>
-                                    <br />
-
-                                    <div style="text-align: end; margin: 4px;">
-                                        <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
-                                    </div>
-
+                                <table id="partidasAgregadas" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">N° Partida</th>
+                                            <th scope="col">Nombre Partida</th>
+                                            <th scope="col">Unidad</th>
+                                            <th scope="col">Metrado</th>
+                                            <th scope="col">Parcial</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <div style="text-align: right">
+                                    <h2>Sub Total: S/. <span id="registrarSubTotal">0.00</span></h2>
                                 </div>
+                                <br />
+                                <div id="registrarIgvDiv" style="text-align: right">
+                                    <h2>Igv (@Model.Igv %):  S/. <span id="registrarIgvCal">0.00</span></h2>
+                                </div>
+                                <br />
+                                <div style="text-align: right">
+                                    <h2>Total: S/. <span id="registrarTotal">0.00</span></h2>
+                                </div>
+                                <br />
+
+                                <div style="text-align: end; margin: 4px;">
+                                    <button style="width:10%" class="btn btn-info" onclick="AgregarCotizacion(@Model.Obra.Id)">Cotizar</button>
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -203,16 +248,32 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 </div>
 
 @section Scripts
     {
     <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $("#IsIgv").change(function (e) {
+                limpiarCalculos();
+            });
+
+        });
+
         var costoSubTotal = 0.00;
+        var costoGananciaEmpresa = 0.00;
         var costoIgv = 0.00;
         var costoTotal = 0.00;
         var igvCal = 0.00;
+
+        function limpiarCalculos() {
+            //location.href = '@Url.Action(Keys.ActionKeys.Index, Keys.ControllerKeys.Obra)';
+        }
 
         function cambioParcial(idPartida) {
             let meter = Number(document.getElementById(`${idPartida}-Metrado`).value);
@@ -222,6 +283,9 @@
         }
 
         function addPartida(idPartida, nombrePartida, igv) {
+
+            var incluyeIgv = $("#IsIgv").prop("checked");
+
             var medida = $("#" + idPartida + "-UnidadMedida" + " option:selected").text();
             var e = document.getElementById(`${idPartida}-UnidadMedida`);
             var unidadMedida = e.options[e.selectedIndex].text;
@@ -239,12 +303,27 @@
             costoSubTotal += parseFloat(parcial);
 
             igvCal = igv / 100;
-            //costoSubTotal = parseFloat(costoTotal);
-            costoIgv = costoSubTotal * igvCal
-            costoTotal = costoSubTotal + costoIgv;
 
-            $('#registrarSubTotal').text(costoSubTotal.toFixed(2));
-            $('#registrarIgvCal').text(costoIgv.toFixed(2));
+            if (incluyeIgv == true) {
+
+                costoGananciaEmpresa = costoSubTotal / 1.18;
+                //costoSubTotal = parseFloat(costoTotal);
+                costoIgv = costoGananciaEmpresa * igvCal;
+                costoTotal = costoGananciaEmpresa + costoIgv;
+
+                // $("#registrarIgvDiv").removeClass("hiddenLoading");
+                $('#registrarSubTotal').text(costoGananciaEmpresa.toFixed(2));
+                $('#registrarIgvCal').text(costoIgv.toFixed(2));
+
+            } else {
+                // $("#registrarIgvDiv").addClass("hiddenLoading");
+
+                costoIgv = costoSubTotal * igvCal;
+                costoTotal = costoSubTotal + costoIgv;
+                $('#registrarIgvCal').text(costoIgv.toFixed(2));
+                $('#registrarSubTotal').text(costoSubTotal.toFixed(2));
+            }
+
             $('#registrarTotal').text(costoTotal.toFixed(2));
             document.getElementById(`${idPartida}-Metrado`).value = '';
             document.getElementById(`${idPartida}-Parcial`).value = '0.00';
@@ -257,6 +336,7 @@
 
             for (i = 1; i < row; i++) {
                 var parti = {
+
                     idPartida: document.getElementById("partidasAgregadas").rows[i].cells.item(0).innerHTML,
                     idObra: idObra,
                     unidad: document.getElementById("partidasAgregadas").rows[i].cells.item(2).innerHTML,
@@ -267,6 +347,7 @@
             };
 
             var param = {
+                isIgv: $("#IsIgv").prop("checked"),
                 subTotal: Number(costoSubTotal),
                 total: Number(costoTotal),
                 IdObra: idObra,

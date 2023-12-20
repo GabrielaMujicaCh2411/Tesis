@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[T_Cotizacion] (
     [ID]                        INT            IDENTITY (1, 1) NOT NULL,
     [Fecha]                DATETIME       NOT NULL,
+    [IsIgv] BIT NOT NULL DEFAULT 0, 
     [Igv]                   DECIMAL (18,2)   NOT NULL,
     [Igv_Calculado]                   DECIMAL (18,2)   NOT NULL,
     [SubTotal]              DECIMAL(18, 2) NOT NULL, 
@@ -12,7 +13,7 @@
     [ID_USUARIO_REGISTRO]     INT            NOT NULL DEFAULT 1,
     [FECHA_REGISTRO]          DATETIME       NOT NULL DEFAULT GETDATE(),
     [FECHA_MODIFICACION]      DATETIME       NULL,
-    [ID_USUARIO_MODIFICACION] INT            NULL,
+    [ID_USUARIO_MODIFICACION] INT            NULL,    
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_T_Cotizacion_T_EstadoCotizacion] FOREIGN KEY ([Id_EstadoCotizacion]) REFERENCES [dbo].[T_EstadoCotizacion] ([ID]),
     CONSTRAINT [FK_T_Cotizacion_T_Obra] FOREIGN KEY ([Id_Obra]) REFERENCES [dbo].[T_Obra] ([ID])

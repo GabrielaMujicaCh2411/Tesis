@@ -16,6 +16,7 @@ namespace Copreter.Domain.Model.DbModel
 
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
+        public bool IsIgv { get; set; }
         public decimal Igv { get; set; }
         public decimal IgvCalculado { get; set; }
         public decimal SubTotal { get; set; }

@@ -106,11 +106,35 @@ namespace Copreter.Controllers
                 var resultPartida = await this._obraPartidaService.AgregarAsync(this.Mapper.Map<IEnumerable<TObraxPartida>>(dto.Lista));
 
                 var igv = await this._configuracionService.ObtenerValorDecimal("IGV");
-  
+                var gananciaEmpresa = await this._configuracionService.ObtenerValorDecimal("GANANCIA");
+
                 var cotizacion = this.Mapper.Map<TCotizacion>(dto);
 
-                cotizacion.IgvCalculado = dto.SubTotal * (igv / 100);
-                cotizacion.Igv = igv / 100;
+                var gananciaEmpresaCal = dto.SubTotal / gananciaEmpresa;
+                var igvCal = igv / 100;
+
+                var costoSubTotal = cotizacion.SubTotal;
+
+                decimal costoIgv = 0;
+                decimal costoTotal = 0;
+
+                if (dto.IsIgv)
+                {
+                    costoSubTotal = gananciaEmpresaCal;
+                    costoIgv = gananciaEmpresaCal * igvCal;
+                    costoTotal = gananciaEmpresaCal + costoIgv;
+                }
+                else
+                {
+                    costoIgv = dto.SubTotal * igvCal;
+                    costoTotal = gananciaEmpresaCal + costoIgv;
+                }
+
+                cotizacion.IsIgv = dto.IsIgv;
+                cotizacion.SubTotal = costoSubTotal;
+                cotizacion.Total = costoTotal;
+                cotizacion.IgvCalculado = costoIgv;
+                cotizacion.Igv = igvCal;
                 cotizacion.IdEstadoCotizacion = 1;
                 var result = await this._service.AgregarAsync(cotizacion);
                 if (result)
@@ -126,7 +150,6 @@ namespace Copreter.Controllers
                 return View();
             }
         }
-
 
         public async Task<IActionResult> CotizacionPdf(int id)
         {

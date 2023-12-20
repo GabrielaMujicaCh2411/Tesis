@@ -178,6 +178,15 @@ namespace Copreter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incluye IGV.
+        /// </summary>
+        public static string CALCULO_INCLUYE_IGV {
+            get {
+                return ResourceManager.GetString("CALCULO_INCLUYE_IGV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Información.
         /// </summary>
         public static string CARD_TITLE {

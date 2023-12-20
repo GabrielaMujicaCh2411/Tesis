@@ -156,6 +156,9 @@
   <data name="BTN_Volver" xml:space="preserve">
     <value>Volver</value>
   </data>
+  <data name="CALCULO_INCLUYE_IGV" xml:space="preserve">
+    <value>Incluye IGV</value>
+  </data>
   <data name="CARD_TITLE" xml:space="preserve">
     <value>Información</value>
   </data>

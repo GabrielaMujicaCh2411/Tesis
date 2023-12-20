@@ -19,6 +19,10 @@ namespace Copreter.Models.Cotizacion
             this.UnidadMedidaLista.Add(new SelectListItem() { Value = "ml", Text = "ml" });
         }
 
+        public bool IsIgv { get; set; }
+
+        public decimal Ganancia { get; set; }
+
         public decimal Igv { get; set; }
 
         public ObraDto Obra { get; set; }
