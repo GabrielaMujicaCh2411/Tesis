@@ -127,7 +127,7 @@ namespace Copreter.Controllers
                 else
                 {
                     costoIgv = dto.SubTotal * igvCal;
-                    costoTotal = gananciaEmpresaCal + costoIgv;
+                    costoTotal = dto.SubTotal + costoIgv;
                 }
 
                 cotizacion.IsIgv = dto.IsIgv;
